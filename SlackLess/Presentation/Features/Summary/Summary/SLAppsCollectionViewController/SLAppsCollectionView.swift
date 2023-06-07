@@ -12,6 +12,9 @@ final class SLAppsCollectionView: UIView {
     private(set) lazy var appsCollectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
+        collectionViewLayout.sectionInset = .init(top: 16, left: 8, bottom: 8, right: 16)
+        collectionViewLayout.minimumLineSpacing = 24
+        collectionViewLayout.minimumInteritemSpacing = 16
         let view = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         view.register(SLAppsCollectionCell.self, forCellWithReuseIdentifier: String(describing: SLAppsCollectionCell.self))
         view.delaysContentTouches = false
@@ -21,11 +24,7 @@ final class SLAppsCollectionView: UIView {
         return view
     }()
     
-    private(set) lazy var <#name#>: <#type#> = {
-        let view = <#type#>()
-        <#code#>
-        return view
-    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
