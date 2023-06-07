@@ -47,6 +47,7 @@
 		7029E2012A2ECD4300BA1A6E /* SLAppsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2002A2ECD4300BA1A6E /* SLAppsCollectionView.swift */; };
 		7029E2032A2ECDF700BA1A6E /* SLAppsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2022A2ECDF600BA1A6E /* SLAppsCollectionViewController.swift */; };
 		7029E2052A2ECE5900BA1A6E /* SLAppsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2042A2ECE5900BA1A6E /* SLAppsCollectionCell.swift */; };
+		7029E2072A30193100BA1A6E /* SLPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2062A30193100BA1A6E /* SLPageControlView.swift */; };
 		7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		733C29868FF778B80B7FF0E3E7A3788B /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244AA823FFE0EAD4BB2A5136F1CBBD91 /* RepositoryFactory.swift */; };
 		75ECC8077F757C3BE90E96F9C0D950AB /* Pods_SlackLess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06F417F5F44B356E9F3182FCF404669 /* Pods_SlackLess.framework */; };
@@ -140,6 +141,7 @@
 		7029E2002A2ECD4300BA1A6E /* SLAppsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionView.swift; sourceTree = "<group>"; };
 		7029E2022A2ECDF600BA1A6E /* SLAppsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionViewController.swift; sourceTree = "<group>"; };
 		7029E2042A2ECE5900BA1A6E /* SLAppsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionCell.swift; sourceTree = "<group>"; };
+		7029E2062A30193100BA1A6E /* SLPageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPageControlView.swift; sourceTree = "<group>"; };
 		772B474E051DEAA53318498114D5339A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7992175DA18EA0E468D114518B0A9105 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		7BA62DE5FBA5418404D3ABD127F1CFC6 /* WelcomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewModel.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				7029E1F92A2EC20F00BA1A6E /* SLSectionView.swift */,
 				7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */,
 				7029E1FD2A2EC5F600BA1A6E /* SLDateSwitcherView.swift */,
+				7029E2062A30193100BA1A6E /* SLPageControlView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -977,6 +980,7 @@
 				A3A3581716A15358E7525F2D8F82E876 /* SLTargetType.swift in Sources */,
 				06A1045FC19BC248AF2C40AE855D8113 /* SLTexts.swift in Sources */,
 				DE1EBB2C61CFDCAB205D5E49DFF65A16 /* SLUIBarButtonItem.swift in Sources */,
+				7029E2072A30193100BA1A6E /* SLPageControlView.swift in Sources */,
 				5F62E74734AE2552EFEFE0FA574A98E7 /* SecureStorage.swift in Sources */,
 				65754F30D21A7048D1119866C978D2C8 /* SecureStorageProvider.swift in Sources */,
 				9F1232582BCFA8BD9B06EB3A69DED9A8 /* ServiceFactory.swift in Sources */,
