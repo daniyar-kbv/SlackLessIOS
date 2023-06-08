@@ -9,14 +9,14 @@ import Foundation
 
 struct AppInfo {
     let name: String
-    let image: Data
+    let image: Data?
     let time: Int
 }
 
 extension AppInfo {
     func toUI() -> AppInfoUI {
         .init(name: name,
-              image: .init(data: image),
+              image: image != nil ? .init(data: image!) : nil,
               time: time)
     }
 }
