@@ -80,7 +80,7 @@ final class SLAppTimeView: UIStackView {
 }
 
 extension SLAppTimeView {
-    func setAppIcon(_ image: UIImage) {
+    func setAppIcon(_ image: UIImage?) {
         appIconView.image = image
     }
     

@@ -78,5 +78,7 @@ final class SLPageControlView: UIView {
         view.snp.makeConstraints({
             $0.size.equalTo(size)
         })
+        
+        return view
     }
 }
