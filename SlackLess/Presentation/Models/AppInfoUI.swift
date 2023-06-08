@@ -10,6 +10,6 @@ import UIKit
 
 struct AppInfoUI {
     let name: String
-    let image: UIImage
+    let image: UIImage?
     let time: Int
 }
