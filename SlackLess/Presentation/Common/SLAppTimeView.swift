@@ -12,6 +12,9 @@ final class SLAppTimeView: UIStackView {
     private(set) lazy var appIconView: UIImageView = {
         let view = UIImageView()
         view.image = SLImages.appIcon.getImage()
+        view.snp.makeConstraints({
+            $0.size.equalTo(28)
+        })
         return view
     }()
     
@@ -100,12 +103,6 @@ extension SLAppTimeView {
         timeBarView.snp.makeConstraints({ [weak self] in
             guard let self = self else { return }
             $0.width.equalTo((timeStack.frame.width - timeLabel.frame.width - timeStack.spacing) * CGFloat(length))
-        })
-    }
-    
-    func setIconView(size: CGFloat) {
-        appIconView.snp.makeConstraints({
-            $0.size.equalTo(size)
         })
     }
 }
