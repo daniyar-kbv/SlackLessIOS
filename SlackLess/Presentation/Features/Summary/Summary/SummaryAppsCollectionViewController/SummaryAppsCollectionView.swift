@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SLAppsCollectionView: UIView {
+final class SummaryAppsCollectionView: UIView {
     private(set) lazy var appsCollectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
@@ -16,7 +16,7 @@ final class SLAppsCollectionView: UIView {
         collectionViewLayout.minimumLineSpacing = 24
         collectionViewLayout.minimumInteritemSpacing = 16
         let view = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        view.register(SLAppsCollectionCell.self, forCellWithReuseIdentifier: String(describing: SLAppsCollectionCell.self))
+        view.register(SummaryAppsCollectionCell.self, forCellWithReuseIdentifier: String(describing: SummaryAppsCollectionCell.self))
         view.delaysContentTouches = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .clear

@@ -1,5 +1,5 @@
 //
-//  SLAppsCollectionView.swift
+//  SummaryAppsCollectionView.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-06-05.
@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-final class SLAppsCollectionViewController: UIViewController {
-    private let contentView = SLAppsCollectionView()
-    private let viewModel: SLAppsCollectionViewModel
+final class SummaryAppsCollectionViewController: UIViewController {
+    private let contentView = SummaryAppsCollectionView()
+    private let viewModel: SummaryAppsCollectionViewModel
     
-    init(viewModel: SLAppsCollectionViewModel) {
+    init(viewModel: SummaryAppsCollectionViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: .none, bundle: .none)
@@ -37,14 +37,14 @@ final class SLAppsCollectionViewController: UIViewController {
     }
 }
 
-extension SLAppsCollectionViewController: UICollectionViewDataSource {
+extension SummaryAppsCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.output.getNumberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SLAppsCollectionCell.self),
-                                                                      for: indexPath) as! SLAppsCollectionCell
+        let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SummaryAppsCollectionCell.self),
+                                                                      for: indexPath) as! SummaryAppsCollectionCell
         let appInfo = viewModel.output.getAppInfoItem(for: indexPath.item)
         cell.appTimeView.setAppIcon(appInfo.image)
         cell.appTimeView.setAppTime(appInfo.time)
@@ -53,7 +53,7 @@ extension SLAppsCollectionViewController: UICollectionViewDataSource {
     }
 }
 
-extension SLAppsCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension SummaryAppsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: contentView.frame.width-80, height: 28)
     }

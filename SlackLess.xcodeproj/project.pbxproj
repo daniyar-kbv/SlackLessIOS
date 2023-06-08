@@ -44,11 +44,11 @@
 		7029E1FA2A2EC20F00BA1A6E /* SLSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F92A2EC20F00BA1A6E /* SLSectionView.swift */; };
 		7029E1FC2A2EC39300BA1A6E /* SLContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */; };
 		7029E1FE2A2EC5F600BA1A6E /* SLDateSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1FD2A2EC5F600BA1A6E /* SLDateSwitcherView.swift */; };
-		7029E2012A2ECD4300BA1A6E /* SLAppsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2002A2ECD4300BA1A6E /* SLAppsCollectionView.swift */; };
-		7029E2032A2ECDF700BA1A6E /* SLAppsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2022A2ECDF600BA1A6E /* SLAppsCollectionViewController.swift */; };
-		7029E2052A2ECE5900BA1A6E /* SLAppsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2042A2ECE5900BA1A6E /* SLAppsCollectionCell.swift */; };
+		7029E2012A2ECD4300BA1A6E /* SummaryAppsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2002A2ECD4300BA1A6E /* SummaryAppsCollectionView.swift */; };
+		7029E2032A2ECDF700BA1A6E /* SummaryAppsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2022A2ECDF600BA1A6E /* SummaryAppsCollectionViewController.swift */; };
+		7029E2052A2ECE5900BA1A6E /* SummaryAppsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2042A2ECE5900BA1A6E /* SummaryAppsCollectionCell.swift */; };
 		7029E2072A30193100BA1A6E /* SLPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2062A30193100BA1A6E /* SLPageControlView.swift */; };
-		7029E2092A31625100BA1A6E /* SLAppsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2082A31625100BA1A6E /* SLAppsCollectionViewModel.swift */; };
+		7029E2092A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2082A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift */; };
 		7029E20C2A3164D000BA1A6E /* AppInfoUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E20B2A3164D000BA1A6E /* AppInfoUI.swift */; };
 		7029E20E2A3169F700BA1A6E /* ScreenTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E20D2A3169F700BA1A6E /* ScreenTimeService.swift */; };
 		7029E2102A316A4100BA1A6E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E20F2A316A4100BA1A6E /* AppInfo.swift */; };
@@ -142,11 +142,11 @@
 		7029E1F92A2EC20F00BA1A6E /* SLSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSectionView.swift; sourceTree = "<group>"; };
 		7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLContentView.swift; sourceTree = "<group>"; };
 		7029E1FD2A2EC5F600BA1A6E /* SLDateSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLDateSwitcherView.swift; sourceTree = "<group>"; };
-		7029E2002A2ECD4300BA1A6E /* SLAppsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionView.swift; sourceTree = "<group>"; };
-		7029E2022A2ECDF600BA1A6E /* SLAppsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionViewController.swift; sourceTree = "<group>"; };
-		7029E2042A2ECE5900BA1A6E /* SLAppsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionCell.swift; sourceTree = "<group>"; };
+		7029E2002A2ECD4300BA1A6E /* SummaryAppsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAppsCollectionView.swift; sourceTree = "<group>"; };
+		7029E2022A2ECDF600BA1A6E /* SummaryAppsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAppsCollectionViewController.swift; sourceTree = "<group>"; };
+		7029E2042A2ECE5900BA1A6E /* SummaryAppsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAppsCollectionCell.swift; sourceTree = "<group>"; };
 		7029E2062A30193100BA1A6E /* SLPageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPageControlView.swift; sourceTree = "<group>"; };
-		7029E2082A31625100BA1A6E /* SLAppsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsCollectionViewModel.swift; sourceTree = "<group>"; };
+		7029E2082A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAppsCollectionViewModel.swift; sourceTree = "<group>"; };
 		7029E20B2A3164D000BA1A6E /* AppInfoUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoUI.swift; sourceTree = "<group>"; };
 		7029E20D2A3169F700BA1A6E /* ScreenTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeService.swift; sourceTree = "<group>"; };
 		7029E20F2A316A4100BA1A6E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
@@ -436,7 +436,8 @@
 		45ADF771EFB8780CA5BBB836E0A79CFB /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				7029E1FF2A2ECD3900BA1A6E /* SLAppsCollectionViewController */,
+				7029E2112A3173C200BA1A6E /* SummaryDashboardView */,
+				7029E1FF2A2ECD3900BA1A6E /* SummaryAppsCollectionViewController */,
 				0E0E4AE3288F06A3D2FBAA35EF3863A2 /* SummaryController.swift */,
 				AB5255F4D5234C3DACC8B1C1D352DFF0 /* SummaryView.swift */,
 				7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */,
@@ -531,15 +532,22 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		7029E1FF2A2ECD3900BA1A6E /* SLAppsCollectionViewController */ = {
+		7029E1FF2A2ECD3900BA1A6E /* SummaryAppsCollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7029E2022A2ECDF600BA1A6E /* SLAppsCollectionViewController.swift */,
-				7029E2002A2ECD4300BA1A6E /* SLAppsCollectionView.swift */,
-				7029E2042A2ECE5900BA1A6E /* SLAppsCollectionCell.swift */,
-				7029E2082A31625100BA1A6E /* SLAppsCollectionViewModel.swift */,
+				7029E2022A2ECDF600BA1A6E /* SummaryAppsCollectionViewController.swift */,
+				7029E2002A2ECD4300BA1A6E /* SummaryAppsCollectionView.swift */,
+				7029E2042A2ECE5900BA1A6E /* SummaryAppsCollectionCell.swift */,
+				7029E2082A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift */,
 			);
-			path = SLAppsCollectionViewController;
+			path = SummaryAppsCollectionViewController;
+			sourceTree = "<group>";
+		};
+		7029E2112A3173C200BA1A6E /* SummaryDashboardView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SummaryDashboardView;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -938,7 +946,7 @@
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
 				2A64E7F72406FAB107DCE58E1DBC4D5A /* ApplicationPagesFactory.swift in Sources */,
-				7029E2032A2ECDF700BA1A6E /* SLAppsCollectionViewController.swift in Sources */,
+				7029E2032A2ECDF700BA1A6E /* SummaryAppsCollectionViewController.swift in Sources */,
 				04EBAB1104782F578D9506880E9EDF75 /* BaseCacheStorage.swift in Sources */,
 				7829D5A844E8073405A981BE46FE8C4D /* BaseCoordinator.swift in Sources */,
 				D7F2FBFEC84058744E574D4E0A95CAAD /* BaseResponse.swift in Sources */,
@@ -951,9 +959,9 @@
 				F35662B56993244B7118CB403E248F71 /* EmptyError.swift in Sources */,
 				7029E20E2A3169F700BA1A6E /* ScreenTimeService.swift in Sources */,
 				7029E1FE2A2EC5F600BA1A6E /* SLDateSwitcherView.swift in Sources */,
-				7029E2092A31625100BA1A6E /* SLAppsCollectionViewModel.swift in Sources */,
+				7029E2092A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift in Sources */,
 				67D345D3DC3C82FFC28637B4B598D392 /* ErrorThrowable.swift in Sources */,
-				7029E2052A2ECE5900BA1A6E /* SLAppsCollectionCell.swift in Sources */,
+				7029E2052A2ECE5900BA1A6E /* SummaryAppsCollectionCell.swift in Sources */,
 				3FDCDB77103DABFE376AA961FA3ABE59 /* Event.swift in Sources */,
 				7029E1FC2A2EC39300BA1A6E /* SLContentView.swift in Sources */,
 				7029E20C2A3164D000BA1A6E /* AppInfoUI.swift in Sources */,
@@ -985,7 +993,7 @@
 				A80262B9806A3057EC0D84F82E7D651F /* RoutersFactory.swift in Sources */,
 				F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */,
 				4BF8B3E55E785E78E313F621767BA432 /* SLColors.swift in Sources */,
-				7029E2012A2ECD4300BA1A6E /* SLAppsCollectionView.swift in Sources */,
+				7029E2012A2ECD4300BA1A6E /* SummaryAppsCollectionView.swift in Sources */,
 				D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */,
 				DF07E88D2B297B9522AFD025DDD1BD8C /* SLImages.swift in Sources */,
 				F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */,
