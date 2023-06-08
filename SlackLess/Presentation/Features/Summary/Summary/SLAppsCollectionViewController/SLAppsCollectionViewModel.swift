@@ -16,6 +16,10 @@ protocol SLAppsCollectionViewModelInput {
 
 protocol SLAppsCollectionViewModelOutput {
     var didFinish: PublishRelay<Void> { get }
+    
+    func getNumberOfItems() -> Int
+    func getAppInfoItem(for: Int) -> AppInfoUI
+    func getAppTimeLength(for: Int) -> Float
 }
 
 protocol SLAppsCollectionViewModel: AnyObject {
@@ -23,15 +27,15 @@ protocol SLAppsCollectionViewModel: AnyObject {
     var output: SLAppsCollectionViewModelOutput { get }
 }
 
-final class SLAppsCollectionViewModelImpl: SLAppsCollectionViewModel, SLAppsCollectionViewModelInput, SLAppsCollectionViewModelOutput {
-    var input: SLAppsCollectionViewModelInput { self }
-    var output: SLAppsCollectionViewModelOutput { self }
-    
-    //    Output
-    var didFinish: PublishRelay<Void> = .init()
-    
-    //    Input
-    func terminate() {
-        didFinish.accept(())
-    }
-}
+//final class SLAppsCollectionViewModelImpl: SLAppsCollectionViewModel, SLAppsCollectionViewModelInput, SLAppsCollectionViewModelOutput {
+//    var input: SLAppsCollectionViewModelInput { self }
+//    var output: SLAppsCollectionViewModelOutput { self }
+//
+//    //    Output
+//    var didFinish: PublishRelay<Void> = .init()
+//
+//    //    Input
+//    func terminate() {
+//        didFinish.accept(())
+//    }
+//}
