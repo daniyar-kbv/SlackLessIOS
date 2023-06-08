@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+// Tech debt: finish or remove
+
 final class SLPageControlView: UIView {
     private let activeSize: CGFloat = 6
     private let inactiveSize: CGFloat = 6
@@ -78,5 +80,3 @@ final class SLPageControlView: UIView {
         })
     }
 }
-
-extension SLPageControlView
