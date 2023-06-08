@@ -1,5 +1,5 @@
 //
-//  SLAppsCollectionViewModel.swift
+//  SummaryAppsCollectionViewModel.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-06-07.
@@ -10,12 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SLAppsCollectionViewModelInput {
+protocol SummaryAppsCollectionViewModelInput {
     func getData()
     func terminate()
 }
 
-protocol SLAppsCollectionViewModelOutput {
+protocol SummaryAppsCollectionViewModelOutput {
     var didFinish: PublishRelay<Void> { get }
     var didGetData: PublishRelay<Void> { get }
     
@@ -24,14 +24,14 @@ protocol SLAppsCollectionViewModelOutput {
     func getAppTimeLength(for: Int) -> Float
 }
 
-protocol SLAppsCollectionViewModel: AnyObject {
-    var input: SLAppsCollectionViewModelInput { get }
-    var output: SLAppsCollectionViewModelOutput { get }
+protocol SummaryAppsCollectionViewModel: AnyObject {
+    var input: SummaryAppsCollectionViewModelInput { get }
+    var output: SummaryAppsCollectionViewModelOutput { get }
 }
 
-final class SLAppsCollectionViewModelImpl: SLAppsCollectionViewModel, SLAppsCollectionViewModelInput, SLAppsCollectionViewModelOutput {
-    var input: SLAppsCollectionViewModelInput { self }
-    var output: SLAppsCollectionViewModelOutput { self }
+final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, SummaryAppsCollectionViewModelInput, SummaryAppsCollectionViewModelOutput {
+    var input: SummaryAppsCollectionViewModelInput { self }
+    var output: SummaryAppsCollectionViewModelOutput { self }
     
     private let disposeBag = DisposeBag()
     private let screenTimeService: ScreenTimeService
@@ -80,7 +80,7 @@ final class SLAppsCollectionViewModelImpl: SLAppsCollectionViewModel, SLAppsColl
     }
 }
 
-extension SLAppsCollectionViewModelImpl {
+extension SummaryAppsCollectionViewModelImpl {
     func bindService() {
         screenTimeService
             .output
