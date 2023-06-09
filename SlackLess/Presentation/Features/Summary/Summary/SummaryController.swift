@@ -36,6 +36,7 @@ final class SummaryController: UIViewController {
         configNavBar()
         configView()
         bindViewModel()
+        bindView()
     }
 }
 
@@ -58,6 +59,36 @@ extension SummaryController {
             .output
             .date
             .bind(to: contentView.dateSwitcherView.titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .output
+            .isLastDate
+            .subscribe(onNext: { [weak self] in
+                self?.contentView.dateSwitcherView.rightButton.isEnabled = !$0
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindView() {
+        contentView
+            .dateSwitcherView
+            .leftButton
+            .rx
+            .tap
+            .bind { [weak self] in
+                self?.viewModel.input.changeDate(forward: false)
+            }
+            .disposed(by: disposeBag)
+        
+        contentView
+            .dateSwitcherView
+            .rightButton
+            .rx
+            .tap
+            .bind { [weak self] in
+                self?.viewModel.input.changeDate(forward: true)
+            }
             .disposed(by: disposeBag)
     }
 }

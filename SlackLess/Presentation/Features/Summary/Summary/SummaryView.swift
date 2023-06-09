@@ -11,6 +11,7 @@ import UIKit
 final class SummaryView: UIView {
     private(set) lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
+        view.delaysContentTouches = false
         return view
     }()
     
