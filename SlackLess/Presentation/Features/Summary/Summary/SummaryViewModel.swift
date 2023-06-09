@@ -15,6 +15,8 @@ protocol SummaryViewModelInput {
 
 protocol SummaryViewModelOutput {
     var didFinish: PublishRelay<Void> { get }
+    var date: BehaviorRelay<String> { get }
+    
 }
 
 protocol SummaryViewModel: AnyObject {
@@ -27,10 +29,19 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
     var output: SummaryViewModelOutput { self }
 
 //    Output
-    var didFinish: PublishRelay<Void> = .init()
+    let didFinish: PublishRelay<Void> = .init()
+    lazy var date: BehaviorRelay<String> = .init(value: format(date: Date()))
 
 //    Input
     func terminate() {
         didFinish.accept(())
+    }
+}
+
+extension SummaryViewModelImpl {
+    private func format(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM, EEEE"
+        return dateFormatter.string(from: date)
     }
 }
