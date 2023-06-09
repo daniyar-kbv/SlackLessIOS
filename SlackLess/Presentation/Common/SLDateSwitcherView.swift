@@ -43,6 +43,8 @@ final class SLDateSwitcherView: UIStackView {
         distribution = .equalSpacing
         alignment = .center
         
+        [leftArrowView, titleLabel, rightArrowView].forEach(addArrangedSubview(_:))
+        
         [leftArrowView, rightArrowView].forEach({ view in
             view.snp.makeConstraints({ make in
                 make.size.equalTo(28)
