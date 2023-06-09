@@ -55,6 +55,7 @@ final class SummaryView: UIView {
             $0.top.equalToSuperview()
             $0.left.equalToSuperview().offset(16)
             $0.width.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview()
         })
         
         [dateSwitcherView, firstSectionView].forEach(contentView.addArrangedSubview(_:))

@@ -55,10 +55,7 @@ final class SLDateSwitcherView: UIStackView {
 
 extension SLDateSwitcherView {
     func set(date: String) {
-        titleLabel.text = date
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "d MMM, E"
-//        titleLabel.text = dateFormatter.string(from: date)
+        titleLabel.text = dateÇ
     }
     
     func setLeftArrow(enabled: Bool) {
