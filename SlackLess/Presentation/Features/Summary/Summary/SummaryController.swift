@@ -28,4 +28,20 @@ final class SummaryController: UIViewController {
 
         view = contentView
     }
+    
+    override func viewDidLoad() {
+         configNavBar()
+    }
+}
+
+extension SummaryController {
+    func configNavBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.topItem?.title = SLTexts.Summary.title.localized()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+    }
 }
