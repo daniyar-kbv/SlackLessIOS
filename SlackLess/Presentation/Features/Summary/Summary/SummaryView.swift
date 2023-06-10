@@ -25,8 +25,14 @@ final class SummaryView: UIView {
         return view
     }()
     
+    private(set) lazy var dashboardView: SummaryDashboardView = {
+        let view = SummaryDashboardView()
+        return view
+    }()
+    
     private(set) lazy var firstSectionView: SLSectionView = {
         let view = SLSectionView(titleText: SLTexts.Summary.firstSectionTitle.localized())
+        view.addContainer(view: dashboardView)
         return view
     }()
     

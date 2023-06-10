@@ -29,5 +29,6 @@ final class WelcomeScreenController: UIViewController {
         view = contentView
     }
 
-    override func viewDidLoad() {}
+    override func viewDidLoad() {
+    }
 }

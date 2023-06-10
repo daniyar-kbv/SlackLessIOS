@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SLContainerView: UIView {
+class SLContainerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -20,7 +20,7 @@ final class SLContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layoutUI() {
+    internal func layoutUI() {
         backgroundColor = SLColors.backgroundElevated.getColor()
         layer.cornerRadius = 8
     }
