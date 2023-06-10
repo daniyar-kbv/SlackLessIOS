@@ -11,6 +11,7 @@ import UIKit
 enum SLColors: String, ColorGeatble {
     case accent1
     case accent1Static
+    case accent2
     case accent3
     case accent4
     case background1

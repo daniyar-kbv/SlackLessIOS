@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private let appComponentsFactory: AppComponentsFactory = AppComponentsFactoryImpl()
-    private let tester = Tester()
     private var appCoordinator: AppCoordinator?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureKeyboardManager()
         configureLocalization()
         startReachabilityManager()
-
-//        tester.runTests()
+        
+        ExperimentManager.shared.runTests()
 
         return true
     }

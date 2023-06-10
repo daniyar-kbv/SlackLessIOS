@@ -42,7 +42,7 @@
 "Summary.firstSectionTitle" = "Most Distracting Apps";
 "Summary.secondSectonTitle" = "Other Apps";
 "Summary.FirstContainer.title" = "Slacked";
-"Summary.FirstContainer.subitle" = "of your %s daily limit";
+"Summary.FirstContainer.subitle" = "of your %@ daily limit";
 "Summary.ThirdContainer.title" = "Total Screen Time";
 "Summary.ThirdContainer.Legend.firstTitle" = "Slacked";
 "Summary.ThirdContainer.Legend.secondTitle" = "Other apps";

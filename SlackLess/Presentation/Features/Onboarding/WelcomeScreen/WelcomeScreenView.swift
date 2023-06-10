@@ -51,7 +51,7 @@ final class WelcomeScreenView: UIView {
         let view = UIStackView(arrangedSubviews: [mainImage, titlesStack, mainButton, bottomLabel])
         view.axis = .vertical
         view.spacing = 32
-        view.alignment = .fill
+        view.alignment = .center
         view.distribution = .equalSpacing
         return view
     }()
@@ -134,7 +134,8 @@ final class WelcomeScreenView: UIView {
         }
 
         mainButton.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(16)
+            $0.left.right.equalToSuperview().inset(16).priority(.high)
+            $0.width.equalToSuperview().inset(16)
         }
     }
 }

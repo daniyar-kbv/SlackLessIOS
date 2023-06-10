@@ -41,7 +41,8 @@ final class AppCoordinator: BaseCoordinator {
 
     override func start() {
         configureCoordinators()
-        showTabBarController()
+//        showTabBarController()
+        startOnboardingFlow()
     }
 }
 

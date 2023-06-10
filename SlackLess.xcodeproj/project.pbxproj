@@ -39,6 +39,7 @@
 		676DEB218336E8AFB1C50ABE8378D52F /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */; };
 		67D345D3DC3C82FFC28637B4B598D392 /* ErrorThrowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535DEC6CD3215CA565B3DD349F6521 /* ErrorThrowable.swift */; };
 		6A9C44EEA3D3AEF44B34BCC804153083 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8402A6AC3FE1EB6F72CA2EB1B81DD94 /* StringExtension.swift */; };
+		700CC8BD2A34435F00BEAF95 /* ScreenTimeExperiments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700CC8BC2A34435F00BEAF95 /* ScreenTimeExperiments.swift */; };
 		7029E1F62A2EB37A00BA1A6E /* SLAppTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F52A2EB37A00BA1A6E /* SLAppTimeView.swift */; };
 		7029E1F82A2EC08500BA1A6E /* SLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F72A2EC08500BA1A6E /* SLContainerView.swift */; };
 		7029E1FA2A2EC20F00BA1A6E /* SLSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F92A2EC20F00BA1A6E /* SLSectionView.swift */; };
@@ -80,7 +81,7 @@
 		C3B0D7F5D5991220C5903ED19CE8C212 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEA5E1F8BEE99FD4A3D0B26ADDFC394 /* LoaderView.swift */; };
 		CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B720349AAE44C250F63FEDCA3495DE /* ApplicationCoordinatorFactory.swift */; };
 		CED0416BB0006AD0E59854EB3F5EC403 /* ImageGetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F3FC2CA177B46BE187D2BC5CED9694 /* ImageGetable.swift */; };
-		D22F6B577505A6CA0D5575C249DC691C /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20D39145F2105DEC16D17A8B8E3C261 /* Tests.swift */; };
+		D22F6B577505A6CA0D5575C249DC691C /* ExperimentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20D39145F2105DEC16D17A8B8E3C261 /* ExperimentManager.swift */; };
 		D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58094CEDCCAEEB25446AB31245271EFB /* SLFonts.swift */; };
 		D338A7CF637DEB0233DDAE547634539F /* EventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C512DC920FA08D596C4D5D4AC75C614A /* EventObserver.swift */; };
 		D7F2FBFEC84058744E574D4E0A95CAAD /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243653BD4DDFD857B4812FB0594D239F /* BaseResponse.swift */; };
@@ -139,6 +140,8 @@
 		64901180FCF67ADF191AAEDCE02FEE01 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		6BF7838DEA4C37DC9DABEBDAC482FD56 /* AlertDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDisplayable.swift; sourceTree = "<group>"; };
+		700CC8BA2A34310400BEAF95 /* SlackLess.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlackLess.entitlements; sourceTree = "<group>"; };
+		700CC8BC2A34435F00BEAF95 /* ScreenTimeExperiments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeExperiments.swift; sourceTree = "<group>"; };
 		7029E1F52A2EB37A00BA1A6E /* SLAppTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppTimeView.swift; sourceTree = "<group>"; };
 		7029E1F72A2EC08500BA1A6E /* SLContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLContainerView.swift; sourceTree = "<group>"; };
 		7029E1F92A2EC20F00BA1A6E /* SLSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSectionView.swift; sourceTree = "<group>"; };
@@ -177,7 +180,7 @@
 		A893937BAD6744652634953553C2548D /* SLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTabBarController.swift; sourceTree = "<group>"; };
 		AB5255F4D5234C3DACC8B1C1D352DFF0 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		AF98B7BAE1D447E1BAA6279E1D71D7E8 /* FontGetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontGetable.swift; sourceTree = "<group>"; };
-		B20D39145F2105DEC16D17A8B8E3C261 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		B20D39145F2105DEC16D17A8B8E3C261 /* ExperimentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentManager.swift; sourceTree = "<group>"; };
 		B7F73DFD874584CA256A0AD6E5507A42 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		BDF67A40EB36D8597E320B1B90FC13CD /* EmptyError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyError.swift; sourceTree = "<group>"; };
@@ -270,7 +273,6 @@
 				20E26102BF0F2C6ED5789F348473E7B2 /* Factories */,
 				42064981FD71498759E3B74CCB216106 /* Routing */,
 				CEFC613E7285B734EAF32D316F895C05 /* AppDelegate.swift */,
-				B20D39145F2105DEC16D17A8B8E3C261 /* Tests.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -348,6 +350,7 @@
 		28C1C8EC6827AD7010B957C3BB5D8233 /* SlackLess */ = {
 			isa = PBXGroup;
 			children = (
+				700CC8BA2A34310400BEAF95 /* SlackLess.entitlements */,
 				1815E541EC0A81D13262C6071925D7FB /* Application */,
 				C351DD1D1E0FBA54EA220745837C1167 /* Data */,
 				87AA43268FEE75C8F523647809FEFE5C /* Domain */,
@@ -471,6 +474,7 @@
 		543C2D7FF6197349816C416E2140DCD8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				700CC8BB2A3442E800BEAF95 /* Experiments */,
 				51E6434D523D073DA0CC8031E771F81D /* Events */,
 				91C65A51206D0A4752764B607D8FCA32 /* Extensions */,
 				ED1CDA3319942CEECF8DBDB9BF90FB9D /* Loader */,
@@ -534,6 +538,15 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		700CC8BB2A3442E800BEAF95 /* Experiments */ = {
+			isa = PBXGroup;
+			children = (
+				B20D39145F2105DEC16D17A8B8E3C261 /* ExperimentManager.swift */,
+				700CC8BC2A34435F00BEAF95 /* ScreenTimeExperiments.swift */,
+			);
+			path = Experiments;
 			sourceTree = "<group>";
 		};
 		7029E1FF2A2ECD3900BA1A6E /* SummaryAppsCollectionViewController */ = {
@@ -962,6 +975,7 @@
 				7029E1F62A2EB37A00BA1A6E /* SLAppTimeView.swift in Sources */,
 				E28FA7F8A6601DCBA9DB0E7354E35A1F /* DomainError.swift in Sources */,
 				99CA0D6B19D1C7A4577FD75BB1678233 /* EmptyData.swift in Sources */,
+				700CC8BD2A34435F00BEAF95 /* ScreenTimeExperiments.swift in Sources */,
 				F35662B56993244B7118CB403E248F71 /* EmptyError.swift in Sources */,
 				7029E20E2A3169F700BA1A6E /* ScreenTimeService.swift in Sources */,
 				7029E1FE2A2EC5F600BA1A6E /* SLDateSwitcherView.swift in Sources */,
@@ -1021,7 +1035,7 @@
 				7AB87A2CEDB676750CC5A2E8970D65FA /* SummaryCoordinatorFactory.swift in Sources */,
 				63F8F1102F7F17EE518CD60A08360DE4 /* SummaryView.swift in Sources */,
 				676DEB218336E8AFB1C50ABE8378D52F /* SummaryViewModel.swift in Sources */,
-				D22F6B577505A6CA0D5575C249DC691C /* Tests.swift in Sources */,
+				D22F6B577505A6CA0D5575C249DC691C /* ExperimentManager.swift in Sources */,
 				8ADF592AD876F300B1D34447B0A1447A /* UIApplicationExtension.swift in Sources */,
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
 				C059AE25A3793362AEB6D89E0BDC423E /* UIButtonExtension.swift in Sources */,
@@ -1123,9 +1137,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SlackLess/SlackLess.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5NY5T6N6CU;
+				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SlackLess;
@@ -1133,14 +1149,15 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.slackless.SlackLess.SlackLess;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1207,9 +1224,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SlackLess/SlackLess.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5NY5T6N6CU;
+				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SlackLess;
@@ -1217,14 +1236,15 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.slackless.SlackLess.SlackLess;
+				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
