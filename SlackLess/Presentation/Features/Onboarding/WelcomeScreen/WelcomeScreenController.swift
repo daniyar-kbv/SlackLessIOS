@@ -25,10 +25,6 @@ final class WelcomeScreenController: UIViewController {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    deinit {
-        viewModel.input.terminate()
-    }
 
     override func loadView() {
         super.loadView()

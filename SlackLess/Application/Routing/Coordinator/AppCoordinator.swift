@@ -40,9 +40,14 @@ final class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        configureCoordinators()
-//        showTabBarController()
-        startOnboardingFlow()
+        let keyValueStorage = repositoryFactory.makeKeyValueStorage()
+        
+        if keyValueStorage.onbardingShown {
+            configureCoordinators()
+            showTabBarController()
+        } else {
+            startOnboardingFlow()
+        }
     }
 }
 

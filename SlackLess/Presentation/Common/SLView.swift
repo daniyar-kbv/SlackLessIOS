@@ -17,7 +17,7 @@ import UIKit
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(contentView)
+        super.addSubview(contentView)
         contentView.snp.makeConstraints({
             $0.top.bottom.equalTo(safeAreaLayoutGuide)
             $0.left.right.equalToSuperview().inset(16)
