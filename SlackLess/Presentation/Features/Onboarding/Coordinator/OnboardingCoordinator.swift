@@ -7,8 +7,11 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class OnboardingCoordinator: BaseCoordinator {
+    private let disposeBag = DisposeBag()
     private(set) var router: Router
 
     private let modulesFactory: OnboardingModulesFactory
@@ -28,7 +31,25 @@ final class OnboardingCoordinator: BaseCoordinator {
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
         router.getNavigationController().isNavigationBarHidden = true
+        
+        module.viewModel.output.didFinish
+            .subscribe(onNext: { [weak self] in
+                self?.showRequestAuth()
+            })
+            .disposed(by: disposeBag)
 
         UIApplication.shared.set(rootViewController: router.getNavigationController())
+    }
+    
+    private func showRequestAuth() {
+        let module = modulesFactory.makeRequestAuthModule()
+        
+        module.viewModel.output.authorizationComplete
+            .subscribe(onNext: { [weak self] in
+                
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: module.controller, animated: true)
     }
 }

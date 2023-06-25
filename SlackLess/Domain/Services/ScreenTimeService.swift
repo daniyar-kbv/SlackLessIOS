@@ -8,13 +8,14 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import FamilyControls
 
 protocol ScreenTimeServiceInput {
-    func getAppsInfo()
+    func requestAuthorization()
 }
 
 protocol ScreenTimeServiceOutput {
-    var appsInfo: PublishRelay<[AppInfo]> { get }
+    var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
 }
 
 protocol ScreenTimeService: AnyObject {
@@ -26,16 +27,20 @@ final class ScreenTimeServiceImpl: ScreenTimeService, ScreenTimeServiceInput, Sc
     var input: ScreenTimeServiceInput { self }
     var output: ScreenTimeServiceOutput { self }
     
+    private let center = AuthorizationCenter.shared
+    
     //    Output
-    var appsInfo: PublishRelay<[AppInfo]> = .init()
+    var authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
     
     //    Input
-    func getAppsInfo() {
-        var lastNumber = 3600
-        appsInfo.accept((0..<11).map({ _ in
-            let seconds = Int.random(in: Range(uncheckedBounds: (lower: lastNumber*Int(0.8), upper: lastNumber)))
-            lastNumber = seconds
-            return AppInfo(name: "SlackLess", image: SLImages.appIcon.getImage()?.pngData(), time: seconds)
-        }))
+    func requestAuthorization() {
+        Task {
+            do {
+                try await center.requestAuthorization(for: FamilyControlsMember.individual)
+                authorizaionStatus.accept(.success(()))
+            } catch {
+                authorizaionStatus.accept(.failure(DomainEmptyError()))
+            }
+        }
     }
 }

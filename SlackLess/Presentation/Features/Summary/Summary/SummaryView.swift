@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-final class SummaryView: UIView {
+final class SummaryView: SLView {
     private(set) lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.delaysContentTouches = false
         return view
     }()
     
-    private(set) lazy var contentView: SLContentView = {
+    private(set) lazy var contentView_: SLContentView = {
         let view = SLContentView()
         return view
     }()
@@ -49,15 +49,12 @@ final class SummaryView: UIView {
             $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         })
         
-        scrollView.addSubview(contentView)
+        scrollView.addSubview(contentView_)
         
-        contentView.snp.makeConstraints({
-            $0.top.equalToSuperview()
-            $0.left.equalToSuperview().offset(16)
-            $0.width.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview()
+        contentView_.snp.makeConstraints({
+            $0.edges.equalToSuperview()
         })
         
-        [dateSwitcherView, firstSectionView].forEach(contentView.addArrangedSubview(_:))
+        [dateSwitcherView, firstSectionView].forEach(contentView_.addArrangedSubview(_:))
     }
 }
