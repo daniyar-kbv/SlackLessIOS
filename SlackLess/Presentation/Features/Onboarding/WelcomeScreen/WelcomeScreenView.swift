@@ -131,7 +131,7 @@ final class WelcomeScreenView: SLView {
         }
 
         mainImage.snp.makeConstraints {
-            $0.size.equalTo(self.snp.width)
+            $0.size.equalTo(self.snp.width).priority(.high)
         }
 
         mainButton.snp.makeConstraints {

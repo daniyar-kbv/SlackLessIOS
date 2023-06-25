@@ -76,7 +76,7 @@ extension SLButton {
             case .tinted: return SLColors.accent1.getColor()
             case .gray: return SLColors.accent1.getColor()
             case .white: return SLColors.black.getColor()
-            case .contrastBackground: return SLColors.label1.getColor()
+            case .contrastBackground: return SLColors.label2.getColor()
             case .contrastText: return SLColors.label2.getColor()
             case .plain: return SLColors.accent1.getColor()
             }

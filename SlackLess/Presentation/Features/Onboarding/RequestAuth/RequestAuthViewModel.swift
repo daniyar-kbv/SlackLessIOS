@@ -31,6 +31,8 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
     
     init(screenTimeService: ScreenTimeService) {
         self.screenTimeService = screenTimeService
+        
+        bindService()
     }
     
     //    Output
