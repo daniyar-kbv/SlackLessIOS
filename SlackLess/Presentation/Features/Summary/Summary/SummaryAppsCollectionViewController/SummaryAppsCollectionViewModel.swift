@@ -11,14 +11,9 @@ import RxSwift
 import RxCocoa
 
 protocol SummaryAppsCollectionViewModelInput {
-    func getData()
-    func terminate()
 }
 
 protocol SummaryAppsCollectionViewModelOutput {
-    var didFinish: PublishRelay<Void> { get }
-    var didGetData: PublishRelay<Void> { get }
-    
     func getNumberOfItems() -> Int
     func getAppInfoItem(for: Int) -> AppInfoUI
     func getAppTimeLength(for: Int) -> Float
@@ -52,7 +47,7 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
 
     //    Input
     func getData() {
-        screenTimeService.input.getAppsInfo()
+//        screenTimeService.input.getAppsInfo()
     }
     
     func terminate() {
@@ -82,12 +77,6 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
 
 extension SummaryAppsCollectionViewModelImpl {
     func bindService() {
-        screenTimeService
-            .output
-            .appsInfo
-            .subscribe(onNext: { [weak self] in
-                self?.appsInfo = $0.map({ $0.toUI() })
-            })
-            .disposed(by: disposeBag)
+
     }
 }

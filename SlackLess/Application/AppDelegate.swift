@@ -10,7 +10,7 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    private var appMode: Constants.AppMode = .experimental
+    private var appMode: Constants.AppMode = .normal
     
     var window: UIWindow?
 

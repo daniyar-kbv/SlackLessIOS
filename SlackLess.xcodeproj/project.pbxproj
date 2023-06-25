@@ -83,6 +83,13 @@
 		70D564B62A47DDD900FCFE4D /* SummaryDashboardReportScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998232A43E0AE008B2A9A /* SummaryDashboardReportScene.swift */; };
 		70D564B82A47DED700FCFE4D /* SummaryDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2122A31748400BA1A6E /* SummaryDashboardView.swift */; };
 		70D564BB2A47E23A00FCFE4D /* SummaryDashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */; };
+		70D564BD2A47E4F500FCFE4D /* SelectAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */; };
+		70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */; };
+		70D564C22A47E59900FCFE4D /* SelectAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C12A47E59900FCFE4D /* SelectAppsView.swift */; };
+		70D564C42A47E66100FCFE4D /* SLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C32A47E66100FCFE4D /* SLView.swift */; };
+		70D564C72A47EB4800FCFE4D /* RequestAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C62A47EB4800FCFE4D /* RequestAuthView.swift */; };
+		70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C82A47EB5200FCFE4D /* RequestAuthController.swift */; };
+		70D564CB2A47EB5B00FCFE4D /* RequestAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564CA2A47EB5B00FCFE4D /* RequestAuthViewModel.swift */; };
 		7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		733C29868FF778B80B7FF0E3E7A3788B /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244AA823FFE0EAD4BB2A5136F1CBBD91 /* RepositoryFactory.swift */; };
 		75ECC8077F757C3BE90E96F9C0D950AB /* Pods_SlackLess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06F417F5F44B356E9F3182FCF404669 /* Pods_SlackLess.framework */; };
@@ -233,6 +240,13 @@
 		70B9984E2A468D3B008B2A9A /* SummaryDashboardReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardReport.swift; sourceTree = "<group>"; };
 		70D564B42A47DC2000FCFE4D /* ActivityReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReportService.swift; sourceTree = "<group>"; };
 		70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardController.swift; sourceTree = "<group>"; };
+		70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsController.swift; sourceTree = "<group>"; };
+		70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsViewModel.swift; sourceTree = "<group>"; };
+		70D564C12A47E59900FCFE4D /* SelectAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsView.swift; sourceTree = "<group>"; };
+		70D564C32A47E66100FCFE4D /* SLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLView.swift; sourceTree = "<group>"; };
+		70D564C62A47EB4800FCFE4D /* RequestAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthView.swift; sourceTree = "<group>"; };
+		70D564C82A47EB5200FCFE4D /* RequestAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthController.swift; sourceTree = "<group>"; };
+		70D564CA2A47EB5B00FCFE4D /* RequestAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthViewModel.swift; sourceTree = "<group>"; };
 		772B474E051DEAA53318498114D5339A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7992175DA18EA0E468D114518B0A9105 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		7A8A5FA76C66DA714C4052ED /* Pods-SLActivityReport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLActivityReport.debug.xcconfig"; path = "Target Support Files/Pods-SLActivityReport/Pods-SLActivityReport.debug.xcconfig"; sourceTree = "<group>"; };
@@ -403,6 +417,7 @@
 				7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */,
 				7029E1FD2A2EC5F600BA1A6E /* SLDateSwitcherView.swift */,
 				7029E2062A30193100BA1A6E /* SLPageControlView.swift */,
+				70D564C32A47E66100FCFE4D /* SLView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -534,9 +549,9 @@
 			isa = PBXGroup;
 			children = (
 				7029E1FF2A2ECD3900BA1A6E /* SummaryAppsCollectionViewController */,
+				7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */,
 				0E0E4AE3288F06A3D2FBAA35EF3863A2 /* SummaryController.swift */,
 				AB5255F4D5234C3DACC8B1C1D352DFF0 /* SummaryView.swift */,
-				7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -709,6 +724,26 @@
 			path = SummaryDashboard;
 			sourceTree = "<group>";
 		};
+		70D564BE2A47E50300FCFE4D /* SelectApps */ = {
+			isa = PBXGroup;
+			children = (
+				70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */,
+				70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */,
+				70D564C12A47E59900FCFE4D /* SelectAppsView.swift */,
+			);
+			path = SelectApps;
+			sourceTree = "<group>";
+		};
+		70D564C52A47EB1400FCFE4D /* RequestAuth */ = {
+			isa = PBXGroup;
+			children = (
+				70D564CA2A47EB5B00FCFE4D /* RequestAuthViewModel.swift */,
+				70D564C82A47EB5200FCFE4D /* RequestAuthController.swift */,
+				70D564C62A47EB4800FCFE4D /* RequestAuthView.swift */,
+			);
+			path = RequestAuth;
+			sourceTree = "<group>";
+		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,9 +913,9 @@
 		D1CE78DC39DB16BEBE2D29B57FCF100E /* WelcomeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7BA62DE5FBA5418404D3ABD127F1CFC6 /* WelcomeScreenViewModel.swift */,
 				2E09968366BA517BE5383D52D2F103F8 /* WelcomeScreenController.swift */,
 				46FEBE0F002CCBAE7844787179CC9C1E /* WelcomeScreenView.swift */,
-				7BA62DE5FBA5418404D3ABD127F1CFC6 /* WelcomeScreenViewModel.swift */,
 			);
 			path = WelcomeScreen;
 			sourceTree = "<group>";
@@ -952,6 +987,8 @@
 			children = (
 				8A9B2CF6C206B99A01F63D75A6E3F7DE /* Coordinator */,
 				D1CE78DC39DB16BEBE2D29B57FCF100E /* WelcomeScreen */,
+				70D564C52A47EB1400FCFE4D /* RequestAuth */,
+				70D564BE2A47E50300FCFE4D /* SelectApps */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1180,6 +1217,7 @@
 			files = (
 				19778F21DE596BF0D993DDC124796069 /* APIFactory.swift in Sources */,
 				D98D54AEF19BF1398A3B9DD8EAEC14CF /* AlertDisplayable.swift in Sources */,
+				70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */,
 				E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */,
 				F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
@@ -1198,15 +1236,18 @@
 				700CC8BD2A34435F00BEAF95 /* ScreenTimeExperiments.swift in Sources */,
 				F35662B56993244B7118CB403E248F71 /* EmptyError.swift in Sources */,
 				7029E20E2A3169F700BA1A6E /* ScreenTimeService.swift in Sources */,
+				70D564C42A47E66100FCFE4D /* SLView.swift in Sources */,
 				7029E1FE2A2EC5F600BA1A6E /* SLDateSwitcherView.swift in Sources */,
 				7029E2092A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift in Sources */,
 				67D345D3DC3C82FFC28637B4B598D392 /* ErrorThrowable.swift in Sources */,
 				7029E2052A2ECE5900BA1A6E /* SummaryAppsCollectionCell.swift in Sources */,
 				3FDCDB77103DABFE376AA961FA3ABE59 /* Event.swift in Sources */,
 				7029E1FC2A2EC39300BA1A6E /* SLContentView.swift in Sources */,
+				70D564CB2A47EB5B00FCFE4D /* RequestAuthViewModel.swift in Sources */,
 				7029E20C2A3164D000BA1A6E /* AppInfoUI.swift in Sources */,
 				C31675F5D248E1CEE7333855AE91A9D0 /* EventManager.swift in Sources */,
 				D338A7CF637DEB0233DDAE547634539F /* EventObserver.swift in Sources */,
+				70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */,
 				A61A84A4BA935BB6D9EA21F2C291C67E /* EventType.swift in Sources */,
 				937B7C0F71D0BE325AF02669B063B00C /* FontGetable.swift in Sources */,
 				70294B6F2A411B7B001C289E /* ScreenTimeExperimentsController.swift in Sources */,
@@ -1243,6 +1284,7 @@
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
 				A9F73ED042F6C4339D992D08815595E6 /* SLTabBarType.swift in Sources */,
 				436B2147B0393B575289D3FC2A8C783D /* SLTabBarViewModel.swift in Sources */,
+				70D564C22A47E59900FCFE4D /* SelectAppsView.swift in Sources */,
 				A3A3581716A15358E7525F2D8F82E876 /* SLTargetType.swift in Sources */,
 				06A1045FC19BC248AF2C40AE855D8113 /* SLTexts.swift in Sources */,
 				DE1EBB2C61CFDCAB205D5E49DFF65A16 /* SLUIBarButtonItem.swift in Sources */,
@@ -1261,9 +1303,11 @@
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
 				C059AE25A3793362AEB6D89E0BDC423E /* UIButtonExtension.swift in Sources */,
 				639F00A102F9C8DDE1A04A8714CA1BA2 /* UIColorExtensions.swift in Sources */,
+				70D564BD2A47E4F500FCFE4D /* SelectAppsController.swift in Sources */,
 				075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */,
 				DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */,
 				7029E2102A316A4100BA1A6E /* AppInfo.swift in Sources */,
+				70D564C72A47EB4800FCFE4D /* RequestAuthView.swift in Sources */,
 				2332B4FD37A974AD83DF4F981D385DFC /* WelcomeScreenView.swift in Sources */,
 				DD7A5346104B0A4EACA0E9C7B4F181D4 /* WelcomeScreenViewModel.swift in Sources */,
 				7029E1F82A2EC08500BA1A6E /* SLContainerView.swift in Sources */,

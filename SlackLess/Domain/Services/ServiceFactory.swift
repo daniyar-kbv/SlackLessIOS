@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol ServiceFactory: AnyObject {}
+protocol ServiceFactory: AnyObject {
+    func makeScreenTimeService() -> ScreenTimeService
+}
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     private let apiFactory: APIFactory
@@ -21,5 +23,9 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
         self.apiFactory = apiFactory
         self.repositoryFactory = repositoryFactory
         self.helpersFactory = helpersFactory
+    }
+    
+    func makeScreenTimeService() -> ScreenTimeService {
+        return ScreenTimeServiceImpl()
     }
 }

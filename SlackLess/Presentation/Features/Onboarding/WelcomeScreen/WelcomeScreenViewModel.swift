@@ -10,14 +10,17 @@ import RxCocoa
 import RxSwift
 
 protocol WelcomeScreenViewModelInput {
-    func terminate()
+    func close()
 }
 
 protocol WelcomeScreenViewModelOutput {
     var didFinish: PublishRelay<Void> { get }
 }
 
-protocol WelcomeScreenViewModel: AnyObject {}
+protocol WelcomeScreenViewModel: AnyObject {
+    var input: WelcomeScreenViewModelInput { get }
+    var output: WelcomeScreenViewModelOutput { get }
+}
 
 final class WelcomeScreenViewModelImpl: WelcomeScreenViewModel, WelcomeScreenViewModelInput, WelcomeScreenViewModelOutput {
     var input: WelcomeScreenViewModelInput { self }
@@ -27,7 +30,7 @@ final class WelcomeScreenViewModelImpl: WelcomeScreenViewModel, WelcomeScreenVie
     var didFinish: PublishRelay<Void> = .init()
 
 //    Input
-    func terminate() {
+    func close() {
         didFinish.accept(())
     }
 }

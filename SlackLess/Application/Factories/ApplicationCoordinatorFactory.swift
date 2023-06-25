@@ -14,14 +14,17 @@ protocol ApplicationCoordinatorFactory: AnyObject {
 
 final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoordinatorFactory {
     private let routersFactory: RoutersFactory
+    private let serviceFactory: ServiceFactory
 
-    init(routersFactory: RoutersFactory) {
+    init(routersFactory: RoutersFactory,
+         serviceFactory: ServiceFactory) {
         self.routersFactory = routersFactory
+        self.serviceFactory = serviceFactory
     }
 
     func makeOnboardingCoordinator() -> OnboardingCoordinator {
         return scoped(OnboardingCoordinator(router: routersFactory.makeMainRouter(),
-                                            modulesFactory: OnboardingModulesFactoryImpl()))
+                                            modulesFactory: OnboardingModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
     
     func makeSummaryCoordinator() -> SummaryCoordinator {

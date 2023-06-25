@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class WelcomeScreenView: UIView {
+final class WelcomeScreenView: SLView {
     private(set) lazy var mainImage: UIImageView = {
         let view = UIImageView()
         view.image = SLImages.WelcomeScreen.main.getImage()
@@ -125,17 +125,17 @@ final class WelcomeScreenView: UIView {
         [mainStack].forEach { addSubview($0) }
 
         mainStack.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalToSuperview()
             $0.left.right.equalToSuperview()
         }
 
         mainImage.snp.makeConstraints {
-            $0.size.equalTo(safeAreaLayoutGuide.snp.width)
+            $0.size.equalToSuperview()
         }
 
         mainButton.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(16).priority(.high)
-            $0.width.equalToSuperview().inset(16)
+            $0.left.right.equalToSuperview().priority(.high)
+            $0.width.equalToSuperview()
         }
     }
 }
