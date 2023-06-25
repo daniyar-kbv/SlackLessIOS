@@ -29,6 +29,6 @@ final class OnboardingCoordinator: BaseCoordinator {
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
         router.getNavigationController().isNavigationBarHidden = true
 
-        UIApplication.shared.setRootView(router.getNavigationController())
+        UIApplication.shared.set(rootViewController: router.getNavigationController())
     }
 }

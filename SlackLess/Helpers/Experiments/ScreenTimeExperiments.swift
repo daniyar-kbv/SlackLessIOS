@@ -7,21 +7,19 @@
 
 import Foundation
 import FamilyControls
-import DeviceActivity
+import DeviceActivity
+import SwiftUI
 
 final class ScreenTimeExperiments {
     func run() {
-        requestAuthorization()
+        UIApplication.shared.set(rootViewController: ScreenTimeExperimentsController())
+//        requestAuthorization()
     }
     
     private func requestAuthorization() {
         let authorizationCenter = AuthorizationCenter.shared
         Task {
-            try await authorizationCenter.requestAuthorization(for: .individual)
-        }
-    }
-    
-    private func test() {
-        
+            try await authorizationCenter.requestAuthorization(for: .individual)
+        }
     }
 }

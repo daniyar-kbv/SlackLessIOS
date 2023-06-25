@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
-final class SummaryDashboardView: SLContainerView {
+final class SummaryDashboardView: UIView {
     private var startPoint = CGFloat(-Double.pi)
     private var endPoint = CGFloat(0)
     
@@ -44,7 +45,6 @@ final class SummaryDashboardView: SLContainerView {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 64, weight: .bold)
         view.textColor = SLColors.white.getColor()
-        view.text = "4:20"
         return view
     }()
     
@@ -59,6 +59,7 @@ final class SummaryDashboardView: SLContainerView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        layoutUI()
     }
     
     @available(*, unavailable)
@@ -66,8 +67,7 @@ final class SummaryDashboardView: SLContainerView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutUI() {
-        super.layoutUI()
+    func layoutUI() {
         
         backgroundColor = SLColors.accent1.getColor()
         clipsToBounds = true

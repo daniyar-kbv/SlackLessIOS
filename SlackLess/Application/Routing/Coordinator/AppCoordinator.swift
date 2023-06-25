@@ -52,7 +52,7 @@ extension AppCoordinator {
     private func showTabBarController() {
         modulesFactory.makeSLTabBarController().viewControllers = preparedViewControllers
 
-        UIApplication.shared.setRootView(modulesFactory.makeSLTabBarController())
+        UIApplication.shared.set(rootViewController: modulesFactory.makeSLTabBarController())
     }
 
     private func startOnboardingFlow() {
