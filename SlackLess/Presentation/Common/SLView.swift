@@ -17,6 +17,8 @@ import UIKit
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = SLColors.background1.getColor()
+        
         super.addSubview(contentView)
         contentView.snp.makeConstraints({
             $0.top.bottom.equalTo(safeAreaLayoutGuide)
