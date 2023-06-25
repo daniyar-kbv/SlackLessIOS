@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class WelcomeScreenView: SLView {
     private(set) lazy var mainImage: UIImageView = {
@@ -130,7 +131,7 @@ final class WelcomeScreenView: SLView {
         }
 
         mainImage.snp.makeConstraints {
-            $0.size.equalToSuperview()
+            $0.size.equalTo(self.snp.width)
         }
 
         mainButton.snp.makeConstraints {

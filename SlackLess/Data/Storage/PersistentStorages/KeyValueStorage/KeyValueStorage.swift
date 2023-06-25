@@ -10,7 +10,7 @@ import FamilyControls
 
 enum KeyValueStorageKey: String, StorageKey, Equatable {
     case appLocale
-    case notFirstLaunch
+    case onbardingShown
     case selectedApps
     case timeLimit
 
@@ -19,12 +19,12 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
 
 protocol KeyValueStorage {
     var appLocale: Language { get }
-    var notFirstLaunch: Bool { get }
+    var onbardingShown: Bool { get }
     var selectedApps: FamilyActivitySelection? { get }
     var timelimit: Double { get }
 
     func persist(appLocale: Language)
-    func persist(notFirstLaunch: Bool)
+    func persist(onbardingShown: Bool)
     func persist(selectedApps: FamilyActivitySelection)
     func persist(timeLimit: Double)
 
@@ -37,8 +37,8 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     public init() {}
     
-    public var notFirstLaunch: Bool {
-        return storageProvider.bool(forKey: KeyValueStorageKey.notFirstLaunch.value)
+    public var onbardingShown: Bool {
+        return storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
     }
 
     public var appLocale: Language {
@@ -66,8 +66,8 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.set(appLocale.code, forKey: KeyValueStorageKey.appLocale.value)
     }
 
-    public func persist(notFirstLaunch: Bool) {
-        storageProvider.set(notFirstLaunch, forKey: KeyValueStorageKey.notFirstLaunch.value)
+    public func persist(onbardingShown: Bool) {
+        storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
     
     public func persist(selectedApps: FamilyActivitySelection) {
