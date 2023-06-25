@@ -1,17 +1,16 @@
 //
-//  SelectAppsView.swift
+//  SelectAppsContainerView.swift
 //  SlackLess
 //
-//  Created by Daniyar Kurmanbayev on 2023-06-24.
+//  Created by Daniyar Kurmanbayev on 2023-06-25.
 //
 
 import Foundation
 import UIKit
 
 final class SelectAppsView: SLView {
-    private(set) lazy var button: SLButton = {
-        let view = SLButton(style: .contrastBackground, size: .large)
-        view.setTitle("Select Apps", for: .normal)
+    private(set) lazy var buttonView: UIView = {
+        let view = UIView()
         return view
     }()
     
@@ -27,10 +26,11 @@ final class SelectAppsView: SLView {
     }
     
     private func layoutUI() {
-        [button].forEach({ addSubview($0) })
+        [buttonView].forEach({ addSubview($0) })
         
-        button.snp.makeConstraints({
+        buttonView.snp.makeConstraints({
             $0.bottom.left.right.equalToSuperview().priority(.high)
         })
     }
 }
+

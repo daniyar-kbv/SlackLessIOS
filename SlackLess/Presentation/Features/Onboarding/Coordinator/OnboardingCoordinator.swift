@@ -46,7 +46,19 @@ final class OnboardingCoordinator: BaseCoordinator {
         
         module.viewModel.output.authorizationComplete
             .subscribe(onNext: { [weak self] in
-                
+                self?.showSelectApps()
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: module.controller, animated: true)
+    }
+    
+    private func showSelectApps() {
+        let module = modulesFactory.makeSelectAppsModule()
+        
+        module.viewModel.output.appsSelected
+            .subscribe(onNext: { [weak self] in
+                print("selected")
             })
             .disposed(by: disposeBag)
         

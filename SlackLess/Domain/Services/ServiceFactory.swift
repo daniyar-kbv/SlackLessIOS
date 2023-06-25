@@ -26,6 +26,6 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     }
     
     func makeScreenTimeService() -> ScreenTimeService {
-        return ScreenTimeServiceImpl()
+        return ScreenTimeServiceImpl(keyValueStorage: repositoryFactory.makeKeyValueStorage())
     }
 }
