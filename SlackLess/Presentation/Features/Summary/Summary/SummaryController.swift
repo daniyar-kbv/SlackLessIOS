@@ -55,8 +55,8 @@ extension SummaryController {
     }
     
     private func configView() {
-        _ = add(swiftUIView: DeviceActivityReport(DeviceActivityReport.Context(rawValue: Constants.ContextName.mainDashboard)),
-            to: contentView.firstSectionView)
+//        _ = add(swiftUIView: DeviceActivityReport(DeviceActivityReport.Context(rawValue: Constants.ContextName.mainDashboard)),
+//            to: contentView.firstSectionView)
     }
     
     private func bindViewModel() {

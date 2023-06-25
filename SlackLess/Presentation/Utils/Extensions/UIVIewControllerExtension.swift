@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import SnapKit
 
 extension UIViewController {
     func topViewController() -> UIViewController? {
@@ -27,12 +28,12 @@ extension UIViewController {
         return self
     }
     
-    func add(swiftUIView: some View, to view: UIView) -> UIHostingController<some View> {
-        let controller = UIHostingController(rootView: swiftUIView)
-        addChild(controller)
-        view.addSubview(controller.view)
-        controller.view.frame = view.frame
-        controller.didMove(toParent: self)
-        return controller
+    func add(hostingController: UIHostingController<some View>, to view: UIView) {
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+        hostingController.view.snp.makeConstraints({
+            $0.edges.equalToSuperview()
+        })
+        hostingController.didMove(toParent: self)
     }
 }

@@ -7,10 +7,24 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
+import FamilyControls
+import SwiftUI
 
 final class SelectAppsController: UIViewController {
+    private let disposeBag = DisposeBag()
     private let contentView = SelectAppsView()
     private let viewModel: SelectAppsViewModel
+    
+    private lazy var buttonContainerView = SelectAppsButtonContainerView(onSelect: appsSelected(_:))
+    private lazy var hostingController = UIHostingController(rootView: buttonContainerView)
+    
+    private var selection = FamilyActivitySelection() {
+        didSet {
+            
+        }
+    }
     
     init(viewModel: SelectAppsViewModel) {
         self.viewModel = viewModel
@@ -27,6 +41,21 @@ final class SelectAppsController: UIViewController {
         super.loadView()
         
         view = contentView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configView()
+    }
+    
+    private func configView() {
+        add(hostingController: hostingController,
+            to: contentView.buttonView)
+    }
+    
+    private func appsSelected(_ selection: FamilyActivitySelection) {
+        viewModel.input.save(appsSelection: selection)
     }
 }
 

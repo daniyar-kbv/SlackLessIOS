@@ -10,6 +10,7 @@ import Foundation
 protocol OnboardingModulesFactory: AnyObject {
     func makeWelcomeScreenModule() -> (viewModel: WelcomeScreenViewModel, controller: WelcomeScreenController)
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController)
+    func makeSelectAppsModule() -> (viewModel: SelectAppsViewModel, controller: SelectAppsController)
 }
 
 final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
@@ -26,6 +27,11 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
     
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController) {
         let viewModel = RequestAuthViewModellImpl(screenTimeService: serviceFactory.makeScreenTimeService())
+        return (viewModel: viewModel, controller: .init(viewModel: viewModel))
+    }
+    
+    func makeSelectAppsModule() -> (viewModel: SelectAppsViewModel, controller: SelectAppsController) {
+        let viewModel = SelectAppsViewModelImpl(screenTimeService: serviceFactory.makeScreenTimeService())
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 }

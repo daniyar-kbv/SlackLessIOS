@@ -85,11 +85,13 @@
 		70D564BB2A47E23A00FCFE4D /* SummaryDashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */; };
 		70D564BD2A47E4F500FCFE4D /* SelectAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */; };
 		70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */; };
-		70D564C22A47E59900FCFE4D /* SelectAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C12A47E59900FCFE4D /* SelectAppsView.swift */; };
+		70D564C22A47E59900FCFE4D /* SelectAppsButtonContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C12A47E59900FCFE4D /* SelectAppsButtonContainerView.swift */; };
 		70D564C42A47E66100FCFE4D /* SLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C32A47E66100FCFE4D /* SLView.swift */; };
 		70D564C72A47EB4800FCFE4D /* RequestAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C62A47EB4800FCFE4D /* RequestAuthView.swift */; };
 		70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C82A47EB5200FCFE4D /* RequestAuthController.swift */; };
 		70D564CB2A47EB5B00FCFE4D /* RequestAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564CA2A47EB5B00FCFE4D /* RequestAuthViewModel.swift */; };
+		70D564CD2A47FD8100FCFE4D /* SelectAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564CC2A47FD8100FCFE4D /* SelectAppsView.swift */; };
+		70D564D22A47FEA900FCFE4D /* SelectAppsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564D12A47FEA900FCFE4D /* SelectAppsButtonView.swift */; };
 		7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		733C29868FF778B80B7FF0E3E7A3788B /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244AA823FFE0EAD4BB2A5136F1CBBD91 /* RepositoryFactory.swift */; };
 		75ECC8077F757C3BE90E96F9C0D950AB /* Pods_SlackLess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06F417F5F44B356E9F3182FCF404669 /* Pods_SlackLess.framework */; };
@@ -242,11 +244,13 @@
 		70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardController.swift; sourceTree = "<group>"; };
 		70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsController.swift; sourceTree = "<group>"; };
 		70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsViewModel.swift; sourceTree = "<group>"; };
-		70D564C12A47E59900FCFE4D /* SelectAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsView.swift; sourceTree = "<group>"; };
+		70D564C12A47E59900FCFE4D /* SelectAppsButtonContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsButtonContainerView.swift; sourceTree = "<group>"; };
 		70D564C32A47E66100FCFE4D /* SLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLView.swift; sourceTree = "<group>"; };
 		70D564C62A47EB4800FCFE4D /* RequestAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthView.swift; sourceTree = "<group>"; };
 		70D564C82A47EB5200FCFE4D /* RequestAuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthController.swift; sourceTree = "<group>"; };
 		70D564CA2A47EB5B00FCFE4D /* RequestAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAuthViewModel.swift; sourceTree = "<group>"; };
+		70D564CC2A47FD8100FCFE4D /* SelectAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsView.swift; sourceTree = "<group>"; };
+		70D564D12A47FEA900FCFE4D /* SelectAppsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsButtonView.swift; sourceTree = "<group>"; };
 		772B474E051DEAA53318498114D5339A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7992175DA18EA0E468D114518B0A9105 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		7A8A5FA76C66DA714C4052ED /* Pods-SLActivityReport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLActivityReport.debug.xcconfig"; path = "Target Support Files/Pods-SLActivityReport/Pods-SLActivityReport.debug.xcconfig"; sourceTree = "<group>"; };
@@ -729,7 +733,7 @@
 			children = (
 				70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */,
 				70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */,
-				70D564C12A47E59900FCFE4D /* SelectAppsView.swift */,
+				70D564CE2A47FE7000FCFE4D /* View */,
 			);
 			path = SelectApps;
 			sourceTree = "<group>";
@@ -742,6 +746,16 @@
 				70D564C62A47EB4800FCFE4D /* RequestAuthView.swift */,
 			);
 			path = RequestAuth;
+			sourceTree = "<group>";
+		};
+		70D564CE2A47FE7000FCFE4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				70D564CC2A47FD8100FCFE4D /* SelectAppsView.swift */,
+				70D564C12A47E59900FCFE4D /* SelectAppsButtonContainerView.swift */,
+				70D564D12A47FEA900FCFE4D /* SelectAppsButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -1284,7 +1298,7 @@
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
 				A9F73ED042F6C4339D992D08815595E6 /* SLTabBarType.swift in Sources */,
 				436B2147B0393B575289D3FC2A8C783D /* SLTabBarViewModel.swift in Sources */,
-				70D564C22A47E59900FCFE4D /* SelectAppsView.swift in Sources */,
+				70D564C22A47E59900FCFE4D /* SelectAppsButtonContainerView.swift in Sources */,
 				A3A3581716A15358E7525F2D8F82E876 /* SLTargetType.swift in Sources */,
 				06A1045FC19BC248AF2C40AE855D8113 /* SLTexts.swift in Sources */,
 				DE1EBB2C61CFDCAB205D5E49DFF65A16 /* SLUIBarButtonItem.swift in Sources */,
@@ -1300,11 +1314,13 @@
 				676DEB218336E8AFB1C50ABE8378D52F /* SummaryViewModel.swift in Sources */,
 				D22F6B577505A6CA0D5575C249DC691C /* ExperimentManager.swift in Sources */,
 				8ADF592AD876F300B1D34447B0A1447A /* UIApplicationExtension.swift in Sources */,
+				70D564D22A47FEA900FCFE4D /* SelectAppsButtonView.swift in Sources */,
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
 				C059AE25A3793362AEB6D89E0BDC423E /* UIButtonExtension.swift in Sources */,
 				639F00A102F9C8DDE1A04A8714CA1BA2 /* UIColorExtensions.swift in Sources */,
 				70D564BD2A47E4F500FCFE4D /* SelectAppsController.swift in Sources */,
 				075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */,
+				70D564CD2A47FD8100FCFE4D /* SelectAppsView.swift in Sources */,
 				DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */,
 				7029E2102A316A4100BA1A6E /* AppInfo.swift in Sources */,
 				70D564C72A47EB4800FCFE4D /* RequestAuthView.swift in Sources */,
