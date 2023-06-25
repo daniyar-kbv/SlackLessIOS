@@ -9,9 +9,15 @@ import Foundation
 import UIKit
 
 extension UIApplication {
-    func setRootView(_ vc: UIViewController, completion: (() -> Void)? = nil) {
-        guard let window = keyWindow else { return }
-        window.rootViewController = vc
+    func getKeyWindow() -> UIWindow? {
+        connectedScenes
+            .flatMap({ ($0 as? UIWindowScene)?.windows ?? [] })
+            .last(where: { $0.isKeyWindow })
+    }
+    
+    func set(rootViewController: UIViewController, completion: (() -> Void)? = nil) {
+        guard let window = getKeyWindow() else { return }
+        window.rootViewController = rootViewController
         UIView.transition(with: window,
                           duration: 0.2,
                           options: .transitionCrossDissolve,
@@ -22,6 +28,6 @@ extension UIApplication {
     }
 
     func topViewController() -> UIViewController? {
-        return keyWindow?.rootViewController?.topViewController()
+        return getKeyWindow()?.rootViewController?.topViewController()
     }
 }

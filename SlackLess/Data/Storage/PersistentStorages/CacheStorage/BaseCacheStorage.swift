@@ -8,7 +8,7 @@
 import Cache
 import Foundation
 
-public final class BaseCacheStorage {
+final class BaseCacheStorage {
     private enum Keys: String {
         case disk
     }

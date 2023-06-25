@@ -23,6 +23,10 @@ target 'SlackLess' do
 
   # Pod for observing internet connection
   pod 'ReachabilitySwift'
+  
+  target 'SLActivityReport' do
+      inherit! :search_paths
+  end
 
 end
 

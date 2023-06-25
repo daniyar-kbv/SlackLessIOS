@@ -11,6 +11,11 @@ import UIKit
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
+    
+    enum AppMode {
+        case normal
+        case experimental
+    }
 
     enum URLs {}
 
@@ -25,6 +30,21 @@ struct Constants {
         var name: Notification.Name {
             switch self {}
         }
+    }
+    
+//    Shared constants
+    struct UserDefaults {
+        struct SuiteName {
+            static let main = "group.kz.slackless"
+        }
+        
+        struct Key {
+            static let appsSelection = "AppsSelection"
+        }
+    }
+    
+    struct ContextName {
+        static let mainDashboard = "MainDashboard"
     }
 }
 

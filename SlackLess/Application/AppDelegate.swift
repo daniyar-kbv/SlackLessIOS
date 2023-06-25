@@ -10,20 +10,31 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private var appMode: Constants.AppMode = .experimental
+    
     var window: UIWindow?
 
     private let appComponentsFactory: AppComponentsFactory = AppComponentsFactoryImpl()
     private var appCoordinator: AppCoordinator?
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        configureAppCoordinator()
-        configureKeyboardManager()
-        configureLocalization()
-        startReachabilityManager()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        switch appMode {
+        case .normal:
+            configureAppCoordinator()
+            configureKeyboardManager()
+            configureLocalization()
+            startReachabilityManager()
+        case .experimental:
+            makeWindow()
+            ExperimentManager.shared.run()
+        }
         
-        ExperimentManager.shared.runTests()
-
         return true
+    }
+    
+    private func makeWindow() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
     }
 
     private func configureAppCoordinator() {
@@ -34,9 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             modulesFactory: appComponentsFactory.makeApplicationModulesFactory(),
             helpersFactory: appComponentsFactory.makeHelpersFactory()
         )
-
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+        
+        makeWindow()
         appCoordinator?.start()
     }
 

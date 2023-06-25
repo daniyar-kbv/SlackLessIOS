@@ -24,7 +24,7 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
         return shared(ApplicationCoordinatorFactoryImpl(routersFactory: makeRoutersFactory()))
     }
 
-    private func makeRoutersFactory() -> RoutersFactory {
+    func makeRoutersFactory() -> RoutersFactory {
         return shared(RoutersFactoryImpl())
     }
 
@@ -44,7 +44,7 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
 
 //    MARK: - Network
 
-    private func makeAPIFactory() -> APIFactory {
+    func makeAPIFactory() -> APIFactory {
         return shared(APIFactoryImpl())
     }
 
@@ -58,7 +58,7 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
         return shared(SecureStorageImpl())
     }
 
-    func makeKeyValueStorage() -> KeyValueStorage {
+    public func makeKeyValueStorage() -> KeyValueStorage {
         return shared(KeyValueStorageImpl())
     }
 
@@ -68,7 +68,7 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
 
 //    MARK: - Reachability
 
-    func makeHelpersFactory() -> HelpersFactory {
+    public func makeHelpersFactory() -> HelpersFactory {
         return shared(HelpersFactoryImpl(keyValueStorage: makeKeyValueStorage()))
     }
 }

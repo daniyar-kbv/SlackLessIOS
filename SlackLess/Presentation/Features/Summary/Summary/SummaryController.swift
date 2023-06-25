@@ -9,11 +9,15 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import DeviceActivity
+import SwiftUI
 
 final class SummaryController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentView = SummaryView()
     private let viewModel: SummaryViewModel
+    
+//    private var summaryDashboardController: UIHostingController?
 
     init(viewModel: SummaryViewModel) {
         self.viewModel = viewModel
@@ -51,7 +55,8 @@ extension SummaryController {
     }
     
     private func configView() {
-        
+        _ = add(swiftUIView: DeviceActivityReport(DeviceActivityReport.Context(rawValue: Constants.ContextName.mainDashboard)),
+            to: contentView.firstSectionView)
     }
     
     private func bindViewModel() {
