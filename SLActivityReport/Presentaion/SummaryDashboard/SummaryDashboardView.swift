@@ -25,16 +25,17 @@ struct SummaryDashboardView: View {
                         .font(SLFonts.primary.getSwiftUIFont(ofSize: 17, weight: .bold))
                         .bold()
                         .foregroundStyle(SLColors.white.getSwiftUIColor())
-                    Text("1:20")
+                    Text(report.getFormattedSpentTime())
                         .font(SLFonts.primary.getSwiftUIFont(ofSize: 64, weight: .bold))
                         .bold()
                         .foregroundStyle(SLColors.white.getSwiftUIColor())
-                    Text(SLTexts.Summary.FirstContainer.subtitle.localized("2h"))
+                    Text(SLTexts.Summary.FirstContainer.subtitle.localized(report.getFormattedTimeLimit()))
                         .font(SLFonts.primary.getSwiftUIFont(ofSize: 13, weight: .bold))
                         .bold()
                         .foregroundStyle(SLColors.white.getSwiftUIColor())
                 }
-                .position(x: gr.size.width/2, y: (gr.size.height/2)+(((gr.size.height-((Constants.screenSize.width-64)/2)-32)/2))+32)
+                .position(x: gr.size.width/2,
+                          y: (gr.size.height/2)+(((gr.size.height-((Constants.screenSize.width-64)/2)-32)/2))+32)
             }
         }
         .clipped()

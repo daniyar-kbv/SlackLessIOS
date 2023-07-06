@@ -45,7 +45,6 @@ struct Constants {
     }
     
     struct ContextName {
-        static let totalTestActivity = "TotalTestActivity"
         static let mainDashboard = "MainDashboard"
     }
     

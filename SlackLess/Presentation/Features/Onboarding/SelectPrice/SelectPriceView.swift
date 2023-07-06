@@ -1,17 +1,18 @@
 //
-//  RequestAuthView.swift
+//  SelectPrice.swift
 //  SlackLess
 //
-//  Created by Daniyar Kurmanbayev on 2023-06-24.
+//  Created by Daniyar Kurmanbayev on 2023-07-05.
 //
 
 import Foundation
 import UIKit
+import SnapKit
 
-final class RequestAuthView: SLView {
+final class SelectPriceView: SLView {
     private(set) lazy var button: SLButton = {
         let view = SLButton(style: .contrastBackground, size: .large)
-        view.setTitle("Request Authorization", for: .normal)
+        view.setTitle("Set 3h Limit", for: .normal)
         return view
     }()
     

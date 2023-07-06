@@ -58,6 +58,19 @@ final class OnboardingCoordinator: BaseCoordinator {
         
         module.viewModel.output.appsSelected
             .subscribe(onNext: { [weak self] in
+                self?.showSelectPrices()
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: module.controller, animated: true)
+    }
+    
+    private func showSelectPrices() {
+        let module = modulesFactory.makeSelectPriceModule()
+        
+        module.viewModel.output.timeLimitSaved
+            .subscribe(onNext: { [weak self] in
+                print("appsSaved")
                 self?.didFinish?()
             })
             .disposed(by: disposeBag)

@@ -54,6 +54,7 @@ final class WelcomeScreenView: SLView {
         view.spacing = 32
         view.alignment = .center
         view.distribution = .equalSpacing
+        view.clipsToBounds = false
         return view
     }()
 
@@ -130,8 +131,9 @@ final class WelcomeScreenView: SLView {
             $0.left.right.equalToSuperview()
         }
 
-        mainImage.snp.makeConstraints {
-            $0.size.equalTo(self.snp.width).priority(.high)
+        mainImage.snp.makeConstraints { [weak self] in
+            guard let self = self else { return }
+            $0.size.equalTo(self.snp.width).offset(16).priority(.required)
         }
 
         mainButton.snp.makeConstraints {
