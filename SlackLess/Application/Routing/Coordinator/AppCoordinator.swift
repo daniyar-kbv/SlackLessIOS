@@ -42,14 +42,12 @@ final class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        configureCoordinators()
-        showTabBarController()
-//        if keyValueStorage.onbardingShown {
-//            configureCoordinators()
-//            showTabBarController()
-//        } else {
-//            startOnboardingFlow()
-//        }
+        if keyValueStorage.onbardingShown {
+            configureCoordinators()
+            showTabBarController()
+        } else {
+            startOnboardingFlow()
+        }
     }
 }
 

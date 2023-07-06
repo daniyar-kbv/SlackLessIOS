@@ -27,6 +27,8 @@ final class SummaryView: SLView {
     
     private(set) lazy var firstSectionFirstContentView: SLContainerView = {
         let view = SLContainerView()
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
         return view
     }()
     

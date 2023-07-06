@@ -15,7 +15,6 @@ struct SLActivityReport: DeviceActivityReportExtension {
     )
     
     var body: some DeviceActivityReportScene {
-        TotalActivityTestReport() { .init(activityReport: $0) }
         SummaryDashboardReportScene(service: service) { .init(report: $0) }
     }
 }

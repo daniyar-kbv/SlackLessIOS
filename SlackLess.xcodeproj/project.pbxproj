@@ -69,11 +69,12 @@
 		70B9985C2A469E26008B2A9A /* KeyValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4D45D3500D5EE24B7936666C5A829 /* KeyValueStorage.swift */; };
 		70B9985D2A469E48008B2A9A /* SecureStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F8806D347D2E9D04944EB0AEF9DCC0 /* SecureStorageProvider.swift */; };
 		70B998652A469F9D008B2A9A /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F433A68368B380E372A9151916F4959 /* Language.swift */; };
-		70C0DA5C2A55004D0084A2DA /* TotalActivityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA5B2A55004D0084A2DA /* TotalActivityTestView.swift */; };
-		70C0DA5E2A5500760084A2DA /* ActivityTestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA5D2A5500760084A2DA /* ActivityTestReport.swift */; };
-		70C0DA602A5501230084A2DA /* TotalActivityTestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA5F2A5501230084A2DA /* TotalActivityTestReport.swift */; };
 		70C0DA612A5513AC0084A2DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5EB5D4F8645A3CF8492497AFB4A3A0 /* Colors.xcassets */; };
 		70C0DA622A5513B50084A2DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD0AB815CAF5740C54B81CF17FC98C9 /* Assets.xcassets */; };
+		70C0DA682A564E7C0084A2DA /* SelectPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA672A564E7C0084A2DA /* SelectPriceView.swift */; };
+		70C0DA6B2A564EF80084A2DA /* SelectPriceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA6A2A564EF80084A2DA /* SelectPriceController.swift */; };
+		70C0DA6D2A564F220084A2DA /* SelectPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA6C2A564F220084A2DA /* SelectPriceViewModel.swift */; };
+		70C0DA6F2A564F980084A2DA /* AppsSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA6E2A564F980084A2DA /* AppsSettingsService.swift */; };
 		70D564A62A47D81E00FCFE4D /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		70D564A82A47D97900FCFE4D /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B36C2BFD49DD3583B4106A9F8EE363 /* SecureStorage.swift */; };
 		70D564A92A47DA5300FCFE4D /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244AA823FFE0EAD4BB2A5136F1CBBD91 /* RepositoryFactory.swift */; };
@@ -247,9 +248,10 @@
 		70B998282A43E0AE008B2A9A /* SLActivityReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLActivityReport.entitlements; sourceTree = "<group>"; };
 		70B998332A43E1FC008B2A9A /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		70B9984E2A468D3B008B2A9A /* SummaryDashboardReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardReport.swift; sourceTree = "<group>"; };
-		70C0DA5B2A55004D0084A2DA /* TotalActivityTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalActivityTestView.swift; sourceTree = "<group>"; };
-		70C0DA5D2A5500760084A2DA /* ActivityTestReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTestReport.swift; sourceTree = "<group>"; };
-		70C0DA5F2A5501230084A2DA /* TotalActivityTestReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalActivityTestReport.swift; sourceTree = "<group>"; };
+		70C0DA672A564E7C0084A2DA /* SelectPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceView.swift; sourceTree = "<group>"; };
+		70C0DA6A2A564EF80084A2DA /* SelectPriceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceController.swift; sourceTree = "<group>"; };
+		70C0DA6C2A564F220084A2DA /* SelectPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceViewModel.swift; sourceTree = "<group>"; };
+		70C0DA6E2A564F980084A2DA /* AppsSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSettingsService.swift; sourceTree = "<group>"; };
 		70D564B42A47DC2000FCFE4D /* ActivityReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReportService.swift; sourceTree = "<group>"; };
 		70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsController.swift; sourceTree = "<group>"; };
 		70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsViewModel.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 			children = (
 				A78EAC9A7EC243CB884D14721ECF2548 /* ServiceFactory.swift */,
 				7029E20D2A3169F700BA1A6E /* ScreenTimeService.swift */,
+				70C0DA6E2A564F980084A2DA /* AppsSettingsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -695,7 +698,6 @@
 				70B998332A43E1FC008B2A9A /* Context.swift */,
 				70D564B42A47DC2000FCFE4D /* ActivityReportService.swift */,
 				70D564B72A47DE2500FCFE4D /* Presentaion */,
-				70B998502A468EBF008B2A9A /* Extensions */,
 				70B998322A43E19B008B2A9A /* Resourses */,
 			);
 			path = SLActivityReport;
@@ -710,27 +712,19 @@
 			path = Resourses;
 			sourceTree = "<group>";
 		};
-		70B998502A468EBF008B2A9A /* Extensions */ = {
+		70C0DA692A564E820084A2DA /* SelectPrice */ = {
 			isa = PBXGroup;
 			children = (
+				70C0DA6C2A564F220084A2DA /* SelectPriceViewModel.swift */,
+				70C0DA6A2A564EF80084A2DA /* SelectPriceController.swift */,
+				70C0DA672A564E7C0084A2DA /* SelectPriceView.swift */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		70C0DA5A2A55003B0084A2DA /* TotalActivityTest */ = {
-			isa = PBXGroup;
-			children = (
-				70C0DA5F2A5501230084A2DA /* TotalActivityTestReport.swift */,
-				70C0DA5B2A55004D0084A2DA /* TotalActivityTestView.swift */,
-				70C0DA5D2A5500760084A2DA /* ActivityTestReport.swift */,
-			);
-			path = TotalActivityTest;
+			path = SelectPrice;
 			sourceTree = "<group>";
 		};
 		70D564B72A47DE2500FCFE4D /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
-				70C0DA5A2A55003B0084A2DA /* TotalActivityTest */,
 				70D564B92A47DEEC00FCFE4D /* SummaryDashboard */,
 			);
 			path = Presentaion;
@@ -1023,6 +1017,7 @@
 				D1CE78DC39DB16BEBE2D29B57FCF100E /* WelcomeScreen */,
 				70D564C52A47EB1400FCFE4D /* RequestAuth */,
 				70D564BE2A47E50300FCFE4D /* SelectApps */,
+				70C0DA692A564E820084A2DA /* SelectPrice */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1224,7 +1219,6 @@
 				70D564AE2A47DBC900FCFE4D /* SLFonts.swift in Sources */,
 				70D564B22A47DBF800FCFE4D /* Localization.swift in Sources */,
 				70D564B32A47DBFB00FCFE4D /* SLTexts.swift in Sources */,
-				70C0DA5E2A5500760084A2DA /* ActivityTestReport.swift in Sources */,
 				70D564B52A47DC2100FCFE4D /* ActivityReportService.swift in Sources */,
 				70D564B62A47DDD900FCFE4D /* SummaryDashboardReportScene.swift in Sources */,
 				70D564B12A47DBF400FCFE4D /* Localizable.swift in Sources */,
@@ -1240,13 +1234,11 @@
 				70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */,
 				70D564A92A47DA5300FCFE4D /* RepositoryFactory.swift in Sources */,
 				70B998472A46832C008B2A9A /* Constants.swift in Sources */,
-				70C0DA602A5501230084A2DA /* TotalActivityTestReport.swift in Sources */,
 				70B9985D2A469E48008B2A9A /* SecureStorageProvider.swift in Sources */,
 				70D564AF2A47DBCD00FCFE4D /* ImageGetable.swift in Sources */,
 				70B998342A43E1FC008B2A9A /* Context.swift in Sources */,
 				70B998652A469F9D008B2A9A /* Language.swift in Sources */,
 				70B9985C2A469E26008B2A9A /* KeyValueStorage.swift in Sources */,
-				70C0DA5C2A55004D0084A2DA /* TotalActivityTestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1259,6 +1251,7 @@
 				70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */,
 				E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */,
 				F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */,
+				70C0DA6F2A564F980084A2DA /* AppsSettingsService.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
 				2A64E7F72406FAB107DCE58E1DBC4D5A /* ApplicationPagesFactory.swift in Sources */,
@@ -1276,6 +1269,7 @@
 				700CC8BD2A34435F00BEAF95 /* ScreenTimeExperiments.swift in Sources */,
 				F35662B56993244B7118CB403E248F71 /* EmptyError.swift in Sources */,
 				7029E20E2A3169F700BA1A6E /* ScreenTimeService.swift in Sources */,
+				70C0DA6B2A564EF80084A2DA /* SelectPriceController.swift in Sources */,
 				70D564C42A47E66100FCFE4D /* SLView.swift in Sources */,
 				7029E1FE2A2EC5F600BA1A6E /* SLDateSwitcherView.swift in Sources */,
 				7029E2092A31625100BA1A6E /* SummaryAppsCollectionViewModel.swift in Sources */,
@@ -1319,8 +1313,10 @@
 				7029E2012A2ECD4300BA1A6E /* SummaryAppsCollectionView.swift in Sources */,
 				D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */,
 				DF07E88D2B297B9522AFD025DDD1BD8C /* SLImages.swift in Sources */,
+				70C0DA6D2A564F220084A2DA /* SelectPriceViewModel.swift in Sources */,
 				70294BA42A41258E001C289E /* ScreenTimeExperimentsView.swift in Sources */,
 				F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */,
+				70C0DA682A564E7C0084A2DA /* SelectPriceView.swift in Sources */,
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
 				A9F73ED042F6C4339D992D08815595E6 /* SLTabBarType.swift in Sources */,
 				436B2147B0393B575289D3FC2A8C783D /* SLTabBarViewModel.swift in Sources */,

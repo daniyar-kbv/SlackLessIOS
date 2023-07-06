@@ -9,6 +9,7 @@ import Foundation
 
 protocol ServiceFactory: AnyObject {
     func makeScreenTimeService() -> ScreenTimeService
+    func makeAppSettingsService() -> AppsSettingsService
 }
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
@@ -26,6 +27,10 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     }
     
     func makeScreenTimeService() -> ScreenTimeService {
-        return ScreenTimeServiceImpl(keyValueStorage: repositoryFactory.makeKeyValueStorage())
+        return weakShared(ScreenTimeServiceImpl(keyValueStorage: repositoryFactory.makeKeyValueStorage()))
+    }
+    
+    func makeAppSettingsService() -> AppsSettingsService {
+        return weakShared(AppsSettingsServiceImpl(keyValueStorage: repositoryFactory.makeKeyValueStorage()))
     }
 }
