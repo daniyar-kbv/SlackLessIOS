@@ -15,8 +15,7 @@ struct SLActivityReport: DeviceActivityReportExtension {
     )
     
     var body: some DeviceActivityReportScene {
-        SummaryDashboardReportScene(service: service) { report in
-            SummaryDashboardContainerView(report: report)
-        }
+        TotalActivityTestReport() { .init(activityReport: $0) }
+        SummaryDashboardReportScene(service: service) { .init(report: $0) }
     }
 }

@@ -48,7 +48,7 @@ class SLViewState: ObservableObject {
             }
         }
     }
-    @Published var state: SLState = .auth
+    @Published var state: SLState = .chart
 
     init() { }
     
@@ -98,8 +98,7 @@ struct ChartView: View {
 
     var body: some View {
         ZStack {
-            STProgressView()
-            DeviceActivityReport(context, filter: filter)
+            DeviceActivityReport(.init(Constants.ContextName.mainDashboard), filter: Constants.DeviceActivityFilters.summary)
         }
     }
 }

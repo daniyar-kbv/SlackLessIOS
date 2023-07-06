@@ -25,8 +25,14 @@ final class SummaryView: SLView {
         return view
     }()
     
+    private(set) lazy var firstSectionFirstContentView: SLContainerView = {
+        let view = SLContainerView()
+        return view
+    }()
+    
     private(set) lazy var firstSectionView: SLSectionView = {
         let view = SLSectionView(titleText: SLTexts.Summary.firstSectionTitle.localized())
+        view.addContainer(view: firstSectionFirstContentView)
         return view
     }()
     
@@ -46,15 +52,21 @@ final class SummaryView: SLView {
         [scrollView].forEach(addSubview(_:))
         
         scrollView.snp.makeConstraints({
-            $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)
+            $0.edges.equalToSuperview()
         })
         
         scrollView.addSubview(contentView_)
         
         contentView_.snp.makeConstraints({
             $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
         })
         
         [dateSwitcherView, firstSectionView].forEach(contentView_.addArrangedSubview(_:))
+        
+        firstSectionFirstContentView.snp.makeConstraints({
+//            Refactor
+            $0.height.equalTo((Constants.screenSize.width-64)/2+16)
+        })
     }
 }

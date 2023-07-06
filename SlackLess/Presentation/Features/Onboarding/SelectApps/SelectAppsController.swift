@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import FamilyControls
 import SwiftUI
+import SnapKit
 
 final class SelectAppsController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -19,12 +20,6 @@ final class SelectAppsController: UIViewController {
     
     private lazy var buttonContainerView = SelectAppsButtonContainerView(onSelect: appsSelected(_:))
     private lazy var hostingController = UIHostingController(rootView: buttonContainerView)
-    
-    private var selection = FamilyActivitySelection() {
-        didSet {
-            
-        }
-    }
     
     init(viewModel: SelectAppsViewModel) {
         self.viewModel = viewModel

@@ -57,15 +57,23 @@
 		7029E20E2A3169F700BA1A6E /* ScreenTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E20D2A3169F700BA1A6E /* ScreenTimeService.swift */; };
 		7029E2102A316A4100BA1A6E /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E20F2A316A4100BA1A6E /* AppInfo.swift */; };
 		7029E2152A32BED500BA1A6E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2142A32BED400BA1A6E /* UIImage.swift */; };
+		70A00B362A53BBBE0072486E /* UIHostingControllerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */; };
+		70A00B372A53C6310072486E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
+		70A00B3C2A54F2010072486E /* SummaryDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B3B2A54F2010072486E /* SummaryDashboardView.swift */; };
+		70A00B3E2A54F4BB0072486E /* SummaryDashboardCircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B3D2A54F4BB0072486E /* SummaryDashboardCircularProgressView.swift */; };
 		70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998212A43E0AE008B2A9A /* SLActivityReport.swift */; };
 		70B9982B2A43E0AE008B2A9A /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70B998342A43E1FC008B2A9A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998332A43E1FC008B2A9A /* Context.swift */; };
 		70B998472A46832C008B2A9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F73DFD874584CA256A0AD6E5507A42 /* Constants.swift */; };
-		70B998492A4683A7008B2A9A /* SummaryDashboardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998252A43E0AE008B2A9A /* SummaryDashboardContainerView.swift */; };
 		70B9984F2A468D3B008B2A9A /* SummaryDashboardReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B9984E2A468D3B008B2A9A /* SummaryDashboardReport.swift */; };
 		70B9985C2A469E26008B2A9A /* KeyValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D4D45D3500D5EE24B7936666C5A829 /* KeyValueStorage.swift */; };
 		70B9985D2A469E48008B2A9A /* SecureStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F8806D347D2E9D04944EB0AEF9DCC0 /* SecureStorageProvider.swift */; };
 		70B998652A469F9D008B2A9A /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F433A68368B380E372A9151916F4959 /* Language.swift */; };
+		70C0DA5C2A55004D0084A2DA /* TotalActivityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA5B2A55004D0084A2DA /* TotalActivityTestView.swift */; };
+		70C0DA5E2A5500760084A2DA /* ActivityTestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA5D2A5500760084A2DA /* ActivityTestReport.swift */; };
+		70C0DA602A5501230084A2DA /* TotalActivityTestReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA5F2A5501230084A2DA /* TotalActivityTestReport.swift */; };
+		70C0DA612A5513AC0084A2DA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5EB5D4F8645A3CF8492497AFB4A3A0 /* Colors.xcassets */; };
+		70C0DA622A5513B50084A2DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD0AB815CAF5740C54B81CF17FC98C9 /* Assets.xcassets */; };
 		70D564A62A47D81E00FCFE4D /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		70D564A82A47D97900FCFE4D /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B36C2BFD49DD3583B4106A9F8EE363 /* SecureStorage.swift */; };
 		70D564A92A47DA5300FCFE4D /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244AA823FFE0EAD4BB2A5136F1CBBD91 /* RepositoryFactory.swift */; };
@@ -81,8 +89,6 @@
 		70D564B32A47DBFB00FCFE4D /* SLTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369C002598E2548664D756D9B499EE8E /* SLTexts.swift */; };
 		70D564B52A47DC2100FCFE4D /* ActivityReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564B42A47DC2000FCFE4D /* ActivityReportService.swift */; };
 		70D564B62A47DDD900FCFE4D /* SummaryDashboardReportScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998232A43E0AE008B2A9A /* SummaryDashboardReportScene.swift */; };
-		70D564B82A47DED700FCFE4D /* SummaryDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2122A31748400BA1A6E /* SummaryDashboardView.swift */; };
-		70D564BB2A47E23A00FCFE4D /* SummaryDashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */; };
 		70D564BD2A47E4F500FCFE4D /* SelectAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */; };
 		70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */; };
 		70D564C22A47E59900FCFE4D /* SelectAppsButtonContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D564C12A47E59900FCFE4D /* SelectAppsButtonContainerView.swift */; };
@@ -230,18 +236,21 @@
 		7029E20B2A3164D000BA1A6E /* AppInfoUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoUI.swift; sourceTree = "<group>"; };
 		7029E20D2A3169F700BA1A6E /* ScreenTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeService.swift; sourceTree = "<group>"; };
 		7029E20F2A316A4100BA1A6E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
-		7029E2122A31748400BA1A6E /* SummaryDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardView.swift; sourceTree = "<group>"; };
 		7029E2142A32BED400BA1A6E /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingControllerConfigurable.swift; sourceTree = "<group>"; };
+		70A00B3B2A54F2010072486E /* SummaryDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardView.swift; sourceTree = "<group>"; };
+		70A00B3D2A54F4BB0072486E /* SummaryDashboardCircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardCircularProgressView.swift; sourceTree = "<group>"; };
 		70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B998212A43E0AE008B2A9A /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
 		70B998232A43E0AE008B2A9A /* SummaryDashboardReportScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardReportScene.swift; sourceTree = "<group>"; };
-		70B998252A43E0AE008B2A9A /* SummaryDashboardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardContainerView.swift; sourceTree = "<group>"; };
 		70B998272A43E0AE008B2A9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70B998282A43E0AE008B2A9A /* SLActivityReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLActivityReport.entitlements; sourceTree = "<group>"; };
 		70B998332A43E1FC008B2A9A /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		70B9984E2A468D3B008B2A9A /* SummaryDashboardReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardReport.swift; sourceTree = "<group>"; };
+		70C0DA5B2A55004D0084A2DA /* TotalActivityTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalActivityTestView.swift; sourceTree = "<group>"; };
+		70C0DA5D2A5500760084A2DA /* ActivityTestReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTestReport.swift; sourceTree = "<group>"; };
+		70C0DA5F2A5501230084A2DA /* TotalActivityTestReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalActivityTestReport.swift; sourceTree = "<group>"; };
 		70D564B42A47DC2000FCFE4D /* ActivityReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityReportService.swift; sourceTree = "<group>"; };
-		70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardController.swift; sourceTree = "<group>"; };
 		70D564BC2A47E4F500FCFE4D /* SelectAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsController.swift; sourceTree = "<group>"; };
 		70D564BF2A47E53500FCFE4D /* SelectAppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsViewModel.swift; sourceTree = "<group>"; };
 		70D564C12A47E59900FCFE4D /* SelectAppsButtonContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAppsButtonContainerView.swift; sourceTree = "<group>"; };
@@ -708,9 +717,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		70C0DA5A2A55003B0084A2DA /* TotalActivityTest */ = {
+			isa = PBXGroup;
+			children = (
+				70C0DA5F2A5501230084A2DA /* TotalActivityTestReport.swift */,
+				70C0DA5B2A55004D0084A2DA /* TotalActivityTestView.swift */,
+				70C0DA5D2A5500760084A2DA /* ActivityTestReport.swift */,
+			);
+			path = TotalActivityTest;
+			sourceTree = "<group>";
+		};
 		70D564B72A47DE2500FCFE4D /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
+				70C0DA5A2A55003B0084A2DA /* TotalActivityTest */,
 				70D564B92A47DEEC00FCFE4D /* SummaryDashboard */,
 			);
 			path = Presentaion;
@@ -720,9 +740,8 @@
 			isa = PBXGroup;
 			children = (
 				70B998232A43E0AE008B2A9A /* SummaryDashboardReportScene.swift */,
-				70B998252A43E0AE008B2A9A /* SummaryDashboardContainerView.swift */,
-				70D564BA2A47E23A00FCFE4D /* SummaryDashboardController.swift */,
-				7029E2122A31748400BA1A6E /* SummaryDashboardView.swift */,
+				70A00B3B2A54F2010072486E /* SummaryDashboardView.swift */,
+				70A00B3D2A54F4BB0072486E /* SummaryDashboardCircularProgressView.swift */,
 				70B9984E2A468D3B008B2A9A /* SummaryDashboardReport.swift */,
 			);
 			path = SummaryDashboard;
@@ -954,6 +973,7 @@
 				038211D4A8CD99D4F4B3C9C100CF20EB /* NavBarConfigurable.swift */,
 				FCB1C82CDF24AA47D233B9544B9D8010 /* Reloadable.swift */,
 				561D5631DE0E1CABDFDDEF1F5D5E68A5 /* UIBarButtonConfigurable.swift */,
+				70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1111,6 +1131,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70A00B372A53C6310072486E /* Localizable.strings in Resources */,
+				70C0DA622A5513B50084A2DA /* Assets.xcassets in Resources */,
+				70C0DA612A5513AC0084A2DA /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,31 +1220,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70D564BB2A47E23A00FCFE4D /* SummaryDashboardController.swift in Sources */,
 				70D564AB2A47DB7B00FCFE4D /* SLColors.swift in Sources */,
 				70D564AE2A47DBC900FCFE4D /* SLFonts.swift in Sources */,
 				70D564B22A47DBF800FCFE4D /* Localization.swift in Sources */,
 				70D564B32A47DBFB00FCFE4D /* SLTexts.swift in Sources */,
+				70C0DA5E2A5500760084A2DA /* ActivityTestReport.swift in Sources */,
 				70D564B52A47DC2100FCFE4D /* ActivityReportService.swift in Sources */,
 				70D564B62A47DDD900FCFE4D /* SummaryDashboardReportScene.swift in Sources */,
 				70D564B12A47DBF400FCFE4D /* Localizable.swift in Sources */,
-				70B998492A4683A7008B2A9A /* SummaryDashboardContainerView.swift in Sources */,
 				70D564AC2A47DBC100FCFE4D /* ColorGetable.swift in Sources */,
 				70D564A62A47D81E00FCFE4D /* DependencyFactory.swift in Sources */,
 				70D564AA2A47DA5A00FCFE4D /* BaseCacheStorage.swift in Sources */,
 				70D564B02A47DBCF00FCFE4D /* SLImages.swift in Sources */,
 				70D564A82A47D97900FCFE4D /* SecureStorage.swift in Sources */,
 				70B9984F2A468D3B008B2A9A /* SummaryDashboardReport.swift in Sources */,
+				70A00B3C2A54F2010072486E /* SummaryDashboardView.swift in Sources */,
 				70D564AD2A47DBC700FCFE4D /* FontGetable.swift in Sources */,
+				70A00B3E2A54F4BB0072486E /* SummaryDashboardCircularProgressView.swift in Sources */,
 				70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */,
 				70D564A92A47DA5300FCFE4D /* RepositoryFactory.swift in Sources */,
 				70B998472A46832C008B2A9A /* Constants.swift in Sources */,
+				70C0DA602A5501230084A2DA /* TotalActivityTestReport.swift in Sources */,
 				70B9985D2A469E48008B2A9A /* SecureStorageProvider.swift in Sources */,
 				70D564AF2A47DBCD00FCFE4D /* ImageGetable.swift in Sources */,
 				70B998342A43E1FC008B2A9A /* Context.swift in Sources */,
 				70B998652A469F9D008B2A9A /* Language.swift in Sources */,
-				70D564B82A47DED700FCFE4D /* SummaryDashboardView.swift in Sources */,
 				70B9985C2A469E26008B2A9A /* KeyValueStorage.swift in Sources */,
+				70C0DA5C2A55004D0084A2DA /* TotalActivityTestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,6 +1265,7 @@
 				7029E2032A2ECDF700BA1A6E /* SummaryAppsCollectionViewController.swift in Sources */,
 				04EBAB1104782F578D9506880E9EDF75 /* BaseCacheStorage.swift in Sources */,
 				7829D5A844E8073405A981BE46FE8C4D /* BaseCoordinator.swift in Sources */,
+				70A00B362A53BBBE0072486E /* UIHostingControllerConfigurable.swift in Sources */,
 				D7F2FBFEC84058744E574D4E0A95CAAD /* BaseResponse.swift in Sources */,
 				8169C6825B7D4331B3200D1F733B344D /* ColorGetable.swift in Sources */,
 				17D88FD337D05925AE8B5A3102D9F018 /* Constants.swift in Sources */,
@@ -1364,6 +1390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1424,6 +1451,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A8A5FA76C66DA714C4052ED /* Pods-SLActivityReport.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1439,7 +1467,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1453,6 +1481,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B66ACD0A27FFCD13DE9E106 /* Pods-SLActivityReport.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1468,7 +1497,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1519,6 +1548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

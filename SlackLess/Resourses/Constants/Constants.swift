@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DeviceActivity
 
 //  Tech debt: refactor
 
@@ -44,7 +45,20 @@ struct Constants {
     }
     
     struct ContextName {
+        static let totalTestActivity = "TotalTestActivity"
         static let mainDashboard = "MainDashboard"
+    }
+    
+    struct DeviceActivityFilters {
+        static let summary = DeviceActivityFilter(
+            segment: .daily(
+                during: Calendar.current.dateInterval(
+                   of: .day, for: .now
+                )!
+            ),
+            users: .all,
+            devices: .init([.iPhone])
+        )
     }
 }
 
