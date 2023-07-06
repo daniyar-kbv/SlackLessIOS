@@ -26,6 +26,7 @@ protocol SelectAppsViewModel: AnyObject {
 }
 
 final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInput, SelectAppsViewModelOutput {
+    private let disposeBag = DisposeBag()
     private let screenTimeService: ScreenTimeService
     
     var input: SelectAppsViewModelInput { self }
@@ -33,6 +34,8 @@ final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInp
     
     init(screenTimeService: ScreenTimeService) {
         self.screenTimeService = screenTimeService
+        
+        bindService()
     }
     
     //    Output
@@ -46,5 +49,11 @@ final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInp
     
     func save(appsSelection: FamilyActivitySelection) {
         screenTimeService.input.save(appsSelection: appsSelection)
+    }
+    
+    private func bindService() {
+        screenTimeService.output.appsSelectionSaved
+            .bind(to: output.appsSelected)
+            .disposed(by: disposeBag)
     }
 }

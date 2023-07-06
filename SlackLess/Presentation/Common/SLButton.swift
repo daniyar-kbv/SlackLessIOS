@@ -43,7 +43,7 @@ final class SLButton: UIButton {
         layer.cornerRadius = size.cornerRadius
 
         snp.makeConstraints { [weak self] in
-            $0.height.equalTo(self?.size.height ?? 0)
+            $0.height.equalTo(self?.size.height ?? 0).priority(.required)
         }
     }
 }

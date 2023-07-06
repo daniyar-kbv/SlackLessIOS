@@ -32,7 +32,7 @@ protocol KeyValueStorage {
 }
 
 final class KeyValueStorageImpl: KeyValueStorage {
-    private let storageProvider = UserDefaults.standard
+    private let storageProvider: UserDefaults = .init(suiteName: Constants.UserDefaults.SuiteName.main) ?? .standard
     private let decoder = PropertyListDecoder()
 
     public init() {}

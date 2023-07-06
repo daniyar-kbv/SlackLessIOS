@@ -24,6 +24,7 @@ final class AppCoordinator: BaseCoordinator {
     private var disposeBag = DisposeBag()
 
     private let eventManager: EventManager
+    private let keyValueStorage: KeyValueStorage
 
     init(repositoryFactory: RepositoryFactory,
          serviceFactory: ServiceFactory,
@@ -37,17 +38,18 @@ final class AppCoordinator: BaseCoordinator {
         self.modulesFactory = modulesFactory
         self.helpersFactory = helpersFactory
         eventManager = helpersFactory.makeEventManager()
+        keyValueStorage = repositoryFactory.makeKeyValueStorage()
     }
 
     override func start() {
-        let keyValueStorage = repositoryFactory.makeKeyValueStorage()
-        
-        if keyValueStorage.onbardingShown {
-            configureCoordinators()
-            showTabBarController()
-        } else {
-            startOnboardingFlow()
-        }
+        configureCoordinators()
+        showTabBarController()
+//        if keyValueStorage.onbardingShown {
+//            configureCoordinators()
+//            showTabBarController()
+//        } else {
+//            startOnboardingFlow()
+//        }
     }
 }
 
@@ -62,6 +64,12 @@ extension AppCoordinator {
 
     private func startOnboardingFlow() {
         let onBoardingCoordinator = appCoordinatorsFactory.makeOnboardingCoordinator()
+        
+        onBoardingCoordinator.didFinish = { [weak self] in
+            self?.keyValueStorage.persist(onbardingShown: true)
+            self?.start()
+        }
+        
         add(onBoardingCoordinator)
         onBoardingCoordinator.start()
     }

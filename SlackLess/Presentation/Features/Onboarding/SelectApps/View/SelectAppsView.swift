@@ -29,7 +29,9 @@ final class SelectAppsView: SLView {
         [buttonView].forEach({ addSubview($0) })
         
         buttonView.snp.makeConstraints({
-            $0.bottom.left.right.equalToSuperview().priority(.high)
+            $0.bottom.left.right.equalToSuperview()
+//            Refactor
+            $0.height.equalTo(60)
         })
     }
 }

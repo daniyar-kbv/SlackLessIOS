@@ -23,6 +23,11 @@ struct SelectAppsButtonContainerView: View {
             .familyActivityPicker(isPresented: $isPresented,
                                   selection: $selection)
         }
-        .onChange(of: selection, perform: onSelect)
+        .onChange(of: isPresented) {
+            if !$0 && !selection.applicationTokens.isEmpty {
+                onSelect(selection)
+            }
+        }
     }
 }
+

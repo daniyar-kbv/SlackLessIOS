@@ -17,7 +17,8 @@ final class SummaryController: UIViewController {
     private let contentView = SummaryView()
     private let viewModel: SummaryViewModel
     
-//    private var summaryDashboardController: UIHostingController?
+    private lazy var deviceActivityReport = DeviceActivityReport(.init(Constants.ContextName.mainDashboard), filter: Constants.DeviceActivityFilters.summary)
+    private lazy var summaryDashboardController = UIHostingController(rootView: deviceActivityReport)
 
     init(viewModel: SummaryViewModel) {
         self.viewModel = viewModel
@@ -55,8 +56,7 @@ extension SummaryController {
     }
     
     private func configView() {
-//        _ = add(swiftUIView: DeviceActivityReport(DeviceActivityReport.Context(rawValue: Constants.ContextName.mainDashboard)),
-//            to: contentView.firstSectionView)
+        add(hostingController: summaryDashboardController, to: contentView.firstSectionFirstContentView)
     }
     
     private func bindViewModel() {

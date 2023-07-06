@@ -12,23 +12,24 @@ struct SummaryDashboardReportScene: DeviceActivityReportScene {
     let service: ActivityReportService
     
     let context: DeviceActivityReport.Context = .mainDashboard
-    let content: (SummaryDashboardReport) -> SummaryDashboardContainerView
+    let content: (SummaryDashboardReport) -> SummaryDashboardView
     
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> SummaryDashboardReport {
-        let timelimit = service.getTimeLimit()
-        let spentTime = await data
-            .flatMap { $0.activitySegments }
-            .flatMap { $0.categories }
-            .flatMap { $0.applications }
-            .filter {
-                guard let tokens = self.service.getSelectedApplicationTokens(),
-                      let token = $0.application.token
-                else { return false }
-                return tokens.contains(token)
-            }
-            .map { $0.totalActivityDuration }
-            .reduce(0, +)
-        return SummaryDashboardReport(remainingTime: timelimit - spentTime,
-                                      totalTime: timelimit)
+//        let timelimit = service.getTimeLimit()
+//        let spentTime = await data
+//            .flatMap { $0.activitySegments }
+//            .flatMap { $0.categories }
+//            .flatMap { $0.applications }
+//            .filter {
+//                guard let tokens = self.service.getSelectedApplicationTokens(),
+//                      let token = $0.application.token
+//                else { return false }
+//                return tokens.contains(token)
+//            }
+//            .map { $0.totalActivityDuration }
+//            .reduce(0, +)
+//        return SummaryDashboardReport(remainingTime: timelimit - spentTime,
+//                                      totalTime: timelimit)
+        return .init(remainingTime: 3600, totalTime: 7200)
     }
 }

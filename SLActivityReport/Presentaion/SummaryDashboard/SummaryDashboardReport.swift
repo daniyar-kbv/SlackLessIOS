@@ -11,4 +11,8 @@ import SwiftUI
 struct SummaryDashboardReport {
     let remainingTime: TimeInterval
     let totalTime: TimeInterval
+    
+    func getPercentage() -> Double {
+        1-(remainingTime/totalTime)
+    }
 }

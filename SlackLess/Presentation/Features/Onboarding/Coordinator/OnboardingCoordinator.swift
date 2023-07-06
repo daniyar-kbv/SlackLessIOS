@@ -58,7 +58,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         
         module.viewModel.output.appsSelected
             .subscribe(onNext: { [weak self] in
-                print("selected")
+                self?.didFinish?()
             })
             .disposed(by: disposeBag)
         

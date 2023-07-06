@@ -27,13 +27,4 @@ extension UIViewController {
         }
         return self
     }
-    
-    func add(hostingController: UIHostingController<some View>, to view: UIView) {
-        addChild(hostingController)
-        view.addSubview(hostingController.view)
-        hostingController.view.snp.makeConstraints({
-            $0.edges.equalToSuperview()
-        })
-        hostingController.didMove(toParent: self)
-    }
 }
