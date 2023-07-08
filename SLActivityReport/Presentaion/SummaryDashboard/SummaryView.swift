@@ -80,17 +80,9 @@ final class SummaryView: SLView {
         
         [dateSwitcherView, firstSectionView].forEach(contentView_.addArrangedSubview(_:))
         
-//        firstSectionFirstContentView.snp.makeConstraints({
-//            $0.height.equalTo((Constants.screenSize.width-64)/2+16)
-//        })
-        
         firstSectionFirstContentView.addSubview(summaryDashboardView)
         summaryDashboardView.snp.makeConstraints({
             $0.edges.equalToSuperview()
-        })
-        
-        secondSectionFirstContentView.snp.makeConstraints({
-            $0.height.equalTo(168)
         })
     }
 }
