@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct SummaryDashboardReport {
+struct SummaryReport {
     let spentTime: TimeInterval
     let timeLimit: TimeInterval
     
@@ -17,16 +17,10 @@ struct SummaryDashboardReport {
     }
     
     func getFormattedSpentTime() -> String {
-        let totalMinutes = spentTime/60
-        let remainderMinutes = Int(totalMinutes.truncatingRemainder(dividingBy: 3600))
-        return "\(getHours(from: spentTime)):\(remainderMinutes<10 ? " " : "")\(remainderMinutes)"
+        return "\(spentTime.getHours()):\(spentTime.getRemainderMinutes()<10 ? " " : "")\(spentTime.getRemainderMinutes())"
     }
     
     func getFormattedTimeLimit() -> String {
-        "\(getHours(from: timeLimit))h"
-    }
-    
-    private func getHours(from timeInterval: Double) -> String {
-        String(Int(timeInterval/3600))
+        "\(timeLimit.getHours())h"
     }
 }

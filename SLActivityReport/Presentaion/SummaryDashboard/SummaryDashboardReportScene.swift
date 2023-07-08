@@ -8,13 +8,14 @@
 import DeviceActivity
 import SwiftUI
 
-struct SummaryDashboardReportScene: DeviceActivityReportScene {
+struct SummaryReportScene: DeviceActivityReportScene {
     let service: ActivityReportService
+    let controller: SummaryInnerController
     
-    let context: DeviceActivityReport.Context = .mainDashboard
-    let content: (SummaryDashboardReport) -> SummaryDashboardView
+    let context: DeviceActivityReport.Context = .summary
+    let content: (SummaryReport) -> SummaryControllerRepresentable
     
-    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> SummaryDashboardReport {
+    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> SummaryReport {
         let timelimit = service.getTimeLimit()
         let spentTime = await data
             .flatMap { $0.activitySegments }

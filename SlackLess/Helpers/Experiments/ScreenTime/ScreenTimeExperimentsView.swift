@@ -98,7 +98,7 @@ struct ChartView: View {
 
     var body: some View {
         ZStack {
-            DeviceActivityReport(.init(Constants.ContextName.mainDashboard), filter: Constants.DeviceActivityFilters.summary)
+            DeviceActivityReport(.init(Constants.ContextName.summary), filter: Constants.DeviceActivityFilters.summary)
         }
     }
 }

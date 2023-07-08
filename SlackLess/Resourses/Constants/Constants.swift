@@ -12,11 +12,6 @@ import DeviceActivity
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
-    
-    enum AppMode {
-        case normal
-        case experimental
-    }
 
     enum URLs {}
 
@@ -45,7 +40,8 @@ struct Constants {
     }
     
     struct ContextName {
-        static let mainDashboard = "MainDashboard"
+        static let test = "Test"
+        static let summary = "Summary"
     }
     
     struct DeviceActivityFilters {

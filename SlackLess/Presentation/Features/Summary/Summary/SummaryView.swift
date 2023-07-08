@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class SummaryView: SLView {
     private(set) lazy var scrollView: UIScrollView = {
@@ -32,9 +33,22 @@ final class SummaryView: SLView {
         return view
     }()
     
+    private(set) lazy var summaryDashboardView: SummaryDashboardView = {
+        let view = SummaryDashboardView()
+        return view
+    }()
+    
+    private(set) lazy var secondSectionFirstContentView: SLContainerView = {
+        let view = SLContainerView()
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        return view
+    }()
+    
     private(set) lazy var firstSectionView: SLSectionView = {
         let view = SLSectionView(titleText: SLTexts.Summary.firstSectionTitle.localized())
         view.addContainer(view: firstSectionFirstContentView)
+        view.addContainer(view: secondSectionFirstContentView)
         return view
     }()
     
@@ -66,9 +80,17 @@ final class SummaryView: SLView {
         
         [dateSwitcherView, firstSectionView].forEach(contentView_.addArrangedSubview(_:))
         
-        firstSectionFirstContentView.snp.makeConstraints({
-//            Refactor
-            $0.height.equalTo((Constants.screenSize.width-64)/2+16)
+//        firstSectionFirstContentView.snp.makeConstraints({
+//            $0.height.equalTo((Constants.screenSize.width-64)/2+16)
+//        })
+        
+        firstSectionFirstContentView.addSubview(summaryDashboardView)
+        summaryDashboardView.snp.makeConstraints({
+            $0.edges.equalToSuperview()
+        })
+        
+        secondSectionFirstContentView.snp.makeConstraints({
+            $0.height.equalTo(168)
         })
     }
 }

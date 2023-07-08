@@ -10,11 +10,11 @@ import SwiftUI
 
 @main
 struct SLActivityReport: DeviceActivityReportExtension {
-    private let service: ActivityReportService = ActivityReportServiceImpl(
-        repositiryFactory: RepositoryFactoryImpl()
-    )
+    private let componentsFactory: ComponentsFactory = ComponentsFactoryImpl()
     
     var body: some DeviceActivityReportScene {
-        SummaryDashboardReportScene(service: service) { .init(report: $0) }
+        SummaryReportScene(service: componentsFactory.makeActivityReportService(),
+                           controller: componentsFactory.makeControllersFactory().makeSummaryController())
+        { .init(report: $0) }
     }
 }
