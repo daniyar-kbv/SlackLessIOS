@@ -10,5 +10,6 @@ import SwiftUI
 import DeviceActivity
 
 extension DeviceActivityReport.Context {
-    static let mainDashboard = Self(Constants.ContextName.mainDashboard)
+    static let summary = Self(Constants.ContextName.summary)
+    static let test = Self(Constants.ContextName.test)
 }

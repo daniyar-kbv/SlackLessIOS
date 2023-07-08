@@ -22,7 +22,8 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
 
     func makeApplicationCoordinatorFactory() -> ApplicationCoordinatorFactory {
         return shared(ApplicationCoordinatorFactoryImpl(routersFactory: makeRoutersFactory(),
-                                                        serviceFactory: makeServiceFactory()))
+                                                        serviceFactory: makeServiceFactory(),
+                                                        helpersFactory: makeHelpersFactory()))
     }
 
     func makeRoutersFactory() -> RoutersFactory {

@@ -11,21 +11,26 @@ import UIKit
 final class SummaryCoordinator: BaseCoordinator {
     private(set) var router: Router
 
-    private let modulesFactory: SummaryModulesFactory
+    private let appStateManager: AppStateManager
 
     var didTerminate: (() -> Void)?
     var didFinish: (() -> Void)?
 
     init(router: Router,
-         modulesFactory: SummaryModulesFactory)
+         appStateManager: AppStateManager)
     {
         self.router = router
-        self.modulesFactory = modulesFactory
+        self.appStateManager = appStateManager
     }
 
     override func start() {
-        let module = modulesFactory.makeSummaryModule()
-
-        router.set(navigationController: SLNavigationController(rootViewController: module.controller))
+        var controller: UIViewController
+        switch appStateManager.output.getAppMode() {
+        case .debug:
+            controller = SummaryInnerController(viewModel: SummaryViewModelImpl())
+        default:
+            controller = SummaryController()
+        }
+        router.set(navigationController: SLNavigationController(rootViewController: controller))
     }
 }

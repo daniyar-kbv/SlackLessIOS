@@ -14,19 +14,17 @@ protocol ActivityReportService {
 }
 
 final class ActivityReportServiceImpl: ActivityReportService {
-    private let repositiryFactory: RepositoryFactory
+    private let keyValueStorage: KeyValueStorage
     
-    init(repositiryFactory: RepositoryFactory) {
-        self.repositiryFactory = repositiryFactory
+    init(keyValueStorage: KeyValueStorage) {
+        self.keyValueStorage = keyValueStorage
     }
     
     func getTimeLimit() -> TimeInterval {
-        let storage = repositiryFactory.makeKeyValueStorage()
-        return storage.timelimit
+        keyValueStorage.timelimit
     }
     
     func getSelectedApplicationTokens() -> Set<ApplicationToken>? {
-        let storage = repositiryFactory.makeKeyValueStorage()
-        return storage.selectedApps?.applicationTokens
+        keyValueStorage.selectedApps?.applicationTokens
     }
 }

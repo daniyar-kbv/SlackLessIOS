@@ -10,16 +10,16 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    private var appMode: Constants.AppMode = .normal
-    
     var window: UIWindow?
 
     private let appComponentsFactory: AppComponentsFactory = AppComponentsFactoryImpl()
     private var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        switch appMode {
-        case .normal:
+        let helpersFactory = appComponentsFactory.makeHelpersFactory()
+        let stateManager = helpersFactory.makeAppStateManager()
+        switch stateManager.output.getAppMode() {
+        case .normal, .debug:
             configureAppCoordinator()
             configureKeyboardManager()
             configureLocalization()
