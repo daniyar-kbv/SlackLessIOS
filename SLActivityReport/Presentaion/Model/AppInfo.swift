@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct AppInfoUI {
+struct AppInfo {
     let name: String
     let image: UIImage?
     let time: Int
