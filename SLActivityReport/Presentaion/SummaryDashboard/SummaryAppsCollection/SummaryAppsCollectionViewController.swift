@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class SummaryAppsCollectionViewController: UIViewController {
-    private let contentView = SummaryAppsCollectionView()
+    let contentView = SummaryAppsCollectionView()
     private let viewModel: SummaryAppsCollectionViewModel
     
     init(viewModel: SummaryAppsCollectionViewModel) {
@@ -34,6 +34,12 @@ final class SummaryAppsCollectionViewController: UIViewController {
     
     private func configure() {
         contentView.appsCollectionView.dataSource = self
+    }
+}
+
+extension SummaryAppsCollectionViewController {
+    func getContentView() -> UIView {
+        return contentView
     }
 }
 

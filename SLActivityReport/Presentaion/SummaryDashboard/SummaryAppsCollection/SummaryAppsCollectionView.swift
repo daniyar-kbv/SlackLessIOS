@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class SummaryAppsCollectionView: UIView {
     private(set) lazy var appsCollectionView: UICollectionView = {
@@ -26,7 +27,7 @@ final class SummaryAppsCollectionView: UIView {
     
     private(set) lazy var pageControl: UIPageControl = {
         let view = UIPageControl()
-        view.hidesForSinglePage = true
+        view.numberOfPages = 10
         view.pageIndicatorTintColor = SLColors.gray4.getColor()
         view.currentPageIndicatorTintColor = SLColors.accent1.getColor()
         view.backgroundStyle = .minimal
@@ -45,7 +46,7 @@ final class SummaryAppsCollectionView: UIView {
     }
     
     private func layoutUI() {
-        [appsCollectionView, pageControl].forEach(addSubview(_:))
+        [appsCollectionView, pageControl].forEach { [weak self] in self?.addSubview($0) }
         
         appsCollectionView.snp.makeConstraints({
             $0.top.equalToSuperview().offset(12)
@@ -57,6 +58,7 @@ final class SummaryAppsCollectionView: UIView {
             $0.top.equalTo(appsCollectionView.snp.bottom).offset(12)
             $0.bottom.equalToSuperview().offset(-8)
             $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview()
         })
     }
 }
