@@ -16,6 +16,11 @@ final class SummaryInnerController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentView = SummaryView()
     private let viewModel: SummaryViewModel
+    
+    private(set) lazy var appsCollectionController: SummaryAppsCollectionViewController = {
+        let viewModel = SummaryAppsCollectionViewModelImpl(appsInfo: viewModel.output.getSelectedApps())
+        return .init(viewModel: viewModel)
+    }()
 
     init(viewModel: SummaryViewModel) {
         self.viewModel = viewModel
@@ -35,6 +40,9 @@ final class SummaryInnerController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configView()
         configNavBar()
         bindViewModel()
         bindView()
@@ -42,6 +50,12 @@ final class SummaryInnerController: UIViewController {
 }
 
 extension SummaryInnerController {
+    private func configView() {
+        add(controller: appsCollectionController,
+            with: appsCollectionController.getContentView(),
+            to: contentView.secondSectionFirstContentView)
+    }
+    
     private func configNavBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()

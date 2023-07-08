@@ -19,6 +19,7 @@ protocol SummaryViewModelOutput {
     var date: BehaviorRelay<String> { get }
     var isLastDate: BehaviorRelay<Bool> { get }
     
+    func getSelectedApps() -> [AppInfo]
 }
 
 protocol SummaryViewModel: AnyObject {
@@ -37,6 +38,12 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
     lazy var date: BehaviorRelay<String> = .init(value: format(date: Date()))
     lazy var isLastDate: BehaviorRelay<Bool> = .init(value: true)
 
+    func getSelectedApps() -> [AppInfo] {
+        (0..<20).map({
+            .init(name: "App \($0)", image: nil, time: 1200)
+        })
+    }
+    
 //    Input
     func terminate() {
         didFinish.accept(())
