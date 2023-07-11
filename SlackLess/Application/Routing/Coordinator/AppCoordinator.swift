@@ -25,6 +25,7 @@ final class AppCoordinator: BaseCoordinator {
 
     private let eventManager: EventManager
     private let keyValueStorage: KeyValueStorage
+    private let appStateManager: AppStateManager
 
     init(repositoryFactory: RepositoryFactory,
          serviceFactory: ServiceFactory,
@@ -39,10 +40,11 @@ final class AppCoordinator: BaseCoordinator {
         self.helpersFactory = helpersFactory
         eventManager = helpersFactory.makeEventManager()
         keyValueStorage = repositoryFactory.makeKeyValueStorage()
+        appStateManager = helpersFactory.makeAppStateManager()
     }
 
     override func start() {
-        if keyValueStorage.onbardingShown {
+        if keyValueStorage.onbardingShown || appStateManager.output.getAppMode() == .debug {
             configureCoordinators()
             showTabBarController()
         } else {

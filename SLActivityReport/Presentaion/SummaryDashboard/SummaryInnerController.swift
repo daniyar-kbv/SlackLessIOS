@@ -17,7 +17,12 @@ final class SummaryInnerController: UIViewController {
     private let contentView = SummaryView()
     private let viewModel: SummaryViewModel
     
-    private(set) lazy var appsCollectionController: SummaryAppsCollectionViewController = {
+    private(set) lazy var selectedAppsCollectionController: SummarySelectedAppsCollectionViewController = {
+        let viewModel = SummaryAppsCollectionViewModelImpl(appsInfo: viewModel.output.getSelectedApps())
+        return .init(viewModel: viewModel)
+    }()
+    
+    private(set) lazy var otherAppsTableViewController: SummaryOtherAppsTableViewController = {
         let viewModel = SummaryAppsCollectionViewModelImpl(appsInfo: viewModel.output.getSelectedApps())
         return .init(viewModel: viewModel)
     }()
@@ -51,9 +56,10 @@ final class SummaryInnerController: UIViewController {
 
 extension SummaryInnerController {
     private func configView() {
-        add(controller: appsCollectionController,
-            with: appsCollectionController.view,
+        add(controller: selectedAppsCollectionController,
             to: contentView.secondSectionFirstContentView)
+        add(controller: otherAppsTableViewController,
+            to: contentView.fourthSectionFirstContentView)
     }
     
     private func configNavBar() {

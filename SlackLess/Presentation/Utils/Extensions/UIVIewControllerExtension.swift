@@ -30,9 +30,9 @@ extension UIViewController {
     
 //    refactor
     
-    func add(controller: UIViewController, with controllerView: UIView, to view: UIView) {
-        view.addSubview(controllerView)
-        controllerView.snp.makeConstraints({
+    func add(controller: UIViewController, to view: UIView) {
+        view.addSubview(controller.view)
+        controller.view.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
         addChild(controller)

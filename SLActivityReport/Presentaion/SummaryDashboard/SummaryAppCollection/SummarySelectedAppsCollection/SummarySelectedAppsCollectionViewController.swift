@@ -1,5 +1,5 @@
 //
-//  SummaryAppsCollectionViewController.swift
+//  SummarySelectedAppsCollectionViewController.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-08.
@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class SummaryAppsCollectionViewController: UIViewController {
+final class SummarySelectedAppsCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    private lazy var contentView = SummaryAppsCollectionView()
+    private lazy var contentView = SummarySelectedAppsCollectionView()
     private let viewModel: SummaryAppsCollectionViewModel
     
     init(viewModel: SummaryAppsCollectionViewModel) {
@@ -52,13 +52,13 @@ final class SummaryAppsCollectionViewController: UIViewController {
     }
 }
 
-extension SummaryAppsCollectionViewController {
+extension SummarySelectedAppsCollectionViewController {
     func getContentView() -> UIView {
         return contentView
     }
 }
 
-extension SummaryAppsCollectionViewController: UICollectionViewDataSource {
+extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let numberOfItems = viewModel.output.getNumberOfItems()
         contentView.pageControl.numberOfPages = (numberOfItems+3)/4
@@ -67,8 +67,8 @@ extension SummaryAppsCollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SummaryAppsCollectionCell.self),
-                                                                      for: indexPath) as! SummaryAppsCollectionCell
+        let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SummarySelectedAppsCollectionCell.self),
+                                                                      for: indexPath) as! SummarySelectedAppsCollectionCell
         cell.set(appInfo: viewModel.output.getAppInfoItem(for: indexPath.item),
                  ratio: viewModel.output.getAppTimeRatio(for: indexPath.item),
                  maxTime: viewModel.output.getMaxTime())
@@ -76,13 +76,13 @@ extension SummaryAppsCollectionViewController: UICollectionViewDataSource {
     }
 }
 
-extension SummaryAppsCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension SummarySelectedAppsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: (collectionView.frame.width-(16*3))/2, height: ((collectionView.frame.height-12)/2)-2)
     }
 }
 
-extension SummaryAppsCollectionViewController: UIScrollViewDelegate {
+extension SummarySelectedAppsCollectionViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         contentView.pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
     }
