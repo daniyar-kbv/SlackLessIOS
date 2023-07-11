@@ -70,7 +70,6 @@ final class OnboardingCoordinator: BaseCoordinator {
         
         module.viewModel.output.timeLimitSaved
             .subscribe(onNext: { [weak self] in
-                print("appsSaved")
                 self?.didFinish?()
             })
             .disposed(by: disposeBag)

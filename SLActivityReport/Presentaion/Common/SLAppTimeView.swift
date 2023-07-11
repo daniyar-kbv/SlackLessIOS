@@ -7,20 +7,20 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class SLAppTimeView: UIStackView {
     private(set) lazy var appIconView: UIImageView = {
         let view = UIImageView()
-        view.image = SLImages.appIcon.getImage()
+        view.backgroundColor = .gray
         view.snp.makeConstraints({
             $0.size.equalTo(28)
         })
         return view
     }()
     
-    private(set) lazy var appNameLabel: UIView = {
+    private(set) lazy var appNameLabel: UILabel = {
         let view = UILabel()
-        view.text = "SLackLess"
         view.font = SLFonts.primary.getFont(ofSize: 16, weight: .regular)
         view.textColor = SLColors.label1.getColor()
         return view
@@ -31,7 +31,7 @@ final class SLAppTimeView: UIStackView {
         let height: CGFloat = 5
         view.backgroundColor = SLColors.gray3.getColor()
         view.layer.cornerRadius = height/2
-        snp.makeConstraints({
+        view.snp.makeConstraints({
             $0.height.equalTo(height)
         })
         return view
@@ -41,22 +41,6 @@ final class SLAppTimeView: UIStackView {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
         view.textColor = SLColors.gray3.getColor()
-        return view
-    }()
-    
-    private(set) lazy var timeStack: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [timeBarView, timeLabel])
-        view.axis = .horizontal
-        view.alignment = .leading
-        view.spacing = 4
-        return view
-    }()
-    
-    private(set) lazy var rightStack: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [appNameLabel, timeStack])
-        view.axis = .vertical
-        view.distribution = .equalSpacing
-        view.alignment = .fill
         return view
     }()
     
@@ -71,38 +55,63 @@ final class SLAppTimeView: UIStackView {
     }
     
     private func layoutUI() {
-        [appIconView, rightStack].forEach(addArrangedSubview(_:))
-        axis = .horizontal
-        distribution = .fill
-        alignment = .fill
-        spacing = 12
+        [appIconView, appNameLabel, timeBarView, timeLabel].forEach(addSubview(_:))
+        
+        appIconView.snp.makeConstraints({
+            $0.left.centerY.equalToSuperview()
+        })
+        
+        appNameLabel.snp.makeConstraints({
+            $0.left.equalTo(appIconView.snp.right).offset(12)
+            $0.top.equalTo(appIconView)
+            $0.right.equalToSuperview()
+        })
+        
+        timeBarView.snp.makeConstraints({
+            $0.left.equalTo(appIconView.snp.right).offset(12)
+            $0.bottom.equalTo(appIconView)
+        })
+        
+        timeLabel.snp.makeConstraints({
+            $0.left.equalTo(timeBarView.snp.right).offset(4)
+            $0.centerY.equalTo(timeBarView)
+            $0.right.equalToSuperview()
+        })
     }
 }
 
 extension SLAppTimeView {
-    func setAppIcon(_ image: UIImage?) {
-        appIconView.image = image
-    }
-    
-    func setAppTime(_ seconds: Int) {
-        var timeText = ""
-        let hours = seconds/60
+    func set(icon: UIImage?, name: String, time: Int, ratio: CGFloat, maxTime: Int?) {
+        appIconView.image = icon
+        appNameLabel.text = name
+        appNameLabel.sizeToFit()
+        timeLabel.text = makeTimeString(from: time)
+        timeLabel.sizeToFit()
         
-        if hours >= 1 {
-            timeText += "\(hours) h \(makeSeecondsString(seconds))"
-        } else {
-            timeText = makeSeecondsString(seconds)
+        if let maxTime = maxTime {
+            let textWidth = makeTimeString(from: maxTime).width(withConstrainedHeight: timeLabel.font.lineHeight, font: timeLabel.font)
+            let maxWidth = ((Constants.screenSize.width-(16*5))/2)-44-textWidth
+            let minWidth = maxWidth*0.1
+            let width = minWidth + ((maxWidth-minWidth)*ratio)
+            
+            timeBarView.snp.makeConstraints({
+                $0.width.equalTo(width)
+            })
         }
         
-        func makeSeecondsString(_ seconds: Int) -> String{
-            return "\(seconds % 60) min"
+        func makeTimeString(from time: Int) -> String {
+            var timeText = ""
+            let hours = time/3600
+            if hours >= 1 {
+                timeText += "\(hours) h \(makeSecondsString(time))"
+            } else {
+                timeText = makeSecondsString(time)
+            }
+            return timeText
         }
-    }
-    
-    func setTimeBarLength(_ length: Float) {
-        timeBarView.snp.makeConstraints({ [weak self] in
-            guard let self = self else { return }
-            $0.width.equalTo((timeStack.frame.width - timeLabel.frame.width - timeStack.spacing) * CGFloat(length))
-        })
+        
+        func makeSecondsString(_ seconds: Int) -> String{
+            return "\((seconds%3600)/60) min"
+        }
     }
 }

@@ -52,7 +52,7 @@ final class SummaryInnerController: UIViewController {
 extension SummaryInnerController {
     private func configView() {
         add(controller: appsCollectionController,
-            with: appsCollectionController.getContentView(),
+            with: appsCollectionController.view,
             to: contentView.secondSectionFirstContentView)
     }
     

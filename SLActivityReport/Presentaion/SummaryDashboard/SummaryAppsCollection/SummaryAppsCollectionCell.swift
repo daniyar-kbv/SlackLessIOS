@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 
 final class SummaryAppsCollectionCell: UICollectionViewCell {
-    private(set) lazy var appTimeView: SLAppTimeView = {
-        let view = SLAppTimeView()
-        return view
-    }()
+    var appTimeView: SLAppTimeView?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -25,10 +22,30 @@ final class SummaryAppsCollectionCell: UICollectionViewCell {
     }
     
     private func layoutUI(){
-        contentView.addSubview(appTimeView)
+        appTimeView?.removeFromSuperview()
         
-        appTimeView.snp.makeConstraints({
+        appTimeView = .init()
+        
+        contentView.addSubview(appTimeView!)
+        
+        appTimeView?.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        layoutUI()
+    }
+}
+
+extension SummaryAppsCollectionCell {
+    func set(appInfo: AppInfo, ratio: CGFloat, maxTime: Int?) {
+        appTimeView?.set(icon: appInfo.image,
+                        name: appInfo.name,
+                        time: appInfo.time,
+                        ratio: ratio,
+                        maxTime: maxTime)
     }
 }
