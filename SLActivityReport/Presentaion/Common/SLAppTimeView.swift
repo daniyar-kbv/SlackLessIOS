@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class SLAppTimeView: UIStackView {
+    private let type: `Type`
+    
     private(set) lazy var appIconView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .gray
@@ -44,8 +46,10 @@ final class SLAppTimeView: UIStackView {
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: `Type`) {
+        self.type = type
+        
+        super.init(frame: .zero)
         
         layoutUI()
     }
@@ -90,7 +94,7 @@ extension SLAppTimeView {
         
         if let maxTime = maxTime {
             let textWidth = makeTimeString(from: maxTime).width(withConstrainedHeight: timeLabel.font.lineHeight, font: timeLabel.font)
-            let maxWidth = ((Constants.screenSize.width-(16*5))/2)-44-textWidth
+            let maxWidth = type.width-textWidth
             let minWidth = maxWidth*0.1
             let width = minWidth + ((maxWidth-minWidth)*ratio)
             
@@ -112,6 +116,20 @@ extension SLAppTimeView {
         
         func makeSecondsString(_ seconds: Int) -> String{
             return "\((seconds%3600)/60) min"
+        }
+    }
+}
+
+extension SLAppTimeView {
+    enum `Type` {
+        case small
+        case large
+        
+        var width: CGFloat {
+            switch self {
+            case .small: return ((Constants.screenSize.width-(16*5))/2)-44
+            case .large: return (Constants.screenSize.width-(16*4))-44
+            }
         }
     }
 }

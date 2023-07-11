@@ -23,6 +23,7 @@ class SLContainerView: UIView {
     internal func layoutUI() {
         backgroundColor = SLColors.backgroundElevated.getColor()
         layer.cornerRadius = 8
+        clipsToBounds = true
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  SummaryAppsCollectionCell.swift
+//  SummarySelectedAppsCollectionCell.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-08.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SummaryAppsCollectionCell: UICollectionViewCell {
+final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
     var appTimeView: SLAppTimeView?
     
     override init(frame: CGRect) {
@@ -21,10 +21,16 @@ final class SummaryAppsCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        layoutUI()
+    }
+    
     private func layoutUI(){
         appTimeView?.removeFromSuperview()
         
-        appTimeView = .init()
+        appTimeView = .init(type: .small)
         
         contentView.addSubview(appTimeView!)
         
@@ -32,15 +38,9 @@ final class SummaryAppsCollectionCell: UICollectionViewCell {
             $0.edges.equalToSuperview()
         })
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        layoutUI()
-    }
 }
 
-extension SummaryAppsCollectionCell {
+extension SummarySelectedAppsCollectionCell {
     func set(appInfo: AppInfo, ratio: CGFloat, maxTime: Int?) {
         appTimeView?.set(icon: appInfo.image,
                         name: appInfo.name,

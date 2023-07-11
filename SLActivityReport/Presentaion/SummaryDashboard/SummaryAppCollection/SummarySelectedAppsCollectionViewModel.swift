@@ -7,8 +7,6 @@
 
 import Foundation
 import UIKit
-import RxSwift
-import RxCocoa
 
 protocol SummaryAppsCollectionViewModelInput {
 }
@@ -29,7 +27,6 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
     var input: SummaryAppsCollectionViewModelInput { self }
     var output: SummaryAppsCollectionViewModelOutput { self }
     
-    private let disposeBag = DisposeBag()
     private let appsInfo: [AppInfo]
     
     init(appsInfo: [AppInfo]) {
@@ -37,17 +34,8 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
     }
 
     //    Input
-    func getData() {
-//        screenTimeService.input.getAppsInfo()
-    }
-    
-    func terminate() {
-        didFinish.accept(())
-    }
     
     //    Output
-    let didFinish: PublishRelay<Void> = .init()
-    let didGetData: PublishRelay<Void> = .init()
     
     func getNumberOfItems() -> Int {
         return appsInfo.count

@@ -1,5 +1,5 @@
 //
-//  SummaryAppsCollectionView.swift
+//  SummarySelectedAppsCollectionView.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-08.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SummaryAppsCollectionView: UIView {
+final class SummarySelectedAppsCollectionView: UIView {
     private(set) lazy var appsCollectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
@@ -17,7 +17,7 @@ final class SummaryAppsCollectionView: UIView {
         collectionViewLayout.minimumLineSpacing = 24
         collectionViewLayout.minimumInteritemSpacing = 16
         let view = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        view.register(SummaryAppsCollectionCell.self, forCellWithReuseIdentifier: String(describing: SummaryAppsCollectionCell.self))
+        view.register(SummarySelectedAppsCollectionCell.self, forCellWithReuseIdentifier: String(describing: SummarySelectedAppsCollectionCell.self))
         view.delaysContentTouches = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .clear
