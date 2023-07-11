@@ -28,12 +28,14 @@ extension UIViewController {
         return self
     }
     
+//    refactor
+    
     func add(controller: UIViewController, with controllerView: UIView, to view: UIView) {
-        addChild(controller)
         view.addSubview(controllerView)
         controllerView.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
+        addChild(controller)
         controller.didMove(toParent: self)
     }
 }

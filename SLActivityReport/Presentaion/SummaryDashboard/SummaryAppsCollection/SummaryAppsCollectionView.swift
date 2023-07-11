@@ -27,7 +27,6 @@ final class SummaryAppsCollectionView: UIView {
     
     private(set) lazy var pageControl: UIPageControl = {
         let view = UIPageControl()
-        view.numberOfPages = 10
         view.pageIndicatorTintColor = SLColors.gray4.getColor()
         view.currentPageIndicatorTintColor = SLColors.accent1.getColor()
         view.backgroundStyle = .minimal
@@ -51,7 +50,7 @@ final class SummaryAppsCollectionView: UIView {
         appsCollectionView.snp.makeConstraints({
             $0.top.equalToSuperview().offset(12)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(80)
+            $0.height.equalTo(88)
         })
         
         pageControl.snp.makeConstraints({

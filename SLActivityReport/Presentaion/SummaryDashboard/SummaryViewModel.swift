@@ -39,9 +39,14 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
     lazy var isLastDate: BehaviorRelay<Bool> = .init(value: true)
 
     func getSelectedApps() -> [AppInfo] {
-        (0..<20).map({
-            .init(name: "App \($0)", image: nil, time: 1200)
-        })
+        let minTime = 60
+        let maxTime = 600
+        let num = 20
+        return (0..<num)
+            .map({
+                .init(name: "App \($0)", image: nil, time: minTime+((maxTime-minTime)/num*$0))
+            })
+            .reversed()
     }
     
 //    Input

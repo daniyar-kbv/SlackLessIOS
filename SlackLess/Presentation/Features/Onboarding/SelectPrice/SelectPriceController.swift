@@ -41,7 +41,6 @@ final class SelectPriceController: UIViewController {
     private func bindView() {
         contentView.button.rx.tap
             .subscribe(onNext: { [weak self] in
-                print("button tapped")
                 self?.viewModel.input.save(timeLimit: 10800)
             })
             .disposed(by: disposeBag)

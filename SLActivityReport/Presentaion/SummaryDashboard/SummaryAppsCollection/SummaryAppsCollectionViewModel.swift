@@ -16,7 +16,8 @@ protocol SummaryAppsCollectionViewModelInput {
 protocol SummaryAppsCollectionViewModelOutput {
     func getNumberOfItems() -> Int
     func getAppInfoItem(for: Int) -> AppInfo
-    func getAppTimeLength(for: Int) -> Float
+    func getAppTimeRatio(for: Int) -> CGFloat
+    func getMaxTime() -> Int?
 }
 
 protocol SummaryAppsCollectionViewModel: AnyObject {
@@ -30,10 +31,6 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
     
     private let disposeBag = DisposeBag()
     private let appsInfo: [AppInfo]
-    
-    private lazy var appTimes: (min: Int?, max: Int?) = {
-        return (appsInfo.map({ $0.time }).min(), appsInfo.map({ $0.time }).max())
-    }()
     
     init(appsInfo: [AppInfo]) {
         self.appsInfo = appsInfo
@@ -60,11 +57,15 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
         appsInfo[index]
     }
     
-    func getAppTimeLength(for index: Int) -> Float {
-        guard let min = appTimes.min,
-                let max = appTimes.max
+    func getAppTimeRatio(for index: Int) -> CGFloat {
+        guard let min = appsInfo.map({ $0.time }).min(),
+                let max = appsInfo.map({ $0.time }).max()
         else { return 0 }
         
-        return 0.2+(Float(appsInfo[index].time-min)/Float(max-min)*0.8)
+        return CGFloat(appsInfo[index].time-min)/CGFloat(max-min)
+    }
+    
+    func getMaxTime() -> Int? {
+        return appsInfo.map({ $0.time }).max()
     }
 }
