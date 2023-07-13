@@ -60,6 +60,7 @@ extension SummaryInnerController {
             to: contentView.secondSectionFirstContentView)
         add(controller: otherAppsTableViewController,
             to: contentView.fourthSectionFirstContentView)
+        contentView.otherAppsDashboardView.set(totalTimes: .init(totalTime: 10806, slackedTime: 3241))
     }
     
     private func configNavBar() {

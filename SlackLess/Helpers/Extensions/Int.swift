@@ -7,12 +7,12 @@
 
 import Foundation
 
-extension Double {
+extension Int {
     func getHours() -> Int {
         Int(self/3600)
     }
     
-    func getRemainderMinutes() -> Int {
-        Int((self/60).truncatingRemainder(dividingBy: 3600))
+    func getRemaindingMinutes() -> Int {
+        (self%3600)/60
     }
 }

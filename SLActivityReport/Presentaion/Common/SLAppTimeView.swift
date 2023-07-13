@@ -105,17 +105,17 @@ extension SLAppTimeView {
         
         func makeTimeString(from time: Int) -> String {
             var timeText = ""
-            let hours = time/3600
+            let hours = time.getHours()
             if hours >= 1 {
-                timeText += "\(hours) h \(makeSecondsString(time))"
+                timeText += "\(hours) h \(makeMinutesString(time))"
             } else {
-                timeText = makeSecondsString(time)
+                timeText = makeMinutesString(time)
             }
             return timeText
         }
         
-        func makeSecondsString(_ seconds: Int) -> String{
-            return "\((seconds%3600)/60) min"
+        func makeMinutesString(_ seconds: Int) -> String{
+            return "\(seconds.getRemaindingMinutes()) min"
         }
     }
 }

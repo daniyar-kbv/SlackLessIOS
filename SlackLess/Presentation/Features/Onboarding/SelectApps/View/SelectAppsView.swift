@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 
 final class SelectAppsView: SLView {
-    private(set) lazy var buttonView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private(set) lazy var buttonView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

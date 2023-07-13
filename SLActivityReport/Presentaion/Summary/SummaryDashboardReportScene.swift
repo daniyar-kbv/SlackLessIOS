@@ -29,7 +29,7 @@ struct SummaryReportScene: DeviceActivityReportScene {
             }
             .map { $0.totalActivityDuration }
             .reduce(0, +)
-        return .init(spentTime: spentTime,
-                     timeLimit: timelimit)
+        return .init(spentTime: Int(spentTime),
+                     timeLimit: Int(timelimit))
     }
 }

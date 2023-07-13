@@ -18,30 +18,15 @@ final class SummaryView: SLView {
         return view
     }()
     
-    private(set) lazy var contentView_: SLContentView = {
-        let view = SLContentView()
-        return view
-    }()
+    private(set) lazy var contentView_ = SLContentView()
     
-    private(set) lazy var dateSwitcherView: SLDateSwitcherView = {
-        let view = SLDateSwitcherView()
-        return view
-    }()
+    private(set) lazy var dateSwitcherView = SLDateSwitcherView()
     
-    private(set) lazy var firstSectionFirstContentView: SLContainerView = {
-        let view = SLContainerView()
-        return view
-    }()
+    private(set) lazy var firstSectionFirstContentView = SLContainerView()
     
-    private(set) lazy var summaryDashboardView: SummaryDashboardView = {
-        let view = SummaryDashboardView()
-        return view
-    }()
+    private(set) lazy var summarySelectedAppsDashboardView = SummarySelectedAppsDashboardView()
     
-    private(set) lazy var secondSectionFirstContentView: SLContainerView = {
-        let view = SLContainerView()
-        return view
-    }()
+    private(set) lazy var secondSectionFirstContentView = SLContainerView()
     
     private(set) lazy var firstSectionView: SLSectionView = {
         let view = SLSectionView(titleText: SLTexts.Summary.firstSectionTitle.localized())
@@ -50,15 +35,11 @@ final class SummaryView: SLView {
         return view
     }()
     
-    private(set) lazy var thirdSectionFirstContentView: SLContainerView = {
-        let view = SLContainerView()
-        return view
-    }()
+    private(set) lazy var thirdSectionFirstContentView = SLContainerView()
     
-    private(set) lazy var fourthSectionFirstContentView: SLContainerView = {
-        let view = SLContainerView()
-        return view
-    }()
+    private(set) lazy var otherAppsDashboardView = SummaryOtherAppsDasboardView()
+    
+    private(set) lazy var fourthSectionFirstContentView = SLContainerView()
     
     private(set) lazy var secondSectionView: SLSectionView = {
         let view = SLSectionView(titleText: SLTexts.Summary.secondSectonTitle.localized())
@@ -95,8 +76,13 @@ final class SummaryView: SLView {
         
         [dateSwitcherView, firstSectionView, secondSectionView].forEach(contentView_.addArrangedSubview(_:))
         
-        firstSectionFirstContentView.addSubview(summaryDashboardView)
-        summaryDashboardView.snp.makeConstraints({
+        firstSectionFirstContentView.addSubview(summarySelectedAppsDashboardView)
+        summarySelectedAppsDashboardView.snp.makeConstraints({
+            $0.edges.equalToSuperview()
+        })
+        
+        thirdSectionFirstContentView.addSubview(otherAppsDashboardView)
+        otherAppsDashboardView.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
     }
