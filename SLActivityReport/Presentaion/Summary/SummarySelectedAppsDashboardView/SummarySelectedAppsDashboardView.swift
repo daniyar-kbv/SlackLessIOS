@@ -1,5 +1,5 @@
 //
-//  SummaryDashboardView.swift
+//  SummarySelectedAppsDashboardView.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-07.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SummaryDashboardView: UIView {
+final class SummarySelectedAppsDashboardView: UIView {
     private var startPoint = CGFloat(-Double.pi)
     private var endPoint = CGFloat(0)
     

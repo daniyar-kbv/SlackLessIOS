@@ -46,6 +46,14 @@
 		7029E2152A32BED500BA1A6E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2142A32BED400BA1A6E /* UIImage.swift */; };
 		70918CDC2A5CFF6400685DE8 /* SummaryOtherAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC72A5CF8560084A2DA /* SummaryOtherAppsTableViewController.swift */; };
 		70918CDD2A5CFF6700685DE8 /* SummaryOtherAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC92A5CF8860084A2DA /* SummaryOtherAppsTableViewCell.swift */; };
+		70918CE12A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */; };
+		70918CE32A5E599900685DE8 /* SLPartitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CE22A5E599900685DE8 /* SLPartitionsView.swift */; };
+		70918CEB2A5FA17B00685DE8 /* SLLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CEA2A5FA17B00685DE8 /* SLLegendView.swift */; };
+		70918CEE2A5FA61200685DE8 /* TotalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CED2A5FA61200685DE8 /* TotalTimes.swift */; };
+		70918CEF2A5FAE0D00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */; };
+		70918CF02A5FAE1200685DE8 /* TotalTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CED2A5FA61200685DE8 /* TotalTimes.swift */; };
+		70918CF12A5FAE1500685DE8 /* SLPartitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CE22A5E599900685DE8 /* SLPartitionsView.swift */; };
+		70918CF22A5FAE1F00685DE8 /* SLLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CEA2A5FA17B00685DE8 /* SLLegendView.swift */; };
 		70A00B362A53BBBE0072486E /* UIHostingControllerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */; };
 		70A00B372A53C6310072486E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
 		70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998212A43E0AE008B2A9A /* SLActivityReport.swift */; };
@@ -61,8 +69,8 @@
 		70C0DA6B2A564EF80084A2DA /* SelectPriceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA6A2A564EF80084A2DA /* SelectPriceController.swift */; };
 		70C0DA6D2A564F220084A2DA /* SelectPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA6C2A564F220084A2DA /* SelectPriceViewModel.swift */; };
 		70C0DA6F2A564F980084A2DA /* AppsSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA6E2A564F980084A2DA /* AppsSettingsService.swift */; };
-		70C0DA802A57A3560084A2DA /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA7F2A57A3560084A2DA /* Double.swift */; };
-		70C0DA812A57A3F50084A2DA /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA7F2A57A3560084A2DA /* Double.swift */; };
+		70C0DA802A57A3560084A2DA /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA7F2A57A3560084A2DA /* Int.swift */; };
+		70C0DA812A57A3F50084A2DA /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA7F2A57A3560084A2DA /* Int.swift */; };
 		70C0DA882A57BF310084A2DA /* SummaryControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA872A57BF310084A2DA /* SummaryControllerRepresentable.swift */; };
 		70C0DA8C2A5909F70084A2DA /* SummaryReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA8B2A5909F70084A2DA /* SummaryReport.swift */; };
 		70C0DA912A590C320084A2DA /* SummaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA902A590C320084A2DA /* SummaryController.swift */; };
@@ -72,7 +80,7 @@
 		70C0DA972A590FBC0084A2DA /* SLContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */; };
 		70C0DA982A590FC40084A2DA /* SLDateSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1FD2A2EC5F600BA1A6E /* SLDateSwitcherView.swift */; };
 		70C0DA992A590FD00084A2DA /* SLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F72A2EC08500BA1A6E /* SLContainerView.swift */; };
-		70C0DA9A2A590FD50084A2DA /* SummaryDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA8E2A590BDE0084A2DA /* SummaryDashboardView.swift */; };
+		70C0DA9A2A590FD50084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA8E2A590BDE0084A2DA /* SummarySelectedAppsDashboardView.swift */; };
 		70C0DA9B2A590FE00084A2DA /* SLSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F92A2EC20F00BA1A6E /* SLSectionView.swift */; };
 		70C0DA9C2A5910070084A2DA /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2142A32BED400BA1A6E /* UIImage.swift */; };
 		70C0DA9D2A59115C0084A2DA /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */; };
@@ -84,7 +92,7 @@
 		70C0DAAB2A591B750084A2DA /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */; };
 		70C0DAAC2A591B8E0084A2DA /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5255F4D5234C3DACC8B1C1D352DFF0 /* SummaryView.swift */; };
 		70C0DAAE2A591C240084A2DA /* SLPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2062A30193100BA1A6E /* SLPageControlView.swift */; };
-		70C0DAAF2A591D4E0084A2DA /* SummaryDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA8E2A590BDE0084A2DA /* SummaryDashboardView.swift */; };
+		70C0DAAF2A591D4E0084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DA8E2A590BDE0084A2DA /* SummarySelectedAppsDashboardView.swift */; };
 		70C0DAB12A591D9D0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAB02A591D9D0084A2DA /* SummarySelectedAppsCollectionCell.swift */; };
 		70C0DAB22A591DAE0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAB02A591D9D0084A2DA /* SummarySelectedAppsCollectionCell.swift */; };
 		70C0DAB32A591DC50084A2DA /* SLAppTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F52A2EB37A00BA1A6E /* SLAppTimeView.swift */; };
@@ -260,6 +268,10 @@
 		7029E20B2A3164D000BA1A6E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		7029E20D2A3169F700BA1A6E /* ScreenTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeService.swift; sourceTree = "<group>"; };
 		7029E2142A32BED400BA1A6E /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOtherAppsDashboardView.swift; sourceTree = "<group>"; };
+		70918CE22A5E599900685DE8 /* SLPartitionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPartitionsView.swift; sourceTree = "<group>"; };
+		70918CEA2A5FA17B00685DE8 /* SLLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLLegendView.swift; sourceTree = "<group>"; };
+		70918CED2A5FA61200685DE8 /* TotalTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalTimes.swift; sourceTree = "<group>"; };
 		70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingControllerConfigurable.swift; sourceTree = "<group>"; };
 		70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B998212A43E0AE008B2A9A /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
@@ -271,10 +283,10 @@
 		70C0DA6A2A564EF80084A2DA /* SelectPriceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceController.swift; sourceTree = "<group>"; };
 		70C0DA6C2A564F220084A2DA /* SelectPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceViewModel.swift; sourceTree = "<group>"; };
 		70C0DA6E2A564F980084A2DA /* AppsSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSettingsService.swift; sourceTree = "<group>"; };
-		70C0DA7F2A57A3560084A2DA /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		70C0DA7F2A57A3560084A2DA /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		70C0DA872A57BF310084A2DA /* SummaryControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryControllerRepresentable.swift; sourceTree = "<group>"; };
 		70C0DA8B2A5909F70084A2DA /* SummaryReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryReport.swift; sourceTree = "<group>"; };
-		70C0DA8E2A590BDE0084A2DA /* SummaryDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDashboardView.swift; sourceTree = "<group>"; };
+		70C0DA8E2A590BDE0084A2DA /* SummarySelectedAppsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySelectedAppsDashboardView.swift; sourceTree = "<group>"; };
 		70C0DA902A590C320084A2DA /* SummaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryController.swift; sourceTree = "<group>"; };
 		70C0DA9E2A5911EB0084A2DA /* ModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesFactory.swift; sourceTree = "<group>"; };
 		70C0DAA02A5912C60084A2DA /* ComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsFactory.swift; sourceTree = "<group>"; };
@@ -709,6 +721,14 @@
 			path = SummaryAppCollection;
 			sourceTree = "<group>";
 		};
+		70918CDF2A5E577900685DE8 /* SummaryOtherAppsDasboard */ = {
+			isa = PBXGroup;
+			children = (
+				70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */,
+			);
+			path = SummaryOtherAppsDasboard;
+			sourceTree = "<group>";
+		};
 		70B998202A43E0AE008B2A9A /* SLActivityReport */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,16 +767,17 @@
 			children = (
 				70C0DA8B2A5909F70084A2DA /* SummaryReport.swift */,
 				7029E20B2A3164D000BA1A6E /* AppInfo.swift */,
+				70918CED2A5FA61200685DE8 /* TotalTimes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		70C0DA8D2A590BCF0084A2DA /* SummaryDasboard */ = {
+		70C0DA8D2A590BCF0084A2DA /* SummarySelectedAppsDashboardView */ = {
 			isa = PBXGroup;
 			children = (
-				70C0DA8E2A590BDE0084A2DA /* SummaryDashboardView.swift */,
+				70C0DA8E2A590BDE0084A2DA /* SummarySelectedAppsDashboardView.swift */,
 			);
-			path = SummaryDasboard;
+			path = SummarySelectedAppsDashboardView;
 			sourceTree = "<group>";
 		};
 		70C0DAA22A5913B50084A2DA /* Domain */ = {
@@ -793,6 +814,8 @@
 				7029E1FD2A2EC5F600BA1A6E /* SLDateSwitcherView.swift */,
 				7029E2062A30193100BA1A6E /* SLPageControlView.swift */,
 				7029E1F52A2EB37A00BA1A6E /* SLAppTimeView.swift */,
+				70918CE22A5E599900685DE8 /* SLPartitionsView.swift */,
+				70918CEA2A5FA17B00685DE8 /* SLLegendView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -810,24 +833,25 @@
 			isa = PBXGroup;
 			children = (
 				70C0DAAD2A591BA50084A2DA /* Common */,
-				70D564B92A47DEEC00FCFE4D /* SummaryDashboard */,
+				70D564B92A47DEEC00FCFE4D /* Summary */,
 				70C0DA7B2A57A2B10084A2DA /* Model */,
 			);
 			path = Presentaion;
 			sourceTree = "<group>";
 		};
-		70D564B92A47DEEC00FCFE4D /* SummaryDashboard */ = {
+		70D564B92A47DEEC00FCFE4D /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				70C0DA8D2A590BCF0084A2DA /* SummarySelectedAppsDashboardView */,
 				70918CDE2A5D061800685DE8 /* SummaryAppCollection */,
-				70C0DA8D2A590BCF0084A2DA /* SummaryDasboard */,
+				70918CDF2A5E577900685DE8 /* SummaryOtherAppsDasboard */,
 				70B998232A43E0AE008B2A9A /* SummaryDashboardReportScene.swift */,
 				70C0DA872A57BF310084A2DA /* SummaryControllerRepresentable.swift */,
 				7C2787D08DDE99D9FCE9C43481BFC750 /* SummaryViewModel.swift */,
 				0E0E4AE3288F06A3D2FBAA35EF3863A2 /* SummaryInnerController.swift */,
 				AB5255F4D5234C3DACC8B1C1D352DFF0 /* SummaryView.swift */,
 			);
-			path = SummaryDashboard;
+			path = Summary;
 			sourceTree = "<group>";
 		};
 		70D564BE2A47E50300FCFE4D /* SelectApps */ = {
@@ -914,7 +938,7 @@
 				90226FBE0221C17A2C1DF7D1383200B7 /* NumericExtension.swift */,
 				DD49B48633B90A1A3334B4E6C957894D /* ReactiveExtension.swift */,
 				D8402A6AC3FE1EB6F72CA2EB1B81DD94 /* StringExtension.swift */,
-				70C0DA7F2A57A3560084A2DA /* Double.swift */,
+				70C0DA7F2A57A3560084A2DA /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1297,12 +1321,15 @@
 				70D564AB2A47DB7B00FCFE4D /* SLColors.swift in Sources */,
 				70C0DA962A590FB80084A2DA /* SLView.swift in Sources */,
 				70D564AE2A47DBC900FCFE4D /* SLFonts.swift in Sources */,
+				70918CEE2A5FA61200685DE8 /* TotalTimes.swift in Sources */,
 				70D564B22A47DBF800FCFE4D /* Localization.swift in Sources */,
+				70918CEB2A5FA17B00685DE8 /* SLLegendView.swift in Sources */,
 				70C0DA972A590FBC0084A2DA /* SLContentView.swift in Sources */,
 				70D564B32A47DBFB00FCFE4D /* SLTexts.swift in Sources */,
 				70C0DA942A590F580084A2DA /* SummaryInnerController.swift in Sources */,
 				70D564B52A47DC2100FCFE4D /* ActivityReportService.swift in Sources */,
-				70C0DA9A2A590FD50084A2DA /* SummaryDashboardView.swift in Sources */,
+				70C0DA9A2A590FD50084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */,
+				70918CE32A5E599900685DE8 /* SLPartitionsView.swift in Sources */,
 				70C0DA8C2A5909F70084A2DA /* SummaryReport.swift in Sources */,
 				70D564B62A47DDD900FCFE4D /* SummaryDashboardReportScene.swift in Sources */,
 				70D564B12A47DBF400FCFE4D /* Localizable.swift in Sources */,
@@ -1323,6 +1350,7 @@
 				70C0DAAE2A591C240084A2DA /* SLPageControlView.swift in Sources */,
 				70D564A82A47D97900FCFE4D /* SecureStorage.swift in Sources */,
 				70C0DAB72A591DF10084A2DA /* SummarySelectedAppsCollectionViewController.swift in Sources */,
+				70918CE12A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */,
 				70C0DA882A57BF310084A2DA /* SummaryControllerRepresentable.swift in Sources */,
 				70D564AD2A47DBC700FCFE4D /* FontGetable.swift in Sources */,
 				70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */,
@@ -1337,7 +1365,7 @@
 				70D564AF2A47DBCD00FCFE4D /* ImageGetable.swift in Sources */,
 				70B998342A43E1FC008B2A9A /* Context.swift in Sources */,
 				70B998652A469F9D008B2A9A /* Language.swift in Sources */,
-				70C0DA812A57A3F50084A2DA /* Double.swift in Sources */,
+				70C0DA812A57A3F50084A2DA /* Int.swift in Sources */,
 				70C0DABA2A591E4D0084A2DA /* AppInfo.swift in Sources */,
 				70C0DA9C2A5910070084A2DA /* UIImage.swift in Sources */,
 				70B9985C2A469E26008B2A9A /* KeyValueStorage.swift in Sources */,
@@ -1353,17 +1381,20 @@
 				19778F21DE596BF0D993DDC124796069 /* APIFactory.swift in Sources */,
 				D98D54AEF19BF1398A3B9DD8EAEC14CF /* AlertDisplayable.swift in Sources */,
 				70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */,
+				70918CEF2A5FAE0D00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */,
 				E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */,
 				F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */,
 				70C0DA912A590C320084A2DA /* SummaryController.swift in Sources */,
 				70C0DA6F2A564F980084A2DA /* AppsSettingsService.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
+				70918CF12A5FAE1500685DE8 /* SLPartitionsView.swift in Sources */,
 				2A64E7F72406FAB107DCE58E1DBC4D5A /* ApplicationPagesFactory.swift in Sources */,
 				70C0DAAC2A591B8E0084A2DA /* SummaryView.swift in Sources */,
 				04EBAB1104782F578D9506880E9EDF75 /* BaseCacheStorage.swift in Sources */,
 				7829D5A844E8073405A981BE46FE8C4D /* BaseCoordinator.swift in Sources */,
 				70A00B362A53BBBE0072486E /* UIHostingControllerConfigurable.swift in Sources */,
+				70918CF02A5FAE1200685DE8 /* TotalTimes.swift in Sources */,
 				D7F2FBFEC84058744E574D4E0A95CAAD /* BaseResponse.swift in Sources */,
 				70C0DABB2A591F210084A2DA /* SLAppTimeView.swift in Sources */,
 				8169C6825B7D4331B3200D1F733B344D /* ColorGetable.swift in Sources */,
@@ -1388,7 +1419,7 @@
 				937B7C0F71D0BE325AF02669B063B00C /* FontGetable.swift in Sources */,
 				70294B6F2A411B7B001C289E /* ScreenTimeExperimentsController.swift in Sources */,
 				164385B20069807DDF8FDB164B779B57 /* FormattedExtension.swift in Sources */,
-				70C0DAAF2A591D4E0084A2DA /* SummaryDashboardView.swift in Sources */,
+				70C0DAAF2A591D4E0084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */,
 				08068BAA945579B633A00D237151CAC0 /* HelpersFactory.swift in Sources */,
 				CED0416BB0006AD0E59854EB3F5EC403 /* ImageGetable.swift in Sources */,
 				8FE1969EDB016B43CA54FE2142259080 /* KeyValueStorage.swift in Sources */,
@@ -1408,10 +1439,11 @@
 				F90B91F89D91F07312D136A98EB39E46 /* ReachabilityManager.swift in Sources */,
 				6553FBEB5F86CD6CDC8B48E7E05D7C4D /* ReactiveExtension.swift in Sources */,
 				7029E2152A32BED500BA1A6E /* UIImage.swift in Sources */,
+				70918CF22A5FAE1F00685DE8 /* SLLegendView.swift in Sources */,
 				EED1D685EB2E2E77ACA72543AEDBCEAB /* Reloadable.swift in Sources */,
 				733C29868FF778B80B7FF0E3E7A3788B /* RepositoryFactory.swift in Sources */,
 				0A831317D0F3F9A8A85CE8560302922C /* Router.swift in Sources */,
-				70C0DA802A57A3560084A2DA /* Double.swift in Sources */,
+				70C0DA802A57A3560084A2DA /* Int.swift in Sources */,
 				A80262B9806A3057EC0D84F82E7D651F /* RoutersFactory.swift in Sources */,
 				F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */,
 				4BF8B3E55E785E78E313F621767BA432 /* SLColors.swift in Sources */,
@@ -1556,9 +1588,11 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7842GYQN2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SLActivityReport;
@@ -1573,6 +1607,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess.SLActivityReport Development Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1587,9 +1622,11 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7842GYQN2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SLActivityReport;
@@ -1604,6 +1641,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess.SLActivityReport Development Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1620,9 +1658,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7842GYQN2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SlackLess;
@@ -1639,6 +1679,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess Development Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1712,9 +1753,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7842GYQN2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SlackLess;
@@ -1731,6 +1774,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess Development Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
