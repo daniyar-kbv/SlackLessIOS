@@ -27,17 +27,17 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
     }
     
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController) {
-        let viewModel = RequestAuthViewModellImpl(screenTimeService: serviceFactory.makeScreenTimeService())
+        let viewModel = RequestAuthViewModellImpl(appSettingsService: serviceFactory.makeAppSettingsService())
         return (viewModel, .init(viewModel: viewModel))
     }
     
     func makeSelectAppsModule() -> (viewModel: SelectAppsViewModel, controller: SelectAppsController) {
-        let viewModel = SelectAppsViewModelImpl(screenTimeService: serviceFactory.makeScreenTimeService())
+        let viewModel = SelectAppsViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService())
         return (viewModel, .init(viewModel: viewModel))
     }
     
     func makeSelectPriceModule() -> (viewModel: SelectPriceViewModel, controller: SelectPriceController) {
-        let viewModel = SelectPriceViewModelImpl(appsSettingsService: serviceFactory.makeAppSettingsService())
+        let viewModel = SelectPriceViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService())
         return (viewModel, .init(viewModel: viewModel))
     }
 }

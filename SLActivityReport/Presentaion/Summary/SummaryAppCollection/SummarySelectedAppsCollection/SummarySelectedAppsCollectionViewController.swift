@@ -60,7 +60,7 @@ extension SummarySelectedAppsCollectionViewController {
 
 extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfItems = viewModel.output.getNumberOfItems()
+        let numberOfItems = viewModel.output.getNumberOfApps()
         contentView.pageControl.numberOfPages = (numberOfItems+3)/4
         contentView.pageControl.isHidden = numberOfItems <= 4
         return numberOfItems
@@ -69,9 +69,7 @@ extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SummarySelectedAppsCollectionCell.self),
                                                                       for: indexPath) as! SummarySelectedAppsCollectionCell
-        cell.set(appInfo: viewModel.output.getAppInfoItem(for: indexPath.item),
-                 ratio: viewModel.output.getAppTimeRatio(for: indexPath.item),
-                 maxTime: viewModel.output.getMaxTime())
+        cell.set(app: viewModel.output.getApp(for: indexPath.item))
         return cell
     }
 }

@@ -13,8 +13,8 @@ struct SLActivityReport: DeviceActivityReportExtension {
     private let componentsFactory: ComponentsFactory = ComponentsFactoryImpl()
     
     var body: some DeviceActivityReportScene {
-        SummaryReportScene(service: componentsFactory.makeActivityReportService(),
-                           controller: componentsFactory.makeControllersFactory().makeSummaryController())
-        { .init(report: $0) }
+        let repositoryFactory = componentsFactory.makeRepositoryFactory()
+        SummaryScene(appSettingsRepository: repositoryFactory.makeAppSettingsRepository())
+        { .init(time: $0) }
     }
 }

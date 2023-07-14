@@ -16,9 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let helpersFactory = appComponentsFactory.makeHelpersFactory()
-        let stateManager = helpersFactory.makeAppStateManager()
-        switch stateManager.output.getAppMode() {
+        switch Constants.appMode {
         case .normal, .debug:
             configureAppCoordinator()
             configureKeyboardManager()

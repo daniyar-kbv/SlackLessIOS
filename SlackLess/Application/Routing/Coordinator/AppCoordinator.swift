@@ -23,9 +23,7 @@ final class AppCoordinator: BaseCoordinator {
 
     private var disposeBag = DisposeBag()
 
-    private let eventManager: EventManager
-    private let keyValueStorage: KeyValueStorage
-    private let appStateManager: AppStateManager
+    private lazy var appSettingsService = serviceFactory.makeAppSettingsService()
 
     init(repositoryFactory: RepositoryFactory,
          serviceFactory: ServiceFactory,
@@ -38,13 +36,10 @@ final class AppCoordinator: BaseCoordinator {
         self.appCoordinatorsFactory = appCoordinatorsFactory
         self.modulesFactory = modulesFactory
         self.helpersFactory = helpersFactory
-        eventManager = helpersFactory.makeEventManager()
-        keyValueStorage = repositoryFactory.makeKeyValueStorage()
-        appStateManager = helpersFactory.makeAppStateManager()
     }
 
     override func start() {
-        if keyValueStorage.onbardingShown || appStateManager.output.getAppMode() == .debug {
+        if appSettingsService.output.getOnboardingShown() || Constants.appMode == .debug {
             configureCoordinators()
             showTabBarController()
         } else {
@@ -66,7 +61,7 @@ extension AppCoordinator {
         let onBoardingCoordinator = appCoordinatorsFactory.makeOnboardingCoordinator()
         
         onBoardingCoordinator.didFinish = { [weak self] in
-            self?.keyValueStorage.persist(onbardingShown: true)
+            self?.appSettingsService.input.set(onboardingShown: true)
             self?.start()
         }
         

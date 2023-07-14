@@ -49,7 +49,7 @@ final class SummaryOtherAppsTableViewController: UIViewController {
 
 extension SummaryOtherAppsTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let numberOfItems = viewModel.output.getNumberOfItems()
+        let numberOfItems = viewModel.output.getNumberOfApps()
         tableView.snp.updateConstraints({
             $0.height.equalTo(numberOfItems*Int(tableView.rowHeight))
         })
@@ -58,9 +58,7 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
-        cell.set(appInfo: viewModel.output.getAppInfoItem(for: indexPath.row),
-                 ratio: viewModel.output.getAppTimeRatio(for: indexPath.row),
-                 maxTime: viewModel.output.getMaxTime())
+        cell.set(app: viewModel.output.getApp(for: indexPath.row))
         return cell
     }
 }

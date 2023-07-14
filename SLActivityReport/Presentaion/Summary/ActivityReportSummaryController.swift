@@ -12,10 +12,10 @@ import RxCocoa
 import DeviceActivity
 import SwiftUI
 
-final class SummaryInnerController: UIViewController {
+final class ActivityReportSummaryController: UIViewController {
     private let disposeBag = DisposeBag()
-    private let contentView = SummaryView()
-    private let viewModel: SummaryViewModel
+    private let contentView = ActivityReportSummaryView()
+    private let viewModel: ActivityReportSummaryViewModel
     
     private(set) lazy var selectedAppsCollectionController: SummarySelectedAppsCollectionViewController = {
         let viewModel = SummaryAppsCollectionViewModelImpl(appsInfo: viewModel.output.getSelectedApps())
@@ -27,7 +27,7 @@ final class SummaryInnerController: UIViewController {
         return .init(viewModel: viewModel)
     }()
 
-    init(viewModel: SummaryViewModel) {
+    init(viewModel: ActivityReportSummaryViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: .none, bundle: .none)
@@ -54,13 +54,13 @@ final class SummaryInnerController: UIViewController {
     }
 }
 
-extension SummaryInnerController {
+extension ActivityReportSummaryController {
     private func configView() {
         add(controller: selectedAppsCollectionController,
             to: contentView.secondSectionFirstContentView)
         add(controller: otherAppsTableViewController,
             to: contentView.fourthSectionFirstContentView)
-        contentView.otherAppsDashboardView.set(totalTimes: .init(totalTime: 10806, slackedTime: 3241))
+        contentView.otherAppsDashboardView.set(time: viewModel.output.getTime())
     }
     
     private func configNavBar() {

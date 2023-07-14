@@ -12,7 +12,7 @@ import FamilyControls
 
 protocol SelectAppsViewModelInput {
     func close()
-    func save(appsSelection: FamilyActivitySelection)
+    func set(selectedApps: FamilyActivitySelection)
 }
 
 protocol SelectAppsViewModelOutput {
@@ -27,13 +27,13 @@ protocol SelectAppsViewModel: AnyObject {
 
 final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInput, SelectAppsViewModelOutput {
     private let disposeBag = DisposeBag()
-    private let screenTimeService: ScreenTimeService
+    private let appSettingsService: AppSettingsService
     
     var input: SelectAppsViewModelInput { self }
     var output: SelectAppsViewModelOutput { self }
     
-    init(screenTimeService: ScreenTimeService) {
-        self.screenTimeService = screenTimeService
+    init(appSettingsService: AppSettingsService) {
+        self.appSettingsService = appSettingsService
         
         bindService()
     }
@@ -47,12 +47,12 @@ final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInp
         didFinish.accept(())
     }
     
-    func save(appsSelection: FamilyActivitySelection) {
-        screenTimeService.input.save(appsSelection: appsSelection)
+    func set(selectedApps: FamilyActivitySelection) {
+        appSettingsService.input.set(selectedApps: selectedApps)
     }
     
     private func bindService() {
-        screenTimeService.output.appsSelectionSaved
+        appSettingsService.output.appsSelectionSaved
             .bind(to: output.appsSelected)
             .disposed(by: disposeBag)
     }

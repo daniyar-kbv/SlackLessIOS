@@ -21,12 +21,12 @@ protocol KeyValueStorage {
     var appLocale: Language { get }
     var onbardingShown: Bool { get }
     var selectedApps: FamilyActivitySelection? { get }
-    var timelimit: Double { get }
+    var timelimit: TimeInterval { get }
 
     func persist(appLocale: Language)
     func persist(onbardingShown: Bool)
     func persist(selectedApps: FamilyActivitySelection)
-    func persist(timeLimit: Double)
+    func persist(timeLimit: TimeInterval)
 
     func cleanUp(key: KeyValueStorageKey)
 }
@@ -80,7 +80,7 @@ final class KeyValueStorageImpl: KeyValueStorage {
         )
     }
     
-    public func persist(timeLimit: Double) {
+    public func persist(timeLimit: TimeInterval) {
         storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value)
     }
 

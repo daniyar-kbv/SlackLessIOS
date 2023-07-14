@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SLAppTimeView: UIStackView {
+final class SLAppView: UIStackView {
     private let type: `Type`
     
     private(set) lazy var appIconView: UIImageView = {
@@ -84,43 +84,26 @@ final class SLAppTimeView: UIStackView {
     }
 }
 
-extension SLAppTimeView {
-    func set(icon: UIImage?, name: String, time: Int, ratio: CGFloat, maxTime: Int?) {
-        appIconView.image = icon
-        appNameLabel.text = name
+extension SLAppView {
+    func set(app: ActivityReportApp) {
+        let timeText = app.time.formatted(with: type.timeStyle)
+        
+        appIconView.image = app.icon
+        appNameLabel.text = app.name
         appNameLabel.sizeToFit()
-        timeLabel.text = makeTimeString(from: time)
+        timeLabel.text = timeText
         timeLabel.sizeToFit()
-        
-        if let maxTime = maxTime {
-            let textWidth = makeTimeString(from: maxTime).width(withConstrainedHeight: timeLabel.font.lineHeight, font: timeLabel.font)
-            let maxWidth = type.width-textWidth
-            let minWidth = maxWidth*0.1
-            let width = minWidth + ((maxWidth-minWidth)*ratio)
-            
-            timeBarView.snp.makeConstraints({
-                $0.width.equalTo(width)
-            })
-        }
-        
-        func makeTimeString(from time: Int) -> String {
-            var timeText = ""
-            let hours = time.getHours()
-            if hours >= 1 {
-                timeText += "\(hours) h \(makeMinutesString(time))"
-            } else {
-                timeText = makeMinutesString(time)
-            }
-            return timeText
-        }
-        
-        func makeMinutesString(_ seconds: Int) -> String{
-            return "\(seconds.getRemaindingMinutes()) min"
-        }
+    
+        let textWidth = timeText?.width(withConstrainedHeight: timeLabel.font.lineHeight, font: timeLabel.font) ?? 0
+        let maxWidth = type.width-textWidth
+        let minWidth = maxWidth*0.1
+        timeBarView.snp.makeConstraints({
+            $0.width.equalTo(minWidth+((maxWidth-minWidth)*app.ratio))
+        })
     }
 }
 
-extension SLAppTimeView {
+extension SLAppView {
     enum `Type` {
         case small
         case large
@@ -129,6 +112,13 @@ extension SLAppTimeView {
             switch self {
             case .small: return ((Constants.screenSize.width-(16*5))/2)-44
             case .large: return (Constants.screenSize.width-(16*4))-44
+            }
+        }
+        
+        var timeStyle: DateComponentsFormatter.UnitsStyle {
+            switch self {
+            case .small: return .abbreviated
+            case .large: return .brief
             }
         }
     }
