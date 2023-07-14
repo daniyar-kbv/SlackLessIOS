@@ -28,8 +28,6 @@ extension UIViewController {
         return self
     }
     
-//    refactor
-    
     func add(controller: UIViewController, to view: UIView) {
         view.addSubview(controller.view)
         controller.view.snp.makeConstraints({

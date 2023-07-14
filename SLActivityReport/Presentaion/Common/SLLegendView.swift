@@ -56,7 +56,7 @@ fileprivate final class LegendView: UIStackView {
     private(set) lazy var halfCircleView: UIView = {
         let view = UIView()
         view.backgroundColor = SLColors.gray4.getColor()
-        view.transform = view.transform.rotated(by: 45)
+        view.transform = view.transform.rotated(by: 45.0/180.0*CGFloat.pi)
         return view
     }()
     
@@ -96,8 +96,8 @@ fileprivate final class LegendView: UIStackView {
                 circleView.addSubview(halfCircleView)
                 halfCircleView.snp.makeConstraints({
                     $0.size.equalTo(8)
-                    $0.left.equalToSuperview()
-                    $0.top.equalToSuperview()
+                    $0.centerX.equalToSuperview().offset(CGFloat.squareRoot(8)())
+                    $0.centerY.equalToSuperview().offset(CGFloat.squareRoot(8)())
                 })
             }
         default: break

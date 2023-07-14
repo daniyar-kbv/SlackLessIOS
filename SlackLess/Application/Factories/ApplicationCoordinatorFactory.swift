@@ -32,6 +32,6 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
     
     func makeSummaryCoordinator() -> SummaryCoordinator {
         return scoped(SummaryCoordinator(router: routersFactory.makeMainRouter(),
-                                         appStateManager: helpersFactory.makeAppStateManager()))
+                                         appSettingsService: serviceFactory.makeAppSettingsService()))
     }
 }

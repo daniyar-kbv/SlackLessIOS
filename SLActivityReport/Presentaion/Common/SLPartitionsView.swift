@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 
 final class SLPartitionsView: UIStackView {
-    private var type: `Type`?
+    private var type: `Type`
     
     private(set) lazy var firstPartitionView: UIView = {
         let view = UIView()
         switch type {
-        case let .graph(info):
-            if info.type == .vertical(isEnabled: true) {
+        case let .graph(type):
+            if type == .vertical(isEnabled: true) {
                 view.backgroundColor = SLColors.gray4.getColor()
             }
         default:
@@ -28,15 +28,14 @@ final class SLPartitionsView: UIStackView {
     private(set) lazy var firstPartitionLabel: UILabel = {
         let view = UILabel()
         switch type {
-        case let .dasboard(info):
+        case .dasboard:
             view.textColor = SLColors.label2.getColor()
-            view.text = "\(info.firstPercentage ?? 0)%"
-        case let .graph(info):
-            if info.type == .vertical(isEnabled: true) {
+            view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
+        case let .graph(type):
+            if type == .vertical(isEnabled: true) {
                 view.textColor = SLColors.gray1.getColor()
             }
-            view.text = "\(info.time.getHours())h \(info.time.getRemaindingMinutes())m"
-        case .none: break
+            view.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
         }
         return view
     }()
@@ -51,14 +50,27 @@ final class SLPartitionsView: UIStackView {
         let view = UILabel()
         view.textColor = SLColors.label1.getColor()
         switch type {
-        case let .dasboard(info):
-            view.text = "\(info.secondPercentage ?? 0)%"
-        default: view.isHidden = true
+        case .dasboard:
+            view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
+        default:
+            view.isHidden = true
         }
         return view
     }()
     
     let dashedLineLayer = CAShapeLayer()
+    
+    init(type: `Type`) {
+        self.type = type
+        
+        super.init(frame: .infinite)
+        
+        layoutUI()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -69,11 +81,18 @@ final class SLPartitionsView: UIStackView {
                                 .init(x: firstPartitionView.frame.maxX,
                                       y: firstPartitionView.frame.minY)])
         dashedLineLayer.path = path
+        
+        firstPartitionLabel.isHidden = firstPartitionLabel.frame.width + 16 > firstPartitionView.frame.width
+        secondPartitionLabel.isHidden = secondPartitionLabel.frame.width + 16 > secondPartitionView.frame.width
     }
     
-    func set(type: `Type`) {
-        self.type = type
-        layoutUI()
+    func set(percentage: Double?, firstText: String?, secondText: String?) {
+        firstPartitionLabel.text = firstText
+        secondPartitionLabel.text = secondText
+        
+        firstPartitionView.snp.makeConstraints({
+            $0.width.equalToSuperview().multipliedBy(percentage ?? 0)
+        })
     }
     
     private func layoutUI() {
@@ -82,16 +101,15 @@ final class SLPartitionsView: UIStackView {
         clipsToBounds = true
         
         switch type {
-        case let .dasboard(info):
+        case .dasboard:
             axis = .horizontal
-            print(CGFloat((info.firstPercentage ?? 0))/100)
             firstPartitionView.snp.makeConstraints({
-                $0.width.equalToSuperview().multipliedBy(CGFloat((info.firstPercentage ?? 0))/100)
+                $0.width.equalTo(0)
             })
-        case let .graph(info):
+        case let .graph(type):
             axis = .vertical
             
-            switch info.type {
+            switch type {
             case .horizontal:
                 layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
                 firstPartitionView.layer.cornerRadius = 4
@@ -109,7 +127,6 @@ final class SLPartitionsView: UIStackView {
                 firstPartitionView.layer.cornerRadius = 4
                 firstPartitionView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
             }
-        case .none: break
         }
         
         firstPartitionView.addSubview(firstPartitionLabel)
@@ -126,8 +143,8 @@ final class SLPartitionsView: UIStackView {
 
 extension SLPartitionsView {
     enum `Type`: Equatable {
-        case dasboard(DasboardInfo)
-        case graph(GraphInfo)
+        case dasboard
+        case graph(`Type`)
         
         static func == (lhs: SLPartitionsView.`Type`, rhs: SLPartitionsView.`Type`) -> Bool {
             switch lhs {
@@ -143,17 +160,6 @@ extension SLPartitionsView {
                 }
             }
         }
-    }
-    
-    struct DasboardInfo {
-        let firstPercentage: Int?
-        let secondPercentage: Int?
-    }
-    
-    struct GraphInfo {
-        let type: `Type`
-        let time: Int
-        let percentage: Int
         
         enum `Type`: Equatable {
             case horizontal

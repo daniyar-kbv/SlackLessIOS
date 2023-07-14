@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 import SnapKit
 
+// Tech debt: refactor cells
+
 final class SummaryOtherAppsTableViewCell: UITableViewCell {
-    private(set) var appTimeView: SLAppTimeView?
+    private(set) var appView: SLAppView?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,23 +31,19 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
     }
     
     private func layoutUI() {
-        appTimeView?.removeFromSuperview()
+        appView?.removeFromSuperview()
         
-        appTimeView = .init(type: .large)
+        appView = .init(type: .large)
         
-        addSubview(appTimeView!)
-        appTimeView?.snp.makeConstraints({
+        addSubview(appView!)
+        appView?.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
     }
 }
 
 extension SummaryOtherAppsTableViewCell {
-    func set(appInfo: AppInfo, ratio: CGFloat, maxTime: Int?) {
-        appTimeView?.set(icon: appInfo.image,
-                        name: appInfo.name,
-                        time: appInfo.time,
-                        ratio: ratio,
-                        maxTime: maxTime)
+    func set(app: ActivityReportApp) {
+        appView?.set(app: app)
     }
 }

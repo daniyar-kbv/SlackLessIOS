@@ -11,23 +11,23 @@ import UIKit
 final class SummaryCoordinator: BaseCoordinator {
     private(set) var router: Router
 
-    private let appStateManager: AppStateManager
+    private let appSettingsService: AppSettingsService
 
     var didTerminate: (() -> Void)?
     var didFinish: (() -> Void)?
 
     init(router: Router,
-         appStateManager: AppStateManager)
+         appSettingsService: AppSettingsService)
     {
         self.router = router
-        self.appStateManager = appStateManager
+        self.appSettingsService = appSettingsService
     }
 
     override func start() {
         var controller: UIViewController
-        switch appStateManager.output.getAppMode() {
+        switch Constants.appMode {
         case .debug:
-            controller = SummaryInnerController(viewModel: SummaryViewModelImpl())
+            controller = ActivityReportSummaryController(viewModel: ActivityReportSummaryViewModelImpl(time: .init(slacked: 4800, total: 19500, limit: 10800)))
         default:
             controller = SummaryController()
         }

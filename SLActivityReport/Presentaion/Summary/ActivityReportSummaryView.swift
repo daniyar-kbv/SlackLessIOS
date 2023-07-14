@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SummaryView: SLView {
+final class ActivityReportSummaryView: SLView {
     private(set) lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.delaysContentTouches = false

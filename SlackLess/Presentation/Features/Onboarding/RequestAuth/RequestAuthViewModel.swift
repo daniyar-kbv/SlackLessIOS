@@ -24,13 +24,13 @@ protocol RequestAuthViewModel: AnyObject {
 
 final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewModelInput, RequestAuthViewModelOutput {
     private let disposeBag = DisposeBag()
-    private let screenTimeService: ScreenTimeService
+    private let appSettingsService: AppSettingsService
     
     var input: RequestAuthViewModelInput { self }
     var output: RequestAuthViewModelOutput { self }
     
-    init(screenTimeService: ScreenTimeService) {
-        self.screenTimeService = screenTimeService
+    init(appSettingsService: AppSettingsService) {
+        self.appSettingsService = appSettingsService
         
         bindService()
     }
@@ -40,13 +40,13 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
     
     //    Input
     func requestAuthorization() {
-        screenTimeService.input.requestAuthorization()
+        appSettingsService.input.requestAuthorization()
     }
 }
 
 extension RequestAuthViewModellImpl {
     private func bindService() {
-        screenTimeService.output.authorizaionStatus
+        appSettingsService.output.authorizaionStatus
             .subscribe(onNext: { [weak self] _ in
                 self?.authorizationComplete.accept(())
             })

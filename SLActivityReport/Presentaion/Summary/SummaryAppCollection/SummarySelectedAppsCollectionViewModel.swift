@@ -12,10 +12,9 @@ protocol SummaryAppsCollectionViewModelInput {
 }
 
 protocol SummaryAppsCollectionViewModelOutput {
-    func getNumberOfItems() -> Int
-    func getAppInfoItem(for: Int) -> AppInfo
-    func getAppTimeRatio(for: Int) -> CGFloat
-    func getMaxTime() -> Int?
+    func getNumberOfApps() -> Int
+    func getApp(for: Int) -> ActivityReportApp
+    func getAppRatio(for: Int) -> CGFloat
 }
 
 protocol SummaryAppsCollectionViewModel: AnyObject {
@@ -27,9 +26,9 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
     var input: SummaryAppsCollectionViewModelInput { self }
     var output: SummaryAppsCollectionViewModelOutput { self }
     
-    private let appsInfo: [AppInfo]
+    private let appsInfo: [ActivityReportApp]
     
-    init(appsInfo: [AppInfo]) {
+    init(appsInfo: [ActivityReportApp]) {
         self.appsInfo = appsInfo
     }
 
@@ -37,23 +36,19 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
     
     //    Output
     
-    func getNumberOfItems() -> Int {
+    func getNumberOfApps() -> Int {
         return appsInfo.count
     }
     
-    func getAppInfoItem(for index: Int) -> AppInfo {
+    func getApp(for index: Int) -> ActivityReportApp {
         appsInfo[index]
     }
     
-    func getAppTimeRatio(for index: Int) -> CGFloat {
+    func getAppRatio(for index: Int) -> CGFloat {
         guard let min = appsInfo.map({ $0.time }).min(),
                 let max = appsInfo.map({ $0.time }).max()
         else { return 0 }
         
         return CGFloat(appsInfo[index].time-min)/CGFloat(max-min)
-    }
-    
-    func getMaxTime() -> Int? {
-        return appsInfo.map({ $0.time }).max()
     }
 }

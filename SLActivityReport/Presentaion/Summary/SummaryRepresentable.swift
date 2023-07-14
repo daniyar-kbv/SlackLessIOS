@@ -11,12 +11,15 @@ import SnapKit
 import SwiftUI
 import DeviceActivity
 
-struct SummaryControllerRepresentable: UIViewControllerRepresentable {
-    private let viewModel = SummaryViewModelImpl()
-    @State var report: SummaryReport
+struct SummaryRepresentable: UIViewControllerRepresentable {
+    private let time: ActivityReportTime
+    
+    init(time: ActivityReportTime) {
+        self.time = time
+    }
     
     func makeUIViewController(context: Context) -> some UIViewController {
-        SummaryInnerController(viewModel: viewModel)
+        ActivityReportSummaryController(viewModel: ActivityReportSummaryViewModelImpl(time: time))
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

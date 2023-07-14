@@ -8,20 +8,11 @@
 import Foundation
 
 protocol ComponentsFactory {
-    func makeActivityReportService() -> ActivityReportService
-    func makeControllersFactory() -> ControllersFactory
+    func makeRepositoryFactory() -> RepositoryFactory
 }
 
 final class ComponentsFactoryImpl: DependencyFactory, ComponentsFactory {
-    private func makeRepositoryFactory() -> RepositoryFactory {
+    func makeRepositoryFactory() -> RepositoryFactory {
         shared(RepositoryFactoryImpl())
-    }
-    
-    func makeActivityReportService() -> ActivityReportService {
-        shared(ActivityReportServiceImpl(keyValueStorage: makeRepositoryFactory().makeKeyValueStorage()))
-    }
-    
-    func makeControllersFactory() -> ControllersFactory {
-        shared(ControllersFactoryImpl())
     }
 }

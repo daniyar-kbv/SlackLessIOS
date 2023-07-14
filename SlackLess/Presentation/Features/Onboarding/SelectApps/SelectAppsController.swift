@@ -50,7 +50,7 @@ final class SelectAppsController: UIViewController {
     }
     
     private func appsSelected(_ selection: FamilyActivitySelection) {
-        viewModel.input.save(appsSelection: selection)
+        viewModel.input.set(selectedApps: selection)
     }
 }
 

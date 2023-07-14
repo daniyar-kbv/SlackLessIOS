@@ -24,13 +24,13 @@ protocol SelectPriceViewModel: AnyObject {
 
 final class SelectPriceViewModelImpl: SelectPriceViewModel, SelectPriceViewModelInput, SelectPriceViewModelOutput {
     private let disposeBag = DisposeBag()
-    private let appsSettingsService: AppsSettingsService
+    private let appSettingsService: AppSettingsService
     
     var input: SelectPriceViewModelInput { self }
     var output: SelectPriceViewModelOutput { self }
     
-    init(appsSettingsService: AppsSettingsService) {
-        self.appsSettingsService = appsSettingsService
+    init(appSettingsService: AppSettingsService) {
+        self.appSettingsService = appSettingsService
         
         bindService()
     }
@@ -40,13 +40,13 @@ final class SelectPriceViewModelImpl: SelectPriceViewModel, SelectPriceViewModel
     
     //    Input
     func save(timeLimit: Double) {
-        appsSettingsService.input.save(timeLimit: timeLimit)
+        appSettingsService.input.set(timeLimit: timeLimit)
     }
 }
 
 extension SelectPriceViewModelImpl {
     private func bindService() {
-        appsSettingsService.output.timeLimitSaved
+        appSettingsService.output.timeLimitSaved
             .bind(to: timeLimitSaved)
             .disposed(by: disposeBag)
     }

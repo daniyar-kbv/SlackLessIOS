@@ -11,7 +11,6 @@ protocol HelpersFactory: AnyObject {
     func makeReachabilityManager() -> ReachabilityManager
     func makeLoaderManager() -> LoaderManager
     func makeEventManager() -> EventManager
-    func makeAppStateManager() -> AppStateManager
 }
 
 final class HelpersFactoryImpl: DependencyFactory, HelpersFactory {
@@ -31,9 +30,5 @@ final class HelpersFactoryImpl: DependencyFactory, HelpersFactory {
 
     func makeEventManager() -> EventManager {
         return shared(EventManagerImpl())
-    }
-    
-    func makeAppStateManager() -> AppStateManager {
-        return shared(AppStateManagerImpl())
     }
 }

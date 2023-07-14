@@ -10,8 +10,6 @@ import UIKit
 import SnapKit
 
 final class SummaryOtherAppsDasboardView: UIView {
-    private var totalTimes: TotalTimes?
-    
     private(set) lazy var contentView = UIView()
     
     private(set) lazy var titleLabel: UILabel = {
@@ -37,13 +35,15 @@ final class SummaryOtherAppsDasboardView: UIView {
         return view
     }()
     
-    private(set) lazy var partitionsView = SLPartitionsView()
+    private(set) lazy var partitionsView = SLPartitionsView(type: .dasboard)
     
-    private(set) lazy var legendView = SLLegendView(type: .oneColor)
+    private(set) lazy var legendView = SLLegendView(type: .twoColor)
     
-    func set(totalTimes: TotalTimes) {
-        self.totalTimes = totalTimes
-        partitionsView.set(type: .dasboard(.init(firstPercentage: totalTimes.getSlackedPercentage(), secondPercentage: totalTimes.getOtherAppsPercentage())))
+    func set(time: ActivityReportTime) {
+        partitionsView.set(percentage: time.getSlackedTotalPercentage(),
+                           firstText: time.getSlackedTotalPercentageText(),
+                           secondText: time.getOtherTotalPercentageText())
+        timeLabel.text = time.total.formatted(with: .abbreviated)
         layoutUI()
     }
     

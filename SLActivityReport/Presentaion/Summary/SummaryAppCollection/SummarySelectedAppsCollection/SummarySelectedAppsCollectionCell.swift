@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
-    var appTimeView: SLAppTimeView?
+    var appTimeView: SLAppView?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -41,11 +41,7 @@ final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
 }
 
 extension SummarySelectedAppsCollectionCell {
-    func set(appInfo: AppInfo, ratio: CGFloat, maxTime: Int?) {
-        appTimeView?.set(icon: appInfo.image,
-                        name: appInfo.name,
-                        time: appInfo.time,
-                        ratio: ratio,
-                        maxTime: maxTime)
+    func set(app: ActivityReportApp) {
+        appTimeView?.set(app: app)
     }
 }

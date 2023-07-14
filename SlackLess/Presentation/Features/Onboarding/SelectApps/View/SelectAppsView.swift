@@ -27,7 +27,7 @@ final class SelectAppsView: SLView {
         
         buttonView.snp.makeConstraints({
             $0.bottom.left.right.equalToSuperview()
-//            Refactor
+//            Tech debt: Refactor
             $0.height.equalTo(60)
         })
     }
