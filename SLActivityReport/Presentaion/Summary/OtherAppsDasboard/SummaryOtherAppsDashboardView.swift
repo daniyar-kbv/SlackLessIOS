@@ -48,6 +48,10 @@ final class SummaryOtherAppsDasboardView: UIView {
     }
     
     private func layoutUI() {
+        snp.makeConstraints({
+            $0.height.equalTo(93)
+        })
+        
         addSubview(contentView)
         contentView.snp.makeConstraints({
             $0.verticalEdges.equalToSuperview().inset(8)

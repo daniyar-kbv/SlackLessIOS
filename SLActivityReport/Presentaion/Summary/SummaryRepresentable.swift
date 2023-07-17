@@ -12,14 +12,14 @@ import SwiftUI
 import DeviceActivity
 
 struct SummaryRepresentable: UIViewControllerRepresentable {
-    private let time: ActivityReportTime
+    private let days: [ActivityReportDay]
     
-    init(time: ActivityReportTime) {
-        self.time = time
+    init(days: [ActivityReportDay]) {
+        self.days = days
     }
     
     func makeUIViewController(context: Context) -> some UIViewController {
-        ActivityReportSummaryController(viewModel: ActivityReportSummaryViewModelImpl(time: time))
+        SummaryReportController(viewModel: SummaryReportViewModelImpl(days: days))
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

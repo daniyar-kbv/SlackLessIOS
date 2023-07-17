@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class SLDateSwitcherView: UIStackView {
     private(set) lazy var leftButton: UIButton = {

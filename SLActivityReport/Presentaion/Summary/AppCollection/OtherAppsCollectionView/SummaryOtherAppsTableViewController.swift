@@ -11,6 +11,13 @@ import SnapKit
 
 final class SummaryOtherAppsTableViewController: UIViewController {
     private let viewModel: SummaryAppsCollectionViewModel
+    var height: Int = 1 {
+        didSet {
+            tableView.snp.updateConstraints({
+                $0.height.equalTo(height)
+            })
+        }
+    }
     
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
@@ -24,7 +31,7 @@ final class SummaryOtherAppsTableViewController: UIViewController {
         view.separatorInset = .init(top: 0, left: 40, bottom: 0, right: 0)
         view.isScrollEnabled = false
         view.snp.makeConstraints({
-            $0.height.equalTo(1)
+            $0.height.equalTo(height)
         })
         return view
     }()
@@ -50,9 +57,7 @@ final class SummaryOtherAppsTableViewController: UIViewController {
 extension SummaryOtherAppsTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfItems = viewModel.output.getNumberOfApps()
-        tableView.snp.updateConstraints({
-            $0.height.equalTo(numberOfItems*Int(tableView.rowHeight))
-        })
+        height = numberOfItems*Int(tableView.rowHeight)
         return numberOfItems
     }
     

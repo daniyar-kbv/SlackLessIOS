@@ -27,7 +27,7 @@ final class SummaryCoordinator: BaseCoordinator {
         var controller: UIViewController
         switch Constants.appMode {
         case .debug:
-            controller = ActivityReportSummaryController(viewModel: ActivityReportSummaryViewModelImpl(time: .init(slacked: 4800, total: 19500, limit: 10800)))
+            controller = SummaryReportController(viewModel: SummaryReportViewModelImpl(days: MockData.getDays()))
         default:
             controller = SummaryController()
         }
