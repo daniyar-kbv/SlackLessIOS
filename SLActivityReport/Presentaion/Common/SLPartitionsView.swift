@@ -90,7 +90,7 @@ final class SLPartitionsView: UIStackView {
         firstPartitionLabel.text = firstText
         secondPartitionLabel.text = secondText
         
-        firstPartitionView.snp.makeConstraints({
+        firstPartitionView.snp.remakeConstraints({
             $0.width.equalToSuperview().multipliedBy(percentage ?? 0)
         })
     }
@@ -103,9 +103,6 @@ final class SLPartitionsView: UIStackView {
         switch type {
         case .dasboard:
             axis = .horizontal
-            firstPartitionView.snp.makeConstraints({
-                $0.width.equalTo(0)
-            })
         case let .graph(type):
             axis = .vertical
             

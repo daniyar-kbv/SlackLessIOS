@@ -12,6 +12,9 @@ import SnapKit
 final class SummarySelectedAppsDashboardView: UIView {
     private var startPoint = CGFloat(-Double.pi)
     private var endPoint = CGFloat(0)
+    private var animateToValue: Double = 0
+    
+    private let animated: Bool
     
     private(set) lazy var circleLayer: CAShapeLayer = {
         let view = CAShapeLayer()
@@ -45,7 +48,6 @@ final class SummarySelectedAppsDashboardView: UIView {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 64, weight: .bold)
         view.textColor = SLColors.white.getColor()
-        view.text = "1:20"
         return view
     }()
     
@@ -53,19 +55,25 @@ final class SummarySelectedAppsDashboardView: UIView {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 13, weight: .bold)
         view.textColor = SLColors.white.getColor()
-        view.text = SLTexts.Summary.FirstContainer.subtitle.localized("3h")
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(animated: Bool) {
+        self.animated = animated
+        
+        super.init(frame: .zero)
         
         layoutUI()
     }
     
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        createCircularPath()
     }
     
     func layoutUI() {
@@ -98,27 +106,37 @@ final class SummarySelectedAppsDashboardView: UIView {
         [circleLayer, progressLayer].forEach(layer.addSublayer(_:))
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        createCircularPath()
-    }
-    
-    func createCircularPath() {
+    private func createCircularPath() {
         let circularPath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height), radius: (frame.width-64)/2, startAngle: startPoint, endAngle: endPoint, clockwise: true)
         circleLayer.path = circularPath.cgPath
         progressLayer.path = circularPath.cgPath
-        progressAnimation()
+        if animated {
+            drawProgress()
+        } else {
+            progressLayer.strokeEnd = 0.5
+        }
     }
     
-    func progressAnimation() {
+    private func drawProgress() {
         let circularProgressAnimation = CABasicAnimation(keyPath: "strokeEnd")
         circularProgressAnimation.beginTime = CACurrentMediaTime() + 0.5
         circularProgressAnimation.duration = 0.75
-        circularProgressAnimation.toValue = 0.4
+        circularProgressAnimation.toValue = animateToValue
         circularProgressAnimation.fillMode = .forwards
         circularProgressAnimation.isRemovedOnCompletion = false
         circularProgressAnimation.timingFunction = .init(name: .easeInEaseOut)
         progressLayer.add(circularProgressAnimation, forKey: "progressAnim")
+    }
+}
+
+extension SummarySelectedAppsDashboardView {
+    func set(time: ActivityReportTime) {
+        topTitlelLabel.text = time.slacked.formatted(with: .positional)
+        bottomTitlelLabel.text = SLTexts
+            .Summary
+            .FirstContainer
+            .subtitle
+            .localized(time.limit.formatted(with: .abbreviated) ?? "")
+        animateToValue = time.getSlackedLimitPercentage()
     }
 }

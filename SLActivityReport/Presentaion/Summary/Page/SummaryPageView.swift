@@ -9,22 +9,14 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class ActivityReportSummaryView: SLView {
-    private(set) lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.delaysContentTouches = false
-        view.showsVerticalScrollIndicator = false
-        view.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
-        return view
-    }()
+final class SummaryPageView: UIView {
+    private let isFirstPage: Bool
     
-    private(set) lazy var contentView_ = SLContentView()
-    
-    private(set) lazy var dateSwitcherView = SLDateSwitcherView()
+    private(set) lazy var contentView = SLContentView()
     
     private(set) lazy var firstSectionFirstContentView = SLContainerView()
     
-    private(set) lazy var summarySelectedAppsDashboardView = SummarySelectedAppsDashboardView()
+    private(set) lazy var summarySelectedAppsDashboardView = SummarySelectedAppsDashboardView(animated: isFirstPage)
     
     private(set) lazy var secondSectionFirstContentView = SLContainerView()
     
@@ -48,33 +40,26 @@ final class ActivityReportSummaryView: SLView {
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(isFirstPage: Bool) {
+        self.isFirstPage = isFirstPage
+        
+        super.init(frame: .zero)
         
         layoutUI()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func layoutUI() {
-        backgroundColor = SLColors.background1.getColor()
-        
-        [scrollView].forEach(addSubview(_:))
-        
-        scrollView.snp.makeConstraints({
-            $0.edges.equalToSuperview()
+        addSubview(contentView)
+        contentView.snp.makeConstraints({
+            $0.verticalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(16)
         })
         
-        scrollView.addSubview(contentView_)
-        
-        contentView_.snp.makeConstraints({
-            $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
-        })
-        
-        [dateSwitcherView, firstSectionView, secondSectionView].forEach(contentView_.addArrangedSubview(_:))
+        [firstSectionView, secondSectionView].forEach(contentView.addArrangedSubview(_:))
         
         firstSectionFirstContentView.addSubview(summarySelectedAppsDashboardView)
         summarySelectedAppsDashboardView.snp.makeConstraints({

@@ -15,6 +15,6 @@ struct SLActivityReport: DeviceActivityReportExtension {
     var body: some DeviceActivityReportScene {
         let repositoryFactory = componentsFactory.makeRepositoryFactory()
         SummaryScene(appSettingsRepository: repositoryFactory.makeAppSettingsRepository())
-        { .init(time: $0) }
+        { .init(days: $0) }
     }
 }

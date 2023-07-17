@@ -14,6 +14,7 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private lazy var contentView = SummarySelectedAppsCollectionView()
     private let viewModel: SummaryAppsCollectionViewModel
+//    var height: CGFloat = 
     
     init(viewModel: SummaryAppsCollectionViewModel) {
         self.viewModel = viewModel
