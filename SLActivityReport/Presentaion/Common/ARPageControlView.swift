@@ -1,5 +1,5 @@
 //
-//  SLPageControlView.swift
+//  ARPageControlView.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-06-06.
@@ -10,7 +10,7 @@ import UIKit
 
 // Tech debt: finish or remove
 
-final class SLPageControlView: UIView {
+final class ARPageControlView: UIView {
     private let activeSize: CGFloat = 6
     private let inactiveSize: CGFloat = 6
     private let spacing: CGFloat = 6

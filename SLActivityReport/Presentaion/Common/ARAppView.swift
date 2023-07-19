@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SLAppView: UIStackView {
+final class ARAppView: UIStackView {
     private let type: `Type`
     
     private(set) lazy var appIconView: UIImageView = {
@@ -84,8 +84,8 @@ final class SLAppView: UIStackView {
     }
 }
 
-extension SLAppView {
-    func set(app: ActivityReportApp) {
+extension ARAppView {
+    func set(app: ARApp) {
         let timeText = app.time.formatted(with: type.timeStyle)
         
         appIconView.image = app.icon
@@ -97,13 +97,14 @@ extension SLAppView {
         let textWidth = timeText?.width(withConstrainedHeight: timeLabel.font.lineHeight, font: timeLabel.font) ?? 0
         let maxWidth = type.width-textWidth
         let minWidth = maxWidth*0.1
+        let width = minWidth+((maxWidth-minWidth)*app.ratio)
         timeBarView.snp.makeConstraints({
-            $0.width.equalTo(minWidth+((maxWidth-minWidth)*app.ratio))
+            $0.width.equalTo(width)
         })
     }
 }
 
-extension SLAppView {
+extension ARAppView {
     enum `Type` {
         case small
         case large

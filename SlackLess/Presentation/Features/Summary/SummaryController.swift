@@ -13,9 +13,11 @@ import DeviceActivity
 final class SummaryController: UIViewController {
     private lazy var summaryReport = DeviceActivityReport(.init(Constants.ContextName.summary), filter: Constants.DeviceActivityFilters.summary)
     private lazy var summaryInnerController = UIHostingController(rootView: summaryReport)
-    
-    override func loadView() {
-        super.loadView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = SLColors.background1.getColor()
         
         add(hostingController: summaryInnerController, to: view)
     }

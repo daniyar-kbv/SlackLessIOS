@@ -12,7 +12,7 @@ import SnapKit
 // Tech debt: refactor cells
 
 final class SummaryOtherAppsTableViewCell: UITableViewCell {
-    private(set) var appView: SLAppView?
+    private(set) var appView: ARAppView?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,7 +43,7 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
 }
 
 extension SummaryOtherAppsTableViewCell {
-    func set(app: ActivityReportApp) {
+    func set(app: ARApp) {
         appView?.set(app: app)
     }
 }

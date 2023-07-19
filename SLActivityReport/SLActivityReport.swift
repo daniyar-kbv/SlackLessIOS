@@ -13,8 +13,11 @@ struct SLActivityReport: DeviceActivityReportExtension {
     private let componentsFactory: ComponentsFactory = ComponentsFactoryImpl()
     
     var body: some DeviceActivityReportScene {
-        let repositoryFactory = componentsFactory.makeRepositoryFactory()
-        SummaryScene(appSettingsRepository: repositoryFactory.makeAppSettingsRepository())
+        SummaryScene(appSettingsRepository: getRepositoryFactory().makeAppSettingsRepository())
         { .init(days: $0) }
+    }
+    
+    private func getRepositoryFactory() -> RepositoryFactory {
+        return componentsFactory.makeRepositoryFactory()
     }
 }

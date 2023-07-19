@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-// Tech debt: refactor or remove
-
 class SLView: UIView {
     internal lazy var contentView = UIView()
     

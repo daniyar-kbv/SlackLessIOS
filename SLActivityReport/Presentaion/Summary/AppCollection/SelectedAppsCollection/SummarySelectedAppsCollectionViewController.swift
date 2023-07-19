@@ -14,7 +14,6 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private lazy var contentView = SummarySelectedAppsCollectionView()
     private let viewModel: SummaryAppsCollectionViewModel
-//    var height: CGFloat = 
     
     init(viewModel: SummaryAppsCollectionViewModel) {
         self.viewModel = viewModel
@@ -36,6 +35,7 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        bindViewModel()
     }
     
     private func configure() {
@@ -50,6 +50,12 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
                                                                   animated: true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        viewModel.output.appsChanged
+            .subscribe(onNext: contentView.appsCollectionView.reloadData)
+        .disposed(by: disposeBag)
     }
 }
 
@@ -77,7 +83,10 @@ extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSourc
 
 extension SummarySelectedAppsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: (collectionView.frame.width-(16*3))/2, height: ((collectionView.frame.height-12)/2)-2)
+        let width = (collectionView.frame.width-(16*3))/2
+        let height = ((collectionView.frame.height-12)/2)-2
+        guard height >= 0, width >= 0 else { return .init(width: 0, height: 0) }
+        return .init(width: width, height: height)
     }
 }
 

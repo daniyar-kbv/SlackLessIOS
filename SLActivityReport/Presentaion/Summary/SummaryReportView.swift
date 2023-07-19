@@ -1,69 +1,64 @@
 //
-//  SummaryReportView.swift
-//  SLActivityReport
+//  SummaryView.swift
+//  SlackLess
 //
-//  Created by Daniyar Kurmanbayev on 2023-07-16.
+//  Created by Daniyar Kurmanbayev on 2023-06-04.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-final class SummaryReportView: UIView {
-    private(set) lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.delaysContentTouches = false
-        view.showsVerticalScrollIndicator = false
-        view.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
+final class SummaryReportView: ARView {
+    private(set) lazy var dateSwitcherView = ARDateSwitcherView()
+    
+    private(set) lazy var firstSectionFirstContentView = SLContainerView()
+    
+    private(set) lazy var summarySelectedAppsDashboardView = SummarySelectedAppsDashboardView()
+    
+    private(set) lazy var secondSectionFirstContentView = SLContainerView()
+    
+    private(set) lazy var firstSectionView: ARSectionView = {
+        let view = ARSectionView(titleText: SLTexts.Summary.firstSectionTitle.localized())
+        view.addContainer(view: firstSectionFirstContentView)
+        view.addContainer(view: secondSectionFirstContentView)
         return view
     }()
     
-    private(set) lazy var contentView_ = UIView()
+    private(set) lazy var thirdSectionFirstContentView = SLContainerView()
     
-    private(set) lazy var dateSwitcherView = SLDateSwitcherView()
+    private(set) lazy var otherAppsDashboardView = SummaryOtherAppsDasboardView()
     
-    private(set) lazy var pageView = UIView()
+    private(set) lazy var fourthSectionFirstContentView = SLContainerView()
+    
+    private(set) lazy var secondSectionView: ARSectionView = {
+        let view = ARSectionView(titleText: SLTexts.Summary.secondSectonTitle.localized())
+        view.addContainer(view: thirdSectionFirstContentView)
+        view.addContainer(view: fourthSectionFirstContentView)
+        return view
+    }()
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: .zero)
         
         layoutUI()
     }
     
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func layoutUI() {
-        backgroundColor = SLColors.background1.getColor()
-        clipsToBounds = false
+        [dateSwitcherView, firstSectionView, secondSectionView].forEach(add(view:))
         
-        [scrollView].forEach(addSubview(_:))
-        
-        scrollView.snp.makeConstraints({
-            $0.top.bottom.equalTo(safeAreaLayoutGuide)
-            $0.left.right.equalToSuperview()
-        })
-        
-        scrollView.addSubview(contentView_)
-        
-        contentView_.snp.makeConstraints({
+        firstSectionFirstContentView.addSubview(summarySelectedAppsDashboardView)
+        summarySelectedAppsDashboardView.snp.makeConstraints({
             $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
         })
         
-        [dateSwitcherView, pageView].forEach(contentView_.addSubview(_:))
-        
-        dateSwitcherView.snp.makeConstraints({
-            $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(16)
-        })
-        
-        pageView.snp.makeConstraints({
-            $0.top.equalTo(dateSwitcherView.snp.bottom).offset(16)
-            $0.horizontalEdges.bottom.equalToSuperview()
-            $0.height.equalTo(2000)
+        thirdSectionFirstContentView.addSubview(otherAppsDashboardView)
+        otherAppsDashboardView.snp.makeConstraints({
+            $0.edges.equalToSuperview()
         })
     }
 }

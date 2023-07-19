@@ -1,5 +1,5 @@
 //
-//  SLSectionView.swift
+//  ARSectionView.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-06-05.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SLSectionView: UIStackView {
+final class ARSectionView: UIStackView {
     private(set) lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 17, weight: .bold)
@@ -36,7 +36,7 @@ final class SLSectionView: UIStackView {
     }
 }
 
-extension SLSectionView {
+extension ARSectionView {
     func setTitle(text: String) {
         titleLabel.text = text
     }

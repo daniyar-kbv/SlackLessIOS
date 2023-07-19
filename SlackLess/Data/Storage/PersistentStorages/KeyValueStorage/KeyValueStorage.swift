@@ -20,13 +20,13 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
 protocol KeyValueStorage {
     var appLocale: Language { get }
     var onbardingShown: Bool { get }
-    var selectedApps: FamilyActivitySelection? { get }
-    var timelimit: TimeInterval { get }
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getTimeLimit(for date: Date) -> TimeInterval
 
     func persist(appLocale: Language)
     func persist(onbardingShown: Bool)
-    func persist(selectedApps: FamilyActivitySelection)
-    func persist(timeLimit: TimeInterval)
+    func persist(selectedApps: FamilyActivitySelection, for date: Date)
+    func persist(timeLimit: TimeInterval, for date: Date)
 
     func cleanUp(key: KeyValueStorageKey)
 }
@@ -45,9 +45,9 @@ final class KeyValueStorageImpl: KeyValueStorage {
         return Language.get(by: storageProvider.string(forKey: KeyValueStorageKey.appLocale.value))
     }
     
-    public var selectedApps: FamilyActivitySelection? {
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
         guard let defaults = UserDefaults(suiteName: Constants.UserDefaults.SuiteName.main),
-              let data = defaults.data(forKey: KeyValueStorageKey.selectedApps.value)
+              let data = defaults.data(forKey: KeyValueStorageKey.selectedApps.value+makeString(from: date))
         else { return nil }
         
         let object = try? decoder.decode(
@@ -58,8 +58,8 @@ final class KeyValueStorageImpl: KeyValueStorage {
         return object
     }
     
-    public var timelimit: Double {
-        storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value)
+    func getTimeLimit(for date: Date) -> TimeInterval {
+        storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value+date.formatted(date: .numeric, time: .omitted))
     }
 
     public func persist(appLocale: Language) {
@@ -70,21 +70,27 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
     
-    public func persist(selectedApps: FamilyActivitySelection) {
+    public func persist(selectedApps: FamilyActivitySelection, for date: Date) {
         guard let defaults = UserDefaults(suiteName: Constants.UserDefaults.SuiteName.main) else { return }
         let encoder = PropertyListEncoder()
 
         defaults.set(
             try? encoder.encode(selectedApps),
-            forKey: KeyValueStorageKey.selectedApps.value
+            forKey: KeyValueStorageKey.selectedApps.value+makeString(from: date)
         )
     }
     
-    public func persist(timeLimit: TimeInterval) {
-        storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value)
+    public func persist(timeLimit: TimeInterval, for date: Date) {
+        storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value+makeString(from: date))
     }
 
     public func cleanUp(key: KeyValueStorageKey) {
         storageProvider.set(nil, forKey: key.value)
+    }
+}
+
+extension KeyValueStorageImpl {
+    private func makeString(from date: Date) -> String {
+        date.formatted(date: .numeric, time: .omitted)
     }
 }
