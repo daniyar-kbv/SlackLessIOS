@@ -1,5 +1,5 @@
 //
-//  SLDateSwitcherView.swift
+//  ARDateSwitcherView.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-06-05.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SLDateSwitcherView: UIStackView {
+final class ARDateSwitcherView: UIStackView {
     private(set) lazy var leftButton: UIButton = {
         let view = UIButton()
         view.setBackgroundImage(SLImages.Common.Arrows.Circle.left.getImage(), for: .normal)
@@ -58,7 +58,7 @@ final class SLDateSwitcherView: UIStackView {
     }
 }
 
-extension SLDateSwitcherView {
+extension ARDateSwitcherView {
     func set(date: String) {
         titleLabel.text = date
     }

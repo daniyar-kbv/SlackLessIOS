@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
-    var appTimeView: SLAppView?
+    var appTimeView: ARAppView?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -41,7 +41,7 @@ final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
 }
 
 extension SummarySelectedAppsCollectionCell {
-    func set(app: ActivityReportApp) {
+    func set(app: ARApp) {
         appTimeView?.set(app: app)
     }
 }

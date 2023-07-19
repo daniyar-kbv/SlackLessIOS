@@ -7,13 +7,18 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol SummaryAppsCollectionViewModelInput {
+    func update(apps: [ARApp])
 }
 
 protocol SummaryAppsCollectionViewModelOutput {
+    var appsChanged: PublishRelay<Void> { get }
+    
     func getNumberOfApps() -> Int
-    func getApp(for: Int) -> ActivityReportApp
+    func getApp(for: Int) -> ARApp
     func getAppRatio(for: Int) -> CGFloat
 }
 
@@ -26,29 +31,35 @@ final class SummaryAppsCollectionViewModelImpl: SummaryAppsCollectionViewModel, 
     var input: SummaryAppsCollectionViewModelInput { self }
     var output: SummaryAppsCollectionViewModelOutput { self }
     
-    private let appsInfo: [ActivityReportApp]
+    private var apps: [ARApp]
     
-    init(appsInfo: [ActivityReportApp]) {
-        self.appsInfo = appsInfo
+    init(apps: [ARApp]) {
+        self.apps = apps
     }
 
     //    Input
     
-    //    Output
-    
-    func getNumberOfApps() -> Int {
-        return appsInfo.count
+    func update(apps: [ARApp]) {
+        self.apps = apps
+        appsChanged.accept(())
     }
     
-    func getApp(for index: Int) -> ActivityReportApp {
-        appsInfo[index]
+    //    Output
+    let appsChanged: PublishRelay<Void> = .init()
+    
+    func getNumberOfApps() -> Int {
+        return apps.count
+    }
+    
+    func getApp(for index: Int) -> ARApp {
+        apps[index]
     }
     
     func getAppRatio(for index: Int) -> CGFloat {
-        guard let min = appsInfo.map({ $0.time }).min(),
-                let max = appsInfo.map({ $0.time }).max()
+        guard let min = apps.map({ $0.time }).min(),
+                let max = apps.map({ $0.time }).max()
         else { return 0 }
         
-        return CGFloat(appsInfo[index].time-min)/CGFloat(max-min)
+        return CGFloat(apps[index].time-min)/CGFloat(max-min)
     }
 }

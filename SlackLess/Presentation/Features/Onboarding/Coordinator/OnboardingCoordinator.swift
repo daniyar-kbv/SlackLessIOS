@@ -30,7 +30,6 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeWelcomeScreenModule()
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
-        router.getNavigationController().isNavigationBarHidden = true
         
         module.viewModel.output.didFinish
             .subscribe(onNext: { [weak self] in

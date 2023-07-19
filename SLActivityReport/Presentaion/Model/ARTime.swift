@@ -1,5 +1,5 @@
 //
-//  TotalTimes.swift
+//  ARTime.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-12.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ActivityReportTime {
+struct ARTime {
     let slacked: TimeInterval
     let total: TimeInterval
     let limit: TimeInterval

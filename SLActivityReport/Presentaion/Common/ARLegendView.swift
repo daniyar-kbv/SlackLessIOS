@@ -1,5 +1,5 @@
 //
-//  SLLegendView.swift
+//  ARLegendView.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-12.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SLLegendView: UIStackView {
+final class ARLegendView: UIStackView {
     private let type: `Type`
     
     private lazy var slackedView = LegendView(type: .slacked(sliced: type == .twoColor))
@@ -35,7 +35,7 @@ final class SLLegendView: UIStackView {
     }
 }
 
-extension SLLegendView {
+extension ARLegendView {
     enum `Type` {
         case oneColor
         case twoColor

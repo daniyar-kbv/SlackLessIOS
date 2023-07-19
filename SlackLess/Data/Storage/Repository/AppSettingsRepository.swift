@@ -11,14 +11,14 @@ import FamilyControls
 
 protocol AppSettingsRepositoryInput {
     func set(onboardingShown: Bool)
-    func set(timeLimit: TimeInterval)
-    func set(selectedApps: FamilyActivitySelection)
+    func set(timeLimit: TimeInterval, for date: Date)
+    func set(selectedApps: FamilyActivitySelection, for date: Date)
 }
 
 protocol AppSettingsRepositoryOutput {
     func getOnboardingShown() -> Bool
-    func getTimeLimit() -> TimeInterval
-    func getSelectedApps() -> FamilyActivitySelection?
+    func getTimeLimit(for date: Date) -> TimeInterval
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
 }
 
 protocol AppSettingsRepository: AnyObject {
@@ -42,12 +42,12 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.onbardingShown
     }
     
-    func getTimeLimit() -> TimeInterval {
-        keyValueStorage.timelimit
+    func getTimeLimit(for date: Date) -> TimeInterval {
+        keyValueStorage.getTimeLimit(for: date)
     }
     
-    func getSelectedApps() -> FamilyActivitySelection? {
-        keyValueStorage.selectedApps
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
+        keyValueStorage.getSelectedApps(for: date)
     }
     
     //    Input
@@ -56,11 +56,11 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.persist(onbardingShown: onboardingShown)
     }
     
-    func set(timeLimit: TimeInterval) {
-        keyValueStorage.persist(timeLimit: timeLimit)
+    func set(timeLimit: TimeInterval, for date: Date) {
+        keyValueStorage.persist(timeLimit: timeLimit, for: date)
     }
     
-    func set(selectedApps: FamilyActivitySelection) {
-        keyValueStorage.persist(selectedApps: selectedApps)
+    func set(selectedApps: FamilyActivitySelection, for date: Date) {
+        keyValueStorage.persist(selectedApps: selectedApps, for: date)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  SLPartitionsView.swift
+//  ARPartitionsView.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-11.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SLPartitionsView: UIStackView {
+final class ARPartitionsView: UIStackView {
     private var type: `Type`
     
     private(set) lazy var firstPartitionView: UIView = {
@@ -138,12 +138,12 @@ final class SLPartitionsView: UIStackView {
     }
 }
 
-extension SLPartitionsView {
+extension ARPartitionsView {
     enum `Type`: Equatable {
         case dasboard
         case graph(`Type`)
         
-        static func == (lhs: SLPartitionsView.`Type`, rhs: SLPartitionsView.`Type`) -> Bool {
+        static func == (lhs: ARPartitionsView.`Type`, rhs: ARPartitionsView.`Type`) -> Bool {
             switch lhs {
             case .dasboard:
                 switch rhs {

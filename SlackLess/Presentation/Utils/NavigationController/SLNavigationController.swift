@@ -53,34 +53,7 @@ final class SLNavigationController: UINavigationController {
     }
 
     private func navigationDefaultAppearance() {
-        setNavigationBarHidden(false, animated: true)
-        navigationBar.shadowImage = .init()
-        navigationBar.setBackgroundImage(.init(), for: .default)
-        navigationBar.backgroundColor = .clear
-        let textAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.darkGray,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .semibold),
-        ]
-        navigationBar.titleTextAttributes = textAttributes
-        navigationBar.isTranslucent = false
-    }
-
-    func addInsetFromTop() {
-        additionalSafeAreaInsets = UIEdgeInsets(top: 21, left: 0, bottom: 0, right: 0)
-    }
-
-    func addGrabberView() {
-        let grabberView = UIView()
-//        grabberView.backgroundColor = SLColors.carbonGrey.getColor()
-        grabberView.layer.cornerRadius = 3
-
-        view.addSubview(grabberView)
-        grabberView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(9)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(5)
-            $0.width.equalTo(36)
-        }
+        setNavigationBarHidden(true, animated: false)
     }
 }
 

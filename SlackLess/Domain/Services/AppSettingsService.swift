@@ -22,7 +22,8 @@ protocol AppSettingsServiceOutput {
     var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
     
-    func getTimeLimit() -> TimeInterval?
+    func getTimeLimit(for date: Date) -> TimeInterval?
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getOnboardingShown() -> Bool
 }
 
@@ -47,12 +48,16 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     var timeLimitSaved: PublishRelay<Void> = .init()
     var appsSelectionSaved: PublishRelay<Void> = .init()
     
-    func getTimeLimit() -> Double? {
-        appSettingsRepository.output.getTimeLimit()
-    }
-    
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
+    }
+    
+    func getTimeLimit(for date: Date) -> Double? {
+        appSettingsRepository.output.getTimeLimit(for: date)
+    }
+    
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
+        appSettingsRepository.output.getSelectedApps(for: date)
     }
     
     //    Input
@@ -71,16 +76,30 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     }
     
     func set(timeLimit: TimeInterval) {
-        appSettingsRepository.input.set(timeLimit: timeLimit)
+        getLastSevenDays().forEach({
+            appSettingsRepository.input.set(timeLimit: timeLimit, for: $0)
+        })
         timeLimitSaved.accept(())
     }
     
     func set(selectedApps: FamilyActivitySelection) {
-        appSettingsRepository.input.set(selectedApps: selectedApps)
+        getLastSevenDays().forEach({
+            appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
+        })
         appsSelectionSaved.accept(())
     }
     
     func set(onboardingShown: Bool) {
         appSettingsRepository.input.set(onboardingShown: onboardingShown)
+    }
+}
+
+extension AppSettingsServiceImpl {
+    private func getLastSevenDays() -> [Date] {
+        let today = Date()
+        return (0..<7).map({
+            Calendar.current.date(byAdding: .day, value: -$0, to: today)
+        })
+        .compactMap({ $0 })
     }
 }

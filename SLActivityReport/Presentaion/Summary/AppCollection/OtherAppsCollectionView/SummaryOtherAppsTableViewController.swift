@@ -8,22 +8,18 @@
 import Foundation
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class SummaryOtherAppsTableViewController: UIViewController {
+    private let disposeBag = DisposeBag()
     private let viewModel: SummaryAppsCollectionViewModel
-    var height: Int = 1 {
-        didSet {
-            tableView.snp.updateConstraints({
-                $0.height.equalTo(height)
-            })
-        }
-    }
+    var height: Int = 1
     
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
         view.register(SummaryOtherAppsTableViewCell.self, forCellReuseIdentifier: String(describing: SummaryOtherAppsTableViewCell.self))
-        view.rowHeight = 48
-        view.contentInset = .init(top: 6, left: 16, bottom: 8, right: 32)
+        view.contentInset = .init(top: 6, left: 16, bottom: 6, right: 32)
         view.delegate = self
         view.dataSource = self
         view.allowsSelection = false
@@ -31,7 +27,7 @@ final class SummaryOtherAppsTableViewController: UIViewController {
         view.separatorInset = .init(top: 0, left: 40, bottom: 0, right: 0)
         view.isScrollEnabled = false
         view.snp.makeConstraints({
-            $0.height.equalTo(height)
+            $0.height.equalTo(1)
         })
         return view
     }()
@@ -52,12 +48,26 @@ final class SummaryOtherAppsTableViewController: UIViewController {
         
         view = tableView
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        viewModel.output.appsChanged
+            .subscribe(onNext: tableView.reloadData)
+            .disposed(by: disposeBag)
+    }
 }
 
-extension SummaryOtherAppsTableViewController: UITableViewDataSource, UITableViewDelegate {
+extension SummaryOtherAppsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfItems = viewModel.output.getNumberOfApps()
-        height = numberOfItems*Int(tableView.rowHeight)
+        tableView.snp.updateConstraints({
+            $0.height.equalTo((numberOfItems*48)+12)
+        })
         return numberOfItems
     }
     
@@ -65,5 +75,11 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
         cell.set(app: viewModel.output.getApp(for: indexPath.row))
         return cell
+    }
+}
+
+extension SummaryOtherAppsTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 48
     }
 }

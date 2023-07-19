@@ -35,15 +35,15 @@ final class SummaryOtherAppsDasboardView: UIView {
         return view
     }()
     
-    private(set) lazy var partitionsView = SLPartitionsView(type: .dasboard)
+    private(set) lazy var partitionsView = ARPartitionsView(type: .dasboard)
     
-    private(set) lazy var legendView = SLLegendView(type: .twoColor)
+    private(set) lazy var legendView = ARLegendView(type: .twoColor)
     
-    func set(time: ActivityReportTime) {
-        partitionsView.set(percentage: time.getSlackedTotalPercentage(),
-                           firstText: time.getSlackedTotalPercentageText(),
-                           secondText: time.getOtherTotalPercentageText())
-        timeLabel.text = time.total.formatted(with: .abbreviated)
+    func set(time: ARTime?) {
+        partitionsView.set(percentage: time?.getSlackedTotalPercentage(),
+                           firstText: time?.getSlackedTotalPercentageText(),
+                           secondText: time?.getOtherTotalPercentageText())
+        timeLabel.text = time?.total.formatted(with: .abbreviated)
         layoutUI()
     }
     
