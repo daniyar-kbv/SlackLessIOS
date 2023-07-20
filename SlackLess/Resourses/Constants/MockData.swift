@@ -9,6 +9,8 @@ import Foundation
 
 
 struct MockData {
+    private static let appNames = ["Instagram", "Pinterest", "TikTok", "WhatsApp", "Facebook", "Telegram", "LinkedIn", "Poker Shark", "Slack", "Google", "YouTube"]
+    
     static func getDays() -> [ARDay] {
         return (0..<7).reversed().map({
             let date = Calendar.current.date(byAdding: .day, value: Int(-$0), to: Date())
@@ -20,10 +22,9 @@ struct MockData {
                 .reversed()
                 .map({
                     let time = minTime+((maxTime-minTime)/Double(num)*Double($0))
-                    return ARApp(name: "App \($0)",
-                                             icon: nil,
-                                             time: time,
-                                             ratio: (time-minTime)/(maxTime-minTime))
+                    return ARApp(name: appNames.randomElement() ?? "",
+                                 time: time,
+                                 ratio: (time-minTime)/(maxTime-minTime))
                 })
             return .init(date: date ?? Date(),
                   time: time,

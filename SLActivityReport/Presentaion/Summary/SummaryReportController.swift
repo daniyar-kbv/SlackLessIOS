@@ -18,9 +18,11 @@ final class SummaryReportController: UIViewController {
     let viewModel: SummaryReportViewModel
     
     private(set) lazy var selectedAppsCollectionViewModel = SummaryAppsCollectionViewModelImpl(apps: viewModel.output.selectedApps.value)
-    private(set) lazy var selectedAppsCollectionController = SummarySelectedAppsCollectionViewController(viewModel: selectedAppsCollectionViewModel)
+    private(set) lazy var selectedAppsCollectionController = SummarySelectedAppsCollectionViewController(viewModel: selectedAppsCollectionViewModel,
+                                                                                                         parentViewModel: viewModel)
     private(set) lazy var otherAppsTableViewViewModel = SummaryAppsCollectionViewModelImpl(apps: viewModel.output.otherApps.value)
-    private(set) lazy var otherAppsTableViewController = SummaryOtherAppsTableViewController(viewModel: otherAppsTableViewViewModel)
+    private(set) lazy var otherAppsTableViewController = SummaryOtherAppsTableViewController(viewModel: otherAppsTableViewViewModel,
+                                                                                             parentViewModel: viewModel)
 
     init(viewModel: SummaryReportViewModel) {
         self.viewModel = viewModel

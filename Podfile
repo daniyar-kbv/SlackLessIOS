@@ -8,12 +8,12 @@ target 'SlackLess' do
   pod 'RxCocoa'
   pod 'SnapKit'
   pod 'IQKeyboardManagerSwift'
-  pod 'Moya/RxSwift', '~> 14.0'
+  pod 'Moya/RxSwift'
   pod 'SwiftFormat'
 
   # Pods for Cache
   pod 'Cache'
-  pod 'Kingfisher', '~> 7.0'
+  pod 'Kingfisher'
   pod 'KeychainAccess'
   
   # Firebase

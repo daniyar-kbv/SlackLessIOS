@@ -8,16 +8,30 @@
 import DeviceActivity
 import SwiftUI
 
+//  Tech debt: refactor DI
+
 @main
 struct SLActivityReport: DeviceActivityReportExtension {
-    private let componentsFactory: ComponentsFactory = ComponentsFactoryImpl()
-    
     var body: some DeviceActivityReportScene {
-        SummaryScene(appSettingsRepository: getRepositoryFactory().makeAppSettingsRepository())
-        { .init(days: $0) }
+        SummaryScene(appSettingsRepository: makeRepositoryFactory().makeAppSettingsRepository())
+        { .init(iTunesService: makeServiceFactory().makeITunesService(), days: $0) }
     }
     
-    private func getRepositoryFactory() -> RepositoryFactory {
-        return componentsFactory.makeRepositoryFactory()
+    private func makeServiceFactory() -> ServiceFactory {
+        ServiceFactoryImpl(apiFactory: makeAPIFactory(),
+                           repositoryFactory: makeRepositoryFactory(),
+                           helpersFactory: makeHelpersFactory())
+    }
+    
+    private func makeAPIFactory() -> APIFactory {
+        APIFactoryImpl()
+    }
+    
+    private func makeRepositoryFactory() -> RepositoryFactory {
+        RepositoryFactoryImpl(cacheStorage: BaseCacheStorage(), keyValueStorage: KeyValueStorageImpl(), secureStorage: SecureStorageImpl())
+    }
+    
+    private func makeHelpersFactory() -> HelpersFactory {
+        HelpersFactoryImpl(keyValueStorage: KeyValueStorageImpl())
     }
 }

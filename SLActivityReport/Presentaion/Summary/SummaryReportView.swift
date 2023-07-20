@@ -49,6 +49,8 @@ final class SummaryReportView: ARView {
     }
     
     private func layoutUI() {
+        set(title: SLTexts.Summary.title.localized())
+        
         [dateSwitcherView, firstSectionView, secondSectionView].forEach(add(view:))
         
         firstSectionFirstContentView.addSubview(summarySelectedAppsDashboardView)

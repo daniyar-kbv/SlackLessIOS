@@ -14,9 +14,12 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private lazy var contentView = SummarySelectedAppsCollectionView()
     private let viewModel: SummaryAppsCollectionViewModel
+    private let parentViewModel: SummaryReportViewModel
     
-    init(viewModel: SummaryAppsCollectionViewModel) {
+    init(viewModel: SummaryAppsCollectionViewModel,
+         parentViewModel: SummaryReportViewModel) {
         self.viewModel = viewModel
+        self.parentViewModel = parentViewModel
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -36,6 +39,12 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
         
         configure()
         bindViewModel()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        contentView.appsCollectionView.reloadData()
     }
     
     private func configure() {
@@ -70,13 +79,19 @@ extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSourc
         let numberOfItems = viewModel.output.getNumberOfApps()
         contentView.pageControl.numberOfPages = (numberOfItems+3)/4
         contentView.pageControl.isHidden = numberOfItems <= 4
+        contentView.updateAppsCollectionView(height: numberOfItems > 1 ? 88 : 38)
+        contentView.pageControl.isHidden = numberOfItems < 5
         return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SummarySelectedAppsCollectionCell.self),
                                                                       for: indexPath) as! SummarySelectedAppsCollectionCell
-        cell.set(app: viewModel.output.getApp(for: indexPath.item))
+        let app = viewModel.output.getApp(for: indexPath.item)
+        cell.set(app: app)
+        parentViewModel.output.getIcon(for: app.name) {
+            cell.appTimeView?.setIcon(with: $0)
+        }
         return cell
     }
 }

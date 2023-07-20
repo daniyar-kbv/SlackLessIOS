@@ -8,6 +8,8 @@
 import Foundation
 import SnapKit
 
+// Tech debt: refactor or remove
+
 protocol LoaderManager: AnyObject {
     func showLoader()
     func hideLoader()
@@ -17,10 +19,10 @@ final class LoaderManagerImpl: LoaderManager {
     private let loaderView = LoaderView()
 
     func showLoader() {
-        DispatchQueue.main.async { [weak self] in
-            guard let window = UIApplication.shared.keyWindow else { return }
-            self?.loaderView.showLoader(on: window)
-        }
+//        DispatchQueue.main.async { [weak self] in
+//            guard let window = UIApplication.shared.keyWindow else { return }
+//            self?.loaderView.showLoader(on: window)
+//        }
     }
 
     func hideLoader() {

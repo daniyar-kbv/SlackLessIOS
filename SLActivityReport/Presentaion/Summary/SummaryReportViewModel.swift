@@ -21,6 +21,8 @@ protocol SummaryReportViewModelOutput {
     var otherApps: BehaviorRelay<[ARApp]> { get }
     var isFirstDate: BehaviorRelay<Bool?> { get }
     var isLastDate: BehaviorRelay<Bool?> { get }
+    
+    func getIcon(for appName: String, _ onCompletion: @escaping (URL) -> Void)
 }
 
 protocol SummaryReportViewModel: AnyObject {
@@ -32,6 +34,7 @@ final class SummaryReportViewModelImpl: SummaryReportViewModel, SummaryReportVie
     var input: SummaryReportViewModelInput { self }
     var output: SummaryReportViewModelOutput { self }
     
+    private let iTunesService: ITunesService
     private var days: [ARDay] {
         didSet {
             currentIndex = days.count - 1
@@ -39,7 +42,9 @@ final class SummaryReportViewModelImpl: SummaryReportViewModel, SummaryReportVie
     }
     private lazy var currentIndex = days.count - 1
     
-    init(days: [ARDay]) {
+    init(iTunesService: ITunesService,
+         days: [ARDay]) {
+        self.iTunesService = iTunesService
         self.days = days
     }
     
@@ -50,6 +55,10 @@ final class SummaryReportViewModelImpl: SummaryReportViewModel, SummaryReportVie
     lazy var otherApps: BehaviorRelay<[ARApp]> = .init(value: getCurrentDay()?.otherApps ?? [])
     lazy var isFirstDate: BehaviorRelay<Bool?> = .init(value: false)
     lazy var isLastDate: BehaviorRelay<Bool?> = .init(value: true)
+    
+    func getIcon(for appName: String, _ onCompletion: @escaping (URL) -> Void) {
+        iTunesService.output.getIconURL(for: appName, onCompletion)
+    }
     
     //    Input
     
