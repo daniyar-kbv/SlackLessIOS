@@ -14,6 +14,7 @@ import RxCocoa
 final class SummaryOtherAppsTableViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: SummaryAppsCollectionViewModel
+    private let parentViewModel: SummaryReportViewModel
     var height: Int = 1
     
     private(set) lazy var tableView: UITableView = {
@@ -32,8 +33,10 @@ final class SummaryOtherAppsTableViewController: UIViewController {
         return view
     }()
     
-    init(viewModel: SummaryAppsCollectionViewModel) {
+    init(viewModel: SummaryAppsCollectionViewModel,
+         parentViewModel: SummaryReportViewModel) {
         self.viewModel = viewModel
+        self.parentViewModel = parentViewModel
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -66,14 +69,18 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfItems = viewModel.output.getNumberOfApps()
         tableView.snp.updateConstraints({
-            $0.height.equalTo((numberOfItems*48)+12)
+            $0.height.equalTo((numberOfItems*48)+(12))
         })
         return numberOfItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
-        cell.set(app: viewModel.output.getApp(for: indexPath.row))
+        let app = viewModel.output.getApp(for: indexPath.row)
+        cell.set(app: app)
+        parentViewModel.output.getIcon(for: app.name) {
+            cell.appView?.setIcon(with: $0)
+        }
         return cell
     }
 }

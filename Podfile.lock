@@ -149,8 +149,8 @@ DEPENDENCIES:
   - Firebase/Messaging
   - IQKeyboardManagerSwift
   - KeychainAccess
-  - Kingfisher (~> 7.0)
-  - Moya/RxSwift (~> 14.0)
+  - Kingfisher
+  - Moya/RxSwift
   - ReachabilitySwift
   - RxCocoa
   - RxSwift
@@ -216,6 +216,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftFormat: 5c722f77243cf74af91d1c587b5b2d744441f557
 
-PODFILE CHECKSUM: ee50c60350934c6842b7ab02035f91a61af3a143
+PODFILE CHECKSUM: 25d5b10875ce4fd5e28b06b1cb78fc3c763b3347
 
 COCOAPODS: 1.12.1

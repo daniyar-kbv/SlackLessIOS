@@ -33,6 +33,15 @@ final class SummarySelectedAppsCollectionView: UIView {
         return view
     }()
     
+    private(set) lazy var stackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [appsCollectionView, pageControl])
+        view.axis = .vertical
+        view.distribution = .equalSpacing
+        view.alignment = .fill
+        view.spacing = 12
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -45,19 +54,20 @@ final class SummarySelectedAppsCollectionView: UIView {
     }
     
     private func layoutUI() {
-        [appsCollectionView, pageControl].forEach { [weak self] in self?.addSubview($0) }
-        
-        appsCollectionView.snp.makeConstraints({
-            $0.top.equalToSuperview().offset(12)
-            $0.left.right.equalToSuperview()
-            $0.height.equalTo(88)
+        addSubview(stackView)
+        stackView.snp.makeConstraints({
+            $0.verticalEdges.equalToSuperview().inset(8)
+            $0.horizontalEdges.equalToSuperview()
         })
         
-        pageControl.snp.makeConstraints({
-            $0.top.equalTo(appsCollectionView.snp.bottom).offset(12)
-            $0.bottom.equalToSuperview().offset(-8)
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview()
+        appsCollectionView.snp.makeConstraints({
+            $0.height.equalTo(1)
+        })
+    }
+    
+    func updateAppsCollectionView(height: CGFloat) {
+        appsCollectionView.snp.updateConstraints({
+            $0.height.equalTo(height)
         })
     }
 }

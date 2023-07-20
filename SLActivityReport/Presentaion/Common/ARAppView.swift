@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class ARAppView: UIStackView {
     private let type: `Type`
@@ -15,6 +16,8 @@ final class ARAppView: UIStackView {
     private(set) lazy var appIconView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .gray
+        view.layer.cornerRadius = 6.35
+        view.clipsToBounds = true
         view.snp.makeConstraints({
             $0.size.equalTo(28)
         })
@@ -88,7 +91,6 @@ extension ARAppView {
     func set(app: ARApp) {
         let timeText = app.time.formatted(with: type.timeStyle)
         
-        appIconView.image = app.icon
         appNameLabel.text = app.name
         appNameLabel.sizeToFit()
         timeLabel.text = timeText
@@ -101,6 +103,10 @@ extension ARAppView {
         timeBarView.snp.makeConstraints({
             $0.width.equalTo(width)
         })
+    }
+    
+    func setIcon(with url: URL) {
+        appIconView.kf.setImage(with: url)
     }
 }
 

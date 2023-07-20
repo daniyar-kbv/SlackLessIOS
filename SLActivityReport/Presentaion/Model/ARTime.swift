@@ -10,10 +10,11 @@ import Foundation
 struct ARTime {
     let slacked: TimeInterval
     let total: TimeInterval
-    let limit: TimeInterval
+    let limit: TimeInterval?
     
-    func getSlackedLimitPercentage() -> Double {
-        .init(slacked/limit)
+    func getSlackedLimitPercentage() -> Double? {
+        guard let limit else { return nil }
+        return .init(slacked/limit)
     }
     
     func getSlackedTotalPercentage() -> Double {

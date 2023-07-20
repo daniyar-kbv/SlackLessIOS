@@ -20,7 +20,6 @@ class ARView: UIView {
     
     fileprivate lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.text = SLTexts.Summary.title.localized()
         view.font = SLFonts.primary.getFont(ofSize: 28, weight: .bold)
         view.textColor = SLColors.label1.getColor()
         return view
@@ -65,6 +64,10 @@ class ARView: UIView {
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview().inset(16)
         })
+    }
+    
+    func set(title: String) {
+        titleLabel.text = title
     }
 }
 

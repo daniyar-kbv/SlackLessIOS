@@ -12,21 +12,17 @@ protocol RepositoryFactory: AnyObject {
 }
 
 final class RepositoryFactoryImpl: DependencyFactory, RepositoryFactory {
-    func makeAppSettingsRepository() -> AppSettingsRepository {
-        shared(AppSettingsRepositoryImpl(keyValueStorage: makeKeyValueStorage()))
-    }
-}
+    private let cacheStorage: BaseCacheStorage
+    private let keyValueStorage: KeyValueStorage
+    private let secureStorage: SecureStorage
     
-extension RepositoryFactoryImpl {
-    private func makeCacheStorage() -> BaseCacheStorage {
-        return shared(BaseCacheStorage())
+    init(cacheStorage: BaseCacheStorage, keyValueStorage: KeyValueStorage, secureStorage: SecureStorage) {
+        self.cacheStorage = cacheStorage
+        self.keyValueStorage = keyValueStorage
+        self.secureStorage = secureStorage
     }
-
-    private  func makeKeyValueStorage() -> KeyValueStorage {
-        return shared(KeyValueStorageImpl())
-    }
-
-    private func makeSecureStorage() -> SecureStorage {
-        return shared(SecureStorageImpl())
+    
+    func makeAppSettingsRepository() -> AppSettingsRepository {
+        shared(AppSettingsRepositoryImpl(keyValueStorage: keyValueStorage))
     }
 }

@@ -12,7 +12,7 @@ import DeviceActivity
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
-    static let appMode: AppMode = .normal
+    static let appMode: AppMode = .debug
     
     enum AppMode {
         case normal
@@ -20,7 +20,11 @@ struct Constants {
         case experimental
     }
 
-    enum URLs {}
+    enum URLs {
+        struct ITunesAPI {
+            static let search = URL(string: "https://itunes.apple.com")!
+        }
+    }
 
     enum ErrorCode {}
 

@@ -8,13 +8,15 @@
 import Foundation
 
 protocol AppComponentsFactory: AnyObject {
-    func makeRepositoryFactory() -> RepositoryFactory
-    func makeServiceFactory() -> ServiceFactory
     func makeApplicationCoordinatorFactory() -> ApplicationCoordinatorFactory
     func makeApplicationModulesFactory() -> ApplicationModulesFactory
+    func makeServiceFactory() -> ServiceFactory
     func makeHelpersFactory() -> HelpersFactory
-
+    func makeAPIFactory() -> APIFactory
+    func makeRepositoryFactory() -> RepositoryFactory
+    func makeSecureStorage() -> SecureStorage
     func makeKeyValueStorage() -> KeyValueStorage
+    func makeCacheStorage() -> BaseCacheStorage
 }
 
 final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
@@ -43,6 +45,12 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
                                          repositoryFactory: makeRepositoryFactory(),
                                          helpersFactory: makeHelpersFactory()))
     }
+    
+//    MARK: - Reachability
+
+    public func makeHelpersFactory() -> HelpersFactory {
+        return shared(HelpersFactoryImpl(keyValueStorage: makeKeyValueStorage()))
+    }
 
 //    MARK: - Network
 
@@ -53,24 +61,20 @@ final class AppComponentsFactoryImpl: DependencyFactory, AppComponentsFactory {
 //    MARK: - Storage
 
     func makeRepositoryFactory() -> RepositoryFactory {
-        return shared(RepositoryFactoryImpl())
+        return shared(RepositoryFactoryImpl(cacheStorage: makeCacheStorage(),
+                                            keyValueStorage: makeKeyValueStorage(),
+                                            secureStorage: makeSecureStorage()))
     }
 
-    private func makeSecureStorage() -> SecureStorage {
+    func makeSecureStorage() -> SecureStorage {
         return shared(SecureStorageImpl())
     }
 
-    public func makeKeyValueStorage() -> KeyValueStorage {
+    func makeKeyValueStorage() -> KeyValueStorage {
         return shared(KeyValueStorageImpl())
     }
 
-    private func makeCacheStorage() -> BaseCacheStorage {
+    func makeCacheStorage() -> BaseCacheStorage {
         return shared(BaseCacheStorage())
-    }
-
-//    MARK: - Reachability
-
-    public func makeHelpersFactory() -> HelpersFactory {
-        return shared(HelpersFactoryImpl(keyValueStorage: makeKeyValueStorage()))
     }
 }

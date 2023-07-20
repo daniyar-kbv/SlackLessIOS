@@ -8,8 +8,11 @@
 import DeviceActivity
 import SwiftUI
 
+// Tech debt: refactor to use service
+
 struct SummaryScene: DeviceActivityReportScene {
     let appSettingsRepository: AppSettingsRepository
+    
     let context: DeviceActivityReport.Context = .summary
     let content: ([ARDay]) -> SummaryRepresentable
     
@@ -70,17 +73,17 @@ struct SummaryScene: DeviceActivityReportScene {
             for await app in selectedApps {
                 let appTimeRelative = app.totalActivityDuration-selectedMinTime
                 selectedAppsTransformed.append(.init(name: app.application.localizedDisplayName ?? "",
-                                                     icon: nil,
                                                      time: app.totalActivityDuration,
                                                      ratio: appTimeRelative != 0 ? appTimeRelative/(selectedMaxTime-selectedMinTime) : 0))
             }
+            selectedAppsTransformed.sort(by: { $0.time > $1.time })
             
             var otherAppsTransformed = [ARApp]()
             for await app in otherApps {
+                let appTimeRelative = app.totalActivityDuration-selectedMinTime
                 otherAppsTransformed.append(.init(name: app.application.localizedDisplayName ?? "",
-                                                  icon: nil,
                                                   time: app.totalActivityDuration,
-                                                  ratio: (app.totalActivityDuration-otherMinTime)/(otherMaxTime-otherMinTime)))
+                                                  ratio: appTimeRelative != 0 ? appTimeRelative/(otherMaxTime-otherMinTime) : 0))
             }
             days.append(.init(date: date,
                               time: .init(slacked: slackedTime,
@@ -88,6 +91,7 @@ struct SummaryScene: DeviceActivityReportScene {
                                           limit: timeLimit),
                               selectedApps: selectedAppsTransformed,
                               otherApps: otherAppsTransformed))
+            otherAppsTransformed.sort(by: { $0.time > $1.time })
         }
         return days
     }

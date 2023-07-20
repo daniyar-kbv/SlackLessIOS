@@ -10,7 +10,6 @@ import UIKit
 
 struct ARApp {
     let name: String
-    let icon: UIImage?
     let time: TimeInterval
     let ratio: Double
 }
