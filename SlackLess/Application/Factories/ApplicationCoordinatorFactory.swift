@@ -10,6 +10,7 @@ import UIKit
 protocol ApplicationCoordinatorFactory: AnyObject {
     func makeOnboardingCoordinator() -> OnboardingCoordinator
     func makeSummaryCoordinator() -> SummaryCoordinator
+    func makeProgressCoordinator() -> ProgressCoordinator
 }
 
 final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoordinatorFactory {
@@ -32,7 +33,10 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
     
     func makeSummaryCoordinator() -> SummaryCoordinator {
         return scoped(SummaryCoordinator(router: routersFactory.makeMainRouter(),
-                                         appSettingsService: serviceFactory.makeAppSettingsService(),
                                          iTunesService: serviceFactory.makeITunesService()))
+    }
+    
+    func makeProgressCoordinator() -> ProgressCoordinator {
+        return scoped(ProgressCoordinator(router: routersFactory.makeMainRouter()))
     }
 }

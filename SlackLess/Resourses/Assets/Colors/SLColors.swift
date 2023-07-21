@@ -18,7 +18,6 @@ enum SLColors: String, ColorGeatble {
     case background2
     case backgroundContrast
     case backgroundElevated
-    case black
     case label1
     case label2
     case gray1
@@ -28,4 +27,7 @@ enum SLColors: String, ColorGeatble {
     case gray5
     case gray6
     case white
+    case black
+    case red
+    case green
 }

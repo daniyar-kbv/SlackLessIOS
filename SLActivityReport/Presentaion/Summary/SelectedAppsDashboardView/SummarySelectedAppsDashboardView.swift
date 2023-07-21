@@ -133,7 +133,7 @@ extension SummarySelectedAppsDashboardView {
             .Summary
             .FirstContainer
             .subtitle
-            .localized(time?.limit.formatted(with: .abbreviated) ?? "")
+            .localized(time?.limit?.formatted(with: .abbreviated) ?? "")
         animateToValue = time?.getSlackedLimitPercentage() ?? 0
     }
 }

@@ -7,9 +7,10 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
-    var appTimeView: ARAppView?
+    private(set) var appTimeView: ARAppView?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -30,18 +31,12 @@ final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
     private func layoutUI(){
         appTimeView?.removeFromSuperview()
         
-        appTimeView = .init(type: .small)
+        appTimeView = .init()
         
         contentView.addSubview(appTimeView!)
         
         appTimeView?.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
-    }
-}
-
-extension SummarySelectedAppsCollectionCell {
-    func set(app: ARApp) {
-        appTimeView?.set(app: app)
     }
 }

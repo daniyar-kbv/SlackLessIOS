@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import UIKit
-import SnapKit
 import SwiftUI
 import DeviceActivity
 
@@ -22,7 +20,7 @@ struct SummaryRepresentable: UIViewControllerRepresentable {
         self.days = days
     }
     
-    func makeUIViewController(context: Context) -> SummaryReportController {
+    func makeUIViewController(context: Context) -> UIViewControllerType {
         SummaryReportController(viewModel: SummaryReportViewModelImpl(iTunesService: iTunesService,
                                                                       days: days))
     }

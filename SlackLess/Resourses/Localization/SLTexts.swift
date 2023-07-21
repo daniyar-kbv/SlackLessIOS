@@ -41,7 +41,8 @@ enum SLTexts {
     }
     
     enum TabBar: String, Localizable {
-        case summary = "TabBar.Summary.title"
+        case summary = "TabBar.summaryTitle"
+        case progress = "TabBar.progressTitle"
     }
 
     enum WelcomeScreen: String, Localizable {
@@ -52,6 +53,11 @@ enum SLTexts {
         case termsAndPrivacy2 = "WelcomeScreen.TermsAndPrivacy2"
         case termsAndPrivacy3 = "WelcomeScreen.TermsAndPrivacy3"
         case termsAndPrivacy4 = "WelcomeScreen.TermsAndPrivacy4"
+    }
+    
+    enum Legend: String, Localizable {
+        case firstTitle = "Summary.ThirdContainer.Legend.firstTitle"
+        case secondTitle = "Summary.ThirdContainer.Legend.secondTitle"
     }
     
     enum Summary: String, Localizable {
@@ -66,11 +72,18 @@ enum SLTexts {
         
         enum ThirdContainer: String, Localizable {
             case title = "Summary.ThirdContainer.title"
-            
-            enum Legend: String, Localizable {
-                case firstTitle = "Summary.ThirdContainer.Legend.firstTitle"
-                case secondTitle = "Summary.ThirdContainer.Legend.secondTitle"
-            }
+        }
+    }
+    
+    enum Progress: String, Localizable {
+        case title = "Progress.title"
+        case firstSectionTitle = "Progress.firstSectionTitle"
+        case secondSectonTitle = "Progress.secondSectonTitle"
+        
+        enum Dashboard: String, Localizable {
+            case firstTitle = "Progress.Dashboard.firstTitle"
+            case secondTitle = "Progress.Dashboard.secondTitle"
+            case thirdTitle = "Progress.Dashboard.thirdTitle"
         }
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 enum SLTabBarType {
     case summary
+    case progress
 
     var tabBarItem: UITabBarItem {
         return .init(title: title, image: selectedImage, selectedImage: unselectedImage)
@@ -18,18 +19,21 @@ enum SLTabBarType {
     private var title: String {
         switch self {
         case .summary: return SLTexts.TabBar.summary.localized()
+        case .progress: return SLTexts.TabBar.progress.localized()
         }
     }
 
     private var selectedImage: UIImage? {
         switch self {
         case .summary: return SLImages.TabBar.Summary.selected.getImage()
+        case .progress: return SLImages.TabBar.Progress.selected.getImage()
         }
     }
     
     private var unselectedImage: UIImage? {
         switch self {
         case .summary: return SLImages.TabBar.Summary.unselected.getImage()
+        case .progress: return SLImages.TabBar.Progress.unselected.getImage()
         }
     }
 }

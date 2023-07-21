@@ -19,6 +19,11 @@ enum SLImages: String, ImageGetable {
             case selected = "TabBar.Summary.selected"
             case unselected = "TabBar.Summary.unselected"
         }
+        
+        enum Progress: String, ImageGetable {
+            case selected = "TabBar.Progress.selected"
+            case unselected = "TabBar.Progress.unselected"
+        }
     }
 
     enum Common: String, ImageGetable {

@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SnapKit
 
+// Tech debt: change Type name
+
 final class ARPartitionsView: UIStackView {
     private var type: `Type`
     

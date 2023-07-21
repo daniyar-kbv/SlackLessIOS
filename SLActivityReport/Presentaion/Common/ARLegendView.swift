@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SnapKit
 
+// Tech debt: change Type name
+
 final class ARLegendView: UIStackView {
     private let type: `Type`
     
@@ -112,8 +114,8 @@ extension LegendView {
         
         var text: String {
             switch self {
-            case .slacked: return SLTexts.Summary.ThirdContainer.Legend.firstTitle.localized()
-            case .otherApps: return SLTexts.Summary.ThirdContainer.Legend.secondTitle.localized()
+            case .slacked: return SLTexts.Legend.firstTitle.localized()
+            case .otherApps: return SLTexts.Legend.secondTitle.localized()
             }
         }
         

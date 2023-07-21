@@ -88,10 +88,9 @@
 		705573E12A68C7E4005969AC /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD6F3E57B03CEC437D8B8FE349A4098 /* LoaderManager.swift */; };
 		705573E22A68C7E7005969AC /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEA5E1F8BEE99FD4A3D0B26ADDFC394 /* LoaderView.swift */; };
 		705573E52A68CF38005969AC /* ProgressScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E42A68CF38005969AC /* ProgressScene.swift */; };
-		705573E72A68CFC9005969AC /* ARProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E62A68CFC9005969AC /* ARProgress.swift */; };
-		705573E82A68CFDA005969AC /* ARProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E62A68CFC9005969AC /* ARProgress.swift */; };
 		705573EA2A68D009005969AC /* ARWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E92A68D009005969AC /* ARWeek.swift */; };
 		705573EC2A68D271005969AC /* ProgressReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573EB2A68D271005969AC /* ProgressReportView.swift */; };
+		705573ED2A68DECA005969AC /* ARWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E92A68D009005969AC /* ARWeek.swift */; };
 		70918CDC2A5CFF6400685DE8 /* SummaryOtherAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC72A5CF8560084A2DA /* SummaryOtherAppsTableViewController.swift */; };
 		70918CDD2A5CFF6700685DE8 /* SummaryOtherAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC92A5CF8860084A2DA /* SummaryOtherAppsTableViewCell.swift */; };
 		70918CE12A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */; };
@@ -104,6 +103,22 @@
 		70918CFA2A61281A00685DE8 /* AppSettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CF82A61266800685DE8 /* AppSettingsRepository.swift */; };
 		70A00B362A53BBBE0072486E /* UIHostingControllerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */; };
 		70A00B372A53C6310072486E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
+		70B8D0322A6A005200D8F41B /* ProgressReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0312A6A005200D8F41B /* ProgressReportViewModel.swift */; };
+		70B8D0342A6A00D900D8F41B /* ProgressReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0332A6A00D900D8F41B /* ProgressReportController.swift */; };
+		70B8D0372A6A014D00D8F41B /* ProgressDasboardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0362A6A014D00D8F41B /* ProgressDasboardContainerView.swift */; };
+		70B8D0392A6A091B00D8F41B /* ProgressDasboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0382A6A091B00D8F41B /* ProgressDasboardView.swift */; };
+		70B8D03B2A6A092800D8F41B /* ProgressDashboardChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03A2A6A092800D8F41B /* ProgressDashboardChangeView.swift */; };
+		70B8D03C2A6A0FB000D8F41B /* ProgressReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0312A6A005200D8F41B /* ProgressReportViewModel.swift */; };
+		70B8D03E2A6A12DF00D8F41B /* ProgressRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03D2A6A12DF00D8F41B /* ProgressRepresentable.swift */; };
+		70B8D0402A6A14BD00D8F41B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03F2A6A14BD00D8F41B /* Date.swift */; };
+		70B8D0412A6A1E3400D8F41B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03F2A6A14BD00D8F41B /* Date.swift */; };
+		70B8D0442A6A22F900D8F41B /* ProgressCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0432A6A22F900D8F41B /* ProgressCoordinator.swift */; };
+		70B8D0462A6A230800D8F41B /* ProgressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0452A6A230800D8F41B /* ProgressController.swift */; };
+		70B8D0472A6A249400D8F41B /* ProgressReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0332A6A00D900D8F41B /* ProgressReportController.swift */; };
+		70B8D0482A6A249E00D8F41B /* ProgressReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573EB2A68D271005969AC /* ProgressReportView.swift */; };
+		70B8D0492A6A24A100D8F41B /* ProgressDasboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0382A6A091B00D8F41B /* ProgressDasboardView.swift */; };
+		70B8D04A2A6A24A600D8F41B /* ProgressDasboardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0362A6A014D00D8F41B /* ProgressDasboardContainerView.swift */; };
+		70B8D04B2A6A24B400D8F41B /* ProgressDashboardChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03A2A6A092800D8F41B /* ProgressDashboardChangeView.swift */; };
 		70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998212A43E0AE008B2A9A /* SLActivityReport.swift */; };
 		70B9982B2A43E0AE008B2A9A /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70B998342A43E1FC008B2A9A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998332A43E1FC008B2A9A /* Context.swift */; };
@@ -309,7 +324,6 @@
 		705573C82A67B0F5005969AC /* ITunesTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesTarget.swift; sourceTree = "<group>"; };
 		705573CA2A67B32C005969AC /* ITunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesService.swift; sourceTree = "<group>"; };
 		705573E42A68CF38005969AC /* ProgressScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressScene.swift; sourceTree = "<group>"; };
-		705573E62A68CFC9005969AC /* ARProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARProgress.swift; sourceTree = "<group>"; };
 		705573E92A68D009005969AC /* ARWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARWeek.swift; sourceTree = "<group>"; };
 		705573EB2A68D271005969AC /* ProgressReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressReportView.swift; sourceTree = "<group>"; };
 		70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOtherAppsDashboardView.swift; sourceTree = "<group>"; };
@@ -317,6 +331,15 @@
 		70918CF32A60F77300685DE8 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		70918CF82A61266800685DE8 /* AppSettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsRepository.swift; sourceTree = "<group>"; };
 		70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHostingControllerConfigurable.swift; sourceTree = "<group>"; };
+		70B8D0312A6A005200D8F41B /* ProgressReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressReportViewModel.swift; sourceTree = "<group>"; };
+		70B8D0332A6A00D900D8F41B /* ProgressReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressReportController.swift; sourceTree = "<group>"; };
+		70B8D0362A6A014D00D8F41B /* ProgressDasboardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDasboardContainerView.swift; sourceTree = "<group>"; };
+		70B8D0382A6A091B00D8F41B /* ProgressDasboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDasboardView.swift; sourceTree = "<group>"; };
+		70B8D03A2A6A092800D8F41B /* ProgressDashboardChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDashboardChangeView.swift; sourceTree = "<group>"; };
+		70B8D03D2A6A12DF00D8F41B /* ProgressRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRepresentable.swift; sourceTree = "<group>"; };
+		70B8D03F2A6A14BD00D8F41B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		70B8D0432A6A22F900D8F41B /* ProgressCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCoordinator.swift; sourceTree = "<group>"; };
+		70B8D0452A6A230800D8F41B /* ProgressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressController.swift; sourceTree = "<group>"; };
 		70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B998212A43E0AE008B2A9A /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
 		70B998232A43E0AE008B2A9A /* SummaryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScene.swift; sourceTree = "<group>"; };
@@ -775,7 +798,11 @@
 		705573E32A68CF1F005969AC /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				70B8D0352A6A013300D8F41B /* Dashboard */,
 				705573E42A68CF38005969AC /* ProgressScene.swift */,
+				70B8D03D2A6A12DF00D8F41B /* ProgressRepresentable.swift */,
+				70B8D0312A6A005200D8F41B /* ProgressReportViewModel.swift */,
+				70B8D0332A6A00D900D8F41B /* ProgressReportController.swift */,
 				705573EB2A68D271005969AC /* ProgressReportView.swift */,
 			);
 			path = Progress;
@@ -806,6 +833,25 @@
 				70918CF82A61266800685DE8 /* AppSettingsRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		70B8D0352A6A013300D8F41B /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				70B8D0382A6A091B00D8F41B /* ProgressDasboardView.swift */,
+				70B8D0362A6A014D00D8F41B /* ProgressDasboardContainerView.swift */,
+				70B8D03A2A6A092800D8F41B /* ProgressDashboardChangeView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		70B8D0422A6A22EA00D8F41B /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				70B8D0432A6A22F900D8F41B /* ProgressCoordinator.swift */,
+				70B8D0452A6A230800D8F41B /* ProgressController.swift */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 		70B998202A43E0AE008B2A9A /* SLActivityReport */ = {
@@ -844,7 +890,6 @@
 				7055739A2A64D167005969AC /* ARDay.swift */,
 				7029E20B2A3164D000BA1A6E /* ARApp.swift */,
 				70918CED2A5FA61200685DE8 /* ARTime.swift */,
-				705573E62A68CFC9005969AC /* ARProgress.swift */,
 				705573E92A68D009005969AC /* ARWeek.swift */,
 			);
 			path = Model;
@@ -989,6 +1034,7 @@
 				D8402A6AC3FE1EB6F72CA2EB1B81DD94 /* StringExtension.swift */,
 				70C0DA7F2A57A3560084A2DA /* Int.swift */,
 				70918CF32A60F77300685DE8 /* TimeInterval.swift */,
+				70B8D03F2A6A14BD00D8F41B /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1130,6 +1176,7 @@
 		DBBB10BF2CE306D8DB7D2FC36599E6FB /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				70B8D0422A6A22EA00D8F41B /* Progress */,
 				C85884517F2BF53643B1B8229EBD6917 /* LaunchScreen */,
 				EE362B6366A8221E5E3DBFE900066347 /* Onboarding */,
 				D16025F968A698CB7D0E096031F58E27 /* Summary */,
@@ -1373,6 +1420,7 @@
 				70D564AB2A47DB7B00FCFE4D /* SLColors.swift in Sources */,
 				705573D02A67B68D005969AC /* NetworkError.swift in Sources */,
 				70C0DA962A590FB80084A2DA /* SLView.swift in Sources */,
+				70B8D0342A6A00D900D8F41B /* ProgressReportController.swift in Sources */,
 				705573B52A6648CB005969AC /* ARPageControlView.swift in Sources */,
 				70D564AE2A47DBC900FCFE4D /* SLFonts.swift in Sources */,
 				70918CEE2A5FA61200685DE8 /* ARTime.swift in Sources */,
@@ -1384,7 +1432,6 @@
 				70D564B32A47DBFB00FCFE4D /* SLTexts.swift in Sources */,
 				705573B42A6648CB005969AC /* ARLegendView.swift in Sources */,
 				705573A22A64E052005969AC /* MockData.swift in Sources */,
-				705573E72A68CFC9005969AC /* ARProgress.swift in Sources */,
 				70C0DA942A590F580084A2DA /* SummaryReportController.swift in Sources */,
 				70C0DA9A2A590FD50084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */,
 				705573B72A6648CB005969AC /* ARAppView.swift in Sources */,
@@ -1409,6 +1456,7 @@
 				70D564AA2A47DA5A00FCFE4D /* BaseCacheStorage.swift in Sources */,
 				70C0DA9D2A59115C0084A2DA /* SummaryReportViewModel.swift in Sources */,
 				70C0DA952A590FB40084A2DA /* SummaryReportView.swift in Sources */,
+				70B8D03E2A6A12DF00D8F41B /* ProgressRepresentable.swift in Sources */,
 				705573D32A67B759005969AC /* ServiceFactory.swift in Sources */,
 				705573B22A6648CB005969AC /* ARSectionView.swift in Sources */,
 				705573B62A6648CB005969AC /* ARPartitionsView.swift in Sources */,
@@ -1423,8 +1471,10 @@
 				70C0DA882A57BF310084A2DA /* SummaryRepresentable.swift in Sources */,
 				705573D92A67B869005969AC /* EventManager.swift in Sources */,
 				705573D52A67B7A3005969AC /* APIFactory.swift in Sources */,
+				70B8D0322A6A005200D8F41B /* ProgressReportViewModel.swift in Sources */,
 				70D564AD2A47DBC700FCFE4D /* FontGetable.swift in Sources */,
 				70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */,
+				70B8D0392A6A091B00D8F41B /* ProgressDasboardView.swift in Sources */,
 				705573CF2A67B683005969AC /* ITunesTarget.swift in Sources */,
 				705573DA2A68BD49005969AC /* EmptyError.swift in Sources */,
 				705573DC2A68BD6D005969AC /* Event.swift in Sources */,
@@ -1436,14 +1486,17 @@
 				70B998472A46832C008B2A9A /* Constants.swift in Sources */,
 				70B9985D2A469E48008B2A9A /* SecureStorageProvider.swift in Sources */,
 				705573E22A68C7E7005969AC /* LoaderView.swift in Sources */,
+				70B8D0372A6A014D00D8F41B /* ProgressDasboardContainerView.swift in Sources */,
 				7055739B2A64D167005969AC /* ARDay.swift in Sources */,
 				705573DD2A68BD70005969AC /* EventObserver.swift in Sources */,
 				70D564AF2A47DBCD00FCFE4D /* ImageGetable.swift in Sources */,
+				70B8D03B2A6A092800D8F41B /* ProgressDashboardChangeView.swift in Sources */,
 				70B998342A43E1FC008B2A9A /* Context.swift in Sources */,
 				70B998652A469F9D008B2A9A /* Language.swift in Sources */,
 				70C0DA812A57A3F50084A2DA /* Int.swift in Sources */,
 				70C0DABA2A591E4D0084A2DA /* ARApp.swift in Sources */,
 				70C0DA9C2A5910070084A2DA /* UIImage.swift in Sources */,
+				70B8D0412A6A1E3400D8F41B /* Date.swift in Sources */,
 				70B9985C2A469E26008B2A9A /* KeyValueStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1457,10 +1510,10 @@
 				19778F21DE596BF0D993DDC124796069 /* APIFactory.swift in Sources */,
 				D98D54AEF19BF1398A3B9DD8EAEC14CF /* AlertDisplayable.swift in Sources */,
 				70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */,
+				70B8D0442A6A22F900D8F41B /* ProgressCoordinator.swift in Sources */,
 				70918CEF2A5FAE0D00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */,
 				E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */,
 				F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */,
-				705573E82A68CFDA005969AC /* ARProgress.swift in Sources */,
 				70C0DA912A590C320084A2DA /* SummaryController.swift in Sources */,
 				70C0DA6F2A564F980084A2DA /* AppSettingsService.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
@@ -1480,12 +1533,14 @@
 				99CA0D6B19D1C7A4577FD75BB1678233 /* EmptyData.swift in Sources */,
 				700CC8BD2A34435F00BEAF95 /* ScreenTimeExperiments.swift in Sources */,
 				F35662B56993244B7118CB403E248F71 /* EmptyError.swift in Sources */,
+				70B8D04A2A6A24A600D8F41B /* ProgressDasboardContainerView.swift in Sources */,
 				70C0DA6B2A564EF80084A2DA /* SelectPriceController.swift in Sources */,
 				70D564C42A47E66100FCFE4D /* SLView.swift in Sources */,
 				67D345D3DC3C82FFC28637B4B598D392 /* ErrorThrowable.swift in Sources */,
 				3FDCDB77103DABFE376AA961FA3ABE59 /* Event.swift in Sources */,
 				7029E1FC2A2EC39300BA1A6E /* SLContentView.swift in Sources */,
 				70D564CB2A47EB5B00FCFE4D /* RequestAuthViewModel.swift in Sources */,
+				70B8D0472A6A249400D8F41B /* ProgressReportController.swift in Sources */,
 				C31675F5D248E1CEE7333855AE91A9D0 /* EventManager.swift in Sources */,
 				D338A7CF637DEB0233DDAE547634539F /* EventObserver.swift in Sources */,
 				70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */,
@@ -1496,12 +1551,15 @@
 				70294B6F2A411B7B001C289E /* ScreenTimeExperimentsController.swift in Sources */,
 				164385B20069807DDF8FDB164B779B57 /* FormattedExtension.swift in Sources */,
 				70C0DAAF2A591D4E0084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */,
+				70B8D04B2A6A24B400D8F41B /* ProgressDashboardChangeView.swift in Sources */,
 				08068BAA945579B633A00D237151CAC0 /* HelpersFactory.swift in Sources */,
 				705573A32A660E19005969AC /* SummaryReportController.swift in Sources */,
 				CED0416BB0006AD0E59854EB3F5EC403 /* ImageGetable.swift in Sources */,
 				8FE1969EDB016B43CA54FE2142259080 /* KeyValueStorage.swift in Sources */,
 				3B67D4FEB6898D5CD7B681952D752280 /* KeyboardObservable.swift in Sources */,
 				634CEFDB6C9EC3EB8DF70C446775A2BB /* Language.swift in Sources */,
+				70B8D0492A6A24A100D8F41B /* ProgressDasboardView.swift in Sources */,
+				70B8D0462A6A230800D8F41B /* ProgressController.swift in Sources */,
 				70918CF42A60F77300685DE8 /* TimeInterval.swift in Sources */,
 				70C0DAB22A591DAE0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */,
 				AE78521F862F243DC7BF5C7FCE2CEC6B /* LoaderManager.swift in Sources */,
@@ -1527,6 +1585,7 @@
 				D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */,
 				DF07E88D2B297B9522AFD025DDD1BD8C /* SLImages.swift in Sources */,
 				70C0DA6D2A564F220084A2DA /* SelectPriceViewModel.swift in Sources */,
+				70B8D0402A6A14BD00D8F41B /* Date.swift in Sources */,
 				70294BA42A41258E001C289E /* ScreenTimeExperimentsView.swift in Sources */,
 				F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */,
 				705573BB2A664F27005969AC /* ARSectionView.swift in Sources */,
@@ -1546,6 +1605,8 @@
 				705573BD2A664F41005969AC /* ARDateSwitcherView.swift in Sources */,
 				5F62E74734AE2552EFEFE0FA574A98E7 /* SecureStorage.swift in Sources */,
 				65754F30D21A7048D1119866C978D2C8 /* SecureStorageProvider.swift in Sources */,
+				70B8D03C2A6A0FB000D8F41B /* ProgressReportViewModel.swift in Sources */,
+				705573ED2A68DECA005969AC /* ARWeek.swift in Sources */,
 				9F1232582BCFA8BD9B06EB3A69DED9A8 /* ServiceFactory.swift in Sources */,
 				70C0DABE2A591FDD0084A2DA /* SummarySelectedAppsCollectionView.swift in Sources */,
 				6A9C44EEA3D3AEF44B34BCC804153083 /* StringExtension.swift in Sources */,
@@ -1557,6 +1618,7 @@
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
 				C059AE25A3793362AEB6D89E0BDC423E /* UIButtonExtension.swift in Sources */,
 				705573C02A664F48005969AC /* ARAppView.swift in Sources */,
+				70B8D0482A6A249E00D8F41B /* ProgressReportView.swift in Sources */,
 				70C0DABF2A5921510084A2DA /* ARApp.swift in Sources */,
 				639F00A102F9C8DDE1A04A8714CA1BA2 /* UIColorExtensions.swift in Sources */,
 				705573A02A64E01E005969AC /* MockData.swift in Sources */,
@@ -1672,11 +1734,9 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
+				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SLActivityReport;
@@ -1691,7 +1751,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess.SLActivityReport Development Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1706,11 +1765,9 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
+				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SLActivityReport;
@@ -1725,7 +1782,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess.SLActivityReport Development Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1742,11 +1798,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
+				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SlackLess;
@@ -1763,7 +1817,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess Development Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1837,11 +1890,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7842GYQN2J;
+				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SlackLess;
@@ -1858,7 +1909,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SlackLess Development Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

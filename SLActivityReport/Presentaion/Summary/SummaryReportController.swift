@@ -88,14 +88,9 @@ final class SummaryReportController: UIViewController {
             .subscribe(onNext: otherAppsTableViewViewModel.input.update)
             .disposed(by: disposeBag)
         
-        viewModel.output.isFirstDate.subscribe(onNext: { [weak self] in
-                self?.contentView.dateSwitcherView.leftButton.isEnabled = !($0 ?? false)
-            })
+        viewModel.output.isntFirstDate.bind(to: contentView.dateSwitcherView.leftButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
-        viewModel.output.isLastDate.subscribe(onNext: { [weak self] in
-                self?.contentView.dateSwitcherView.rightButton.isEnabled = !($0 ?? false)
-            })
+        viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }

@@ -41,7 +41,7 @@ extension ARSectionView {
         titleLabel.text = text
     }
     
-    func addContainer(view: SLContainerView) {
+    func addContainer(view: UIView) {
         addArrangedSubview(view)
     }
 }
