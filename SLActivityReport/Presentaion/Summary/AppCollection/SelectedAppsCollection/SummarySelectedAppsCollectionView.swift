@@ -14,8 +14,8 @@ final class SummarySelectedAppsCollectionView: UIView {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
         collectionViewLayout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
-        collectionViewLayout.minimumLineSpacing = 24
-        collectionViewLayout.minimumInteritemSpacing = 16
+        collectionViewLayout.minimumLineSpacing = 16
+        collectionViewLayout.minimumInteritemSpacing = 12
         let view = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         view.register(SummarySelectedAppsCollectionCell.self, forCellWithReuseIdentifier: String(describing: SummarySelectedAppsCollectionCell.self))
         view.delaysContentTouches = false
@@ -62,12 +62,6 @@ final class SummarySelectedAppsCollectionView: UIView {
         
         appsCollectionView.snp.makeConstraints({
             $0.height.equalTo(1)
-        })
-    }
-    
-    func updateAppsCollectionView(height: CGFloat) {
-        appsCollectionView.snp.updateConstraints({
-            $0.height.equalTo(height)
         })
     }
 }

@@ -53,8 +53,8 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
         contentView.pageControl.rx.controlEvent(.valueChanged)
             .subscribe(onNext: { [weak self] in
                 guard let currentPage = self?.contentView.pageControl.currentPage else { return }
-                self?.contentView.appsCollectionView.scrollToItem(at: .init(item: currentPage*4,
-                                                                            section: 0),
+                self?.contentView.appsCollectionView.scrollToItem(at: .init(item: 0,
+                                                                            section: currentPage),
                                                                   at: .left,
                                                                   animated: true)
             })
@@ -75,20 +75,32 @@ extension SummarySelectedAppsCollectionViewController {
 }
 
 extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        let numberOfApps = viewModel.output.getNumberOfApps()
+        let numberOfPages = (numberOfApps+3)/4
+        contentView.pageControl.numberOfPages = numberOfPages
+        contentView.pageControl.isHidden = numberOfPages < 2
+        contentView.appsCollectionView.snp.updateConstraints({
+            $0.height.equalTo(numberOfApps > 1 ? 88 : 38)
+        })
+        return numberOfPages
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfItems = viewModel.output.getNumberOfApps()
-        contentView.pageControl.numberOfPages = (numberOfItems+3)/4
-        contentView.pageControl.isHidden = numberOfItems <= 4
-        contentView.updateAppsCollectionView(height: numberOfItems > 1 ? 88 : 38)
-        contentView.pageControl.isHidden = numberOfItems < 5
-        return numberOfItems
+        let numberOfApps = viewModel.output.getNumberOfApps()
+        let numberOfPages = (numberOfApps+3)/4
+        if section + 1 < numberOfPages {
+            return 4
+        } else {
+            return numberOfApps-(section*4)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = contentView.appsCollectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SummarySelectedAppsCollectionCell.self),
                                                                       for: indexPath) as! SummarySelectedAppsCollectionCell
-        let app = viewModel.output.getApp(for: indexPath.item)
-        cell.set(app: app)
+        let app = viewModel.output.getApp(for: (indexPath.section*4)+indexPath.item)
+        cell.appTimeView?.set(app: app, type: viewModel.output.getNumberOfApps() > 2 ? .small : .large)
         parentViewModel.output.getIcon(for: app.name) {
             cell.appTimeView?.setIcon(with: $0)
         }
@@ -98,8 +110,8 @@ extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSourc
 
 extension SummarySelectedAppsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width-(16*3))/2
-        let height = ((collectionView.frame.height-12)/2)-2
+        let width = viewModel.output.getNumberOfApps()-(indexPath.section*4) > 2 ? (collectionView.frame.width-48)/2 : collectionView.frame.width-32
+        let height = viewModel.output.getNumberOfApps()-(indexPath.section*4) > 1 ? ((collectionView.frame.height-12)/2)-2 : collectionView.frame.height
         guard height >= 0, width >= 0 else { return .init(width: 0, height: 0) }
         return .init(width: width, height: height)
     }

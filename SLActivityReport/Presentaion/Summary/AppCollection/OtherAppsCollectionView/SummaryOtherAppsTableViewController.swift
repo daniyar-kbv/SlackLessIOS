@@ -77,7 +77,7 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
         let app = viewModel.output.getApp(for: indexPath.row)
-        cell.set(app: app)
+        cell.appView?.set(app: app, type: .large)
         parentViewModel.output.getIcon(for: app.name) {
             cell.appView?.setIcon(with: $0)
         }

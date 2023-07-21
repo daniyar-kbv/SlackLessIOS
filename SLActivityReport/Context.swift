@@ -11,5 +11,5 @@ import DeviceActivity
 
 extension DeviceActivityReport.Context {
     static let summary = Self(Constants.ContextName.summary)
-    static let test = Self(Constants.ContextName.test)
+    static let progress = Self(Constants.ContextName.progress)
 }

@@ -51,8 +51,8 @@ struct Constants {
     }
     
     struct ContextName {
-        static let test = "Test"
         static let summary = "Summary"
+        static let progress = "Progress"
     }
     
     struct DeviceActivityFilters {
@@ -60,6 +60,15 @@ struct Constants {
             segment: .daily(
                 during: Calendar.current.dateInterval(
                    of: .day, for: .now
+                )!
+            ),
+            users: .all,
+            devices: .init([.iPhone])
+        )
+        static let progress = DeviceActivityFilter(
+            segment: .weekly(
+                during: Calendar.current.dateInterval(
+                   of: .weekOfYear, for: .now
                 )!
             ),
             users: .all,

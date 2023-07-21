@@ -15,6 +15,7 @@ struct SLActivityReport: DeviceActivityReportExtension {
     var body: some DeviceActivityReportScene {
         SummaryScene(appSettingsRepository: makeRepositoryFactory().makeAppSettingsRepository())
         { .init(iTunesService: makeServiceFactory().makeITunesService(), days: $0) }
+        ProgressScene(appSettingsRepository: makeRepositoryFactory().makeAppSettingsRepository()) { .init(weeks: $0) }
     }
     
     private func makeServiceFactory() -> ServiceFactory {

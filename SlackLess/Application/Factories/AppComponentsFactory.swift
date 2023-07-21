@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Tech debt: refactor to separate layers
+
 protocol AppComponentsFactory: AnyObject {
     func makeApplicationCoordinatorFactory() -> ApplicationCoordinatorFactory
     func makeApplicationModulesFactory() -> ApplicationModulesFactory

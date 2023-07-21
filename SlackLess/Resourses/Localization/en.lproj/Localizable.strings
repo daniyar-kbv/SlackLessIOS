@@ -26,7 +26,8 @@
 "Alert.Action.no" = "Нет";
 
 //  MARK: - TabBar
-"TabBar.Summary.title" = "Summary";
+"TabBar.summaryTitle" = "Summary";
+"TabBar.progressTitle" = "Progress";
 
 //  MARK: - WelcomeScreen
 "WelcomeScreen.Title" = "Hey!";
@@ -37,6 +38,10 @@
 "WelcomeScreen.TermsAndPrivacy3" = "and";
 "WelcomeScreen.TermsAndPrivacy4" = "Privacy Policy";
 
+//  MARK: - Legend
+"Legend.firstTitle" = "Slacked";
+"Legend.secondTitle" = "Other apps";
+
 //  MARK: - Summary
 "Summary.title" = "Summary";
 "Summary.firstSectionTitle" = "Most Distracting Apps";
@@ -44,5 +49,11 @@
 "Summary.FirstContainer.title" = "Slacked";
 "Summary.FirstContainer.subitle" = "of your %@ daily limit";
 "Summary.ThirdContainer.title" = "Total Screen Time";
-"Summary.ThirdContainer.Legend.firstTitle" = "Slacked";
-"Summary.ThirdContainer.Legend.secondTitle" = "Other apps";
+
+//  MARK: - Progress
+"Progress.title" = "Summary";
+"Progress.firstSectionTitle" = "Time spent this week";
+"Progress.secondSectonTitle" = "Last few weeks";
+"Progress.Dashboard.firstTitle" = "Slacked";
+"Progress.Dashboard.secondTitle" = "Total";
+"Progress.Dashboard.thirdTitle" = "Average";

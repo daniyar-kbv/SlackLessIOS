@@ -88,7 +88,8 @@ struct SummaryScene: DeviceActivityReportScene {
             days.append(.init(date: date,
                               time: .init(slacked: slackedTime,
                                           total: totalTime,
-                                          limit: timeLimit),
+                                          limit: timeLimit,
+                                          average: nil),
                               selectedApps: selectedAppsTransformed,
                               otherApps: otherAppsTransformed))
             otherAppsTransformed.sort(by: { $0.time > $1.time })

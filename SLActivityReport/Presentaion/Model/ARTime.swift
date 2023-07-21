@@ -11,6 +11,7 @@ struct ARTime {
     let slacked: TimeInterval
     let total: TimeInterval
     let limit: TimeInterval?
+    let average: TimeInterval?
     
     func getSlackedLimitPercentage() -> Double? {
         guard let limit else { return nil }

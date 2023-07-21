@@ -33,17 +33,11 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
     private func layoutUI() {
         appView?.removeFromSuperview()
         
-        appView = .init(type: .large)
+        appView = .init()
         
         addSubview(appView!)
         appView?.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
-    }
-}
-
-extension SummaryOtherAppsTableViewCell {
-    func set(app: ARApp) {
-        appView?.set(app: app)
     }
 }
