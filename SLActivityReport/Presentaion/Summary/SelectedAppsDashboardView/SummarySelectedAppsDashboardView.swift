@@ -128,7 +128,10 @@ final class SummarySelectedAppsDashboardView: UIView {
 
 extension SummarySelectedAppsDashboardView {
     func set(time: ARTime?) {
-        middleTitlelLabel.text = time?.slacked.formatted(with: .positional)
+        if let timeFormatted = time?.slacked.formatted(with: .positional) {
+            let timeText = timeFormatted.count <= 2 ? "0:\(timeFormatted)" : timeFormatted
+            middleTitlelLabel.text = timeText
+        }
         bottomTitlelLabel.text = SLTexts
             .Summary
             .FirstContainer

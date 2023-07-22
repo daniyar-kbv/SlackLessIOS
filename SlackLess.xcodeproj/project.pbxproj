@@ -117,18 +117,6 @@
 		70B8D04A2A6A24A600D8F41B /* ProgressDasboardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0362A6A014D00D8F41B /* ProgressDasboardContainerView.swift */; };
 		70B8D04B2A6A24B400D8F41B /* ProgressDashboardChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03A2A6A092800D8F41B /* ProgressDashboardChangeView.swift */; };
 		70B8D04E2A6A340900D8F41B /* UIHostingControllerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */; };
-		70B8D0522A6B5B4C00D8F41B /* ARChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0512A6B5B4C00D8F41B /* ARChartView.swift */; };
-		70B8D0542A6B5B5700D8F41B /* ARChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0532A6B5B5700D8F41B /* ARChartController.swift */; };
-		70B8D0562A6B5B5F00D8F41B /* ARChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0552A6B5B5F00D8F41B /* ARChartViewModel.swift */; };
-		70B8D0582A6B5B7D00D8F41B /* ARChartCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0572A6B5B7D00D8F41B /* ARChartCollectionCell.swift */; };
-		70B8D05A2A6B5BF800D8F41B /* ARChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0592A6B5BF800D8F41B /* ARChartType.swift */; };
-		70B8D05C2A6B67E100D8F41B /* ARChartCollectionScaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D05B2A6B67E100D8F41B /* ARChartCollectionScaleCell.swift */; };
-		70B8D05D2A6B6E5500D8F41B /* ARChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0592A6B5BF800D8F41B /* ARChartType.swift */; };
-		70B8D05E2A6B6E5700D8F41B /* ARChartCollectionScaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D05B2A6B67E100D8F41B /* ARChartCollectionScaleCell.swift */; };
-		70B8D05F2A6B6E5A00D8F41B /* ARChartCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0572A6B5B7D00D8F41B /* ARChartCollectionCell.swift */; };
-		70B8D0602A6B6E5C00D8F41B /* ARChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0512A6B5B4C00D8F41B /* ARChartView.swift */; };
-		70B8D0612A6B6E5E00D8F41B /* ARChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0532A6B5B5700D8F41B /* ARChartController.swift */; };
-		70B8D0622A6B6E6000D8F41B /* ARChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0552A6B5B5F00D8F41B /* ARChartViewModel.swift */; };
 		70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998212A43E0AE008B2A9A /* SLActivityReport.swift */; };
 		70B9982B2A43E0AE008B2A9A /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70B998342A43E1FC008B2A9A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998332A43E1FC008B2A9A /* Context.swift */; };
@@ -346,12 +334,6 @@
 		70B8D03F2A6A14BD00D8F41B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		70B8D0432A6A22F900D8F41B /* ProgressCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCoordinator.swift; sourceTree = "<group>"; };
 		70B8D0452A6A230800D8F41B /* ProgressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressController.swift; sourceTree = "<group>"; };
-		70B8D0512A6B5B4C00D8F41B /* ARChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartView.swift; sourceTree = "<group>"; };
-		70B8D0532A6B5B5700D8F41B /* ARChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartController.swift; sourceTree = "<group>"; };
-		70B8D0552A6B5B5F00D8F41B /* ARChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartViewModel.swift; sourceTree = "<group>"; };
-		70B8D0572A6B5B7D00D8F41B /* ARChartCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartCollectionCell.swift; sourceTree = "<group>"; };
-		70B8D0592A6B5BF800D8F41B /* ARChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartType.swift; sourceTree = "<group>"; };
-		70B8D05B2A6B67E100D8F41B /* ARChartCollectionScaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARChartCollectionScaleCell.swift; sourceTree = "<group>"; };
 		70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B998212A43E0AE008B2A9A /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
 		70B998232A43E0AE008B2A9A /* SummaryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScene.swift; sourceTree = "<group>"; };
@@ -759,7 +741,6 @@
 		705573AB2A6648CB005969AC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				70B8D0502A6B5B3500D8F41B /* Chart */,
 				705573AC2A6648CB005969AC /* ARSectionView.swift */,
 				705573AD2A6648CB005969AC /* ARDateSwitcherView.swift */,
 				705573AE2A6648CB005969AC /* ARLegendView.swift */,
@@ -844,19 +825,6 @@
 				70B8D0452A6A230800D8F41B /* ProgressController.swift */,
 			);
 			path = Progress;
-			sourceTree = "<group>";
-		};
-		70B8D0502A6B5B3500D8F41B /* Chart */ = {
-			isa = PBXGroup;
-			children = (
-				70B8D0552A6B5B5F00D8F41B /* ARChartViewModel.swift */,
-				70B8D0532A6B5B5700D8F41B /* ARChartController.swift */,
-				70B8D0512A6B5B4C00D8F41B /* ARChartView.swift */,
-				70B8D0572A6B5B7D00D8F41B /* ARChartCollectionCell.swift */,
-				70B8D05B2A6B67E100D8F41B /* ARChartCollectionScaleCell.swift */,
-				70B8D0592A6B5BF800D8F41B /* ARChartType.swift */,
-			);
-			path = Chart;
 			sourceTree = "<group>";
 		};
 		70B998202A43E0AE008B2A9A /* SLActivityReport */ = {
@@ -1466,7 +1434,6 @@
 				705573B22A6648CB005969AC /* ARSectionView.swift in Sources */,
 				705573B62A6648CB005969AC /* ARPartitionsView.swift in Sources */,
 				70D564B02A47DBCF00FCFE4D /* SLImages.swift in Sources */,
-				70B8D05A2A6B5BF800D8F41B /* ARChartType.swift in Sources */,
 				705573EA2A68D009005969AC /* ARWeek.swift in Sources */,
 				705573D72A67B861005969AC /* ReachabilityManager.swift in Sources */,
 				705573CC2A67B660005969AC /* ITunesService.swift in Sources */,
@@ -1484,7 +1451,6 @@
 				70B8D0392A6A091B00D8F41B /* ProgressDasboardView.swift in Sources */,
 				705573CF2A67B683005969AC /* ITunesTarget.swift in Sources */,
 				705573DA2A68BD49005969AC /* EmptyError.swift in Sources */,
-				70B8D0522A6B5B4C00D8F41B /* ARChartView.swift in Sources */,
 				705573DC2A68BD6D005969AC /* Event.swift in Sources */,
 				705573B92A6648DA005969AC /* ARView.swift in Sources */,
 				70D564A92A47DA5300FCFE4D /* RepositoryFactory.swift in Sources */,
@@ -1494,11 +1460,7 @@
 				70B998472A46832C008B2A9A /* Constants.swift in Sources */,
 				70B9985D2A469E48008B2A9A /* SecureStorageProvider.swift in Sources */,
 				705573E22A68C7E7005969AC /* LoaderView.swift in Sources */,
-				70B8D05C2A6B67E100D8F41B /* ARChartCollectionScaleCell.swift in Sources */,
-				70B8D0542A6B5B5700D8F41B /* ARChartController.swift in Sources */,
-				70B8D0562A6B5B5F00D8F41B /* ARChartViewModel.swift in Sources */,
 				70B8D0372A6A014D00D8F41B /* ProgressDasboardContainerView.swift in Sources */,
-				70B8D0582A6B5B7D00D8F41B /* ARChartCollectionCell.swift in Sources */,
 				7055739B2A64D167005969AC /* ARDay.swift in Sources */,
 				705573DD2A68BD70005969AC /* EventObserver.swift in Sources */,
 				70D564AF2A47DBCD00FCFE4D /* ImageGetable.swift in Sources */,
@@ -1519,7 +1481,6 @@
 			files = (
 				70C0DAC22A59227C0084A2DA /* SummarySelectedAppsCollectionViewModel.swift in Sources */,
 				705573BE2A664F43005969AC /* ARLegendView.swift in Sources */,
-				70B8D0622A6B6E6000D8F41B /* ARChartViewModel.swift in Sources */,
 				19778F21DE596BF0D993DDC124796069 /* APIFactory.swift in Sources */,
 				D98D54AEF19BF1398A3B9DD8EAEC14CF /* AlertDisplayable.swift in Sources */,
 				70D564C92A47EB5200FCFE4D /* RequestAuthController.swift in Sources */,
@@ -1530,7 +1491,6 @@
 				70C0DA912A590C320084A2DA /* SummaryController.swift in Sources */,
 				70C0DA6F2A564F980084A2DA /* AppSettingsService.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
-				70B8D0602A6B6E5C00D8F41B /* ARChartView.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
 				2A64E7F72406FAB107DCE58E1DBC4D5A /* ApplicationPagesFactory.swift in Sources */,
 				04EBAB1104782F578D9506880E9EDF75 /* BaseCacheStorage.swift in Sources */,
@@ -1550,7 +1510,6 @@
 				70C0DA6B2A564EF80084A2DA /* SelectPriceController.swift in Sources */,
 				70D564C42A47E66100FCFE4D /* SLView.swift in Sources */,
 				67D345D3DC3C82FFC28637B4B598D392 /* ErrorThrowable.swift in Sources */,
-				70B8D0612A6B6E5E00D8F41B /* ARChartController.swift in Sources */,
 				3FDCDB77103DABFE376AA961FA3ABE59 /* Event.swift in Sources */,
 				7029E1FC2A2EC39300BA1A6E /* SLContentView.swift in Sources */,
 				70D564CB2A47EB5B00FCFE4D /* RequestAuthViewModel.swift in Sources */,
@@ -1559,7 +1518,6 @@
 				D338A7CF637DEB0233DDAE547634539F /* EventObserver.swift in Sources */,
 				70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */,
 				A61A84A4BA935BB6D9EA21F2C291C67E /* EventType.swift in Sources */,
-				70B8D05D2A6B6E5500D8F41B /* ARChartType.swift in Sources */,
 				705573BC2A664F2B005969AC /* ARView.swift in Sources */,
 				937B7C0F71D0BE325AF02669B063B00C /* FontGetable.swift in Sources */,
 				705573A52A660E2E005969AC /* SummaryReportView.swift in Sources */,
@@ -1574,7 +1532,6 @@
 				634CEFDB6C9EC3EB8DF70C446775A2BB /* Language.swift in Sources */,
 				70B8D0492A6A24A100D8F41B /* ProgressDasboardView.swift in Sources */,
 				70B8D0462A6A230800D8F41B /* ProgressController.swift in Sources */,
-				70B8D05E2A6B6E5700D8F41B /* ARChartCollectionScaleCell.swift in Sources */,
 				70918CF42A60F77300685DE8 /* TimeInterval.swift in Sources */,
 				70C0DAB22A591DAE0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */,
 				AE78521F862F243DC7BF5C7FCE2CEC6B /* LoaderManager.swift in Sources */,
@@ -1588,7 +1545,6 @@
 				3B4EE4E323986B97341167C5B0BE50CB /* OnboardingModulesFactory.swift in Sources */,
 				F90B91F89D91F07312D136A98EB39E46 /* ReachabilityManager.swift in Sources */,
 				6553FBEB5F86CD6CDC8B48E7E05D7C4D /* ReactiveExtension.swift in Sources */,
-				70B8D05F2A6B6E5A00D8F41B /* ARChartCollectionCell.swift in Sources */,
 				7029E2152A32BED500BA1A6E /* UIImage.swift in Sources */,
 				705573BF2A664F46005969AC /* ARPageControlView.swift in Sources */,
 				EED1D685EB2E2E77ACA72543AEDBCEAB /* Reloadable.swift in Sources */,

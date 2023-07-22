@@ -76,7 +76,6 @@ struct SummaryScene: DeviceActivityReportScene {
                                                      time: app.totalActivityDuration,
                                                      ratio: appTimeRelative != 0 ? appTimeRelative/(selectedMaxTime-selectedMinTime) : 0))
             }
-            selectedAppsTransformed.sort(by: { $0.time > $1.time })
             
             var otherAppsTransformed = [ARApp]()
             for await app in otherApps {
@@ -85,6 +84,10 @@ struct SummaryScene: DeviceActivityReportScene {
                                                   time: app.totalActivityDuration,
                                                   ratio: appTimeRelative != 0 ? appTimeRelative/(otherMaxTime-otherMinTime) : 0))
             }
+            
+            selectedAppsTransformed.sort(by: { $0.time > $1.time })
+            otherAppsTransformed.sort(by: { $0.time > $1.time })
+            
             days.append(.init(date: date,
                               time: .init(slacked: slackedTime,
                                           total: totalTime,
@@ -92,7 +95,6 @@ struct SummaryScene: DeviceActivityReportScene {
                                           average: nil),
                               selectedApps: selectedAppsTransformed,
                               otherApps: otherAppsTransformed))
-            otherAppsTransformed.sort(by: { $0.time > $1.time })
         }
         return days
     }
