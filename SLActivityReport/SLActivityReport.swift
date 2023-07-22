@@ -12,27 +12,27 @@ import SwiftUI
 
 @main
 struct SLActivityReport: DeviceActivityReportExtension {
+    let keyValyeStorage: KeyValueStorage
+    let repositoryFactory: RepositoryFactory
+    let apiFactory: APIFactory
+    let helpersFactory: HelpersFactory
+    let serviceFacroty: ServiceFactory
+    
+    init() {
+        self.keyValyeStorage = KeyValueStorageImpl()
+        self.repositoryFactory = RepositoryFactoryImpl(cacheStorage: BaseCacheStorage(),
+                                                       keyValueStorage: keyValyeStorage,
+                                                       secureStorage: SecureStorageImpl())
+        self.apiFactory = APIFactoryImpl()
+        self.helpersFactory = HelpersFactoryImpl(keyValueStorage: keyValyeStorage)
+        self.serviceFacroty = ServiceFactoryImpl(apiFactory: apiFactory,
+                                                 repositoryFactory: repositoryFactory,
+                                                 helpersFactory: helpersFactory)
+    }
+    
     var body: some DeviceActivityReportScene {
-        SummaryScene(appSettingsRepository: makeRepositoryFactory().makeAppSettingsRepository())
-        { .init(iTunesService: makeServiceFactory().makeITunesService(), days: $0) }
-        ProgressScene(appSettingsRepository: makeRepositoryFactory().makeAppSettingsRepository()) { .init(weeks: $0) }
-    }
-    
-    private func makeServiceFactory() -> ServiceFactory {
-        ServiceFactoryImpl(apiFactory: makeAPIFactory(),
-                           repositoryFactory: makeRepositoryFactory(),
-                           helpersFactory: makeHelpersFactory())
-    }
-    
-    private func makeAPIFactory() -> APIFactory {
-        APIFactoryImpl()
-    }
-    
-    private func makeRepositoryFactory() -> RepositoryFactory {
-        RepositoryFactoryImpl(cacheStorage: BaseCacheStorage(), keyValueStorage: KeyValueStorageImpl(), secureStorage: SecureStorageImpl())
-    }
-    
-    private func makeHelpersFactory() -> HelpersFactory {
-        HelpersFactoryImpl(keyValueStorage: KeyValueStorageImpl())
+        SummaryScene(appSettingsRepository: repositoryFactory.makeAppSettingsRepository())
+        { .init(iTunesService: serviceFacroty.makeITunesService(), days: $0) }
+        ProgressScene(appSettingsRepository: repositoryFactory.makeAppSettingsRepository()) { .init(weeks: $0) }
     }
 }

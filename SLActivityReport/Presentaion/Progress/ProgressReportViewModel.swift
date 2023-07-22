@@ -54,6 +54,7 @@ final class ProgressReportViewModelImpl: ProgressReportViewModel,
     //    Input
     func set(weeks: [ARWeek]) {
         self.weeks = weeks
+        reload()
     }
     
     func changeDate(forward: Bool) {

@@ -11,7 +11,11 @@ import RxSwift
 import UIKit
 
 final class AppCoordinator: BaseCoordinator {
-    private let tabBarBarTypes: [SLTabBarType] = [.progress, .summary]
+    private let tabBarBarTypes: [SLTabBarType] =
+    Constants.appMode == .normal ?
+    [.summary] :
+    [.progress, .summary]
+    
     private var preparedViewControllers: [UIViewController] = []
 
     private let repositoryFactory: RepositoryFactory
