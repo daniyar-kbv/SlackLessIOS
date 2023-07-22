@@ -58,7 +58,7 @@ final class ProgressDasboardContainerView: UIView {
         titleLabel.snp.makeConstraints({
             $0.top.left.equalToSuperview().offset(16)
         })
-        
+    
         timeLabel.snp.makeConstraints({
             $0.horizontalEdges.bottom.equalToSuperview().inset(16)
         })

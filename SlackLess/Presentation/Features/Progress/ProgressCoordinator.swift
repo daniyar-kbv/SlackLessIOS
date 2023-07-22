@@ -21,7 +21,7 @@ final class ProgressCoordinator: BaseCoordinator {
         case .debug:
             controller = ProgressReportController(viewModel: ProgressReportViewModelImpl(weeks: MockData.getWeeks()))
         default:
-            controller = SummaryController()
+            controller = ProgressController()
         }
         router.set(navigationController: SLNavigationController(rootViewController: controller))
     }

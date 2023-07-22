@@ -16,23 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        switch Constants.appMode {
-        case .normal, .debug:
-            configureAppCoordinator()
-            configureKeyboardManager()
-            configureLocalization()
-            startReachabilityManager()
-        case .experimental:
-            makeWindow()
-            ExperimentManager.shared.run()
-        }
-        
+        configureAppCoordinator()
+        configureKeyboardManager()
+        configureLocalization()
+        startReachabilityManager()
         return true
     }
     
     private func makeWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+        
+        switch Constants.appMode {
+        case .debug: window?.overrideUserInterfaceStyle = .light
+        default: break
+        }
     }
 
     private func configureAppCoordinator() {

@@ -56,8 +56,8 @@ enum SLTexts {
     }
     
     enum Legend: String, Localizable {
-        case firstTitle = "Summary.ThirdContainer.Legend.firstTitle"
-        case secondTitle = "Summary.ThirdContainer.Legend.secondTitle"
+        case firstTitle = "Legend.firstTitle"
+        case secondTitle = "Legend.secondTitle"
     }
     
     enum Summary: String, Localizable {

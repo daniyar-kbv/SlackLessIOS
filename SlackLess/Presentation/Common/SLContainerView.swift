@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 class SLContainerView: UIView {
     override init(frame: CGRect) {
@@ -20,23 +21,24 @@ class SLContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func layoutUI() {
+    fileprivate func layoutUI() {
         backgroundColor = SLColors.backgroundElevated.getColor()
         layer.cornerRadius = 8
         clipsToBounds = true
     }
-}
-
-extension SLContainerView {
-    func setContent(view: UIView) {
+    
+    func setContentView(_ view: UIView) {
         addSubview(view)
         view.snp.makeConstraints({
-            $0.left.right.equalToSuperview().inset(16)
-            $0.top.bottom.equalToSuperview().inset(8)
+            $0.edges.equalToSuperview()
         })
     }
     
-    func setBackGround(color: UIColor?) {
-        backgroundColor = color
+    func addContent(view: UIView) {
+        addSubview(view)
+        view.snp.makeConstraints({
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.verticalEdges.equalToSuperview().inset(8)
+        })
     }
 }

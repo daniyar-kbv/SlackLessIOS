@@ -53,14 +53,8 @@ final class SummaryReportView: ARView {
         
         [dateSwitcherView, firstSectionView, secondSectionView].forEach(add(view:))
         
-        firstSectionFirstContentView.addSubview(summarySelectedAppsDashboardView)
-        summarySelectedAppsDashboardView.snp.makeConstraints({
-            $0.edges.equalToSuperview()
-        })
+        firstSectionFirstContentView.setContentView(summarySelectedAppsDashboardView)
         
-        thirdSectionFirstContentView.addSubview(otherAppsDashboardView)
-        otherAppsDashboardView.snp.makeConstraints({
-            $0.edges.equalToSuperview()
-        })
+        thirdSectionFirstContentView.addContent(view: otherAppsDashboardView)
     }
 }

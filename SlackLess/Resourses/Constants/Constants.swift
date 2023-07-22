@@ -12,12 +12,11 @@ import DeviceActivity
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
-    static let appMode: AppMode = .debug
+    static let appMode: AppMode = .normal
     
     enum AppMode {
         case normal
         case debug
-        case experimental
     }
 
     enum URLs {
