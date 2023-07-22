@@ -7,12 +7,14 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 import RxSwift
 import RxCocoa
 
 final class ProgressReportController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentView = ProgressReportView()
+//    private let hostingController = UIHostingController(rootView: ChartView())
     let viewModel: ProgressReportViewModel
     
     init(viewModel: ProgressReportViewModel) {
@@ -35,8 +37,14 @@ final class ProgressReportController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        configureView()
         bindView()
         bindViewModel()
+    }
+    
+    private func configureView() {
+//        add(hostingController: hostingController, to: contentView.currentWeekChartView)
     }
     
     private func bindView() {

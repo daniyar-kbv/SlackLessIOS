@@ -46,6 +46,11 @@ final class SummaryReportController: UIViewController {
         
         configView()
         bindView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         bindViewModel()
     }
     

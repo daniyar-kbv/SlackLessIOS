@@ -12,31 +12,37 @@ import SnapKit
 // Tech debt: change Type name
 
 final class ARPartitionsView: UIStackView {
-    private var type: `Type`
+    private var type: ViewType
+    
+    var isEnabled = true {
+        didSet {
+            dashedLineLayer.isHidden = isEnabled
+            if isEnabled {
+                firstPartitionView.backgroundColor = SLColors.accent1.getColor()
+                firstPartitionLabel.textColor = SLColors.gray1.getColor()
+                firstPartitionView.layer.cornerRadius = 4
+            } else {
+                firstPartitionView.backgroundColor = SLColors.gray4.getColor()
+                firstPartitionLabel.textColor = SLColors.label2.getColor()
+                firstPartitionView.layer.cornerRadius = 0
+            }
+        }
+    }
     
     private(set) lazy var firstPartitionView: UIView = {
         let view = UIView()
-        switch type {
-        case let .graph(type):
-            if type == .vertical(isEnabled: true) {
-                view.backgroundColor = SLColors.gray4.getColor()
-            }
-        default:
-            view.backgroundColor = SLColors.accent1.getColor()
-        }
+        view.backgroundColor = SLColors.accent1.getColor()
         return view
     }()
     
     private(set) lazy var firstPartitionLabel: UILabel = {
         let view = UILabel()
+        view.textColor = SLColors.label2.getColor()
+        
         switch type {
         case .dasboard:
-            view.textColor = SLColors.label2.getColor()
             view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
         case let .graph(type):
-            if type == .vertical(isEnabled: true) {
-                view.textColor = SLColors.gray1.getColor()
-            }
             view.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
         }
         return view
@@ -60,12 +66,19 @@ final class ARPartitionsView: UIStackView {
         return view
     }()
     
-    let dashedLineLayer = CAShapeLayer()
+    private(set) lazy var dashedLineLayer: CAShapeLayer = {
+        let view = CAShapeLayer()
+        view.isHidden = true
+        view.strokeColor = SLColors.accent1.getColor()?.cgColor
+        view.lineWidth = 1.5
+        view.lineDashPattern = [4, 4]
+        return view
+    }()
     
-    init(type: `Type`) {
+    init(type: ViewType) {
         self.type = type
         
-        super.init(frame: .infinite)
+        super.init(frame: .zero)
         
         layoutUI()
     }
@@ -88,43 +101,60 @@ final class ARPartitionsView: UIStackView {
         secondPartitionLabel.isHidden = secondPartitionLabel.frame.width + 16 > secondPartitionView.frame.width
     }
     
-    func set(percentage: Double?, firstText: String?, secondText: String?) {
+    func set(maxSize: CGFloat,
+             percentage: Double,
+             firstText: String?,
+             secondText: String?) {
         firstPartitionLabel.text = firstText
         secondPartitionLabel.text = secondText
         
-        firstPartitionView.snp.remakeConstraints({
-            $0.width.equalToSuperview().multipliedBy(percentage ?? 0)
-        })
+        switch type {
+        case .dasboard:
+            firstPartitionView.snp.remakeConstraints({
+                $0.width.equalTo(maxSize*percentage)
+            })
+        case .graph(.horizontal):
+            snp.remakeConstraints({
+                $0.width.equalTo(maxSize)
+            })
+            
+            firstPartitionView.snp.remakeConstraints({
+                $0.width.equalTo(maxSize*percentage)
+            })
+        case .graph(.vertical):
+            snp.remakeConstraints({
+                $0.height.equalTo(maxSize)
+            })
+            
+            firstPartitionView.snp.remakeConstraints({
+                $0.height.equalTo(maxSize*percentage)
+            })
+        }
     }
     
     private func layoutUI() {
         [firstPartitionView, secondPartitionView].forEach(addArrangedSubview(_:))
         layer.cornerRadius = 4
         clipsToBounds = true
+        firstPartitionView.layer.addSublayer(dashedLineLayer)
         
         switch type {
         case .dasboard:
             axis = .horizontal
         case let .graph(type):
-            axis = .vertical
             
             switch type {
             case .horizontal:
+                axis = .horizontal
                 layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
                 firstPartitionView.layer.cornerRadius = 4
                 firstPartitionView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            case .vertical(isEnabled: true):
-                layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-                
-                dashedLineLayer.strokeColor = SLColors.accent1.getColor()?.cgColor
-                dashedLineLayer.lineWidth = 1.5
-                dashedLineLayer.lineDashPattern = [4, 4]
-                firstPartitionView.layer.addSublayer(dashedLineLayer)
-            case .vertical(isEnabled: false):
+            case .vertical:
                 axis = .vertical
                 layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-                firstPartitionView.layer.cornerRadius = 4
+                firstPartitionView.layer.addSublayer(dashedLineLayer)
                 firstPartitionView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+                firstPartitionView.layer.cornerRadius = 4
             }
         }
         
@@ -141,11 +171,11 @@ final class ARPartitionsView: UIStackView {
 }
 
 extension ARPartitionsView {
-    enum `Type`: Equatable {
+    enum ViewType: Equatable {
         case dasboard
-        case graph(`Type`)
+        case graph(GraphViewType)
         
-        static func == (lhs: ARPartitionsView.`Type`, rhs: ARPartitionsView.`Type`) -> Bool {
+        static func == (lhs: ARPartitionsView.ViewType, rhs: ARPartitionsView.ViewType) -> Bool {
             switch lhs {
             case .dasboard:
                 switch rhs {
@@ -160,9 +190,9 @@ extension ARPartitionsView {
             }
         }
         
-        enum `Type`: Equatable {
+        enum GraphViewType: Equatable {
             case horizontal
-            case vertical(isEnabled: Bool)
+            case vertical
         }
     }
 }

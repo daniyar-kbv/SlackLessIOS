@@ -52,9 +52,9 @@ final class SummaryReportViewModelImpl: SummaryReportViewModel,
     
     //    Output
     lazy var date: BehaviorRelay<String?> = .init(value: Date().formatted(style: .long))
-    lazy var time: BehaviorRelay<ARTime?> = .init(value: getCurrentDay().time)
-    lazy var selectedApps: BehaviorRelay<[ARApp]> = .init(value: getCurrentDay().selectedApps)
-    lazy var otherApps: BehaviorRelay<[ARApp]> = .init(value: getCurrentDay().otherApps)
+    lazy var time: BehaviorRelay<ARTime?> = .init(value: getCurrentDay()?.time)
+    lazy var selectedApps: BehaviorRelay<[ARApp]> = .init(value: getCurrentDay()?.selectedApps ?? [])
+    lazy var otherApps: BehaviorRelay<[ARApp]> = .init(value: getCurrentDay()?.otherApps ?? [])
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: true)
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: false)
     
@@ -78,15 +78,16 @@ final class SummaryReportViewModelImpl: SummaryReportViewModel,
 
 extension SummaryReportViewModelImpl {
     private func reload() {
-        date.accept(getCurrentDay().date.formatted(style: .long))
-        time.accept(getCurrentDay().time)
-        selectedApps.accept(getCurrentDay().selectedApps)
-        otherApps.accept(getCurrentDay().otherApps)
+        date.accept(getCurrentDay()?.date.formatted(style: .long))
+        time.accept(getCurrentDay()?.time)
+        selectedApps.accept(getCurrentDay()?.selectedApps ?? [])
+        otherApps.accept(getCurrentDay()?.otherApps ?? [])
         isntFirstDate.accept(isntFirstDay())
         isntLastDate.accept(isntLastDay())
     }
     
-    private func getCurrentDay() -> ARDay {
+    private func getCurrentDay() -> ARDay? {
+        guard days.count > 0 else { return nil }
         return days[currentIndex]
     }
     
