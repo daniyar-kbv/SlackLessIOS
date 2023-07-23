@@ -16,14 +16,12 @@ protocol ErrorPresentable: Error {
 enum NetworkError: ErrorPresentable, Equatable {
     case badMapping
     case noData
-    case unauthorized
     case error(String)
 
     var presentationDescription: String {
         switch self {
         case .badMapping: return SLTexts.Error.Data.badMapping.localized()
         case .noData: return SLTexts.Error.Data.noData.localized()
-        case .unauthorized: return SLTexts.Error.Data.unauthorized.localized()
         case let .error(message): return message
         }
     }

@@ -32,7 +32,6 @@ struct SummaryScene: DeviceActivityReportScene {
                 .flatMap { $0.applications }
             let selectedApps = allApps
                 .filter {
-                    $0.
                     guard let token = $0.application.token else { return false }
                     return appSelection.applicationTokens.contains(token)
                 }

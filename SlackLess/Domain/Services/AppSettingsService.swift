@@ -21,6 +21,7 @@ protocol AppSettingsServiceOutput {
     var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
     var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
+    var selectionCategoryError: PublishRelay<DomainError> { get }
     
     func getTimeLimit(for date: Date) -> TimeInterval
     func getSelectedApps(for date: Date) -> FamilyActivitySelection
@@ -47,6 +48,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     var authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
     var timeLimitSaved: PublishRelay<Void> = .init()
     var appsSelectionSaved: PublishRelay<Void> = .init()
+    let selectionCategoryError: PublishRelay<DomainError> = .init()
     
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
@@ -107,6 +109,10 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     }
     
     func set(selectedApps: FamilyActivitySelection) {
+        guard selectedApps.categories.isEmpty else {
+            selectionCategoryError.accept(.categoriesNotAllowed)
+            return
+        }
         getWeek().forEach({
             appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
         })

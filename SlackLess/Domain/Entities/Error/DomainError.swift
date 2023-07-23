@@ -16,10 +16,12 @@ struct DomainErrorResponse: ErrorPresentable {
 
 enum DomainError: ErrorPresentable {
     case request
+    case categoriesNotAllowed
 
     var presentationDescription: String {
         switch self {
         case .request: return SLTexts.Error.Domain.request.localized()
+        case .categoriesNotAllowed: return SLTexts.Error.Domain.categoriesNotAllowed.localized()
         }
     }
 }

@@ -14,7 +14,7 @@ protocol AlertDisplayable: AnyObject {
 }
 
 extension UIViewController: AlertDisplayable {
-    func showError(_ error: ErrorPresentable, completion: (() -> Void)?) {
+    func showError(_ error: ErrorPresentable, completion: (() -> Void)? = nil) {
         showAlert(title: SLTexts.Alert.Error.title.localized(),
                   message: error.presentationDescription,
                   submitTitle: SLTexts.Alert.Action.defaultTitle.localized(),

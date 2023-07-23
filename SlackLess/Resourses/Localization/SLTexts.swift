@@ -12,11 +12,11 @@ enum SLTexts {
         enum Data: String, Localizable {
             case badMapping = "Error.Data.badmapping"
             case noData = "Error.Data.noData"
-            case unauthorized = "Error.Data.unauthorized"
         }
 
         enum Domain: String, Localizable {
             case request = "Error.Domain.request"
+            case categoriesNotAllowed = "Error.Domain.categoriesNotAllowed"
         }
     }
 

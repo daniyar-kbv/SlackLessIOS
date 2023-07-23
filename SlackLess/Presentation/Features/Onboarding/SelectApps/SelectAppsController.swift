@@ -49,6 +49,13 @@ final class SelectAppsController: UIViewController {
             to: contentView.buttonView)
     }
     
+    private func bindViewModel() {
+        viewModel.output.appsSelectionError.subscribe(onNext: { [weak self] in
+            self?.showError($0)
+        })
+        .disposed(by: disposeBag)
+    }
+    
     private func appsSelected(_ selection: FamilyActivitySelection) {
         viewModel.input.set(selectedApps: selection)
     }
