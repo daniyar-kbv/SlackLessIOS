@@ -16,6 +16,9 @@ final class ProgressReportController: UIViewController {
     private let contentView = ProgressReportView()
     let viewModel: ProgressReportViewModel
     
+    private lazy var firstChartViewModel: ARChartViewModel = ARChartViewModelImpl(type: .horizontal,
+                                                                                  items: viewModel.output.days.value)
+    
     init(viewModel: ProgressReportViewModel) {
         self.viewModel = viewModel
         
@@ -42,6 +45,9 @@ final class ProgressReportController: UIViewController {
     }
     
     private func configureView() {
+        let firstChartController = ARChartController(viewModel: firstChartViewModel)
+        contentView.firstChartView.addContent(view: firstChartController.view)
+        add(controller: firstChartController)
     }
     
     private func bindView() {
@@ -62,14 +68,18 @@ final class ProgressReportController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.output.time.subscribe(onNext: { [weak self] in
-            self?.contentView.dashboardView.firstContainer.set(time: $0.currentWeekTime.slacked,
+            self?.contentView.dashboardView.firstContainer.set(time: $0.currentWeekTime?.slacked,
                                                                previousTime: $0.previousWeekTime?.slacked)
-            self?.contentView.dashboardView.secondContainer.set(time: $0.currentWeekTime.total,
+            self?.contentView.dashboardView.secondContainer.set(time: $0.currentWeekTime?.total,
                                                                previousTime: $0.previousWeekTime?.total)
-            self?.contentView.dashboardView.thirdContainer.set(time: $0.currentWeekTime.average ?? 0,
+            self?.contentView.dashboardView.thirdContainer.set(time: $0.currentWeekTime?.average ?? 0,
                                                                previousTime: $0.previousWeekTime?.average)
         })
         .disposed(by: disposeBag)
+        
+        viewModel.output.days
+            .subscribe(onNext: firstChartViewModel.input.set(items:))
+            .disposed(by: disposeBag)
         
         viewModel.output.isntFirstDate.bind(to: contentView.dateSwitcherView.leftButton.rx.isEnabled)
             .disposed(by: disposeBag)

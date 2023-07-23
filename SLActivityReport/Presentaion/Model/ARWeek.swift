@@ -34,8 +34,8 @@ extension ARWeek {
         
         func getDateText() -> String {
             let calendar = Calendar.current
-            let weekdays = calendar.shortWeekdaySymbols
-            return weekdays[weekday]
+            let weekdays = calendar.veryShortWeekdaySymbols
+            return weekdays[weekday-1]
         }
         
         func getSlackedTimeFormatted() -> String? {

@@ -117,6 +117,20 @@
 		70B8D04A2A6A24A600D8F41B /* ProgressDasboardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0362A6A014D00D8F41B /* ProgressDasboardContainerView.swift */; };
 		70B8D04B2A6A24B400D8F41B /* ProgressDashboardChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D03A2A6A092800D8F41B /* ProgressDashboardChangeView.swift */; };
 		70B8D04E2A6A340900D8F41B /* UIHostingControllerConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */; };
+		70B8D06A2A6CB71600D8F41B /* ARChartCollectionScaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0642A6CB71600D8F41B /* ARChartCollectionScaleCell.swift */; };
+		70B8D06B2A6CB71600D8F41B /* ARChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0652A6CB71600D8F41B /* ARChartViewModel.swift */; };
+		70B8D06C2A6CB71600D8F41B /* ARChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0662A6CB71600D8F41B /* ARChartController.swift */; };
+		70B8D06D2A6CB71600D8F41B /* ARChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0672A6CB71600D8F41B /* ARChartView.swift */; };
+		70B8D06E2A6CB71600D8F41B /* ARChartCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0682A6CB71600D8F41B /* ARChartCollectionCell.swift */; };
+		70B8D06F2A6CB71600D8F41B /* ARChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0692A6CB71600D8F41B /* ARChartType.swift */; };
+		70B8D0702A6CB71B00D8F41B /* ARChartCollectionScaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0642A6CB71600D8F41B /* ARChartCollectionScaleCell.swift */; };
+		70B8D0712A6CB71E00D8F41B /* ARChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0652A6CB71600D8F41B /* ARChartViewModel.swift */; };
+		70B8D0722A6CB72100D8F41B /* ARChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0662A6CB71600D8F41B /* ARChartController.swift */; };
+		70B8D0732A6CB72500D8F41B /* ARChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0672A6CB71600D8F41B /* ARChartView.swift */; };
+		70B8D0742A6CB72700D8F41B /* ARChartCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0682A6CB71600D8F41B /* ARChartCollectionCell.swift */; };
+		70B8D0752A6CB72A00D8F41B /* ARChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0692A6CB71600D8F41B /* ARChartType.swift */; };
+		70B8D0792A6CDAE800D8F41B /* ARDashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */; };
+		70B8D07A2A6CDD7900D8F41B /* ARDashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */; };
 		70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998212A43E0AE008B2A9A /* SLActivityReport.swift */; };
 		70B9982B2A43E0AE008B2A9A /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70B998342A43E1FC008B2A9A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998332A43E1FC008B2A9A /* Context.swift */; };
@@ -334,6 +348,13 @@
 		70B8D03F2A6A14BD00D8F41B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		70B8D0432A6A22F900D8F41B /* ProgressCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCoordinator.swift; sourceTree = "<group>"; };
 		70B8D0452A6A230800D8F41B /* ProgressController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressController.swift; sourceTree = "<group>"; };
+		70B8D0642A6CB71600D8F41B /* ARChartCollectionScaleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartCollectionScaleCell.swift; sourceTree = "<group>"; };
+		70B8D0652A6CB71600D8F41B /* ARChartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartViewModel.swift; sourceTree = "<group>"; };
+		70B8D0662A6CB71600D8F41B /* ARChartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartController.swift; sourceTree = "<group>"; };
+		70B8D0672A6CB71600D8F41B /* ARChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartView.swift; sourceTree = "<group>"; };
+		70B8D0682A6CB71600D8F41B /* ARChartCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartCollectionCell.swift; sourceTree = "<group>"; };
+		70B8D0692A6CB71600D8F41B /* ARChartType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartType.swift; sourceTree = "<group>"; };
+		70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDashedView.swift; sourceTree = "<group>"; };
 		70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B998212A43E0AE008B2A9A /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
 		70B998232A43E0AE008B2A9A /* SummaryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScene.swift; sourceTree = "<group>"; };
@@ -741,6 +762,7 @@
 		705573AB2A6648CB005969AC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				70B8D0632A6CB71600D8F41B /* Chart */,
 				705573AC2A6648CB005969AC /* ARSectionView.swift */,
 				705573AD2A6648CB005969AC /* ARDateSwitcherView.swift */,
 				705573AE2A6648CB005969AC /* ARLegendView.swift */,
@@ -748,6 +770,7 @@
 				705573B02A6648CB005969AC /* ARPartitionsView.swift */,
 				705573B12A6648CB005969AC /* ARAppView.swift */,
 				705573B82A6648DA005969AC /* ARView.swift */,
+				70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -825,6 +848,19 @@
 				70B8D0452A6A230800D8F41B /* ProgressController.swift */,
 			);
 			path = Progress;
+			sourceTree = "<group>";
+		};
+		70B8D0632A6CB71600D8F41B /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				70B8D0652A6CB71600D8F41B /* ARChartViewModel.swift */,
+				70B8D0662A6CB71600D8F41B /* ARChartController.swift */,
+				70B8D0672A6CB71600D8F41B /* ARChartView.swift */,
+				70B8D0682A6CB71600D8F41B /* ARChartCollectionCell.swift */,
+				70B8D0642A6CB71600D8F41B /* ARChartCollectionScaleCell.swift */,
+				70B8D0692A6CB71600D8F41B /* ARChartType.swift */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		70B998202A43E0AE008B2A9A /* SLActivityReport */ = {
@@ -1392,6 +1428,7 @@
 			files = (
 				70D564AB2A47DB7B00FCFE4D /* SLColors.swift in Sources */,
 				705573D02A67B68D005969AC /* NetworkError.swift in Sources */,
+				70B8D06D2A6CB71600D8F41B /* ARChartView.swift in Sources */,
 				70C0DA962A590FB80084A2DA /* SLView.swift in Sources */,
 				70B8D0342A6A00D900D8F41B /* ProgressReportController.swift in Sources */,
 				705573B52A6648CB005969AC /* ARPageControlView.swift in Sources */,
@@ -1401,6 +1438,7 @@
 				705573B32A6648CB005969AC /* ARDateSwitcherView.swift in Sources */,
 				70D564B22A47DBF800FCFE4D /* Localization.swift in Sources */,
 				70C0DA972A590FBC0084A2DA /* SLContentView.swift in Sources */,
+				70B8D06A2A6CB71600D8F41B /* ARChartCollectionScaleCell.swift in Sources */,
 				705573D22A67B6DF005969AC /* DomainError.swift in Sources */,
 				70D564B32A47DBFB00FCFE4D /* SLTexts.swift in Sources */,
 				705573B42A6648CB005969AC /* ARLegendView.swift in Sources */,
@@ -1409,11 +1447,13 @@
 				70C0DA9A2A590FD50084A2DA /* SummarySelectedAppsDashboardView.swift in Sources */,
 				705573B72A6648CB005969AC /* ARAppView.swift in Sources */,
 				70D564B62A47DDD900FCFE4D /* SummaryScene.swift in Sources */,
+				70B8D06E2A6CB71600D8F41B /* ARChartCollectionCell.swift in Sources */,
 				70D564B12A47DBF400FCFE4D /* Localizable.swift in Sources */,
 				70D564AC2A47DBC100FCFE4D /* ColorGetable.swift in Sources */,
 				705573E12A68C7E4005969AC /* LoaderManager.swift in Sources */,
 				705573CD2A67B66A005969AC /* ITunesAPI.swift in Sources */,
 				705573DB2A68BD5E005969AC /* EventType.swift in Sources */,
+				70B8D06F2A6CB71600D8F41B /* ARChartType.swift in Sources */,
 				70C0DACA2A5CF8860084A2DA /* SummaryOtherAppsTableViewCell.swift in Sources */,
 				705573EC2A68D271005969AC /* ProgressReportView.swift in Sources */,
 				70C0DAB12A591D9D0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */,
@@ -1443,11 +1483,13 @@
 				70918CFA2A61281A00685DE8 /* AppSettingsRepository.swift in Sources */,
 				70918CE12A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */,
 				70C0DA882A57BF310084A2DA /* SummaryRepresentable.swift in Sources */,
+				70B8D06B2A6CB71600D8F41B /* ARChartViewModel.swift in Sources */,
 				705573D92A67B869005969AC /* EventManager.swift in Sources */,
 				705573D52A67B7A3005969AC /* APIFactory.swift in Sources */,
 				70B8D0322A6A005200D8F41B /* ProgressReportViewModel.swift in Sources */,
 				70D564AD2A47DBC700FCFE4D /* FontGetable.swift in Sources */,
 				70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */,
+				70B8D06C2A6CB71600D8F41B /* ARChartController.swift in Sources */,
 				70B8D0392A6A091B00D8F41B /* ProgressDasboardView.swift in Sources */,
 				705573CF2A67B683005969AC /* ITunesTarget.swift in Sources */,
 				705573DA2A68BD49005969AC /* EmptyError.swift in Sources */,
@@ -1463,6 +1505,7 @@
 				70B8D0372A6A014D00D8F41B /* ProgressDasboardContainerView.swift in Sources */,
 				7055739B2A64D167005969AC /* ARDay.swift in Sources */,
 				705573DD2A68BD70005969AC /* EventObserver.swift in Sources */,
+				70B8D0792A6CDAE800D8F41B /* ARDashedView.swift in Sources */,
 				70D564AF2A47DBCD00FCFE4D /* ImageGetable.swift in Sources */,
 				70B8D03B2A6A092800D8F41B /* ProgressDashboardChangeView.swift in Sources */,
 				70B998342A43E1FC008B2A9A /* Context.swift in Sources */,
@@ -1491,10 +1534,12 @@
 				70C0DA912A590C320084A2DA /* SummaryController.swift in Sources */,
 				70C0DA6F2A564F980084A2DA /* AppSettingsService.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
+				70B8D0732A6CB72500D8F41B /* ARChartView.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
 				2A64E7F72406FAB107DCE58E1DBC4D5A /* ApplicationPagesFactory.swift in Sources */,
 				04EBAB1104782F578D9506880E9EDF75 /* BaseCacheStorage.swift in Sources */,
 				7829D5A844E8073405A981BE46FE8C4D /* BaseCoordinator.swift in Sources */,
+				70B8D07A2A6CDD7900D8F41B /* ARDashedView.swift in Sources */,
 				705573A42A660E1C005969AC /* SummaryReportViewModel.swift in Sources */,
 				70A00B362A53BBBE0072486E /* UIHostingControllerConfigurable.swift in Sources */,
 				70918CF02A5FAE1200685DE8 /* ARTime.swift in Sources */,
@@ -1533,6 +1578,7 @@
 				70B8D0492A6A24A100D8F41B /* ProgressDasboardView.swift in Sources */,
 				70B8D0462A6A230800D8F41B /* ProgressController.swift in Sources */,
 				70918CF42A60F77300685DE8 /* TimeInterval.swift in Sources */,
+				70B8D0712A6CB71E00D8F41B /* ARChartViewModel.swift in Sources */,
 				70C0DAB22A591DAE0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */,
 				AE78521F862F243DC7BF5C7FCE2CEC6B /* LoaderManager.swift in Sources */,
 				C3B0D7F5D5991220C5903ED19CE8C212 /* LoaderView.swift in Sources */,
@@ -1540,11 +1586,13 @@
 				54D632CAAFE6BF183C8EC62276B2DA5B /* Localization.swift in Sources */,
 				22A1658761A291C28884A095B454AD74 /* NavBarConfigurable.swift in Sources */,
 				64A39129D0B6EA9180BDA9102495280F /* NetworkError.swift in Sources */,
+				70B8D0702A6CB71B00D8F41B /* ARChartCollectionScaleCell.swift in Sources */,
 				DCB5DAD20C499A5F7D4DAF3C5F46A2C1 /* NumericExtension.swift in Sources */,
 				44612AFE92BF05FE4D68FA0FE5C39349 /* OnboardingCoordinator.swift in Sources */,
 				3B4EE4E323986B97341167C5B0BE50CB /* OnboardingModulesFactory.swift in Sources */,
 				F90B91F89D91F07312D136A98EB39E46 /* ReachabilityManager.swift in Sources */,
 				6553FBEB5F86CD6CDC8B48E7E05D7C4D /* ReactiveExtension.swift in Sources */,
+				70B8D0742A6CB72700D8F41B /* ARChartCollectionCell.swift in Sources */,
 				7029E2152A32BED500BA1A6E /* UIImage.swift in Sources */,
 				705573BF2A664F46005969AC /* ARPageControlView.swift in Sources */,
 				EED1D685EB2E2E77ACA72543AEDBCEAB /* Reloadable.swift in Sources */,
@@ -1556,6 +1604,7 @@
 				4BF8B3E55E785E78E313F621767BA432 /* SLColors.swift in Sources */,
 				D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */,
 				DF07E88D2B297B9522AFD025DDD1BD8C /* SLImages.swift in Sources */,
+				70B8D0722A6CB72100D8F41B /* ARChartController.swift in Sources */,
 				70C0DA6D2A564F220084A2DA /* SelectPriceViewModel.swift in Sources */,
 				70B8D0402A6A14BD00D8F41B /* Date.swift in Sources */,
 				F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */,
@@ -1603,6 +1652,7 @@
 				2332B4FD37A974AD83DF4F981D385DFC /* WelcomeScreenView.swift in Sources */,
 				DD7A5346104B0A4EACA0E9C7B4F181D4 /* WelcomeScreenViewModel.swift in Sources */,
 				7029E1F82A2EC08500BA1A6E /* SLContainerView.swift in Sources */,
+				70B8D0752A6CB72A00D8F41B /* ARChartType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
