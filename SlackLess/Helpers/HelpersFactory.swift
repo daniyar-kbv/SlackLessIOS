@@ -9,7 +9,6 @@ import Foundation
 
 protocol HelpersFactory: AnyObject {
     func makeReachabilityManager() -> ReachabilityManager
-    func makeLoaderManager() -> LoaderManager
     func makeEventManager() -> EventManager
 }
 
@@ -22,10 +21,6 @@ final class HelpersFactoryImpl: DependencyFactory, HelpersFactory {
 
     func makeReachabilityManager() -> ReachabilityManager {
         return shared(ReachabilityManagerImpl())
-    }
-
-    func makeLoaderManager() -> LoaderManager {
-        return shared(LoaderManagerImpl())
     }
 
     func makeEventManager() -> EventManager {

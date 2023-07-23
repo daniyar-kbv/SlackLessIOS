@@ -82,7 +82,6 @@
 		705573DB2A68BD5E005969AC /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571BE13F206DB403CD095A46684524E /* EventType.swift */; };
 		705573DC2A68BD6D005969AC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A294978B4EB74FBF9B1396E7CC1EF46 /* Event.swift */; };
 		705573DD2A68BD70005969AC /* EventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C512DC920FA08D596C4D5D4AC75C614A /* EventObserver.swift */; };
-		705573E12A68C7E4005969AC /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD6F3E57B03CEC437D8B8FE349A4098 /* LoaderManager.swift */; };
 		705573E22A68C7E7005969AC /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEA5E1F8BEE99FD4A3D0B26ADDFC394 /* LoaderView.swift */; };
 		705573E52A68CF38005969AC /* ProgressScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E42A68CF38005969AC /* ProgressScene.swift */; };
 		705573EA2A68D009005969AC /* ARWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E92A68D009005969AC /* ARWeek.swift */; };
@@ -131,6 +130,8 @@
 		70B8D0752A6CB72A00D8F41B /* ARChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0692A6CB71600D8F41B /* ARChartType.swift */; };
 		70B8D0792A6CDAE800D8F41B /* ARDashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */; };
 		70B8D07A2A6CDD7900D8F41B /* ARDashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */; };
+		70B8D07D2A6D918300D8F41B /* LoaderPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D07C2A6D918300D8F41B /* LoaderPresentable.swift */; };
+		70B8D07E2A6D919600D8F41B /* LoaderPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8D07C2A6D918300D8F41B /* LoaderPresentable.swift */; };
 		70B998222A43E0AE008B2A9A /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998212A43E0AE008B2A9A /* SLActivityReport.swift */; };
 		70B9982B2A43E0AE008B2A9A /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		70B998342A43E1FC008B2A9A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B998332A43E1FC008B2A9A /* Context.swift */; };
@@ -210,7 +211,6 @@
 		A61A84A4BA935BB6D9EA21F2C291C67E /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571BE13F206DB403CD095A46684524E /* EventType.swift */; };
 		A80262B9806A3057EC0D84F82E7D651F /* RoutersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A02C6916127501F1819B27222FC623 /* RoutersFactory.swift */; };
 		A9F73ED042F6C4339D992D08815595E6 /* SLTabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D667179D40F8E84F7A204AA685A405C /* SLTabBarType.swift */; };
-		AE78521F862F243DC7BF5C7FCE2CEC6B /* LoaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD6F3E57B03CEC437D8B8FE349A4098 /* LoaderManager.swift */; };
 		B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC613E7285B734EAF32D316F895C05 /* AppDelegate.swift */; };
 		B73FEC4665E415D499600128B0F5E1B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BD0AB815CAF5740C54B81CF17FC98C9 /* Assets.xcassets */; };
 		BD5C447FFBA6858E77FF12E0887C30A1 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */; };
@@ -307,7 +307,6 @@
 		561D5631DE0E1CABDFDDEF1F5D5E68A5 /* UIBarButtonConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonConfigurable.swift; sourceTree = "<group>"; };
 		58094CEDCCAEEB25446AB31245271EFB /* SLFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLFonts.swift; sourceTree = "<group>"; };
 		58250ABF14A1CD5A3DEBE1B5F08D2463 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
-		5FD6F3E57B03CEC437D8B8FE349A4098 /* LoaderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderManager.swift; sourceTree = "<group>"; };
 		6256D2766399DB659605C991882453ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64901180FCF67ADF191AAEDCE02FEE01 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
@@ -355,6 +354,7 @@
 		70B8D0682A6CB71600D8F41B /* ARChartCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartCollectionCell.swift; sourceTree = "<group>"; };
 		70B8D0692A6CB71600D8F41B /* ARChartType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARChartType.swift; sourceTree = "<group>"; };
 		70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDashedView.swift; sourceTree = "<group>"; };
+		70B8D07C2A6D918300D8F41B /* LoaderPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderPresentable.swift; sourceTree = "<group>"; };
 		70B9981F2A43E0AE008B2A9A /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B998212A43E0AE008B2A9A /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
 		70B998232A43E0AE008B2A9A /* SummaryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScene.swift; sourceTree = "<group>"; };
@@ -549,6 +549,7 @@
 				70D564C32A47E66100FCFE4D /* SLView.swift */,
 				7029E1F72A2EC08500BA1A6E /* SLContainerView.swift */,
 				7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */,
+				DEEA5E1F8BEE99FD4A3D0B26ADDFC394 /* LoaderView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -703,7 +704,6 @@
 			children = (
 				91C65A51206D0A4752764B607D8FCA32 /* Extensions */,
 				51E6434D523D073DA0CC8031E771F81D /* Events */,
-				ED1CDA3319942CEECF8DBDB9BF90FB9D /* Loader */,
 				43F86FBE0AD8F96EB6E63F8F1CABDC37 /* Reachability */,
 				9C9234E9A15C7DDFE9D0A1B7A7C1F4C5 /* HelpersFactory.swift */,
 			);
@@ -1178,6 +1178,7 @@
 				FCB1C82CDF24AA47D233B9544B9D8010 /* Reloadable.swift */,
 				561D5631DE0E1CABDFDDEF1F5D5E68A5 /* UIBarButtonConfigurable.swift */,
 				70A00B352A53BBBE0072486E /* UIHostingControllerConfigurable.swift */,
+				70B8D07C2A6D918300D8F41B /* LoaderPresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1209,15 +1210,6 @@
 				E62CAE853B92C0CE022C5AF8EB46FC8A /* Error */,
 			);
 			path = Entities;
-			sourceTree = "<group>";
-		};
-		ED1CDA3319942CEECF8DBDB9BF90FB9D /* Loader */ = {
-			isa = PBXGroup;
-			children = (
-				5FD6F3E57B03CEC437D8B8FE349A4098 /* LoaderManager.swift */,
-				DEEA5E1F8BEE99FD4A3D0B26ADDFC394 /* LoaderView.swift */,
-			);
-			path = Loader;
 			sourceTree = "<group>";
 		};
 		EE362B6366A8221E5E3DBFE900066347 /* Onboarding */ = {
@@ -1450,7 +1442,6 @@
 				70B8D06E2A6CB71600D8F41B /* ARChartCollectionCell.swift in Sources */,
 				70D564B12A47DBF400FCFE4D /* Localizable.swift in Sources */,
 				70D564AC2A47DBC100FCFE4D /* ColorGetable.swift in Sources */,
-				705573E12A68C7E4005969AC /* LoaderManager.swift in Sources */,
 				705573CD2A67B66A005969AC /* ITunesAPI.swift in Sources */,
 				705573DB2A68BD5E005969AC /* EventType.swift in Sources */,
 				70B8D06F2A6CB71600D8F41B /* ARChartType.swift in Sources */,
@@ -1469,6 +1460,7 @@
 				70D564AA2A47DA5A00FCFE4D /* BaseCacheStorage.swift in Sources */,
 				70C0DA9D2A59115C0084A2DA /* SummaryReportViewModel.swift in Sources */,
 				70C0DA952A590FB40084A2DA /* SummaryReportView.swift in Sources */,
+				70B8D07E2A6D919600D8F41B /* LoaderPresentable.swift in Sources */,
 				70B8D03E2A6A12DF00D8F41B /* ProgressRepresentable.swift in Sources */,
 				705573D32A67B759005969AC /* ServiceFactory.swift in Sources */,
 				705573B22A6648CB005969AC /* ARSectionView.swift in Sources */,
@@ -1580,7 +1572,6 @@
 				70918CF42A60F77300685DE8 /* TimeInterval.swift in Sources */,
 				70B8D0712A6CB71E00D8F41B /* ARChartViewModel.swift in Sources */,
 				70C0DAB22A591DAE0084A2DA /* SummarySelectedAppsCollectionCell.swift in Sources */,
-				AE78521F862F243DC7BF5C7FCE2CEC6B /* LoaderManager.swift in Sources */,
 				C3B0D7F5D5991220C5903ED19CE8C212 /* LoaderView.swift in Sources */,
 				BD5C447FFBA6858E77FF12E0887C30A1 /* Localizable.swift in Sources */,
 				54D632CAAFE6BF183C8EC62276B2DA5B /* Localization.swift in Sources */,
@@ -1648,6 +1639,7 @@
 				70D564CD2A47FD8100FCFE4D /* SelectAppsView.swift in Sources */,
 				DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */,
 				70D564C72A47EB4800FCFE4D /* RequestAuthView.swift in Sources */,
+				70B8D07D2A6D918300D8F41B /* LoaderPresentable.swift in Sources */,
 				705573C72A67AFF3005969AC /* ITunesSearchDTO.swift in Sources */,
 				2332B4FD37A974AD83DF4F981D385DFC /* WelcomeScreenView.swift in Sources */,
 				DD7A5346104B0A4EACA0E9C7B4F181D4 /* WelcomeScreenViewModel.swift in Sources */,
