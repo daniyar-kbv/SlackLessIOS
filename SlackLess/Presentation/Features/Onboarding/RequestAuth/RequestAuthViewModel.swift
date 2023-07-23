@@ -15,6 +15,8 @@ protocol RequestAuthViewModelInput {
 
 protocol RequestAuthViewModelOutput {
     var authorizationComplete: PublishRelay<Void> { get }
+    var authorizationSuccessful: PublishRelay<Void> { get }
+    var gotError: PublishRelay<String> { get }
 }
 
 protocol RequestAuthViewModel: AnyObject {
@@ -37,6 +39,8 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
     
     //    Output
     var authorizationComplete: PublishRelay<Void> = .init()
+    var authorizationSuccessful: PublishRelay<Void> = .init()
+    var gotError: PublishRelay<String> = .init()
     
     //    Input
     func requestAuthorization() {
@@ -47,8 +51,14 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
 extension RequestAuthViewModellImpl {
     private func bindService() {
         appSettingsService.output.authorizaionStatus
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] in
                 self?.authorizationComplete.accept(())
+                switch $0 {
+                case .success:
+                    self?.authorizationSuccessful.accept(())
+                case let .failure(error):
+                    self?.gotError.accept(error.localizedDescription)
+                }
             })
             .disposed(by: disposeBag)
     }

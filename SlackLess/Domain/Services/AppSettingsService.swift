@@ -70,7 +70,9 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
                     self?.authorizaionStatus.accept(.success(()))
                 }
             } catch {
-                authorizaionStatus.accept(.failure(DomainEmptyError()))
+                DispatchQueue.main.async { [weak self] in
+                    self?.authorizaionStatus.accept(.failure(error))
+                }
             }
         }
     }

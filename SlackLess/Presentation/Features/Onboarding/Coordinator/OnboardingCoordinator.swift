@@ -43,7 +43,7 @@ final class OnboardingCoordinator: BaseCoordinator {
     private func showRequestAuth() {
         let module = modulesFactory.makeRequestAuthModule()
         
-        module.viewModel.output.authorizationComplete
+        module.viewModel.output.authorizationSuccessful
             .subscribe(onNext: { [weak self] in
                 self?.showSelectApps()
             })
@@ -57,7 +57,6 @@ final class OnboardingCoordinator: BaseCoordinator {
         
         module.viewModel.output.appsSelected
             .subscribe(onNext: { [weak self] in
-                print("Apps selected")
                 self?.showSelectPrices()
             })
             .disposed(by: disposeBag)

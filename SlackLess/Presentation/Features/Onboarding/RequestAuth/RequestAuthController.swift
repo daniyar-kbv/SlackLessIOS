@@ -36,13 +36,46 @@ final class RequestAuthController: UIViewController {
         super.viewDidLoad()
         
         bindView()
+        bindViewModel()
     }
     
     private func bindView() {
         contentView.button.rx.tap
             .subscribe(onNext: { [weak self] in
+                self?.showLoader()
                 self?.viewModel.input.requestAuthorization()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        viewModel.output.authorizationComplete.subscribe(onNext: { [weak self] in
+            self?.hideLoader()
+        })
+        .disposed(by: disposeBag)
+        
+//        Tech debt: test if app setings open in production version
+        
+        viewModel.output.gotError.subscribe(onNext: { [weak self] in
+            self?.showAlert(title: SLTexts.Alert.Error.title.localized(),
+                            message: $0,
+                            actions: [
+                                .init(
+                                    title: SLTexts.Alert.Action.cancel.localized(),
+                                    style: .cancel
+                                ),
+                                .init(
+                                    title: SLTexts.Alert.Action.toSettings.localized(),
+                                    style: .default,
+                                    handler: { _ in
+                                        guard let url = URL(string: UIApplication.openSettingsURLString),
+                                              UIApplication.shared.canOpenURL(url)
+                                        else { return }
+                                        UIApplication.shared.open(url, options: [:])
+                                    }
+                                ),
+                            ])
+        })
+        .disposed(by: disposeBag)
     }
 }

@@ -18,12 +18,12 @@
 "Keyboard.Toolbar.done" = "Готово";
 
 //  MARK: - Alert
-"Alert.Error.title" = "Ошибка";
-"Alert.Action.defauiltTitle" = "Ок";
-"Alert.Action.cancel" = "Отменить";
-"Alert.Action.toSettings" = "В настройки";
-"Alert.Action.yes" = "Да";
-"Alert.Action.no" = "Нет";
+"Alert.Error.title" = "Error";
+"Alert.Action.defauiltTitle" = "Ok";
+"Alert.Action.cancel" = "Cancel";
+"Alert.Action.toSettings" = "To seetings";
+"Alert.Action.yes" = "Yes";
+"Alert.Action.no" = "No";
 
 //  MARK: - TabBar
 "TabBar.summaryTitle" = "Summary";
