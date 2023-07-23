@@ -7,18 +7,19 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 final class LoaderView: UIView {
     private(set) lazy var container: UIView = {
         let view = UIView()
-//        view.backgroundColor = SLColors.carbonGrey.getColor()?.withAlphaComponent(0.5)
+        view.backgroundColor = SLColors.gray5.getColor()?.withAlphaComponent(0.5)
         view.layer.cornerRadius = 10
         view.alpha = 0
         return view
     }()
 
     private(set) lazy var indicatorView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .whiteLarge)
+        let view = UIActivityIndicatorView(style: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -49,9 +50,11 @@ final class LoaderView: UIView {
 
     func showLoader(on view: UIView) {
         indicatorView.startAnimating()
-
-        frame = view.frame
+        
         view.addSubview(self)
+        snp.makeConstraints({
+            $0.edges.equalToSuperview()
+        })
 
         layoutIfNeeded()
 
