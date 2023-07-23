@@ -6,13 +6,12 @@
   
 */
 
-// Tech debt: change texts
 
 //  MARK: - Error
-"Error.Data.badmapping" = "Неудалось обработать ответ";
-"Error.Data.noData" = "Нет данных";
-"Error.Data.unauthorized" = "Вам необходимо снова авторизоваться";
-"Error.Domain.request" = "Неудалось отправить запрос";
+"Error.Data.badmapping" = "Coudn't read the response";
+"Error.Data.noData" = "No date";
+"Error.Domain.request" = "Couldn't send a request";
+"Error.Domain.categoriesNotAllowed" = "Неудалось отправить запрос";
 
 //  MARK: - Keyboard
 "Keyboard.Toolbar.done" = "Готово";

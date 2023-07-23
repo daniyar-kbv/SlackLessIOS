@@ -18,6 +18,7 @@ protocol SelectAppsViewModelInput {
 protocol SelectAppsViewModelOutput {
     var didFinish: PublishRelay<Void> { get }
     var appsSelected: PublishRelay<Void> { get }
+    var appsSelectionError: PublishRelay<ErrorPresentable> { get }
 }
 
 protocol SelectAppsViewModel: AnyObject {
@@ -39,8 +40,9 @@ final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInp
     }
     
     //    Output
-    var didFinish: PublishRelay<Void> = .init()
-    var appsSelected: PublishRelay<Void> = .init()
+    let didFinish: PublishRelay<Void> = .init()
+    let appsSelected: PublishRelay<Void> = .init()
+    let appsSelectionError: PublishRelay<ErrorPresentable> = .init()
     
     //    Input
     func close() {
@@ -55,5 +57,10 @@ final class SelectAppsViewModelImpl: SelectAppsViewModel, SelectAppsViewModelInp
         appSettingsService.output.appsSelectionSaved
             .bind(to: output.appsSelected)
             .disposed(by: disposeBag)
+        
+        appSettingsService.output.selectionCategoryError.subscribe(onNext: { [weak self] in
+            self?.appsSelectionError.accept($0)
+        })
+        .disposed(by: disposeBag)
     }
 }
