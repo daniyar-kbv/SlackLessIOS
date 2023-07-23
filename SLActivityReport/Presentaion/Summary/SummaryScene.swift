@@ -32,6 +32,7 @@ struct SummaryScene: DeviceActivityReportScene {
                 .flatMap { $0.applications }
             let selectedApps = allApps
                 .filter {
+                    $0.
                     guard let token = $0.application.token else { return false }
                     return appSelection.applicationTokens.contains(token)
                 }
@@ -79,7 +80,7 @@ struct SummaryScene: DeviceActivityReportScene {
             
             var otherAppsTransformed = [ARApp]()
             for await app in otherApps {
-                let appTimeRelative = app.totalActivityDuration-selectedMinTime
+                let appTimeRelative = app.totalActivityDuration-otherMinTime
                 otherAppsTransformed.append(.init(name: app.application.localizedDisplayName ?? "",
                                                   time: app.totalActivityDuration,
                                                   ratio: appTimeRelative != 0 ? appTimeRelative/(otherMaxTime-otherMinTime) : 0))

@@ -73,6 +73,7 @@ final class ARAppView: UIStackView {
         timeBarView.snp.makeConstraints({
             $0.left.equalTo(appIconView.snp.right).offset(12)
             $0.bottom.equalTo(appIconView)
+            $0.width.equalTo(0)
         })
         
         timeLabel.snp.makeConstraints({
@@ -98,7 +99,8 @@ extension ARAppView {
         let maxWidth = type.width-textWidth
         let minWidth = maxWidth*0.1
         let width = minWidth+((maxWidth-minWidth)*app.ratio)
-        timeBarView.snp.makeConstraints({
+        let ratio = app.ratio
+        timeBarView.snp.updateConstraints({
             $0.width.equalTo(width)
         })
     }
