@@ -17,7 +17,7 @@ protocol AppSettingsRepositoryInput {
 
 protocol AppSettingsRepositoryOutput {
     func getOnboardingShown() -> Bool
-    func getTimeLimit(for date: Date) -> TimeInterval
+    func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
 }
 
@@ -42,8 +42,13 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.onbardingShown
     }
     
-    func getTimeLimit(for date: Date) -> TimeInterval {
-        keyValueStorage.getTimeLimit(for: date)
+    func getTimeLimit(for date: Date) -> TimeInterval? {
+        let timeLimit = keyValueStorage.getTimeLimit(for: date)
+        if timeLimit == 0 {
+            return nil
+        } else {
+            return timeLimit
+        }
     }
     
     func getSelectedApps(for date: Date) -> FamilyActivitySelection? {

@@ -24,7 +24,7 @@ struct SelectAppsButtonContainerView: View {
                                   selection: $selection)
         }
         .onChange(of: isPresented) {
-            if !$0 && !selection.applicationTokens.isEmpty {
+            if !$0 && (!selection.applicationTokens.isEmpty || (!selection.categoryTokens.isEmpty)) {
                 onSelect(selection)
             }
         }
