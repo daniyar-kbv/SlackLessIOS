@@ -22,8 +22,8 @@ protocol AppSettingsServiceOutput {
     var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
     
-    func getTimeLimit(for date: Date) -> TimeInterval?
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getTimeLimit(for date: Date) -> TimeInterval
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection
     func getOnboardingShown() -> Bool
 }
 
@@ -52,12 +52,32 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.output.getOnboardingShown()
     }
     
-    func getTimeLimit(for date: Date) -> Double? {
-        appSettingsRepository.output.getTimeLimit(for: date)
+    func getTimeLimit(for date: Date) -> Double {
+        if let timeLimit = appSettingsRepository.output.getTimeLimit(for: date) {
+            return timeLimit
+        }
+        var daysDifference = 0
+        while true {
+            if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
+               let timeLimit = appSettingsRepository.output.getTimeLimit(for: oldDate) {
+                appSettingsRepository.input.set(timeLimit: timeLimit, for: date)
+                return timeLimit
+            }
+        }
     }
     
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        appSettingsRepository.output.getSelectedApps(for: date)
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection {
+        if let appsSelection = appSettingsRepository.output.getSelectedApps(for: date) {
+            return appsSelection
+        }
+        var daysDifference = 0
+        while true {
+            if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
+               let appsSelection = appSettingsRepository.output.getSelectedApps(for: oldDate) {
+                appSettingsRepository.input.set(selectedApps: appsSelection, for: date)
+                return appsSelection
+            }
+        }
     }
     
     //    Input
@@ -77,15 +97,17 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         }
     }
     
+//    Tech debt: refcator
+    
     func set(timeLimit: TimeInterval) {
-        getLastSevenDays().forEach({
+        getWeek().forEach({
             appSettingsRepository.input.set(timeLimit: timeLimit, for: $0)
         })
         timeLimitSaved.accept(())
     }
     
     func set(selectedApps: FamilyActivitySelection) {
-        getLastSevenDays().forEach({
+        getWeek().forEach({
             appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
         })
         appsSelectionSaved.accept(())
@@ -97,11 +119,16 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 }
 
 extension AppSettingsServiceImpl {
-    private func getLastSevenDays() -> [Date] {
-        let today = Date()
-        return (0..<7).map({
-            Calendar.current.date(byAdding: .day, value: -$0, to: today)
-        })
-        .compactMap({ $0 })
+    private func getWeek() -> [Date] {
+        var days = [Date]()
+        for i in (0..<100) {
+            let today = Date()
+            guard let date = Calendar.current.date(byAdding: .day, value: i, to: today.getFirstDayOfWeek()) else { break }
+            days.append(date)
+            if date == today.getLastDayOfWeek() {
+                break
+            }
+        }
+        return days
     }
 }
