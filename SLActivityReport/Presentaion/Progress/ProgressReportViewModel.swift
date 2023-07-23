@@ -15,8 +15,9 @@ protocol ProgressReportViewModelInput {
 }
 
 protocol ProgressReportViewModelOutput {
-    var date: BehaviorRelay<String> { get }
-    var time: BehaviorRelay<(currentWeekTime: ARTime, previousWeekTime: ARTime?)> { get }
+    var date: BehaviorRelay<String?> { get }
+    var time: BehaviorRelay<(currentWeekTime: ARTime?, previousWeekTime: ARTime?)> { get }
+    var days: BehaviorRelay<[ARWeek.Day]> { get }
     var isntFirstDate: BehaviorRelay<Bool> { get }
     var isntLastDate: BehaviorRelay<Bool> { get }
 }
@@ -44,10 +45,11 @@ final class ProgressReportViewModelImpl: ProgressReportViewModel,
     }
     
     //    Output
-    lazy var date: BehaviorRelay<String> = .init(value: format(startDate: getCurrentWeek().startDate,
-                                                               endDate: getCurrentWeek().startDate.getLastDayOfWeek()))
-    lazy var time: BehaviorRelay<(currentWeekTime: ARTime, previousWeekTime: ARTime?)> = .init(value: (currentWeekTime: getCurrentWeek().getTime(),
+    lazy var date: BehaviorRelay<String?> = .init(value: format(startDate: getCurrentWeek()?.startDate,
+                                                               endDate: getCurrentWeek()?.startDate.getLastDayOfWeek()))
+    lazy var time: BehaviorRelay<(currentWeekTime: ARTime?, previousWeekTime: ARTime?)> = .init(value: (currentWeekTime: getCurrentWeek()?.getTime(),
                                                                                                        previousWeekTime: getPreviousWeek()?.getTime()))
+    lazy var days: BehaviorRelay<[ARWeek.Day]> = .init(value: getCurrentWeek()?.days ?? [])
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: true)
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: false)
     
@@ -66,16 +68,19 @@ final class ProgressReportViewModelImpl: ProgressReportViewModel,
 
 extension ProgressReportViewModelImpl {
     private func reload() {
-        date.accept(format(startDate: getCurrentWeek().startDate,
-                           endDate: getCurrentWeek().startDate.getLastDayOfWeek()))
+        if let currentWeek = getCurrentWeek() {
+            date.accept(format(startDate: currentWeek.startDate,
+                               endDate: currentWeek.startDate.getLastDayOfWeek()))
+            time.accept((currentWeekTime: currentWeek.getTime(),
+                         previousWeekTime: getPreviousWeek()?.getTime()))
+        }
         isntFirstDate.accept(getIsntFirstWeek())
         isntLastDate.accept(getIsntLastWeek())
-        time.accept((currentWeekTime: getCurrentWeek().getTime(),
-                     previousWeekTime: getPreviousWeek()?.getTime()))
     }
     
-    private func getCurrentWeek() -> ARWeek {
-        weeks[currentIndex]
+    private func getCurrentWeek() -> ARWeek? {
+        guard !weeks.isEmpty else { return nil }
+        return weeks[currentIndex]
     }
     
     private func getPreviousWeek() -> ARWeek? {
@@ -91,7 +96,11 @@ extension ProgressReportViewModelImpl {
         currentIndex < weeks.count - 1
     }
     
-    private func format(startDate: Date, endDate: Date) -> String {
+    private func format(startDate: Date?, endDate: Date?) -> String? {
+        guard let startDate = startDate,
+              let endDate = endDate
+        else { return nil }
         return "\(startDate.formatted(style: .short)) - \(endDate.formatted(style: .short))"
     }
 }
+

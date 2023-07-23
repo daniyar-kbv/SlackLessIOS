@@ -14,12 +14,12 @@ final class ProgressReportView: ARView {
     
     private(set) lazy var dashboardView = ProgressDashboardView()
     
-//    private(set) lazy var currentWeekChartView = ARChartView(type: .horizontal)
+    private(set) lazy var firstChartView = SLContainerView()
     
     private(set) lazy var firstSectionView: ARSectionView = {
         let view = ARSectionView(titleText: SLTexts.Progress.firstSectionTitle.localized())
         view.addContainer(view: dashboardView)
-//        view.addContainer(view: currentWeekChartView)
+        view.addContainer(view: firstChartView)
         return view
     }()
     
@@ -44,9 +44,5 @@ final class ProgressReportView: ARView {
         set(title: SLTexts.Progress.title.localized())
         
         [dateSwitcherView, firstSectionView, secondSectionView].forEach(add(view:))
-        
-//        currentWeekChartView.snp.makeConstraints({
-//            $0.height.equalTo(400)
-//        })
     }
 }
