@@ -18,28 +18,22 @@ final class AppCoordinator: BaseCoordinator {
     
     private var preparedViewControllers: [UIViewController] = []
 
-    private let repositoryFactory: RepositoryFactory
     private let serviceFactory: ServiceFactory
 
     private let appCoordinatorsFactory: ApplicationCoordinatorFactory
     private let modulesFactory: ApplicationModulesFactory
-    private let helpersFactory: HelpersFactory
 
     private var disposeBag = DisposeBag()
 
     private lazy var appSettingsService = serviceFactory.makeAppSettingsService()
 
-    init(repositoryFactory: RepositoryFactory,
-         serviceFactory: ServiceFactory,
+    init(serviceFactory: ServiceFactory,
          appCoordinatorsFactory: ApplicationCoordinatorFactory,
-         modulesFactory: ApplicationModulesFactory,
-         helpersFactory: HelpersFactory)
+         modulesFactory: ApplicationModulesFactory)
     {
-        self.repositoryFactory = repositoryFactory
         self.serviceFactory = serviceFactory
         self.appCoordinatorsFactory = appCoordinatorsFactory
         self.modulesFactory = modulesFactory
-        self.helpersFactory = helpersFactory
     }
 
     override func start() {

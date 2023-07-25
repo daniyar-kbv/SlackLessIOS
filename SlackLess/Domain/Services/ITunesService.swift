@@ -1,5 +1,5 @@
 //
-//  ITunesService.swift
+//  AppInfoService.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-19.
@@ -9,22 +9,22 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol ITunesServiceInput {
+protocol AppInfoServiceInput {
     
 }
 
-protocol ITunesServiceOutput {
+protocol AppInfoServiceOutput {
     func getIconURL(for appName: String, _ onCompletion: @escaping (URL) -> Void)
 }
 
-protocol ITunesService: AnyObject {
-    var input: ITunesServiceInput { get }
-    var output: ITunesServiceOutput { get }
+protocol AppInfoService: AnyObject {
+    var input: AppInfoServiceInput { get }
+    var output: AppInfoServiceOutput { get }
 }
 
-final class ITunesServiceImpl: ITunesService, ITunesServiceInput, ITunesServiceOutput {
-    var input: ITunesServiceInput { self }
-    var output: ITunesServiceOutput { self }
+final class AppInfoServiceImpl: AppInfoService, AppInfoServiceInput, AppInfoServiceOutput {
+    var input: AppInfoServiceInput { self }
+    var output: AppInfoServiceOutput { self }
     
     private let disposeBag = DisposeBag()
     private let iTunesAPI: ITunesAPI

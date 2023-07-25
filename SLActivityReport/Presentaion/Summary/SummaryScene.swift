@@ -30,6 +30,7 @@ struct SummaryScene: DeviceActivityReportScene {
             let allApps = activitySegment
                 .categories
                 .flatMap { $0.applications }
+                .filter({ $0.totalActivityDuration >= 60 })
             let selectedApps = allApps
                 .filter {
                     guard let token = $0.application.token else { return false }

@@ -28,6 +28,7 @@ enum SLImages: String, ImageGetable {
 
     enum Common: String, ImageGetable {
         case logo = "Common.Logo"
+        case appIconPlaceholder = "Common.AppIcon.Placeholder"
         
         enum Arrows {
             enum Circle: String, ImageGetable {

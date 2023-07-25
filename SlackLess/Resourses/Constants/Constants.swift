@@ -31,12 +31,6 @@ struct Constants {
         static let success = 200
         static let unauthorized = 401
     }
-
-    enum InternalNotification {
-        var name: Notification.Name {
-            switch self {}
-        }
-    }
     
 //    Shared constants
     struct UserDefaults {

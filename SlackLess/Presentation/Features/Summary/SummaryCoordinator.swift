@@ -11,19 +11,19 @@ import UIKit
 final class SummaryCoordinator: BaseCoordinator {
     private(set) var router: Router
 
-    private let iTunesService: ITunesService
+    private let appInfoService: AppInfoService
 
     init(router: Router,
-         iTunesService: ITunesService) {
+         appInfoService: AppInfoService) {
         self.router = router
-        self.iTunesService = iTunesService
+        self.appInfoService = appInfoService
     }
 
     override func start() {
         var controller: UIViewController
         switch Constants.appMode {
         case .debug:
-            controller = SummaryReportController(viewModel: SummaryReportViewModelImpl(iTunesService: iTunesService,
+            controller = SummaryReportController(viewModel: SummaryReportViewModelImpl(appInfoService: appInfoService,
                                                                                        days: MockData.getDays(isRandom: false)))
         default:
             controller = SummaryController()

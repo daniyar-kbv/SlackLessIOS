@@ -60,7 +60,7 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         return view
     }()
     
-//    Tech debt: remove
+//    Tech debt: refactor with DashedView
     
     override func layoutSubviews() {
         super.layoutSubviews()
