@@ -129,6 +129,7 @@ final class SummarySelectedAppsDashboardView: UIView {
 extension SummarySelectedAppsDashboardView {
     func set(time: ARTime?) {
         if let timeFormatted = time?.slacked.formatted(with: .positional) {
+//            TODO: change formatting to 00:01
             let timeText = timeFormatted.count <= 2 ? "0:\(timeFormatted)" : timeFormatted
             middleTitlelLabel.text = timeText
         }

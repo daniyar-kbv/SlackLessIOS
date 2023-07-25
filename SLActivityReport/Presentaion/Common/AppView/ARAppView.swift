@@ -11,11 +11,8 @@ import SnapKit
 import Kingfisher
 
 final class ARAppView: UIStackView {
-    private(set) lazy var appIconView: UIImageView = {
-        let view = UIImageView()
-        view.layer.cornerRadius = 6.35
-        view.clipsToBounds = true
-        view.image = SLImages.Common.appIconPlaceholder.getImage()
+    private(set) lazy var appIconView: UIView = {
+        let view = UIView()
         view.snp.makeConstraints({
             $0.size.equalTo(28)
         })
@@ -106,7 +103,7 @@ extension ARAppView {
     }
     
     func set(icon: UIImage) {
-        appIconView.image = icon
+//        appIconView.image = icon
     }
 }
 

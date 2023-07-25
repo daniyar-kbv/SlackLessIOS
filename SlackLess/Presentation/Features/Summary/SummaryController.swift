@@ -19,6 +19,6 @@ final class SummaryController: UIViewController {
         
         view.backgroundColor = SLColors.background1.getColor()
         
-        add(hostingController: innerController, to: view)
+        add(controller: innerController)
     }
 }

@@ -12,7 +12,9 @@ import SnapKit
 // Tech debt: refactor cells
 
 final class SummaryOtherAppsTableViewCell: UITableViewCell {
-    private(set) var appView: ARAppView?
+    private(set) var appTimeView: ARAppView?
+    
+    var onReuse: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,15 +30,16 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         layoutUI()
+        onReuse?()
     }
     
     private func layoutUI() {
-        appView?.removeFromSuperview()
+        appTimeView?.removeFromSuperview()
         
-        appView = .init()
+        appTimeView = .init()
         
-        addSubview(appView!)
-        appView?.snp.makeConstraints({
+        addSubview(appTimeView!)
+        appTimeView?.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
     }

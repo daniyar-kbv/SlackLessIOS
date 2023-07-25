@@ -45,7 +45,7 @@ final class SelectAppsController: UIViewController {
     }
     
     private func configView() {
-        add(hostingController: hostingController,
+        add(controller: hostingController,
             to: contentView.buttonView)
     }
     

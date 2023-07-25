@@ -11,6 +11,8 @@ import SnapKit
 
 final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
     private(set) var appTimeView: ARAppView?
+
+    var onReuse: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -26,6 +28,7 @@ final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
         super.prepareForReuse()
         
         layoutUI()
+        onReuse?()
     }
     
     private func layoutUI(){
