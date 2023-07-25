@@ -9,17 +9,18 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import ManagedSettings
+
+// TODO: show all selected apps
 
 final class SummarySelectedAppsCollectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    private lazy var contentView = SummarySelectedAppsCollectionView()
+    private let contentView = SummarySelectedAppsCollectionView()
+    private let iconMaker = SummaryAppCollectionIconMaker()
     private let viewModel: SummaryAppsCollectionViewModel
-    private let parentViewModel: SummaryReportViewModel
     
-    init(viewModel: SummaryAppsCollectionViewModel,
-         parentViewModel: SummaryReportViewModel) {
+    init(viewModel: SummaryAppsCollectionViewModel) {
         self.viewModel = viewModel
-        self.parentViewModel = parentViewModel
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -48,6 +49,7 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
     }
     
     private func configure() {
+        iconMaker.controller = self
         contentView.appsCollectionView.dataSource = self
         contentView.appsCollectionView.delegate = self
         contentView.pageControl.rx.controlEvent(.valueChanged)
@@ -65,12 +67,6 @@ final class SummarySelectedAppsCollectionViewController: UIViewController {
         viewModel.output.appsChanged
             .subscribe(onNext: contentView.appsCollectionView.reloadData)
         .disposed(by: disposeBag)
-    }
-}
-
-extension SummarySelectedAppsCollectionViewController {
-    func getContentView() -> UIView {
-        return contentView
     }
 }
 
@@ -101,8 +97,9 @@ extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSourc
                                                                       for: indexPath) as! SummarySelectedAppsCollectionCell
         let app = viewModel.output.getApp(for: (indexPath.section*4)+indexPath.item)
         cell.appTimeView?.set(app: app, type: viewModel.output.getNumberOfApps() > 2 ? .small : .large)
-        parentViewModel.output.getIcon(for: app.name) {
-            cell.appTimeView?.set(icon: $0)
+        iconMaker.addAppIcon(to: cell.appTimeView?.appIconView, with: app.token)
+        cell.onReuse = { [weak self] in
+            self?.iconMaker.removeAppIcon(for: app.token)
         }
         return cell
     }

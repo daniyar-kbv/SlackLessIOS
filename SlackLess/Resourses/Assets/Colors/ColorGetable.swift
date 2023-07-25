@@ -17,6 +17,7 @@ protocol ColorGeatble {
 
 extension ColorGeatble {
     func getColor() -> UIColor? {
+//        TODO: return lighter gray for dark theme
         return UIColor(named: rawValue)
     }
     

@@ -13,8 +13,8 @@ import RxCocoa
 
 final class SummaryOtherAppsTableViewController: UIViewController {
     private let disposeBag = DisposeBag()
+    private let iconMaker = SummaryAppCollectionIconMaker()
     private let viewModel: SummaryAppsCollectionViewModel
-    private let parentViewModel: SummaryReportViewModel
     var height: Int = 1
     
     private(set) lazy var tableView: UITableView = {
@@ -33,10 +33,8 @@ final class SummaryOtherAppsTableViewController: UIViewController {
         return view
     }()
     
-    init(viewModel: SummaryAppsCollectionViewModel,
-         parentViewModel: SummaryReportViewModel) {
+    init(viewModel: SummaryAppsCollectionViewModel) {
         self.viewModel = viewModel
-        self.parentViewModel = parentViewModel
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -55,7 +53,12 @@ final class SummaryOtherAppsTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         bindViewModel()
+    }
+    
+    private func configure() {
+        iconMaker.controller = self
     }
     
     private func bindViewModel() {
@@ -77,9 +80,10 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
         let app = viewModel.output.getApp(for: indexPath.row)
-        cell.appView?.set(app: app, type: .large)
-        parentViewModel.output.getIcon(for: app.name) {
-            cell.appView?.set(icon: $0)
+        cell.appTimeView?.set(app: app, type: .large)
+        iconMaker.addAppIcon(to: cell.appTimeView?.appIconView, with: app.token)
+        cell.onReuse = { [weak self] in
+            self?.iconMaker.removeAppIcon(for: app.token)
         }
         return cell
     }

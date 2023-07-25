@@ -26,7 +26,8 @@ struct MockData {
                 .map({ appNum in
                     return ARApp(name: appNames.randomElement() ?? "",
                                  time: times[appNum],
-                                 ratio: times.count > 1 ? (times[appNum]-minTime)/(maxTime-minTime) : 0.5)
+                                 ratio: times.count > 1 ? (times[appNum]-minTime)/(maxTime-minTime) : 0.5,
+                                 token: nil)
                 })
                 .sorted(by: { $0.time > $1.time })
             return .init(date: date ?? Date(),

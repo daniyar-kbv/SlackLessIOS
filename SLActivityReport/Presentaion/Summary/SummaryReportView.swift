@@ -27,7 +27,11 @@ final class SummaryReportView: ARView {
     
     private(set) lazy var thirdSectionFirstContentView = SLContainerView()
     
+//    TODO: show not enough data
+    
     private(set) lazy var otherAppsDashboardView = SummaryOtherAppsDasboardView()
+    
+//    TODO: hide if no data
     
     private(set) lazy var fourthSectionFirstContentView = SLContainerView()
     

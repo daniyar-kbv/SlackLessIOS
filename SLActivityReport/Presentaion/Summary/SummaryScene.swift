@@ -75,7 +75,8 @@ struct SummaryScene: DeviceActivityReportScene {
                 let appTimeRelative = app.totalActivityDuration-selectedMinTime
                 selectedAppsTransformed.append(.init(name: app.application.localizedDisplayName ?? "",
                                                      time: app.totalActivityDuration,
-                                                     ratio: appTimeRelative != 0 ? appTimeRelative/(selectedMaxTime-selectedMinTime) : 0))
+                                                     ratio: appTimeRelative != 0 ? appTimeRelative/(selectedMaxTime-selectedMinTime) : 0,
+                                                     token: app.application.token))
             }
             
             var otherAppsTransformed = [ARApp]()
@@ -83,7 +84,8 @@ struct SummaryScene: DeviceActivityReportScene {
                 let appTimeRelative = app.totalActivityDuration-otherMinTime
                 otherAppsTransformed.append(.init(name: app.application.localizedDisplayName ?? "",
                                                   time: app.totalActivityDuration,
-                                                  ratio: appTimeRelative != 0 ? appTimeRelative/(otherMaxTime-otherMinTime) : 0))
+                                                  ratio: appTimeRelative != 0 ? appTimeRelative/(otherMaxTime-otherMinTime) : 0,
+                                                  token: app.application.token))
             }
             
             selectedAppsTransformed.sort(by: { $0.time > $1.time })

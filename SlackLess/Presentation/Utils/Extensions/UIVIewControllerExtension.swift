@@ -28,14 +28,34 @@ extension UIViewController {
         return self
     }
     
-    func add(controller: UIViewController, to view: UIView? = nil) {
+    func add(controller: UIViewController, to view: UIView? = nil, with constraints: ((ConstraintMaker) -> Void)? = nil) {
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        var containerView: UIView!
         if let view = view {
-            view.addSubview(controller.view)
+            containerView = view
+        } else {
+            containerView = self.view
+        }
+        
+        containerView.addSubview(controller.view)
+        
+        if let constraints = constraints {
+            controller.view.snp.makeConstraints(constraints)
+        } else {
             controller.view.snp.makeConstraints({
-                $0.edges.equalToSuperview()
+                $0.top.equalTo(containerView.safeAreaLayoutGuide.snp.top)
+                $0.bottom.horizontalEdges.equalToSuperview()
             })
         }
+
         addChild(controller)
         controller.didMove(toParent: self)
+    }
+    
+    func remove(controller: UIViewController) {
+        controller.willMove(toParent: nil)
+        controller.removeFromParent()
+        controller.view.removeFromSuperview()
     }
 }

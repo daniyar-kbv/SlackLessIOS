@@ -18,13 +18,8 @@ struct SLActivityReport: DeviceActivityReportExtension {
         SummaryScene(appSettingsRepository: appComponentsFactory
             .makeDataComponentsFactory()
             .makeRepositoryFactory()
-            .makeAppSettingsRepository())
-        {
-            .init(appInfoService: appComponentsFactory
-                .makeDomainComponentsFactory()
-                .makeServiceFactory()
-                .makeAppInfoService(),
-                  days: $0)
+            .makeAppSettingsRepository()) {
+            .init(days: $0)
         }
         ProgressScene(appSettingsRepository: appComponentsFactory
             .makeDataComponentsFactory()
