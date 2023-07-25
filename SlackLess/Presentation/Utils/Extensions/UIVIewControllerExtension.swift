@@ -31,22 +31,16 @@ extension UIViewController {
     func add(controller: UIViewController, to view: UIView? = nil, with constraints: ((ConstraintMaker) -> Void)? = nil) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         
-        var containerView: UIView!
         if let view = view {
-            containerView = view
-        } else {
-            containerView = self.view
-        }
-        
-        containerView.addSubview(controller.view)
-        
-        if let constraints = constraints {
-            controller.view.snp.makeConstraints(constraints)
-        } else {
-            controller.view.snp.makeConstraints({
-                $0.top.equalTo(containerView.safeAreaLayoutGuide.snp.top)
-                $0.bottom.horizontalEdges.equalToSuperview()
-            })
+            view.addSubview(controller.view)
+            
+            if let constraints = constraints {
+                controller.view.snp.makeConstraints(constraints)
+            } else {
+                controller.view.snp.makeConstraints({
+                    $0.edges.equalToSuperview()
+                })
+            }
         }
 
         addChild(controller)

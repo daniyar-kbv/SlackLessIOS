@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import DeviceActivity
+import SnapKit
 
 final class ProgressController: UIViewController {
     private lazy var summaryReport = DeviceActivityReport(.init(Constants.ContextName.progress), filter: Constants.DeviceActivityFilters.summary)
@@ -19,6 +20,12 @@ final class ProgressController: UIViewController {
         
         view.backgroundColor = SLColors.background1.getColor()
         
-        add(controller: innerController)
+        add(controller: innerController,
+            to: view,
+            with: { [weak self] in
+            guard let self = self else { return }
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.bottom.horizontalEdges.equalToSuperview()
+        })
     }
 }
