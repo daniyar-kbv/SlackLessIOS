@@ -752,8 +752,6 @@
 		705573AB2A6648CB005969AC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				707670812A6F5C5000B51D5F /* AppView */,
-				70B8D0632A6CB71600D8F41B /* Chart */,
 				705573AC2A6648CB005969AC /* ARSectionView.swift */,
 				705573AD2A6648CB005969AC /* ARDateSwitcherView.swift */,
 				705573AE2A6648CB005969AC /* ARLegendView.swift */,
@@ -761,6 +759,8 @@
 				705573B02A6648CB005969AC /* ARPartitionsView.swift */,
 				705573B82A6648DA005969AC /* ARView.swift */,
 				70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */,
+				707670812A6F5C5000B51D5F /* AppView */,
+				70B8D0632A6CB71600D8F41B /* Chart */,
 			);
 			path = Common;
 			sourceTree = "<group>";
