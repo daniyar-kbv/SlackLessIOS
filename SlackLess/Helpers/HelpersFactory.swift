@@ -13,12 +13,6 @@ protocol HelpersFactory: AnyObject {
 }
 
 final class HelpersFactoryImpl: DependencyFactory, HelpersFactory {
-    private let keyValueStorage: KeyValueStorage
-
-    init(keyValueStorage: KeyValueStorage) {
-        self.keyValueStorage = keyValueStorage
-    }
-
     func makeReachabilityManager() -> ReachabilityManager {
         return shared(ReachabilityManagerImpl())
     }

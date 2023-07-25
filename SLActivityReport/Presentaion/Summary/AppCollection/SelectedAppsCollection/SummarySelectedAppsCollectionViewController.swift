@@ -102,7 +102,7 @@ extension SummarySelectedAppsCollectionViewController: UICollectionViewDataSourc
         let app = viewModel.output.getApp(for: (indexPath.section*4)+indexPath.item)
         cell.appTimeView?.set(app: app, type: viewModel.output.getNumberOfApps() > 2 ? .small : .large)
         parentViewModel.output.getIcon(for: app.name) {
-            cell.appTimeView?.setIcon(with: $0)
+            cell.appTimeView?.set(icon: $0)
         }
         return cell
     }

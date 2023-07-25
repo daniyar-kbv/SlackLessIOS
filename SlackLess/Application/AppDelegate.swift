@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private let appComponentsFactory: AppComponentsFactory = AppComponentsFactoryImpl()
+    private lazy var dataComponentsFactory = appComponentsFactory.makeDataComponenentsFactory()
+    private lazy var domainComponentsFactory = appComponentsFactory.makeDomainComponentsFactory()
+    private lazy var presentationComponentsFactory = appComponentsFactory.makePresentationComponentsFactory()
     private var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -35,11 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func configureAppCoordinator() {
         appCoordinator = AppCoordinator(
-            repositoryFactory: appComponentsFactory.makeRepositoryFactory(),
-            serviceFactory: appComponentsFactory.makeServiceFactory(),
-            appCoordinatorsFactory: appComponentsFactory.makeApplicationCoordinatorFactory(),
-            modulesFactory: appComponentsFactory.makeApplicationModulesFactory(),
-            helpersFactory: appComponentsFactory.makeHelpersFactory()
+            serviceFactory: appComponentsFactory.makeDomainComponentsFactory().makeServiceFactory(),
+            appCoordinatorsFactory: appComponentsFactory.makePresentationComponentsFactory().makeApplicationCoordinatorFactory(),
+            modulesFactory: appComponentsFactory.makePresentationComponentsFactory().makeApplicationModulesFactory()
         )
         
         makeWindow()
@@ -57,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func configureLocalization() {
-        Localization.keyValueStorage = appComponentsFactory.makeKeyValueStorage()
+        Localization.keyValueStorage = appComponentsFactory.makeDataComponenentsFactory().makeKeyValueStorage()
     }
 
     private func startReachabilityManager() {

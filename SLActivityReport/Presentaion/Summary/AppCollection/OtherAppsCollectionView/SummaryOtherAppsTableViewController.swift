@@ -79,7 +79,7 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource {
         let app = viewModel.output.getApp(for: indexPath.row)
         cell.appView?.set(app: app, type: .large)
         parentViewModel.output.getIcon(for: app.name) {
-            cell.appView?.setIcon(with: $0)
+            cell.appView?.set(icon: $0)
         }
         return cell
     }

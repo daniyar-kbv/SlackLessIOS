@@ -15,7 +15,7 @@ protocol APIFactory: AnyObject {
 final class APIFactoryImpl: DependencyFactory, APIFactory {
     private let networkPlugin = NetworkLoggerPlugin(configuration: NetworkLoggerPlugin.Configuration(logOptions: .verbose))
     
-    private lazy var defaultPlugins: [PluginType] = []
+    private lazy var defaultPlugins: [PluginType] = Constants.appMode == .debug ? [] : []
     private lazy var provider = MoyaProvider<ITunesTarget>(plugins: defaultPlugins)
     
     func makeITunesAPI() -> ITunesAPI {

@@ -9,7 +9,7 @@ import Foundation
 
 protocol ServiceFactory: AnyObject {
     func makeAppSettingsService() -> AppSettingsService
-    func makeITunesService() -> ITunesService
+    func makeAppInfoService() -> AppInfoService
 }
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
@@ -30,7 +30,7 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
         return weakShared(AppSettingsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository()))
     }
     
-    func makeITunesService() -> ITunesService {
-        return weakShared(ITunesServiceImpl(iTunesAPI: apiFactory.makeITunesAPI()))
+    func makeAppInfoService() -> AppInfoService {
+        return weakShared(AppInfoServiceImpl(iTunesAPI: apiFactory.makeITunesAPI()))
     }
 }

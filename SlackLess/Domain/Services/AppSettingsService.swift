@@ -58,7 +58,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         if let timeLimit = appSettingsRepository.output.getTimeLimit(for: date) {
             return timeLimit
         }
-        var daysDifference = 0
+        let daysDifference = 0
         while true {
             if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
                let timeLimit = appSettingsRepository.output.getTimeLimit(for: oldDate) {
@@ -72,7 +72,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         if let appsSelection = appSettingsRepository.output.getSelectedApps(for: date) {
             return appsSelection
         }
-        var daysDifference = 0
+        let daysDifference = 0
         while true {
             if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
                let appsSelection = appSettingsRepository.output.getSelectedApps(for: oldDate) {
@@ -98,8 +98,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
             }
         }
     }
-    
-//    Tech debt: refcator
     
     func set(timeLimit: TimeInterval) {
         getWeek().forEach({

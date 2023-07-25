@@ -12,16 +12,17 @@ import DeviceActivity
 struct SummaryRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = SummaryReportController
     
-    private let iTunesService: ITunesService
+    private let appInfoService: AppInfoService
     private let days: [ARDay]
     
-    init(iTunesService: ITunesService, days: [ARDay]) {
-        self.iTunesService = iTunesService
+    init(appInfoService: AppInfoService,
+         days: [ARDay]) {
+        self.appInfoService = appInfoService
         self.days = days
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        SummaryReportController(viewModel: SummaryReportViewModelImpl(iTunesService: iTunesService,
+        SummaryReportController(viewModel: SummaryReportViewModelImpl(appInfoService: appInfoService,
                                                                       days: days))
     }
     

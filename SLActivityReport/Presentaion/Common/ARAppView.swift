@@ -15,6 +15,7 @@ final class ARAppView: UIStackView {
         let view = UIImageView()
         view.layer.cornerRadius = 6.35
         view.clipsToBounds = true
+        view.image = SLImages.Common.appIconPlaceholder.getImage()
         view.snp.makeConstraints({
             $0.size.equalTo(28)
         })
@@ -33,9 +34,6 @@ final class ARAppView: UIStackView {
         let height: CGFloat = 5
         view.backgroundColor = SLColors.gray3.getColor()
         view.layer.cornerRadius = height/2
-        view.snp.makeConstraints({
-            $0.height.equalTo(height)
-        })
         return view
     }()
     
@@ -79,7 +77,6 @@ final class ARAppView: UIStackView {
         timeLabel.snp.makeConstraints({
             $0.left.equalTo(timeBarView.snp.right).offset(4)
             $0.centerY.equalTo(timeBarView)
-            $0.right.equalToSuperview()
         })
     }
 }
@@ -99,14 +96,17 @@ extension ARAppView {
         let maxWidth = type.width-textWidth
         let minWidth = maxWidth*0.1
         let width = minWidth+((maxWidth-minWidth)*app.ratio)
-        let ratio = app.ratio
-        timeBarView.snp.updateConstraints({
+        
+        timeBarView.snp.remakeConstraints({
+            $0.height.equalTo(5)
+            $0.left.equalTo(appIconView.snp.right).offset(12)
+            $0.bottom.equalTo(appIconView)
             $0.width.equalTo(width)
         })
     }
     
-    func setIcon(with url: URL) {
-        appIconView.kf.setImage(with: url) 
+    func set(icon: UIImage) {
+        appIconView.image = icon
     }
 }
 
