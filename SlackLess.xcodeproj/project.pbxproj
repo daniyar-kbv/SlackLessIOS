@@ -82,6 +82,8 @@
 		707670842A6F5FD700B51D5F /* ARAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670822A6F5D7200B51D5F /* ARAppIconView.swift */; };
 		707670862A6F667700B51D5F /* SummaryAppCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670852A6F667700B51D5F /* SummaryAppCollectionDelegate.swift */; };
 		707670872A6F678B00B51D5F /* SummaryAppCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670852A6F667700B51D5F /* SummaryAppCollectionDelegate.swift */; };
+		707670892A6F7AE300B51D5F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670882A6F7AE300B51D5F /* UIView.swift */; };
+		7076708A2A6F7DC600B51D5F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670882A6F7AE300B51D5F /* UIView.swift */; };
 		70918CDC2A5CFF6400685DE8 /* SummaryOtherAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC72A5CF8560084A2DA /* SummaryOtherAppsTableViewController.swift */; };
 		70918CDD2A5CFF6700685DE8 /* SummaryOtherAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC92A5CF8860084A2DA /* SummaryOtherAppsTableViewCell.swift */; };
 		70918CE12A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */; };
@@ -330,6 +332,7 @@
 		705573EB2A68D271005969AC /* ProgressReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressReportView.swift; sourceTree = "<group>"; };
 		707670822A6F5D7200B51D5F /* ARAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAppIconView.swift; sourceTree = "<group>"; };
 		707670852A6F667700B51D5F /* SummaryAppCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAppCollectionDelegate.swift; sourceTree = "<group>"; };
+		707670882A6F7AE300B51D5F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOtherAppsDashboardView.swift; sourceTree = "<group>"; };
 		70918CED2A5FA61200685DE8 /* ARTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTime.swift; sourceTree = "<group>"; };
 		70918CF32A60F77300685DE8 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
@@ -1169,6 +1172,7 @@
 				7F4F00E2F2D021ADEC7D752687DF1060 /* UIColorExtensions.swift */,
 				D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */,
 				7029E2142A32BED400BA1A6E /* UIImage.swift */,
+				707670882A6F7AE300B51D5F /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1490,6 +1494,7 @@
 				705573DC2A68BD6D005969AC /* Event.swift in Sources */,
 				705573B92A6648DA005969AC /* ARView.swift in Sources */,
 				70D564A92A47DA5300FCFE4D /* RepositoryFactory.swift in Sources */,
+				7076708A2A6F7DC600B51D5F /* UIView.swift in Sources */,
 				70C0DAC82A5CF8560084A2DA /* SummaryOtherAppsTableViewController.swift in Sources */,
 				70C0DAC32A59D02D0084A2DA /* StringExtension.swift in Sources */,
 				70C0DAC02A59222C0084A2DA /* UIVIewControllerExtension.swift in Sources */,
@@ -1628,6 +1633,7 @@
 				70918CDD2A5CFF6700685DE8 /* SummaryOtherAppsTableViewCell.swift in Sources */,
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
 				C059AE25A3793362AEB6D89E0BDC423E /* UIButtonExtension.swift in Sources */,
+				707670892A6F7AE300B51D5F /* UIView.swift in Sources */,
 				705573C02A664F48005969AC /* ARAppView.swift in Sources */,
 				70B8D0972A6E087800D8F41B /* DomainComponentsFactory.swift in Sources */,
 				70B8D0482A6A249E00D8F41B /* ProgressReportView.swift in Sources */,
