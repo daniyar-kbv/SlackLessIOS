@@ -38,8 +38,7 @@ final class SummaryOtherAppsDasboardView: UIView {
     private(set) lazy var legendView = ARLegendView(type: .twoColor)
     
     func set(time: ARTime?) {
-        partitionsView.set(maxSize: partitionsView.frame.width,
-                           percentage: time?.getSlackedTotalPercentage() ?? 0.5,
+        partitionsView.set(percentage: time?.getSlackedTotalPercentage() ?? 0.5,
                            firstText: time?.getSlackedTotalPercentageText(),
                            secondText: time?.getOtherTotalPercentageText())
         timeLabel.text = time?.total.formatted(with: .abbreviated)

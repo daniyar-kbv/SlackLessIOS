@@ -76,6 +76,7 @@ extension ProgressReportViewModelImpl {
         }
         isntFirstDate.accept(getIsntFirstWeek())
         isntLastDate.accept(getIsntLastWeek())
+        days.accept(getCurrentWeek()?.days ?? [])
     }
     
     private func getCurrentWeek() -> ARWeek? {

@@ -18,8 +18,8 @@ protocol ARChartViewModelOutput {
     
     func getType() -> ARChartType
     func getItem(for index: Int) -> GraphRepresentable
-    func getMaxTime() -> TimeInterval
-    func getScaleInfo() -> (times: [TimeInterval], proportions: Double)
+    func getTimes() -> [TimeInterval]
+    func getSizeForItem(at index: Int) -> CGFloat
 }
 
 protocol ARChartViewModel: AnyObject {
@@ -55,26 +55,18 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
         items[index]
     }
     
-    func getMaxTime() -> TimeInterval {
-        return items.map({ $0.getTotalTime() }).max() ?? 0
-    }
-    
-    func getScaleInfo() -> (times: [TimeInterval], proportions: Double) {
-        let maxTimeItem = items.max(by: { $0.getTotalTime() < $1.getTotalTime() })
-        let maxViewSize = Constants.screenSize.width - 84
-        var maxBarSize: CGFloat?
+    func getTimes() -> [TimeInterval] {
+        var maxViewSize: CGFloat?
         
         switch type {
-        case .horizontal:
-            maxBarSize = Constants.screenSize.width - (maxTimeItem?.getTotalTimeFormatted()?.width(withConstrainedHeight: 20, font: SLFonts.primary.getFont(ofSize: 11, weight: .regular)) ?? 0) - 104
-            
-        case .vertical:
-            break
+        case .horizontal: maxViewSize = Constants.screenSize.width - 84
+        case .vertical: break
         }
         
-        guard let maxBarSize = maxBarSize,
-              let maxTime = maxTimeItem?.getTotalTime()
-        else { return (times: [], proportions: 0.0) }
+        guard let maxBarSize = getMaxSize(),
+              let maxTime = getMaxItem()?.getTotalTime(),
+              let maxViewSize = maxViewSize
+        else { return [] }
         
         var barSize = 0.0
         var maxScaleTime = 100
@@ -85,14 +77,38 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
                 maxScaleTime = i
             }
         }
-        
-        return (times: stride(from: 0.0, through: Double(maxScaleTime), by: Double(maxScaleTime)/4.0).dropFirst().map({ $0*3600 }),
-                proportions: barSize/Double(maxViewSize))
+        return stride(from: 0.0, through: Double(maxScaleTime), by: Double(maxScaleTime)/4.0).dropFirst().map({ $0*3600 })
+    }
+    
+    func getSizeForItem(at index: Int) -> CGFloat {
+        guard let maxTotalTime = getMaxItem()?.getTotalTime(),
+              let maxSize = getMaxSize()
+        else { return 0 }
+        return (items[index].getTotalTime()/maxTotalTime)*maxSize
     }
     
     //    Input
     
     func set(items: [GraphRepresentable]) {
         self.items = items
+    }
+}
+
+extension ARChartViewModelImpl {
+    private func getMaxItem() -> GraphRepresentable? {
+        items.max(by: { $0.getTotalTime() < $1.getTotalTime() })
+    }
+    
+    private func getMaxSize() -> CGFloat? {
+        var maxBarSize: CGFloat?
+        
+        switch type {
+        case .horizontal:
+            maxBarSize = Constants.screenSize.width - (getMaxItem()?.getTotalTimeFormatted()?.width(withConstrainedHeight: 20, font: SLFonts.primary.getFont(ofSize: 11, weight: .regular)) ?? 0) - 104
+        case .vertical:
+            break
+        }
+        
+        return maxBarSize
     }
 }

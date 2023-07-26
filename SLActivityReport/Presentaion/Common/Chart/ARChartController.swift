@@ -65,16 +65,14 @@ extension ARChartController: UICollectionViewDataSource {
             if indexPath.item == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
                 let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionScaleCell.self), for: indexPath) as! ARChartCollectionScaleCell
                 cell.set(type: viewModel.output.getType(),
-                         times: viewModel.output.getScaleInfo().times)
+                         times: viewModel.output.getTimes())
                 return cell
             }
-            
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionBarCell.self), for: indexPath) as! ARChartCollectionBarCell
-//            cell.set(type: viewModel.output.getType(),
-//                     item: viewModel.output.getItem(for: indexPath.item),
-//                     maxTime: viewModel.output.getMaxTime(),
-//                     maxProportions: viewModel.output.getScaleInfo().proportions)
-            return collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionBarCell.self), for: indexPath) as! ARChartCollectionBarCell
+            cell.set(type: viewModel.output.getType(),
+                     item: viewModel.output.getItem(for: indexPath.item),
+                     size: viewModel.output.getSizeForItem(at: indexPath.item))
+            return cell
         case .vertical:
             return UICollectionViewCell()
         }

@@ -51,21 +51,11 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         return view
     }()
     
-    private(set) lazy var mainStackView: UIStackView = {
-        let view = UIStackView()
-        view.distribution = .fill
-        view.alignment = .fill
-        return view
-    }()
-    
-//    Tech debt: refactor with DashedView
-    
     override func layoutSubviews() {
         super.layoutSubviews()
 
         guard let type = type else { return }
-
-        let path = CGMutablePath()
+        
         switch type {
         case .horizontal:
             redrawDashedLine(on: .bottom)
@@ -74,7 +64,7 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         }
     }
     
-    func set(type: ARChartType, item: GraphRepresentable, maxTime: TimeInterval, maxProportions: Double) {
+    func set(type: ARChartType, item: GraphRepresentable, size: CGFloat) {
         self.type = type
         layoutUI()
         
@@ -83,15 +73,16 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         
         switch type {
         case .horizontal:
-            barView?.set(maxSize: barStackView.frame.width*maxProportions,
-                         percentage: item.getPercentage(),
+            barView?.snp.remakeConstraints({
+                $0.height.equalToSuperview().inset(4)
+                $0.width.equalTo(size)
+            })
+            
+            barView?.set(percentage: item.getPercentage(),
                          firstText: item.getSlackedTimeFormatted(),
                          secondText: nil)
         case .vertical:
-            let maxTextHeight = item.getTotalTimeFormatted()?.height(withConstrainedWidth: 100, font: timeLabel.font) ?? 0
-            let maxSize = barStackView.frame.height - maxTextHeight - 20
-            barView?.set(maxSize: maxSize,
-                         percentage: item.getPercentage(),
+            barView?.set(percentage: item.getPercentage(),
                          firstText: item.getSlackedTimeFormatted(),
                          secondText: nil)
         }
@@ -108,21 +99,20 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         case .vertical: barView = ARPartitionsView(type: .graph(.vertical))
         }
         
-        addSubview(mainStackView)
-        mainStackView.snp.makeConstraints({
-            $0.edges.equalToSuperview()
-        })
+        [dateLabel, separatorView].forEach(dateView.addSubview(_:))
         
-        dateView.addSubview(dateLabel)
+        barStackView.distribution = .fill
         
         switch type {
         case .horizontal:
+            addDashedLine(on: .bottom)
+            
             dateLabel.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
             
-            [dateView, barStackView].forEach(mainStackView.addArrangedSubview(_:))
-            mainStackView.axis = .horizontal
+            [dateView, barStackView].forEach(addSubview(_:))
             
             dateView.snp.makeConstraints({
+                $0.left.verticalEdges.equalToSuperview()
                 $0.width.equalTo(20).priority(.required)
             })
             
@@ -131,26 +121,27 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
                 $0.centerX.equalToSuperview()
             })
             
-            [barView!, lineView, timeLabel].forEach(barStackView.addArrangedSubview(_:))
-            barStackView.axis = .horizontal
+            separatorView.snp.makeConstraints({
+                $0.right.verticalEdges.equalToSuperview()
+                $0.width.equalTo(0.5)
+            })
             
             barStackView.snp.makeConstraints({
-                $0.left.verticalEdges.equalToSuperview()
+                $0.left.equalTo(dateView.snp.right)
+                $0.verticalEdges.equalToSuperview()
                 $0.right.equalToSuperview().offset(-4)
             })
             
-            lineView.snp.makeConstraints({
-                $0.height.equalTo(0.5)
-            })
+            [barView!, lineView, timeLabel].forEach(barStackView.addArrangedSubview(_:))
+            barStackView.axis = .horizontal
             
-            barView!.snp.makeConstraints({
-                $0.height.equalToSuperview().inset(4)
+            lineView.snp.makeConstraints({
+                $0.height.equalTo(0.4)
             })
         case .vertical:
             dateLabel.font = SLFonts.primary.getFont(ofSize: 8, weight: .regular)
             
-            [barStackView, dateView].forEach(mainStackView.addArrangedSubview(_:))
-            mainStackView.axis = .vertical
+            [barStackView, dateView].forEach(addSubview(_:))
             
             dateView.snp.makeConstraints({
                 $0.height.equalTo(20)
