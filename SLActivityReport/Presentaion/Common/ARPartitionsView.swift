@@ -90,37 +90,24 @@ final class ARPartitionsView: UIStackView {
         default: break
         }
         
-        firstPartitionLabel.isHidden = firstPartitionLabel.frame.width + 16 > firstPartitionView.frame.width
-        secondPartitionLabel.isHidden = secondPartitionLabel.frame.width + 16 > secondPartitionView.frame.width
+        firstPartitionLabel.isHidden = firstPartitionLabel.frame.width + 32 > firstPartitionView.frame.width
+        secondPartitionLabel.isHidden = secondPartitionLabel.frame.width + 32 > secondPartitionView.frame.width
     }
     
-    func set(maxSize: CGFloat,
-             percentage: Double,
+    func set(percentage: Double,
              firstText: String?,
              secondText: String?) {
         firstPartitionLabel.text = firstText
         secondPartitionLabel.text = secondText
         
         switch type {
-        case .dasboard:
+        case .dasboard, .graph(.horizontal):
             firstPartitionView.snp.remakeConstraints({
-                $0.width.equalTo(maxSize*percentage)
-            })
-        case .graph(.horizontal):
-            snp.remakeConstraints({
-                $0.width.equalTo(maxSize)
-            })
-            
-            firstPartitionView.snp.remakeConstraints({
-                $0.width.equalTo(maxSize*percentage)
+                $0.width.equalToSuperview().multipliedBy(percentage)
             })
         case .graph(.vertical):
-            snp.remakeConstraints({
-                $0.height.equalTo(maxSize)
-            })
-            
             firstPartitionView.snp.remakeConstraints({
-                $0.height.equalTo(maxSize*percentage)
+                $0.height.equalToSuperview().multipliedBy(percentage)
             })
         }
     }
@@ -129,18 +116,19 @@ final class ARPartitionsView: UIStackView {
         [firstPartitionView, secondPartitionView].forEach(addArrangedSubview(_:))
         layer.cornerRadius = 4
         clipsToBounds = true
+        alignment = .fill
+        backgroundColor = secondPartitionView.backgroundColor
         
         switch type {
         case .dasboard:
             axis = .horizontal
         case let .graph(type):
-            
             switch type {
             case .horizontal:
                 axis = .horizontal
-                layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+                layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
                 firstPartitionView.layer.cornerRadius = 4
-                firstPartitionView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+                firstPartitionView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
             case .vertical:
                 addDashedLine(on: .top)
                 axis = .vertical
