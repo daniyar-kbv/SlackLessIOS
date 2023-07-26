@@ -9,8 +9,7 @@ import Foundation
 
 extension Date {
     func getFirstDayOfWeek() -> Date {
-        return Calendar
-            .current
+        return Calendar(identifier: .gregorian)
             .dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self)
             .date!
     }
@@ -19,7 +18,7 @@ extension Date {
         return Calendar
             .current
             .date(byAdding: .day,
-                  value: 7,
+                  value: 6,
                   to: getFirstDayOfWeek())!
     }
     
