@@ -13,8 +13,6 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
     private var uiLaidOut = false
     private var type: ARChartType?
     
-    private(set) lazy var dashedLineLayer = CAShapeLayer()
-    
     private(set) lazy var dateLabel: UILabel = {
         let view = UILabel()
         view.textColor = SLColors.gray4.getColor()
@@ -70,18 +68,10 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         let path = CGMutablePath()
         switch type {
         case .horizontal:
-            path.addLines(between: [.init(x: mainStackView.frame.minX,
-                                          y: mainStackView.frame.minY),
-                                    .init(x: mainStackView.frame.maxX,
-                                          y: mainStackView.frame.minY)])
+            redrawDashedLine(on: .bottom)
         case .vertical:
-            path.addLines(between: [.init(x: mainStackView.frame.maxX,
-                                          y: mainStackView.frame.minY),
-                                    .init(x: mainStackView.frame.maxX,
-                                          y: mainStackView.frame.maxY)])
+            redrawDashedLine(on: .left)
         }
-
-        dashedLineLayer.path = path
     }
     
     func set(type: ARChartType, item: GraphRepresentable, maxTime: TimeInterval, maxProportions: Double) {
@@ -124,11 +114,6 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         })
         
         dateView.addSubview(dateLabel)
-        
-        dashedLineLayer.strokeColor = SLColors.gray4.getColor()?.cgColor
-        dashedLineLayer.lineWidth = 0.5
-        dashedLineLayer.lineDashPattern = [2, 2]
-        mainStackView.layer.addSublayer(dashedLineLayer)
         
         switch type {
         case .horizontal:

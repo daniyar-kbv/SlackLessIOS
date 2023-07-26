@@ -14,12 +14,13 @@ final class ARPartitionsView: UIStackView {
     
     var isEnabled = true {
         didSet {
-            dashedLineLayer.isHidden = isEnabled
             if isEnabled {
+                addDashedLine(on: .top)
                 firstPartitionView.backgroundColor = SLColors.accent1.getColor()
                 firstPartitionLabel.textColor = SLColors.gray1.getColor()
                 firstPartitionView.layer.cornerRadius = 4
             } else {
+                removeDashedLine(on: .top)
                 firstPartitionView.backgroundColor = SLColors.gray4.getColor()
                 firstPartitionLabel.textColor = SLColors.label2.getColor()
                 firstPartitionView.layer.cornerRadius = 0
@@ -64,15 +65,6 @@ final class ARPartitionsView: UIStackView {
         return view
     }()
     
-    private(set) lazy var dashedLineLayer: CAShapeLayer = {
-        let view = CAShapeLayer()
-        view.isHidden = true
-        view.strokeColor = SLColors.accent1.getColor()?.cgColor
-        view.lineWidth = 1.5
-        view.lineDashPattern = [4, 4]
-        return view
-    }()
-    
     init(type: ViewType) {
         self.type = type
         
@@ -88,12 +80,15 @@ final class ARPartitionsView: UIStackView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let path = CGMutablePath()
-        path.addLines(between: [.init(x: firstPartitionView.frame.minX,
-                                      y: firstPartitionView.frame.minY),
-                                .init(x: firstPartitionView.frame.maxX,
-                                      y: firstPartitionView.frame.minY)])
-        dashedLineLayer.path = path
+        switch type {
+        case .graph(.vertical):
+            guard !isEnabled else { break }
+            redrawDashedLine(on: .top,
+                             strokeColor: SLColors.accent1.getColor()?.cgColor,
+                             lineWidth: 1.5,
+                             lineDashPattern: [4, 4])
+        default: break
+        }
         
         firstPartitionLabel.isHidden = firstPartitionLabel.frame.width + 16 > firstPartitionView.frame.width
         secondPartitionLabel.isHidden = secondPartitionLabel.frame.width + 16 > secondPartitionView.frame.width
@@ -134,7 +129,6 @@ final class ARPartitionsView: UIStackView {
         [firstPartitionView, secondPartitionView].forEach(addArrangedSubview(_:))
         layer.cornerRadius = 4
         clipsToBounds = true
-        firstPartitionView.layer.addSublayer(dashedLineLayer)
         
         switch type {
         case .dasboard:
@@ -148,9 +142,9 @@ final class ARPartitionsView: UIStackView {
                 firstPartitionView.layer.cornerRadius = 4
                 firstPartitionView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             case .vertical:
+                addDashedLine(on: .top)
                 axis = .vertical
                 layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-                firstPartitionView.layer.addSublayer(dashedLineLayer)
                 firstPartitionView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
                 firstPartitionView.layer.cornerRadius = 4
             }

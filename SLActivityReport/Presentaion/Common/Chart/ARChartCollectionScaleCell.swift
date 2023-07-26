@@ -12,8 +12,6 @@ import SnapKit
 final class ARChartCollectionScaleCell: UICollectionViewCell {
     private var uiLaidOut = false
     
-    private(set) lazy var topLineView = ARDashedView()
-    
     private(set) lazy var zeroTimeView: TimeView = {
         let view = TimeView(type: .horizontal)
         view.timeLabel.text = "0"
@@ -60,11 +58,7 @@ final class ARChartCollectionScaleCell: UICollectionViewCell {
         guard !uiLaidOut else { return }
         uiLaidOut = true
         
-        [topLineView, mainStackView].forEach(addSubview(_:))
-        
-        topLineView.snp.makeConstraints({
-            $0.top.horizontalEdges.equalToSuperview()
-        })
+        [mainStackView].forEach(addSubview(_:))
         
         mainStackView.snp.makeConstraints({
             $0.edges.equalToSuperview()
@@ -96,7 +90,13 @@ extension ARChartCollectionScaleCell {
             return view
         }()
         
-        private(set) lazy var dashedLineView = ARDashedView()
+        private(set) lazy var dashedLineView = UIView()
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            
+            redrawDashedLine(on: .right)
+        }
         
         init(type: ARChartType) {
             self.type = type
@@ -111,14 +111,12 @@ extension ARChartCollectionScaleCell {
         }
         
         private func layoutUI() {
-            [timeLabel, dashedLineView].forEach(addSubview(_:))
+            addDashedLine(on: .right)
+            
+            [timeLabel].forEach(addSubview(_:))
             
             timeLabel.snp.makeConstraints({
                 $0.top.right.equalToSuperview().inset(4)
-            })
-            
-            dashedLineView.snp.makeConstraints({
-                $0.right.verticalEdges.equalToSuperview()
             })
         }
     }
