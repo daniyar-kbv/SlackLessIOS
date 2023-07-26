@@ -38,10 +38,11 @@ struct MockData {
     }
     
     static func getWeeks() -> [ARWeek] {
-        return (Int(0)..<Int(5)).map({ week in
+        return (Int(0)..<Int(5)).reversed().map({ week in
             let calendar = Calendar.current
-            let date = calendar.date(byAdding: .weekOfYear, value: -week, to: Date())!
-            return .init(startDate: date.getFirstDayOfWeek(),
+            let firstDayOfWeek = Date().getFirstDayOfWeek()
+            let date = calendar.date(byAdding: .weekOfYear, value: -week, to: firstDayOfWeek)!
+            return .init(startDate: date,
                          days: getDays(isRandom: true).map({ day in
                 ARWeek.Day(weekday: calendar.component(.weekday, from: day.date),
                            time: day.time)
