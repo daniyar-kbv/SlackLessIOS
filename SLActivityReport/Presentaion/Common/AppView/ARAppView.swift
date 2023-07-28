@@ -8,14 +8,10 @@
 import Foundation
 import UIKit
 import SnapKit
-import Kingfisher
 
 final class ARAppView: UIStackView {
     private(set) lazy var appIconView: UIView = {
         let view = UIView()
-        view.snp.makeConstraints({
-            $0.size.equalTo(28)
-        })
         return view
     }()
     
@@ -55,8 +51,8 @@ final class ARAppView: UIStackView {
         [appIconView, appNameLabel, timeBarView, timeLabel].forEach(addSubview(_:))
         
         appIconView.snp.makeConstraints({
-            $0.top.equalToSuperview().offset(4.5)
-            $0.left.equalToSuperview()
+            $0.left.centerY.equalToSuperview()
+            $0.size.equalTo(28)
         })
         
         appNameLabel.snp.makeConstraints({
@@ -100,10 +96,6 @@ extension ARAppView {
             $0.bottom.equalTo(appIconView)
             $0.width.equalTo(width)
         })
-    }
-    
-    func set(icon: UIImage) {
-//        appIconView.image = icon
     }
 }
 
