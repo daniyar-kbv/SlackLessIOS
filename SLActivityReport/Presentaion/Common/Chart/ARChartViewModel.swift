@@ -20,6 +20,7 @@ protocol ARChartViewModelOutput {
     func getItem(for index: Int) -> GraphRepresentable
     func getTimes() -> [TimeInterval]
     func getSizeForItem(at index: Int) -> CGFloat
+    func getIsCurrent(at index: Int) -> Bool
 }
 
 protocol ARChartViewModel: AnyObject {
@@ -60,7 +61,7 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
         
         switch type {
         case .horizontal: maxViewSize = Constants.screenSize.width - 84
-        case .vertical: break
+        case .vertical: maxViewSize = 160
         }
         
         guard let maxBarSize = getMaxSize(),
@@ -77,7 +78,7 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
                 maxScaleTime = i
             }
         }
-        return stride(from: 0.0, through: Double(maxScaleTime), by: Double(maxScaleTime)/4.0).dropFirst().map({ $0*3600 })
+        return stride(from: 0.0, through: Double(maxScaleTime), by: Double(maxScaleTime)/(type == .horizontal ? 4.0 : 3.0)).dropFirst().map({ $0*3600 })
     }
     
     func getSizeForItem(at index: Int) -> CGFloat {
@@ -85,6 +86,10 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
               let maxSize = getMaxSize()
         else { return 0 }
         return (items[index].getTotalTime()/maxTotalTime)*maxSize
+    }
+    
+    func getIsCurrent(at index: Int) -> Bool {
+        items[index].getIsCurrent()
     }
     
     //    Input
@@ -106,7 +111,7 @@ extension ARChartViewModelImpl {
         case .horizontal:
             maxBarSize = Constants.screenSize.width - (getMaxItem()?.getTotalTimeFormatted()?.width(withConstrainedHeight: 20, font: SLFonts.primary.getFont(ofSize: 11, weight: .regular)) ?? 0) - 104
         case .vertical:
-            break
+            maxBarSize = 140 - (getMaxItem()?.getTotalTimeFormatted()?.height(withConstrainedWidth: 100, font: SLFonts.primary.getFont(ofSize: 11, weight: .regular)) ?? 0)
         }
         
         return maxBarSize

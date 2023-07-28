@@ -60,22 +60,22 @@ extension ARChartController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch viewModel.output.getType() {
-        case .horizontal:
-            if indexPath.item == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
-                let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionScaleCell.self), for: indexPath) as! ARChartCollectionScaleCell
-                cell.set(type: viewModel.output.getType(),
-                         times: viewModel.output.getTimes())
-                return cell
-            }
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionBarCell.self), for: indexPath) as! ARChartCollectionBarCell
+        if (viewModel.output.getType() == .horizontal && indexPath.item == collectionView.numberOfItems(inSection: indexPath.section) - 1) ||
+            (viewModel.output.getType() == .vertical && indexPath.item == 0) {
+            let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionScaleCell.self), for: indexPath) as! ARChartCollectionScaleCell
             cell.set(type: viewModel.output.getType(),
-                     item: viewModel.output.getItem(for: indexPath.item),
-                     size: viewModel.output.getSizeForItem(at: indexPath.item))
+                     times: viewModel.output.getTimes())
             return cell
-        case .vertical:
-            return UICollectionViewCell()
         }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionBarCell.self), for: indexPath) as! ARChartCollectionBarCell
+        cell.set(type: viewModel.output.getType(),
+                 item: viewModel.output.getItem(for: indexPath.item + (viewModel.output.getType() == .vertical ? -1 : 0)),
+                 size: viewModel.output.getSizeForItem(at: indexPath.item + (viewModel.output.getType() == .vertical ? -1 : 0)))
+        if viewModel.output.getType() == .vertical {
+            cell.barView?.isEnabled = viewModel.output.getIsCurrent(at: indexPath.row - 1)
+        }
+        return cell
     }
 }
 
@@ -92,7 +92,10 @@ extension ARChartController: UICollectionViewDelegateFlowLayout {
             }
             return .init(width: collectionView.frame.width, height: 30)
         case .vertical:
-            return .init(width: 0, height: 0)
+            if indexPath.item == 0 {
+                return .init(width: 20, height: collectionView.frame.height)
+            }
+            return .init(width: (collectionView.frame.width-20)/5, height: collectionView.frame.height)
         }
     }
 }

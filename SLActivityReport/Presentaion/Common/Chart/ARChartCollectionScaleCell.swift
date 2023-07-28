@@ -12,13 +12,9 @@ import SnapKit
 final class ARChartCollectionScaleCell: UICollectionViewCell {
     private var uiLaidOut = false
     
-    private(set) lazy var zeroTimeView: TimeView = {
-        let view = TimeView(type: .horizontal)
-        view.timeLabel.text = "0"
-        return view
-    }()
+    private(set) var zeroTimeView: TimeView?
     
-    private(set) lazy var rightStackView: UIStackView = {
+    private(set) lazy var timesStackView: UIStackView = {
         let view = UIStackView()
         view.distribution = .fillEqually
         view.alignment = .fill
@@ -26,7 +22,7 @@ final class ARChartCollectionScaleCell: UICollectionViewCell {
     }()
     
     private(set) lazy var mainStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [zeroTimeView, rightStackView])
+        let view = UIStackView()
         view.distribution = .fill
         view.alignment = .fill
         return view
@@ -35,44 +31,46 @@ final class ARChartCollectionScaleCell: UICollectionViewCell {
     func set(type: ARChartType, times: [TimeInterval]) {
         layoutUI(type: type)
         
-        rightStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
-        
+        timesStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+
         var timesReordered = times
         
-        switch type {
-        case .vertical: timesReordered.reverse()
-        default: break
+        if type == .vertical {
+            timesReordered.reverse()
         }
         
         for time in timesReordered {
             let timeView = TimeView(type: type)
             timeView.timeLabel.text = time.formatted(with: .abbreviated, allowedUnits: [.hour])
-            rightStackView.addArrangedSubview(timeView)
+            timesStackView.addArrangedSubview(timeView)
         }
-        
-        setNeedsLayout()
-        layoutIfNeeded()
     }
     
     private func layoutUI(type: ARChartType) {
         guard !uiLaidOut else { return }
         uiLaidOut = true
         
-        [mainStackView].forEach(addSubview(_:))
+        zeroTimeView = TimeView(type: type)
+        zeroTimeView?.timeLabel.text = "0"
         
+        addSubview(mainStackView)
         mainStackView.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
         
         switch type {
         case .horizontal:
+            [zeroTimeView!, timesStackView].forEach(mainStackView.addArrangedSubview(_:))
             mainStackView.axis = .horizontal
-            zeroTimeView.snp.makeConstraints({
+            timesStackView.axis = .horizontal
+            zeroTimeView?.snp.makeConstraints({
                 $0.width.equalTo(20)
             })
         case .vertical:
+            [timesStackView, zeroTimeView!].forEach(mainStackView.addArrangedSubview(_:))
             mainStackView.axis = .vertical
-            zeroTimeView.snp.makeConstraints({
+            timesStackView.axis = .vertical
+            zeroTimeView?.snp.makeConstraints({
                 $0.height.equalTo(20)
             })
         }
@@ -87,15 +85,18 @@ extension ARChartCollectionScaleCell {
             let view = UILabel()
             view.textColor = SLColors.gray4.getColor()
             view.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
+            view.textAlignment = .right
+            view.adjustsFontSizeToFitWidth = true
             return view
         }()
-        
-        private(set) lazy var dashedLineView = UIView()
         
         override func layoutSubviews() {
             super.layoutSubviews()
             
-            redrawDashedLine(on: .right)
+            switch type {
+            case .horizontal: redrawDashedLine(on: .right)
+            case .vertical: redrawDashedLine(on: .top)
+            }
         }
         
         init(type: ARChartType) {
@@ -111,12 +112,16 @@ extension ARChartCollectionScaleCell {
         }
         
         private func layoutUI() {
-            addDashedLine(on: .right)
+            switch type {
+            case .horizontal: addDashedLine(on: .right)
+            case .vertical: addDashedLine(on: .top)
+            }
             
             [timeLabel].forEach(addSubview(_:))
             
             timeLabel.snp.makeConstraints({
                 $0.top.right.equalToSuperview().inset(4)
+                $0.left.equalToSuperview()
             })
         }
     }
