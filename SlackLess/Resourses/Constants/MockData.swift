@@ -38,15 +38,31 @@ struct MockData {
     }
     
     static func getWeeks() -> [ARWeek] {
-        return (Int(0)..<Int(5)).reversed().map({ week in
+        let weeks = (Int(0)..<Int(5)).reversed().map({ week in
+            var days = [ARWeek.Day]()
             let calendar = Calendar.current
-            let firstDayOfWeek = Date().getFirstDayOfWeek()
-            let date = calendar.date(byAdding: .weekOfYear, value: -week, to: firstDayOfWeek)!
-            return .init(startDate: date,
-                         days: getDays(isRandom: true).map({ day in
-                ARWeek.Day(weekday: calendar.component(.weekday, from: day.date),
-                           time: day.time)
-            }))
+            let today = Date()
+            let firstDayOfWeek = calendar.date(byAdding: .weekOfYear, value: -week, to: today.getFirstDayOfWeek())!
+            let startingDate = firstDayOfWeek.getLastDayOfWeek()
+            guard week < 4 else {
+                return ARWeek(startDate: firstDayOfWeek, days: (0..<7).map({
+                    let date = calendar.date(byAdding: .day, value: -$0, to: startingDate)!
+                    return .init(weekday: calendar.component(.weekday, from: date), time: .init(slacked: 0, total: 0, limit: 0, average: 0))
+                    
+                }))
+            }
+            for (index, day) in getDays(isRandom: true).enumerated() {
+                let date = calendar.date(byAdding: .day, value: -index, to: startingDate)!
+                guard date <= today else {
+                    days.append(.init(weekday: calendar.component(.weekday, from: date),
+                                      time: .init(slacked: 0, total: 0, limit: 0, average: 0)))
+                    continue
+                }
+                days.append(.init(weekday: calendar.component(.weekday, from: date),
+                                  time: day.time))
+            }
+            return .init(startDate: firstDayOfWeek, days: days.reversed())
         })
+        return weeks
     }
 }
