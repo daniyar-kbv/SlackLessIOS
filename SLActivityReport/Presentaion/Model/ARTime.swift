@@ -19,7 +19,8 @@ struct ARTime {
     }
     
     func getSlackedTotalPercentage() -> Double {
-        .init(slacked/total)
+        guard slacked > 0 && total > 1 else { return 0 }
+        return .init(slacked/total)
     }
     
     func getSlackedTotalPercentageText() -> String {

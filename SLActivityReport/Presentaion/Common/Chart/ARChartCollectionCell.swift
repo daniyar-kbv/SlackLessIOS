@@ -71,6 +71,8 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         dateLabel.text = item.getDateText()
         timeLabel.text = item.getTotalTimeFormatted()
         
+        barStackView.isHidden = item.getTotalTime() == 0
+        
         switch type {
         case .horizontal:
             barView?.snp.remakeConstraints({
@@ -157,14 +159,19 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
                 $0.centerX.equalToSuperview()
             })
             
-            [timeLabel, lineView, barView!].forEach(barStackView.addArrangedSubview(_:))
-            barStackView.axis = .vertical
+            separatorView.snp.makeConstraints({
+                $0.top.horizontalEdges.equalToSuperview()
+                $0.height.equalTo(0.25)
+            })
             
             barStackView.snp.makeConstraints({
                 $0.bottom.equalTo(dateView.snp.top)
                 $0.horizontalEdges.equalToSuperview()
                 $0.top.equalToSuperview().offset(4)
             })
+            
+            [timeLabel, lineView, barView!].forEach(barStackView.addArrangedSubview(_:))
+            barStackView.axis = .vertical
             
             lineView.snp.makeConstraints({
                 $0.width.equalTo(0.5)

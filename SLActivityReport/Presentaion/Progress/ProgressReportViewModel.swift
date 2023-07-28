@@ -43,6 +43,9 @@ final class ProgressReportViewModelImpl: ProgressReportViewModel,
     
     init(weeks: [ARWeek]) {
         self.allWeeks = weeks
+        
+        print(getCurrentWeek()?.getTime())
+        print(getPreviousWeek()?.getTime())
     }
     
     //    Output
