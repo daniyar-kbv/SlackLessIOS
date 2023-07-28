@@ -23,8 +23,11 @@ final class ProgressReportView: ARView {
         return view
     }()
     
+    private(set) lazy var secondChartView = SLContainerView()
+    
     private(set) lazy var secondSectionView: ARSectionView = {
         let view = ARSectionView(titleText: SLTexts.Progress.secondSectonTitle.localized())
+        view.addContainer(view: secondChartView)
         return view
     }()
     

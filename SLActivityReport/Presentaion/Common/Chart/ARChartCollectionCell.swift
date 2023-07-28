@@ -82,6 +82,11 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
                          firstText: item.getSlackedTimeFormatted(),
                          secondText: nil)
         case .vertical:
+            barView!.snp.remakeConstraints({
+                $0.width.equalToSuperview().inset(4)
+                $0.height.equalTo(size)
+            })
+            
             barView?.set(percentage: item.getPercentage(),
                          firstText: item.getSlackedTimeFormatted(),
                          secondText: nil)
@@ -100,6 +105,7 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
         }
         
         [dateLabel, separatorView].forEach(dateView.addSubview(_:))
+        [dateView, barStackView].forEach(addSubview(_:))
         
         barStackView.distribution = .fill
         
@@ -108,8 +114,6 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
             addDashedLine(on: .bottom)
             
             dateLabel.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
-            
-            [dateView, barStackView].forEach(addSubview(_:))
             
             dateView.snp.makeConstraints({
                 $0.left.verticalEdges.equalToSuperview()
@@ -139,11 +143,12 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
                 $0.height.equalTo(0.4)
             })
         case .vertical:
+            addDashedLine(on: .left)
+            
             dateLabel.font = SLFonts.primary.getFont(ofSize: 8, weight: .regular)
             
-            [barStackView, dateView].forEach(addSubview(_:))
-            
             dateView.snp.makeConstraints({
+                $0.bottom.horizontalEdges.equalToSuperview()
                 $0.height.equalTo(20)
             })
             
@@ -156,16 +161,13 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
             barStackView.axis = .vertical
             
             barStackView.snp.makeConstraints({
-                $0.bottom.verticalEdges.equalToSuperview()
+                $0.bottom.equalTo(dateView.snp.top)
+                $0.horizontalEdges.equalToSuperview()
                 $0.top.equalToSuperview().offset(4)
             })
             
             lineView.snp.makeConstraints({
                 $0.width.equalTo(0.5)
-            })
-            
-            barView!.snp.makeConstraints({
-                $0.width.equalToSuperview().inset(4)
             })
         }
     }

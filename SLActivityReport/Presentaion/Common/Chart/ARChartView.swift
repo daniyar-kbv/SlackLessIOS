@@ -42,7 +42,7 @@ final class ARChartView: UIView {
         return view
     }()
     
-    private(set) lazy var legendView = ARLegendView(type: .twoColor)
+    private(set) lazy var legendView: ARLegendView = ARLegendView(type: type == .horizontal ? .oneColor : .twoColor)
     
     init(type: ARChartType) {
         self.type = type

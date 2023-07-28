@@ -18,6 +18,8 @@ final class ProgressReportController: UIViewController {
     
     private lazy var firstChartViewModel: ARChartViewModel = ARChartViewModelImpl(type: .horizontal,
                                                                                   items: viewModel.output.days.value)
+    private lazy var secondChartViewModel: ARChartViewModel = ARChartViewModelImpl(type: .vertical,
+                                                                                  items: viewModel.output.weeks.value)
     
     init(viewModel: ProgressReportViewModel) {
         self.viewModel = viewModel
@@ -48,6 +50,10 @@ final class ProgressReportController: UIViewController {
         let firstChartController = ARChartController(viewModel: firstChartViewModel)
         contentView.firstChartView.addContent(view: firstChartController.view)
         add(controller: firstChartController)
+        
+        let secondChartController = ARChartController(viewModel: secondChartViewModel)
+        contentView.secondChartView.addContent(view: secondChartController.view)
+        add(controller: secondChartController)
     }
     
     private func bindView() {
@@ -77,13 +83,17 @@ final class ProgressReportController: UIViewController {
         })
         .disposed(by: disposeBag)
         
+        viewModel.output.isntFirstDate.bind(to: contentView.dateSwitcherView.leftButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         viewModel.output.days
             .subscribe(onNext: firstChartViewModel.input.set(items:))
             .disposed(by: disposeBag)
         
-        viewModel.output.isntFirstDate.bind(to: contentView.dateSwitcherView.leftButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
+        viewModel.output.weeks
+            .subscribe(onNext: secondChartViewModel.input.set(items:))
             .disposed(by: disposeBag)
     }
 }

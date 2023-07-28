@@ -35,7 +35,7 @@ final class SummaryOtherAppsDasboardView: UIView {
     
     private(set) lazy var partitionsView = ARPartitionsView(type: .dasboard)
     
-    private(set) lazy var legendView = ARLegendView(type: .twoColor)
+    private(set) lazy var legendView = ARLegendView(type: .oneColor)
     
     func set(time: ARTime?) {
         partitionsView.set(percentage: time?.getSlackedTotalPercentage() ?? 0.5,

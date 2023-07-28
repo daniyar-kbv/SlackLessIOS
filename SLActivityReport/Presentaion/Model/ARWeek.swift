@@ -13,6 +13,7 @@ protocol GraphRepresentable {
     func getTotalTime() -> TimeInterval
     func getTotalTimeFormatted() -> String?
     func getPercentage() -> Double
+    func getIsCurrent() -> Bool
 }
 
 struct ARWeek {
@@ -53,6 +54,10 @@ extension ARWeek {
         func getPercentage() -> Double {
             time.getSlackedTotalPercentage()
         }
+        
+        func getIsCurrent() -> Bool {
+            Calendar.current.component(.weekday, from: Date()) == weekday
+        }
     }
 }
 
@@ -77,5 +82,9 @@ extension ARWeek: GraphRepresentable {
     
     func getPercentage() -> Double {
         getTime().getSlackedTotalPercentage()
+    }
+    
+    func getIsCurrent() -> Bool {
+        return Date() >= startDate && Date() <= startDate.getLastDayOfWeek()
     }
 }
