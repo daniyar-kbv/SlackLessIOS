@@ -43,9 +43,6 @@ final class ProgressReportViewModelImpl: ProgressReportViewModel,
     
     init(weeks: [ARWeek]) {
         self.allWeeks = weeks
-        
-        print(getCurrentWeek()?.getTime())
-        print(getPreviousWeek()?.getTime())
     }
     
     //    Output
@@ -76,6 +73,7 @@ extension ProgressReportViewModelImpl {
         if let currentWeek = getCurrentWeek() {
             date.accept(format(startDate: currentWeek.startDate,
                                endDate: currentWeek.startDate.getLastDayOfWeek()))
+            
             time.accept((currentWeekTime: currentWeek.getTime(),
                          previousWeekTime: getPreviousWeek()?.getTime()))
         }
@@ -100,7 +98,7 @@ extension ProgressReportViewModelImpl {
     }
     
     private func getIsntFirstWeek() -> Bool {
-        currentIndex > 0
+        currentIndex > 0 && allWeeks[currentIndex-1].getTime().total > 0
     }
     
     private func getIsntLastWeek() -> Bool {

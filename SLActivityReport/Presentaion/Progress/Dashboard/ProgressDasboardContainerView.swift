@@ -71,7 +71,7 @@ final class ProgressDasboardContainerView: UIView {
     func set(time: TimeInterval?, previousTime: TimeInterval?) {
         guard let time = time else { return }
         timeLabel.text = time.formatted(with: .abbreviated)
-        changeView.set(change: previousTime != nil ? (time/previousTime!)-1 : nil)
+        changeView.set(change: previousTime != nil && (previousTime ?? 0) > 0 ? (time/previousTime!)-1 : nil)
     }
 }
 
