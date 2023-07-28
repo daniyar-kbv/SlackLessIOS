@@ -11,12 +11,21 @@ import ManagedSettings
 
 struct ARAppIconView: View {
     @State var applicationToken: ApplicationToken
-    
+    @State var imageSize: CGFloat = 0
+
     var body: some View {
         VStack {
             Label(applicationToken)
                 .labelStyle(.iconOnly)
-                .scaleEffect(56/76)
+                .background {
+                    GeometryReader { geometry in
+                        Color.clear
+                            .onAppear {
+                                imageSize = geometry.size.width
+                            }
+                    }
+                }
+                .scaleEffect(28/imageSize)
         }
     }
 }

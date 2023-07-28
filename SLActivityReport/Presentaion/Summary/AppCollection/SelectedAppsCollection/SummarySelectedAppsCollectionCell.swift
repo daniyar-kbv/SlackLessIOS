@@ -39,7 +39,9 @@ final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
         contentView.addSubview(appTimeView!)
         
         appTimeView?.snp.makeConstraints({
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview().offset(4.5)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(28)
         })
     }
 }
