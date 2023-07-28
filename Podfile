@@ -1,33 +1,42 @@
 platform :ios, '15.0'
+use_frameworks!
 
-target 'SlackLess' do
-  use_frameworks!
-
-  pod 'Alamofire'
+def shared_pods
+  # Reactive
   pod 'RxSwift'
   pod 'RxCocoa'
+  
+  # UI
   pod 'SnapKit'
-  pod 'IQKeyboardManagerSwift'
-  pod 'Moya/RxSwift'
-  pod 'SwiftFormat'
-
-  # Pods for Cache
+  
+  # Cache and Storage
   pod 'Cache'
-  pod 'Kingfisher'
   pod 'KeychainAccess'
+  
+  # Networking
+  pod 'ReachabilitySwift'
+  pod 'Alamofire'
+  pod 'Moya/RxSwift'
+end
+
+target 'SlackLess' do
+  shared_pods
+  
+  # Cache and Storage
+  pod 'Kingfisher'
   
   # Firebase
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics'
-
-  # Pod for observing internet connection
-  pod 'ReachabilitySwift'
   
-  target 'SLActivityReport' do
-      inherit! :search_paths
-  end
+  # Helpers
+  pod 'SwiftFormat'
+  pod 'IQKeyboardManagerSwift'
+end
 
+target 'SLActivityReport' do
+    shared_pods
 end
 
 post_install do |installer|
