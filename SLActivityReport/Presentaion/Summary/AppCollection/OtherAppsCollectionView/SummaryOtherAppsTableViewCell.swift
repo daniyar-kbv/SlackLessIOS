@@ -40,7 +40,8 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
         
         addSubview(appTimeView!)
         appTimeView?.snp.makeConstraints({
-            $0.edges.equalToSuperview()
+            $0.centerY.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(28)
         })
     }
 }
