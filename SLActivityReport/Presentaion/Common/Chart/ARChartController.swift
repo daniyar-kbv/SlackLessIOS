@@ -69,9 +69,12 @@ extension ARChartController: UICollectionViewDataSource {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ARChartCollectionBarCell.self), for: indexPath) as! ARChartCollectionBarCell
-        cell.set(type: viewModel.output.getType(),
-                 item: viewModel.output.getItem(for: indexPath.item + (viewModel.output.getType() == .vertical ? -1 : 0)),
-                 size: viewModel.output.getSizeForItem(at: indexPath.item + (viewModel.output.getType() == .vertical ? -1 : 0)))
+        
+        if let item = viewModel.output.getItem(for: indexPath.item + (viewModel.output.getType() == .vertical ? -1 : 0)) {
+            cell.set(type: viewModel.output.getType(),
+                     item: item,
+                     size: viewModel.output.getSizeForItem(at: indexPath.item + (viewModel.output.getType() == .vertical ? -1 : 0)))
+        }
         if viewModel.output.getType() == .vertical {
             cell.barView?.isEnabled = viewModel.output.getIsCurrent(at: indexPath.row - 1)
         }
