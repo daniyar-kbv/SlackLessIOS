@@ -13,6 +13,7 @@ import SnapKit
 
 extension UIView {
     func addDashedLine(on side: ARDashedView.Side) {
+        guard getDashedContainerView(on: side) == nil else { return }
         let dashedContainerView = DashedContainerView(side: side)
         addSubview(dashedContainerView)
         dashedContainerView.snp.makeConstraints({
@@ -25,12 +26,16 @@ extension UIView {
         })
     }
     
+    func removeDashedLine(on side: ARDashedView.Side) {
+        getDashedContainerView(on: side)?.removeFromSuperview()
+    }
+    
     func redrawDashedLine(on side: ARDashedView.Side,
                           strokeColor: CGColor? = SLColors.gray4.getColor()?.cgColor,
                           lineWidth: CGFloat = 0.5,
                           lineDashPattern: [NSNumber]? = [2, 2]) {
         guard let dashedContainerView = getDashedContainerView(on: side) else { return }
-        removeDashedLine(on: .top)
+        dashedContainerView.subviews.forEach({ $0.removeFromSuperview() })
         let dashedLineView = ARDashedView(strokeColor: strokeColor,
                                           lineWidth: lineWidth,
                                           lineDashPattern: lineDashPattern)
@@ -38,10 +43,6 @@ extension UIView {
         dashedLineView.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
-    }
-    
-    func removeDashedLine(on side: ARDashedView.Side) {
-        getDashedContainerView(on: side)?.subviews.forEach({ $0.removeFromSuperview() })
     }
     
     private func getDashedContainerView(on side: ARDashedView.Side) -> DashedContainerView? {

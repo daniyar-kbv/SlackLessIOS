@@ -37,7 +37,7 @@ final class ARPartitionsView: UIStackView {
     private(set) lazy var firstPartitionLabel: UILabel = {
         let view = UILabel()
         view.textColor = SLColors.label2.getColor()
-        
+        view.numberOfLines = 1
         switch type {
         case .dasboard:
             view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
@@ -56,6 +56,7 @@ final class ARPartitionsView: UIStackView {
     private(set) lazy var secondPartitionLabel: UILabel = {
         let view = UILabel()
         view.textColor = SLColors.label1.getColor()
+        view.numberOfLines = 1
         switch type {
         case .dasboard:
             view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
@@ -91,11 +92,15 @@ final class ARPartitionsView: UIStackView {
         
         switch type {
         case .dasboard, .graph(.horizontal):
-            firstPartitionLabel.isHidden = firstPartitionLabel.frame.width + 32 > firstPartitionView.frame.width
-            secondPartitionLabel.isHidden = secondPartitionLabel.frame.width + 32 > secondPartitionView.frame.width
+            let firstTextSize = (firstPartitionLabel.text?.width(withConstrainedHeight: 100, font: firstPartitionLabel.font) ?? 0) + 8
+            let secondTextSize = (secondPartitionLabel.text?.width(withConstrainedHeight: 100, font: secondPartitionLabel.font) ?? 0) + 8
+            firstPartitionLabel.isHidden = firstTextSize > firstPartitionView.frame.width
+            secondPartitionLabel.isHidden = secondTextSize > secondPartitionView.frame.width
         case .graph(.vertical):
-            firstPartitionLabel.isHidden = firstPartitionLabel.frame.height + 16 > firstPartitionView.frame.height
-            secondPartitionLabel.isHidden = secondPartitionLabel.frame.height + 16 > secondPartitionView.frame.height
+            let firstTextSize = (firstPartitionLabel.text?.height(withConstrainedWidth: 100, font: firstPartitionLabel.font) ?? 0) + 8
+            let secondTextSize = (secondPartitionLabel.text?.height(withConstrainedWidth: 100, font: secondPartitionLabel.font) ?? 0) + 8
+            firstPartitionLabel.isHidden = firstTextSize > firstPartitionView.frame.height
+            secondPartitionLabel.isHidden = secondTextSize > secondPartitionView.frame.height
         }
     }
     
