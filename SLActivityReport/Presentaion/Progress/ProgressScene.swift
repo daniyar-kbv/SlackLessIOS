@@ -31,7 +31,7 @@ struct ProgressScene: DeviceActivityReportScene {
             for j in (0..<7).reversed() {
                 let date = calendar.date(byAdding: .day, value: -j, to: lastDayOfWeek)!
                 guard let activitySegment = await activitySegments.first(where: {
-                    getDate(from: $0.dateInterval.start) == getDate(from: date)
+                    getDate(from: $0.dateInterval.end) == getDate(from: date)
                 }) else {
                     days.append(getEmptyDay(from: date))
                     continue

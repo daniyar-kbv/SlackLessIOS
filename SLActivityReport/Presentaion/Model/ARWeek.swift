@@ -85,6 +85,8 @@ extension ARWeek: GraphRepresentable {
     }
     
     func getIsCurrent() -> Bool {
-        return Date() >= startDate && Date() <= startDate.getLastDayOfWeek()
+        let today = Date()
+        return [.orderedSame, .orderedDescending].contains(today.compareByDate(to: startDate)) &&
+        [.orderedSame, .orderedAscending].contains(today.compareByDate(to: startDate.getLastDayOfWeek()))
     }
 }
