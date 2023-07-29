@@ -12,8 +12,8 @@ import DeviceActivity
 import SnapKit
 
 final class ProgressController: UIViewController {
-    private lazy var summaryReport = DeviceActivityReport(.init(Constants.ContextName.progress), filter: Constants.DeviceActivityFilters.summary)
-    private lazy var innerController = UIHostingController(rootView: summaryReport)
+    private lazy var report = DeviceActivityReport(.init(Constants.ContextName.progress), filter: Constants.DeviceActivityFilters.progress)
+    private lazy var innerController = UIHostingController(rootView: report)
 
     override func viewDidLoad() {
         super.viewDidLoad()

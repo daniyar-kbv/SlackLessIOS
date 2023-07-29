@@ -17,7 +17,7 @@ protocol ARChartViewModelOutput {
     var reload: PublishRelay<Void> { get }
     
     func getType() -> ARChartType
-    func getItem(for index: Int) -> GraphRepresentable
+    func getItem(for index: Int) -> GraphRepresentable?
     func getTimes() -> [TimeInterval]
     func getSizeForItem(at index: Int) -> CGFloat
     func getIsCurrent(at index: Int) -> Bool
@@ -52,8 +52,9 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
         type
     }
     
-    func getItem(for index: Int) -> GraphRepresentable {
-        items[index]
+    func getItem(for index: Int) -> GraphRepresentable? {
+        guard items.count > 0 else { return nil }
+        return items[index]
     }
     
     func getTimes() -> [TimeInterval] {
@@ -83,7 +84,9 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
     
     func getSizeForItem(at index: Int) -> CGFloat {
         guard let maxTotalTime = getMaxItem()?.getTotalTime(),
-              let maxSize = getMaxSize()
+              let maxSize = getMaxSize(),
+              items.count > 0,
+              maxTotalTime > 0
         else { return 0 }
         return (items[index].getTotalTime()/maxTotalTime)*maxSize
     }

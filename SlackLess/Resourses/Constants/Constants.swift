@@ -12,7 +12,7 @@ import DeviceActivity
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
-    static let appMode: AppMode = .debug
+    static let appMode: AppMode = .normal
     
     enum AppMode {
         case normal
@@ -47,27 +47,6 @@ struct Constants {
         static let summary = "Summary"
         static let progress = "Progress"
     }
-    
-    struct DeviceActivityFilters {
-        static let summary = DeviceActivityFilter(
-            segment: .daily(
-                during: Calendar.current.dateInterval(
-                   of: .day, for: .now
-                )!
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
-        static let progress = DeviceActivityFilter(
-            segment: .weekly(
-                during: Calendar.current.dateInterval(
-                   of: .weekOfYear, for: .now
-                )!
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
-    }
 }
 
 extension Constants {
@@ -80,5 +59,40 @@ extension Constants {
             fatalError("Couldn't find key '\(key)' in 'SLInfo.plist'.")
         }
         return value
+    }
+}
+
+extension Constants {
+    struct DeviceActivityFilters {
+        private static var today = Date()
+        
+        static let summary = DeviceActivityFilter(
+            segment: .daily(
+                during: .init(start: Calendar.current.date(byAdding: .day, value: -6, to: getToday())!,
+                              end: getToday())
+            ),
+            users: .all,
+            devices: .init([.iPhone])
+        )
+        static let progress = DeviceActivityFilter(
+            segment: .daily(
+                during: .init(start: Calendar.current.date(byAdding: .weekOfYear, value: -4, to: getToday().getFirstDayOfWeek())!,
+                              end: getToday().getLastDayOfWeek())
+            ),
+            users: .all,
+            devices: .init([.iPhone])
+        )
+        
+        private static func getToday() -> Date {
+            let now = Date()
+            if getDate(from: today) != getDate(from: now) {
+                today = now
+            }
+            return today
+        }
+        
+        private static func getDate(from date: Date) -> DateComponents {
+            return Calendar.current.dateComponents([.day, .month, .year], from: date)
+        }
     }
 }
