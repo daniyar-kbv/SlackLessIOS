@@ -27,6 +27,7 @@
 //  MARK: - TabBar
 "TabBar.summaryTitle" = "Summary";
 "TabBar.progressTitle" = "Progress";
+"TabBar.customizeTitle" = "Customize";
 
 //  MARK: - WelcomeScreen
 "WelcomeScreen.Title" = "Hey!";
@@ -56,3 +57,16 @@
 "Progress.Dashboard.firstTitle" = "Slacked";
 "Progress.Dashboard.secondTitle" = "Total";
 "Progress.Dashboard.thirdTitle" = "Average";
+
+//  MARK: - Customize
+"Customize.title" = "Customize";
+"Customize.FirstSection.title" = "SETTINGS";
+"Customize.FirstSection.selectedApps" = "Selected Apps";
+"Customize.FirstSection.timeLimit" = "Time Limit";
+"Customize.FirstSection.unlockPrice" = "Unlock Price";
+"Customize.SecondSection.title" = "NOTIFICATIONS";
+"Customize.SecondSection.pushNotifications" = "Push-notifications";
+"Customize.SecondSection.emails" = "Emails";
+"Customize.ThirdSection.title" = "FEEDBACK";
+"Customize.ThirdSection.leaveFeedback" = "Leave Feedback";
+

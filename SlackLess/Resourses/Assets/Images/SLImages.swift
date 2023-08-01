@@ -7,6 +7,8 @@
 
 import UIKit
 
+// Tech debt: change to uppercase
+
 enum SLImages: String, ImageGetable {
     case appIcon = "AppIcon"
 
@@ -24,6 +26,11 @@ enum SLImages: String, ImageGetable {
             case selected = "TabBar.Progress.selected"
             case unselected = "TabBar.Progress.unselected"
         }
+        
+        enum Customize: String, ImageGetable {
+            case selected = "TabBar.Customize.selected"
+            case unselected = "TabBar.Customize.unselected"
+        }
     }
 
     enum Common: String, ImageGetable {
@@ -31,6 +38,10 @@ enum SLImages: String, ImageGetable {
         case appIconPlaceholder = "Common.AppIcon.Placeholder"
         
         enum Arrows {
+            enum Chevron: String, ImageGetable {
+                case right = "Common.Arrows.Chevron.Right"
+            }
+            
             enum Circle: String, ImageGetable {
                 case right = "Common.Arrows.Cicle.right"
                 case left = "Common.Arrows.Cicle.left"
@@ -40,5 +51,14 @@ enum SLImages: String, ImageGetable {
 
     enum WelcomeScreen: String, ImageGetable {
         case main = "WelcomeScreen.Main"
+    }
+    
+    enum Settings: String, ImageGetable {
+        case apps = "Settings.Apps"
+        case time = "Settings.Time"
+        case price = "Settings.Price"
+        case notifications = "Settings.Notifications"
+        case emails = "Settings.Emails"
+        case feedback = "Settings.Feedback"
     }
 }
