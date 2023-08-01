@@ -15,9 +15,9 @@ protocol LoaderPresentable {
 }
 
 extension UIViewController: LoaderPresentable {
-    fileprivate static var loaderViews = [String:LoaderView]()
+    fileprivate static var loaderViews = [String:SLLoaderView]()
     
-    var loaderView: LoaderView? {
+    var loaderView: SLLoaderView? {
             get {
                 let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
                 return UIViewController.loaderViews[tmpAddress] ?? nil
@@ -30,7 +30,7 @@ extension UIViewController: LoaderPresentable {
     
     func showLoader() {
         guard loaderView == nil else { return }
-        let loaderView = LoaderView()
+        let loaderView = SLLoaderView()
         self.loaderView = loaderView
         loaderView.showLoader(on: view)
     }

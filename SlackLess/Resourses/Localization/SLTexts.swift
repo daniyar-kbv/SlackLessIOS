@@ -86,4 +86,26 @@ enum SLTexts {
             case thirdTitle = "Progress.Dashboard.thirdTitle"
         }
     }
+    
+    enum Customize: String, Localizable {
+        case title = "Customize.title"
+        
+        enum FirstSection: String, Localizable {
+            case title = "Customize.FirstSection.title"
+            case selectedApps = "Customize.FirstSection.selectedApps"
+            case timeLimit = "Customize.FirstSection.timeLimit"
+            case unlockPrice = "Customize.FirstSection.unlockPrice"
+        }
+        
+        enum SecondSection: String, Localizable {
+            case title = "Customize.SecondSection.title"
+            case pushNotifications = "Customize.SecondSection.pushNotifications"
+            case email = "Customize.SecondSection.emails"
+        }
+    
+        enum ThirdSection: String, Localizable {
+            case title = "Customize.ThirdSection.title"
+            case leaveFeedback = "Customize.ThirdSection.leaveFeedback"
+        }
+    }
 }
