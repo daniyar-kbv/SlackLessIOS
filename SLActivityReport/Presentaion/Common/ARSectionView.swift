@@ -27,12 +27,6 @@ final class ARSectionView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        isHidden = arrangedSubviews.filter({ $0.isHidden == false }).isEmpty
-    }
-    
     private func layoutUI() {
         [titleLabel].forEach(addArrangedSubview(_:))
         axis = .vertical

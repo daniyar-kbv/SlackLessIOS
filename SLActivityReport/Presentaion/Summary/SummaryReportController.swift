@@ -64,23 +64,26 @@ final class SummaryReportController: UIViewController {
     
     private func bindViewModel() {
         viewModel.output.time.subscribe(onNext: { [weak self] in
-            $0 == nil ? self?.showLoader() : self?.hideLoader()
             self?.contentView.summarySelectedAppsDashboardView.set(time: $0)
             self?.contentView.otherAppsDashboardView.set(time: $0)
             self?.contentView.thirdSectionFirstContentView.isHidden = true
+            $0 == nil ? self?.showLoader() : self?.hideLoader()
         })
         .disposed(by: disposeBag)
         
         viewModel.output.selectedApps
             .subscribe(onNext: { [weak self] in
-                self?.contentView.secondSectionFirstContentView.isHidden = $0.isEmpty
-                self?.selectedAppsCollectionViewModel.input.update(apps: $0)
+                guard let self else { return }
+                contentView.secondSectionFirstContentView.isHidden = $0.isEmpty
+                selectedAppsCollectionViewModel.input.update(apps: $0)
             })
             .disposed(by: disposeBag)
         viewModel.output.otherApps
             .subscribe(onNext: { [weak self] in
-                self?.contentView.fourthSectionFirstContentView.isHidden = $0.isEmpty
-                self?.otherAppsTableViewViewModel.input.update(apps: $0)
+                guard let self else { return }
+                contentView.fourthSectionFirstContentView.isHidden = $0.isEmpty
+                contentView.secondSectionView.isHidden = contentView.thirdSectionFirstContentView.isHidden && contentView.fourthSectionFirstContentView.isHidden
+                otherAppsTableViewViewModel.input.update(apps: $0)
             })
             .disposed(by: disposeBag)
     }
