@@ -15,12 +15,14 @@ protocol AppSettingsRepositoryInput {
     func set(onboardingShown: Bool)
     func set(timeLimit: TimeInterval, for date: Date)
     func set(selectedApps: FamilyActivitySelection, for date: Date)
+    func set(startDate: Date)
 }
 
 protocol AppSettingsRepositoryOutput {
     func getOnboardingShown() -> Bool
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getStartDate() -> Date?
 }
 
 protocol AppSettingsRepository: AnyObject {
@@ -56,6 +58,10 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.getSelectedApps(for: date)
     }
     
+    func getStartDate() -> Date? {
+        keyValueStorage.startDate
+    }
+    
     //    Input
     
     func set(onboardingShown: Bool) {
@@ -68,5 +74,9 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
     
     func set(selectedApps: FamilyActivitySelection, for date: Date) {
         keyValueStorage.persist(selectedApps: selectedApps, for: date)
+    }
+    
+    func set(startDate: Date) {
+        keyValueStorage.persist(startDate: startDate)
     }
 }

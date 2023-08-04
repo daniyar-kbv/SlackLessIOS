@@ -10,8 +10,6 @@ import UIKit
 import SnapKit
 
 final class SummaryReportView: ARView {
-    private(set) lazy var dateSwitcherView = ARDateSwitcherView()
-    
     private(set) lazy var firstSectionFirstContentView = SLContainerView()
     
     private(set) lazy var summarySelectedAppsDashboardView = SummarySelectedAppsDashboardView()
@@ -53,9 +51,7 @@ final class SummaryReportView: ARView {
     }
     
     private func layoutUI() {
-        set(title: SLTexts.Summary.title.localized())
-        
-        [dateSwitcherView, firstSectionView, secondSectionView].forEach(add(view:))
+        [firstSectionView, secondSectionView].forEach(add(view:))
         
         firstSectionFirstContentView.setContentView(summarySelectedAppsDashboardView)
         

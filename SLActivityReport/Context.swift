@@ -11,5 +11,6 @@ import DeviceActivity
 
 extension DeviceActivityReport.Context {
     static let summary = Self(Constants.ContextName.summary)
-    static let progress = Self(Constants.ContextName.progress)
+    static let progressWeek = Self(Constants.ContextName.Progress.week)
+    static let progressPastWeeks = Self(Constants.ContextName.Progress.pastWeeks)
 }

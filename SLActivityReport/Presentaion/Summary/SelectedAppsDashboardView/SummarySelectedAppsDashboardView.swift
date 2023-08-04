@@ -128,7 +128,12 @@ final class SummarySelectedAppsDashboardView: UIView {
 
 extension SummarySelectedAppsDashboardView {
     func set(time: ARTime?) {
-        if let timeFormatted = time?.slacked.formatted(with: .positional) {
+        guard let time = time else {
+            middleTitlelLabel.text = "00:00"
+            return
+        }
+        
+        if let timeFormatted = time.slacked.formatted(with: .positional) {
 //            TODO: change formatting to 00:01
             let timeText = timeFormatted.count <= 2 ? "0:\(timeFormatted)" : timeFormatted
             middleTitlelLabel.text = timeText
@@ -137,7 +142,7 @@ extension SummarySelectedAppsDashboardView {
             .Summary
             .FirstContainer
             .subtitle
-            .localized(time?.limit?.formatted(with: .abbreviated) ?? "")
-        animateToValue = time?.getSlackedLimitPercentage() ?? 0
+            .localized(time.limit?.formatted(with: .abbreviated) ?? "")
+        animateToValue = time.getSlackedLimitPercentage() ?? 0
     }
 }

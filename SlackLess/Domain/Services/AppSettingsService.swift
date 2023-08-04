@@ -23,9 +23,11 @@ protocol AppSettingsServiceOutput {
     var appsSelectionSaved: PublishRelay<Void> { get }
     var selectionCategoryError: PublishRelay<DomainError> { get }
     
-    func getTimeLimit(for date: Date) -> TimeInterval
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection
+    func getTimeLimit(for date: Date) -> TimeInterval?
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getOnboardingShown() -> Bool
+    func getIsLastDate(_ date: Date) -> Bool
+    func getIsLastWeek(_ date: Date) -> Bool
 }
 
 protocol AppSettingsService: AnyObject {
@@ -54,32 +56,48 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.output.getOnboardingShown()
     }
     
-    func getTimeLimit(for date: Date) -> Double {
+    func getTimeLimit(for date: Date) -> Double? {
         if let timeLimit = appSettingsRepository.output.getTimeLimit(for: date) {
             return timeLimit
         }
-        let daysDifference = 0
-        while true {
+        var daysDifference = 0
+        while daysDifference <= 100 {
             if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
                let timeLimit = appSettingsRepository.output.getTimeLimit(for: oldDate) {
                 appSettingsRepository.input.set(timeLimit: timeLimit, for: date)
                 return timeLimit
             }
+            daysDifference += 1
         }
+        return nil
     }
     
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection {
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
         if let appsSelection = appSettingsRepository.output.getSelectedApps(for: date) {
             return appsSelection
         }
-        let daysDifference = 0
-        while true {
+        var daysDifference = 0
+        while daysDifference <= 100 {
             if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
                let appsSelection = appSettingsRepository.output.getSelectedApps(for: oldDate) {
                 appSettingsRepository.input.set(selectedApps: appsSelection, for: date)
                 return appsSelection
             }
+            daysDifference += 1
         }
+        return nil
+    }
+    
+    func getIsLastDate(_ date: Date) -> Bool {
+        guard let startDate = appSettingsRepository.output.getStartDate()
+        else { return true }
+        return startDate.compareByDate(to: date) == .orderedSame
+    }
+    
+    func getIsLastWeek(_ date: Date) -> Bool {
+        guard let startDate = appSettingsRepository.output.getStartDate()
+        else { return true }
+        return Calendar.current.dateInterval(of: .weekOfYear, for: startDate)?.contains(date) ?? true
     }
     
     //    Input
@@ -88,6 +106,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         Task {
             do {
                 try await center.requestAuthorization(for: FamilyControlsMember.individual)
+                appSettingsRepository.input.set(startDate: .now)
                 DispatchQueue.main.async { [weak self] in
                     self?.authorizaionStatus.accept(.success(()))
                 }
@@ -127,7 +146,7 @@ extension AppSettingsServiceImpl {
         var days = [Date]()
         for i in (0..<100) {
             let today = Date()
-            guard let date = Calendar.current.date(byAdding: .day, value: i, to: today.getFirstDayOfWeek()) else { break }
+            guard let date = Calendar.current.date(byAdding: .day, value: i, to: today) else { break }
             days.append(date)
             if date == today.getLastDayOfWeek() {
                 break

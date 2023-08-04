@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SLView: UIView {
-    internal lazy var contentView = UIView()
+    fileprivate lazy var contentView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
