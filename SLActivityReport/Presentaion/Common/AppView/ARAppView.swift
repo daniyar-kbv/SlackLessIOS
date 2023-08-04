@@ -98,13 +98,13 @@ extension ARAppView {
             $0.width.equalTo(width)
         })
         
-//        if let token = app.token {
-//            let hostingController = UIHostingController(rootView: ARAppIconView(applicationToken: token))
-//            appIconView.addSubview(hostingController.view)
-//            hostingController.view.snp.makeConstraints({
-//                $0.edges.equalToSuperview()
-//            })
-//        }
+        if let token = app.token {
+            let hostingController = UIHostingController(rootView: ARAppIconView(applicationToken: token))
+            appIconView.addSubview(hostingController.view)
+            hostingController.view.snp.makeConstraints({
+                $0.edges.equalToSuperview()
+            })
+        }
     }
 }
 
