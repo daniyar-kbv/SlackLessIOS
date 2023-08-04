@@ -13,7 +13,7 @@ import UIKit
 final class AppCoordinator: BaseCoordinator {
     private let tabBarBarTypes: [SLTabBarType] =
     Constants.appMode == .normal ?
-    [.summary, .progress] :
+    [.summary] :
     [.progress, .summary]
     
     private var preparedViewControllers: [UIViewController] = []

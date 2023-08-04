@@ -16,15 +16,20 @@ protocol GraphRepresentable {
     func getIsCurrent() -> Bool
 }
 
-struct ARWeek {
+class ARWeek {
     let startDate: Date
-    let days: [Day]
+    var days: [Day]
+    
+    init(startDate: Date, days: [Day]) {
+        self.startDate = startDate
+        self.days = days
+    }
     
     func getTime() -> ARTime {
         ARTime(slacked: days.map({ $0.time.slacked }).reduce(0, +),
                total: days.map({ $0.time.total }).reduce(0, +),
                limit: nil,
-               average: days.map({ $0.time.total }).reduce(0, +)/Double(days.count))
+               average: days.map({ $0.time.total }).reduce(0, +)/7)
     }
 }
 

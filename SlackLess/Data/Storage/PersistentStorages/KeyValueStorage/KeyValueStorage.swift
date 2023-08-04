@@ -13,6 +13,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
     case onbardingShown
     case selectedApps
     case timeLimit
+    case startDate
 
     public var value: String { return rawValue }
 }
@@ -20,6 +21,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
 protocol KeyValueStorage {
     var appLocale: Language { get }
     var onbardingShown: Bool { get }
+    var startDate: Date? { get }
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
 
@@ -27,6 +29,7 @@ protocol KeyValueStorage {
     func persist(onbardingShown: Bool)
     func persist(selectedApps: FamilyActivitySelection, for date: Date)
     func persist(timeLimit: TimeInterval, for date: Date)
+    func persist(startDate: Date)
 
     func cleanUp(key: KeyValueStorageKey)
 }
@@ -37,17 +40,20 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     public init() {}
     
-    public var onbardingShown: Bool {
-        return storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
+    var onbardingShown: Bool {
+        storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
     }
 
-    public var appLocale: Language {
-        return Language.get(by: storageProvider.string(forKey: KeyValueStorageKey.appLocale.value))
+    var appLocale: Language {
+        Language.get(by: storageProvider.string(forKey: KeyValueStorageKey.appLocale.value))
+    }
+    
+    var startDate: Date? {
+        storageProvider.object(forKey: KeyValueStorageKey.startDate.value) as? Date
     }
     
     func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        guard let defaults = UserDefaults(suiteName: Constants.UserDefaults.SuiteName.main),
-              let data = defaults.data(forKey: KeyValueStorageKey.selectedApps.value+makeString(from: date))
+        guard let data = storageProvider.data(forKey: KeyValueStorageKey.selectedApps.value+makeString(from: date))
         else { return nil }
         
         let object = try? decoder.decode(
@@ -59,38 +65,43 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     func getTimeLimit(for date: Date) -> TimeInterval {
-        storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value+date.formatted(date: .numeric, time: .omitted))
+        storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value+makeString(from: date))
     }
 
-    public func persist(appLocale: Language) {
+    func persist(appLocale: Language) {
         storageProvider.set(appLocale.code, forKey: KeyValueStorageKey.appLocale.value)
     }
 
-    public func persist(onbardingShown: Bool) {
+    func persist(onbardingShown: Bool) {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
     
-    public func persist(selectedApps: FamilyActivitySelection, for date: Date) {
-        guard let defaults = UserDefaults(suiteName: Constants.UserDefaults.SuiteName.main) else { return }
+    func persist(selectedApps: FamilyActivitySelection, for date: Date) {
         let encoder = PropertyListEncoder()
 
-        defaults.set(
+        storageProvider.set(
             try? encoder.encode(selectedApps),
             forKey: KeyValueStorageKey.selectedApps.value+makeString(from: date)
         )
     }
     
-    public func persist(timeLimit: TimeInterval, for date: Date) {
+    func persist(timeLimit: TimeInterval, for date: Date) {
         storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value+makeString(from: date))
     }
+    
+    func persist(startDate: Date) {
+        storageProvider.set(startDate, forKey: KeyValueStorageKey.startDate.value)
+    }
 
-    public func cleanUp(key: KeyValueStorageKey) {
+    func cleanUp(key: KeyValueStorageKey) {
         storageProvider.set(nil, forKey: key.value)
     }
 }
 
 extension KeyValueStorageImpl {
-    private func makeString(from date: Date) -> String {
-        date.formatted(date: .numeric, time: .omitted)
+    func makeString(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YY/MM/dd"
+        return dateFormatter.string(from: date)
     }
 }

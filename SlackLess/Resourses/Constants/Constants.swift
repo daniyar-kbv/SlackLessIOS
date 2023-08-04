@@ -45,7 +45,11 @@ struct Constants {
     
     struct ContextName {
         static let summary = "Summary"
-        static let progress = "Progress"
+        
+        struct Progress {
+            static let week = "ProgressWeek"
+            static let pastWeeks = "ProgressPastWeeks"
+        }
     }
 }
 
@@ -59,28 +63,5 @@ extension Constants {
             fatalError("Couldn't find key '\(key)' in 'SLInfo.plist'.")
         }
         return value
-    }
-}
-
-extension Constants {
-    struct DeviceActivityFilters {
-        private static var today = Date()
-        
-        static let summary = DeviceActivityFilter(
-            segment: .daily(
-                during: .init(start: Calendar.current.date(byAdding: .day, value: -6, to: Date())!,
-                              end: Date())
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
-        static let progress = DeviceActivityFilter(
-            segment: .daily(
-                during: .init(start: Calendar.current.date(byAdding: .weekOfYear, value: -4, to: Date().getFirstDayOfWeek())!,
-                              end: Date().getLastDayOfWeek())
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
     }
 }

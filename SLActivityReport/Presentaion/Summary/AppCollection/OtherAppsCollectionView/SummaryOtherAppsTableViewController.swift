@@ -13,7 +13,6 @@ import RxCocoa
 
 final class SummaryOtherAppsTableViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    private let iconMaker = SummaryAppCollectionIconMaker()
     private let viewModel: SummaryAppsCollectionViewModel
     var height: Int = 1
     
@@ -53,12 +52,7 @@ final class SummaryOtherAppsTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
         bindViewModel()
-    }
-    
-    private func configure() {
-        iconMaker.controller = self
     }
     
     private func bindViewModel() {
@@ -81,10 +75,6 @@ extension SummaryOtherAppsTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
         let app = viewModel.output.getApp(for: indexPath.row)
         cell.appTimeView?.set(app: app, type: .large)
-        iconMaker.addAppIcon(to: cell.appTimeView?.appIconView, with: app.token)
-        cell.onReuse = { [weak self] in
-            self?.iconMaker.removeAppIcon(for: app.token)
-        }
         return cell
     }
 }

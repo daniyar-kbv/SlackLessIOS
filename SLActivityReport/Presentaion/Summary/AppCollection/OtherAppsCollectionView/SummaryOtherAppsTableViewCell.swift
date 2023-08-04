@@ -14,8 +14,6 @@ import SnapKit
 final class SummaryOtherAppsTableViewCell: UITableViewCell {
     private(set) var appTimeView: ARAppView?
     
-    var onReuse: (() -> Void)?
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -30,7 +28,6 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         layoutUI()
-        onReuse?()
     }
     
     private func layoutUI() {

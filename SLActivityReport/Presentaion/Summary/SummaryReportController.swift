@@ -45,7 +45,6 @@ final class SummaryReportController: UIViewController {
         super.viewDidLoad()
         
         configView()
-        bindView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,39 +62,31 @@ final class SummaryReportController: UIViewController {
             to: contentView.fourthSectionFirstContentView)
     }
     
-    private func bindView() {
-        contentView.dateSwitcherView.leftButton.rx.tap.bind { [weak self] in
-                self?.viewModel.input.changeDate(forward: false)
-            }
-            .disposed(by: disposeBag)
-        
-        contentView.dateSwitcherView.rightButton.rx.tap.bind { [weak self] in
-                self?.viewModel.input.changeDate(forward: true)
-            }
-            .disposed(by: disposeBag)
-    }
-    
     private func bindViewModel() {
-        viewModel.output.date
-            .bind(to: contentView.dateSwitcherView.titleLabel.rx.text)
-            .disposed(by: disposeBag)
-        
         viewModel.output.time.subscribe(onNext: { [weak self] in
+            $0 == nil ? self?.showLoader() : self?.hideLoader()
             self?.contentView.summarySelectedAppsDashboardView.set(time: $0)
             self?.contentView.otherAppsDashboardView.set(time: $0)
+            self?.contentView.thirdSectionFirstContentView.isHidden = true
         })
         .disposed(by: disposeBag)
         
         viewModel.output.selectedApps
-            .subscribe(onNext: selectedAppsCollectionViewModel.input.update)
+            .subscribe(onNext: { [weak self] in
+                self?.contentView.secondSectionFirstContentView.isHidden = $0.isEmpty
+                self?.selectedAppsCollectionViewModel.input.update(apps: $0)
+            })
             .disposed(by: disposeBag)
         viewModel.output.otherApps
-            .subscribe(onNext: otherAppsTableViewViewModel.input.update)
+            .subscribe(onNext: { [weak self] in
+                self?.contentView.fourthSectionFirstContentView.isHidden = $0.isEmpty
+                self?.otherAppsTableViewViewModel.input.update(apps: $0)
+            })
             .disposed(by: disposeBag)
-        
-        viewModel.output.isntFirstDate.bind(to: contentView.dateSwitcherView.leftButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
-            .disposed(by: disposeBag)
+    }
+    
+    private func showLoader(_ show: Bool) {
+        contentView.isHidden = show
+        show ? showLoader() : hideLoader()
     }
 }

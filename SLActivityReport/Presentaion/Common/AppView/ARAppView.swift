@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import SwiftUI
 
 final class ARAppView: UIStackView {
     private(set) lazy var appIconView: UIView = {
@@ -96,6 +97,14 @@ extension ARAppView {
             $0.bottom.equalTo(appIconView)
             $0.width.equalTo(width)
         })
+        
+//        if let token = app.token {
+//            let hostingController = UIHostingController(rootView: ARAppIconView(applicationToken: token))
+//            appIconView.addSubview(hostingController.view)
+//            hostingController.view.snp.makeConstraints({
+//                $0.edges.equalToSuperview()
+//            })
+//        }
     }
 }
 

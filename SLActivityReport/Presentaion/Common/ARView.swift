@@ -18,13 +18,6 @@ class ARView: UIView {
         return view
     }()
     
-    fileprivate lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.font = SLFonts.primary.getFont(ofSize: 28, weight: .bold)
-        view.textColor = SLColors.label1.getColor()
-        return view
-    }()
-    
     fileprivate lazy var contentView = SLContentView()
     
     override init(frame: CGRect) {
@@ -51,23 +44,13 @@ class ARView: UIView {
             $0.edges.equalToSuperview()
         })
         
-        [titleLabel, contentView].forEach(scrollView.addSubview(_:))
-        
-        titleLabel.snp.makeConstraints({
-            $0.top.equalToSuperview()
-            $0.left.equalToSuperview().offset(16)
-        })
-        
+        scrollView.addSubview(contentView)
         contentView.snp.makeConstraints({
-            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.top.equalToSuperview().offset(16)
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview().inset(16)
         })
-    }
-    
-    func set(title: String) {
-        titleLabel.text = title
     }
 }
 

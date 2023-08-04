@@ -1,16 +1,16 @@
 //
-//  ProgressRepresentable.swift
+//  ProgressPastWeeksRepresentable.swift
 //  SLActivityReport
 //
-//  Created by Daniyar Kurmanbayev on 2023-07-20.
+//  Created by Daniyar Kurmanbayev on 2023-08-02.
 //
 
 import Foundation
 import SwiftUI
 import DeviceActivity
 
-struct ProgressRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = ProgressReportController
+struct ProgressPastWeeksRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ProgressPastWeeksController
     
     private let weeks: [ARWeek]
     
@@ -19,7 +19,7 @@ struct ProgressRepresentable: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        .init(viewModel: ProgressReportViewModelImpl(weeks: weeks))
+        .init(viewModel: ProgressPastWeeksViewModelImpl(weeks: weeks))
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
