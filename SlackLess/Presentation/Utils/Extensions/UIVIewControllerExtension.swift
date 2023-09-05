@@ -47,6 +47,13 @@ extension UIViewController {
         controller.didMove(toParent: self)
     }
     
+    func add(controller: UIViewController, addView: () -> Void) {
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        addView()
+        addChild(controller)
+        controller.didMove(toParent: self)
+    }
+    
     func remove(controller: UIViewController) {
         controller.willMove(toParent: nil)
         controller.removeFromParent()

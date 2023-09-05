@@ -20,13 +20,7 @@ final class SummaryCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        var controller: UIViewController
-        switch Constants.appMode {
-        case .debug:
-            controller = SummaryReportController(viewModel: SummaryReportViewModelImpl(day: MockData.getDays(isRandom: false).first!))
-        default:
-            controller = modulesFactory.makeSummaryModule().controller
-        }
-        router.set(navigationController: SLNavigationController(rootViewController: controller))
+        let module = modulesFactory.makeSummaryModule()
+        router.set(navigationController: SLNavigationController(rootViewController: module.controller))
     }
 }

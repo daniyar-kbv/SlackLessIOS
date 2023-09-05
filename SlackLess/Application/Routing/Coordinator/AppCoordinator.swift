@@ -11,10 +11,7 @@ import RxSwift
 import UIKit
 
 final class AppCoordinator: BaseCoordinator {
-    private let tabBarBarTypes: [SLTabBarType] =
-    Constants.appMode == .normal ?
-    [.summary] :
-    [.progress, .summary]
+    private let tabBarBarTypes: [SLTabBarType] = [.summary]
     
     private var preparedViewControllers: [UIViewController] = []
 
@@ -37,7 +34,7 @@ final class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        if appSettingsService.output.getOnboardingShown() || Constants.appMode == .debug {
+        if appSettingsService.output.getOnboardingShown() {
             configureCoordinators()
             showTabBarController()
         } else {

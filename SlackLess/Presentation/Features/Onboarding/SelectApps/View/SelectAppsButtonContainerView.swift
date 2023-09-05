@@ -24,7 +24,7 @@ struct SelectAppsButtonContainerView: View {
                                   selection: $selection)
         }
         .onChange(of: isPresented) {
-            if !$0 && (!selection.applicationTokens.isEmpty || (!selection.categoryTokens.isEmpty)) {
+            if (Constants.appMode == .debug && !$0 && (!selection.applicationTokens.isEmpty || (!selection.categoryTokens.isEmpty))) || Constants.appMode == .debug {
                 onSelect(selection)
             }
         }
