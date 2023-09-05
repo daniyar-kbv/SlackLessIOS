@@ -30,10 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        switch Constants.appMode {
-        case .debug: window?.overrideUserInterfaceStyle = .light
-        default: break
-        }
+//        TODO: remove
+        window?.overrideUserInterfaceStyle = .light
     }
 
     private func configureAppCoordinator() {
