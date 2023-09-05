@@ -60,32 +60,33 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         if let timeLimit = appSettingsRepository.output.getTimeLimit(for: date) {
             return timeLimit
         }
-        var daysDifference = 0
-        while daysDifference <= 100 {
-            if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
-               let timeLimit = appSettingsRepository.output.getTimeLimit(for: oldDate) {
-                appSettingsRepository.input.set(timeLimit: timeLimit, for: date)
-                return timeLimit
-            }
-            daysDifference += 1
+        
+        var timeLimit: TimeInterval?
+        iterateThroughDays(startDate: date) { [weak self] in
+            guard
+                let self = self,
+                let timeLimit = appSettingsRepository.output.getTimeLimit(for: $0)
+            else { return false }
+            appSettingsRepository.input.set(timeLimit: timeLimit, for: date)
+            return true
         }
-        return nil
+        return timeLimit
     }
     
     func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
         if let appsSelection = appSettingsRepository.output.getSelectedApps(for: date) {
             return appsSelection
         }
-        var daysDifference = 0
-        while daysDifference <= 100 {
-            if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: date),
-               let appsSelection = appSettingsRepository.output.getSelectedApps(for: oldDate) {
-                appSettingsRepository.input.set(selectedApps: appsSelection, for: date)
-                return appsSelection
-            }
-            daysDifference += 1
+        var appsSelection: FamilyActivitySelection?
+        iterateThroughDays(startDate: date) { [weak self] in
+            guard
+                let self = self,
+                let appsSelection = appSettingsRepository.output.getSelectedApps(for: $0)
+            else { return false }
+            appSettingsRepository.input.set(selectedApps: appsSelection, for: date)
+            return true
         }
-        return nil
+        return appsSelection
     }
     
     func getIsLastDate(_ date: Date) -> Bool {
@@ -126,7 +127,8 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     }
     
     func set(selectedApps: FamilyActivitySelection) {
-        guard selectedApps.categories.isEmpty else {
+        guard selectedApps.categories.isEmpty,
+              selectedApps.webDomains.isEmpty else {
             selectionCategoryError.accept(.categoriesNotAllowed)
             return
         }
@@ -142,6 +144,18 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 }
 
 extension AppSettingsServiceImpl {
+    private func iterateThroughDays(startDate: Date, action: (Date) -> Bool) {
+        var daysDifference = 0
+        while daysDifference <= 100 {
+            if let oldDate = Calendar.current.date(byAdding: .day, value: -daysDifference, to: startDate) {
+                if action(oldDate) {
+                    break
+                }
+            }
+            daysDifference += 1
+        }
+    }
+    
     private func getWeek() -> [Date] {
         var days = [Date]()
         for i in (0..<100) {
