@@ -11,8 +11,11 @@ import SnapKit
 import SwiftUI
 
 final class ARAppView: UIStackView {
-    private(set) lazy var appIconView: UIView = {
-        let view = UIView()
+    private(set) lazy var appIconView: UIImageView   = {
+        let view = UIImageView()
+        view.clipsToBounds = true
+        view.layer.borderWidth = 0.25
+        view.layer.borderColor = SLColors.gray2.getColor()?.cgColor
         return view
     }()
     
@@ -51,10 +54,14 @@ final class ARAppView: UIStackView {
     private func layoutUI() {
         [appIconView, appNameLabel, timeBarView, timeLabel].forEach(addSubview(_:))
         
+        let appIconSize = 28.0
+        
         appIconView.snp.makeConstraints({
             $0.left.centerY.equalToSuperview()
-            $0.size.equalTo(28)
+            $0.size.equalTo(appIconSize)
         })
+        
+        appIconView.layer.cornerRadius = appIconSize/5
         
         appNameLabel.snp.makeConstraints({
             $0.left.equalTo(appIconView.snp.right).offset(12)
@@ -81,6 +88,7 @@ extension ARAppView {
         
         let timeText = app.time.formatted(with: type.timeStyle)
         
+        appIconView.image = SLImages.getIcon(for: app.name) ?? SLImages.Common.appIconPlaceholder.getImage()
         appNameLabel.text = app.name
         appNameLabel.sizeToFit()
         timeLabel.text = timeText
@@ -97,14 +105,6 @@ extension ARAppView {
             $0.bottom.equalTo(appIconView)
             $0.width.equalTo(width)
         })
-        
-        if let token = app.token {
-            let hostingController = UIHostingController(rootView: ARAppIconView(applicationToken: token))
-            appIconView.addSubview(hostingController.view)
-            hostingController.view.snp.makeConstraints({
-                $0.edges.equalToSuperview()
-            })
-        }
     }
 }
 

@@ -83,8 +83,6 @@
 		705573EA2A68D009005969AC /* ARWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E92A68D009005969AC /* ARWeek.swift */; };
 		705573EC2A68D271005969AC /* ProgressWeekReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573EB2A68D271005969AC /* ProgressWeekReportView.swift */; };
 		705573ED2A68DECA005969AC /* ARWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705573E92A68D009005969AC /* ARWeek.swift */; };
-		707670832A6F5D7200B51D5F /* ARAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670822A6F5D7200B51D5F /* ARAppIconView.swift */; };
-		707670842A6F5FD700B51D5F /* ARAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670822A6F5D7200B51D5F /* ARAppIconView.swift */; };
 		707670892A6F7AE300B51D5F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670882A6F7AE300B51D5F /* UIView.swift */; };
 		7076708A2A6F7DC600B51D5F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707670882A6F7AE300B51D5F /* UIView.swift */; };
 		70918CDC2A5CFF6400685DE8 /* SummaryOtherAppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C0DAC72A5CF8560084A2DA /* SummaryOtherAppsTableViewController.swift */; };
@@ -343,7 +341,6 @@
 		705573E42A68CF38005969AC /* ProgressWeekScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWeekScene.swift; sourceTree = "<group>"; };
 		705573E92A68D009005969AC /* ARWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARWeek.swift; sourceTree = "<group>"; };
 		705573EB2A68D271005969AC /* ProgressWeekReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWeekReportView.swift; sourceTree = "<group>"; };
-		707670822A6F5D7200B51D5F /* ARAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAppIconView.swift; sourceTree = "<group>"; };
 		707670882A6F7AE300B51D5F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		70918CE02A5E57EA00685DE8 /* SummaryOtherAppsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOtherAppsDashboardView.swift; sourceTree = "<group>"; };
 		70918CED2A5FA61200685DE8 /* ARTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTime.swift; sourceTree = "<group>"; };
@@ -812,7 +809,7 @@
 				705573B02A6648CB005969AC /* ARPartitionsView.swift */,
 				70B8D0782A6CDAE800D8F41B /* ARDashedView.swift */,
 				705573B82A6648DA005969AC /* ARView.swift */,
-				707670812A6F5C5000B51D5F /* AppView */,
+				705573B12A6648CB005969AC /* ARAppView.swift */,
 				70B8D0632A6CB71600D8F41B /* Chart */,
 			);
 			path = Common;
@@ -832,15 +829,6 @@
 				7013EB742A7A1A1300987227 /* ProgressPastWeeks */,
 			);
 			path = Progress;
-			sourceTree = "<group>";
-		};
-		707670812A6F5C5000B51D5F /* AppView */ = {
-			isa = PBXGroup;
-			children = (
-				705573B12A6648CB005969AC /* ARAppView.swift */,
-				707670822A6F5D7200B51D5F /* ARAppIconView.swift */,
-			);
-			path = AppView;
 			sourceTree = "<group>";
 		};
 		70918CDE2A5D061800685DE8 /* AppCollection */ = {
@@ -1484,7 +1472,6 @@
 				70918CEE2A5FA61200685DE8 /* ARTime.swift in Sources */,
 				705573B32A6648CB005969AC /* SLDateSwitcherView.swift in Sources */,
 				70D564B22A47DBF800FCFE4D /* Localization.swift in Sources */,
-				707670832A6F5D7200B51D5F /* ARAppIconView.swift in Sources */,
 				70C0DA972A590FBC0084A2DA /* SLContentView.swift in Sources */,
 				70B8D06A2A6CB71600D8F41B /* ARChartCollectionScaleCell.swift in Sources */,
 				705573D22A67B6DF005969AC /* DomainError.swift in Sources */,
@@ -1699,7 +1686,6 @@
 				075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */,
 				70918CF92A61266800685DE8 /* AppSettingsRepository.swift in Sources */,
 				705573A12A64E044005969AC /* ARDay.swift in Sources */,
-				707670842A6F5FD700B51D5F /* ARAppIconView.swift in Sources */,
 				70D564CD2A47FD8100FCFE4D /* SelectAppsView.swift in Sources */,
 				DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */,
 				70D564C72A47EB4800FCFE4D /* RequestAuthView.swift in Sources */,
@@ -1811,7 +1797,7 @@
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
@@ -1823,7 +1809,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1842,7 +1828,7 @@
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
@@ -1854,7 +1840,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1874,7 +1860,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -1888,7 +1874,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1965,7 +1951,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -1979,7 +1965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
