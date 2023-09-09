@@ -13,5 +13,4 @@ struct ARApp {
     let name: String
     let time: TimeInterval
     let ratio: Double
-    let token: ApplicationToken?
 }

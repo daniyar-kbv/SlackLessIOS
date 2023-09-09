@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TODO: Refactor image names to match Enum names and remove raw values
+
 enum SLImages: String, ImageGetable {
     case appIcon = "AppIcon"
 
@@ -40,5 +42,11 @@ enum SLImages: String, ImageGetable {
 
     enum WelcomeScreen: String, ImageGetable {
         case main = "WelcomeScreen.Main"
+    }
+}
+
+extension SLImages {
+    static func getIcon(for appName: String) -> UIImage? {
+        return .init(named: "Apps.\(appName.lowercased())")
     }
 }
