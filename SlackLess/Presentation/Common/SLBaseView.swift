@@ -14,6 +14,7 @@ class SLBaseView: UIView {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 28, weight: .bold)
         view.textColor = SLColors.label1.getColor()
+        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return view
     }()
     

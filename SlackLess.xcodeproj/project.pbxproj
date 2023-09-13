@@ -47,6 +47,11 @@
 		7029E1F82A2EC08500BA1A6E /* SLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1F72A2EC08500BA1A6E /* SLContainerView.swift */; };
 		7029E1FC2A2EC39300BA1A6E /* SLContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */; };
 		7029E2152A32BED500BA1A6E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7029E2142A32BED400BA1A6E /* UIImage.swift */; };
+		7030C8562AB0051A008F4BF6 /* SLReportsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030C8552AB0051A008F4BF6 /* SLReportsController.swift */; };
+		7030C8582AB00C68008F4BF6 /* SLDeviceActivityReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030C8572AB00C68008F4BF6 /* SLDeviceActivityReportType.swift */; };
+		7030C8592AB00CB3008F4BF6 /* SLDeviceActivityReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030C8572AB00C68008F4BF6 /* SLDeviceActivityReportType.swift */; };
+		7030C85C2AB01FF7008F4BF6 /* SLReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030C85B2AB01FF7008F4BF6 /* SLReportsViewModel.swift */; };
+		7030C85E2AB02142008F4BF6 /* SLDeviceActivityReportFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030C85D2AB02142008F4BF6 /* SLDeviceActivityReportFilter.swift */; };
 		7055739B2A64D167005969AC /* ARDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055739A2A64D167005969AC /* ARDay.swift */; };
 		705573A02A64E01E005969AC /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055739F2A64E01E005969AC /* MockData.swift */; };
 		705573A12A64E044005969AC /* ARDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7055739A2A64D167005969AC /* ARDay.swift */; };
@@ -329,6 +334,10 @@
 		7029E1FB2A2EC39300BA1A6E /* SLContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLContentView.swift; sourceTree = "<group>"; };
 		7029E20B2A3164D000BA1A6E /* ARApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARApp.swift; sourceTree = "<group>"; };
 		7029E2142A32BED400BA1A6E /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		7030C8552AB0051A008F4BF6 /* SLReportsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLReportsController.swift; sourceTree = "<group>"; };
+		7030C8572AB00C68008F4BF6 /* SLDeviceActivityReportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLDeviceActivityReportType.swift; sourceTree = "<group>"; };
+		7030C85B2AB01FF7008F4BF6 /* SLReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLReportsViewModel.swift; sourceTree = "<group>"; };
+		7030C85D2AB02142008F4BF6 /* SLDeviceActivityReportFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLDeviceActivityReportFilter.swift; sourceTree = "<group>"; };
 		7055739A2A64D167005969AC /* ARDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDay.swift; sourceTree = "<group>"; };
 		7055739F2A64E01E005969AC /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		705573AC2A6648CB005969AC /* ARSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSectionView.swift; sourceTree = "<group>"; };
@@ -535,7 +544,6 @@
 			children = (
 				210A0AD091C69BC7031C660641A6A12F /* Common */,
 				DBBB10BF2CE306D8DB7D2FC36599E6FB /* Features */,
-				92707256EFBDA20768BD0CF9B91BDF9D /* Models */,
 				6AF6F2581B1CBBA23CF5448E9AF7DE89 /* Utils */,
 			);
 			path = Presentation;
@@ -559,6 +567,7 @@
 				DEEA5E1F8BEE99FD4A3D0B26ADDFC394 /* LoaderView.swift */,
 				705573AD2A6648CB005969AC /* SLDateSwitcherView.swift */,
 				70F038182A78A9A900CCCD42 /* SLBaseView.swift */,
+				7030C85A2AB01FE8008F4BF6 /* Reports */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -798,6 +807,16 @@
 				7013EB7D2A7A1B8C00987227 /* ProgressPastWeeksView.swift */,
 			);
 			path = ProgressPastWeeks;
+			sourceTree = "<group>";
+		};
+		7030C85A2AB01FE8008F4BF6 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				7030C8552AB0051A008F4BF6 /* SLReportsController.swift */,
+				7030C85B2AB01FF7008F4BF6 /* SLReportsViewModel.swift */,
+				92707256EFBDA20768BD0CF9B91BDF9D /* Models */,
+			);
+			path = Reports;
 			sourceTree = "<group>";
 		};
 		705573AB2A6648CB005969AC /* Common */ = {
@@ -1103,6 +1122,8 @@
 		92707256EFBDA20768BD0CF9B91BDF9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7030C8572AB00C68008F4BF6 /* SLDeviceActivityReportType.swift */,
+				7030C85D2AB02142008F4BF6 /* SLDeviceActivityReportFilter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1466,6 +1487,7 @@
 				70D564AB2A47DB7B00FCFE4D /* SLColors.swift in Sources */,
 				705573D02A67B68D005969AC /* NetworkError.swift in Sources */,
 				70B8D06D2A6CB71600D8F41B /* ARChartView.swift in Sources */,
+				7030C8592AB00CB3008F4BF6 /* SLDeviceActivityReportType.swift in Sources */,
 				70B8D0342A6A00D900D8F41B /* ProgressWeekReportController.swift in Sources */,
 				705573B52A6648CB005969AC /* ARPageControlView.swift in Sources */,
 				70D564AE2A47DBC900FCFE4D /* SLFonts.swift in Sources */,
@@ -1597,6 +1619,7 @@
 				D338A7CF637DEB0233DDAE547634539F /* EventObserver.swift in Sources */,
 				70D564C02A47E53500FCFE4D /* SelectAppsViewModel.swift in Sources */,
 				A61A84A4BA935BB6D9EA21F2C291C67E /* EventType.swift in Sources */,
+				7030C85C2AB01FF7008F4BF6 /* SLReportsViewModel.swift in Sources */,
 				70F038192A78A9AA00CCCD42 /* SLBaseView.swift in Sources */,
 				705573BC2A664F2B005969AC /* ARView.swift in Sources */,
 				937B7C0F71D0BE325AF02669B063B00C /* FontGetable.swift in Sources */,
@@ -1645,6 +1668,7 @@
 				DF07E88D2B297B9522AFD025DDD1BD8C /* SLImages.swift in Sources */,
 				70B8D0932A6DF22E00D8F41B /* AppComponentsFactory.swift in Sources */,
 				70B8D0722A6CB72100D8F41B /* ARChartController.swift in Sources */,
+				7030C8562AB0051A008F4BF6 /* SLReportsController.swift in Sources */,
 				70C0DA6D2A564F220084A2DA /* SelectPriceViewModel.swift in Sources */,
 				70B8D0402A6A14BD00D8F41B /* Date.swift in Sources */,
 				F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */,
@@ -1671,6 +1695,7 @@
 				6A9C44EEA3D3AEF44B34BCC804153083 /* StringExtension.swift in Sources */,
 				70F038132A78A61400CCCD42 /* SummaryView.swift in Sources */,
 				64B6DA7270823EA8990EFCC4D9EA209A /* SummaryCoordinator.swift in Sources */,
+				7030C8582AB00C68008F4BF6 /* SLDeviceActivityReportType.swift in Sources */,
 				8ADF592AD876F300B1D34447B0A1447A /* UIApplicationExtension.swift in Sources */,
 				70D564D22A47FEA900FCFE4D /* SelectAppsButtonView.swift in Sources */,
 				70918CDD2A5CFF6700685DE8 /* SummaryOtherAppsTableViewCell.swift in Sources */,
@@ -1679,6 +1704,7 @@
 				707670892A6F7AE300B51D5F /* UIView.swift in Sources */,
 				705573C02A664F48005969AC /* ARAppView.swift in Sources */,
 				70B8D0972A6E087800D8F41B /* DomainComponentsFactory.swift in Sources */,
+				7030C85E2AB02142008F4BF6 /* SLDeviceActivityReportFilter.swift in Sources */,
 				70C0DABF2A5921510084A2DA /* ARApp.swift in Sources */,
 				639F00A102F9C8DDE1A04A8714CA1BA2 /* UIColorExtensions.swift in Sources */,
 				705573A02A64E01E005969AC /* MockData.swift in Sources */,

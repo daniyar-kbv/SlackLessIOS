@@ -63,3 +63,14 @@ extension UIView {
         }
     }
 }
+
+
+extension UIView {
+    func getAllSubviews() -> [UIView] {
+        subviews + subviews.flatMap({ $0.getAllSubviews() })
+    }
+    
+    func containsView(of typeString: String) -> Bool {
+        getAllSubviews().contains(where: { String(describing: type(of: $0)) == typeString })
+    }
+}

@@ -10,23 +10,22 @@ import RxSwift
 import RxCocoa
 import DeviceActivity
 
-protocol SummaryViewModelInput {
+protocol SummaryViewModelInput: AnyObject {
     func changeDate(forward: Bool)
 }
 
-protocol SummaryViewModelOutput {
-    var filter: BehaviorRelay<DeviceActivityFilter> { get }
+protocol SummaryViewModelOutput: AnyObject {
     var date: BehaviorRelay<String?> { get }
     var isntFirstDate: BehaviorRelay<Bool> { get }
     var isntLastDate: BehaviorRelay<Bool> { get }
 }
 
-protocol SummaryViewModel: AnyObject {
+protocol SummaryViewModel: SLReportsViewModel {
     var input: SummaryViewModelInput { get }
     var output: SummaryViewModelOutput { get }
 }
 
-final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, SummaryViewModelOutput {
+final class SummaryViewModelImpl: SummaryViewModel, SLReportsViewModel, SummaryViewModelInput, SummaryViewModelOutput {
     var input: SummaryViewModelInput { self }
     var output: SummaryViewModelOutput { self }
     
@@ -38,7 +37,7 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
     }
     
     //    Output
-    lazy var filter: BehaviorRelay<DeviceActivityFilter> = .init(value: makeFilter())
+    lazy var filters: [SLDeviceActivityReportFilter] = [.init(reportType: .summary, filter: makeFilter())]
     lazy var date: BehaviorRelay<String?> = .init(value: Date().formatted(style: .long))
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstDay())
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: isntLastDay())
@@ -56,7 +55,7 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
 
 extension SummaryViewModelImpl {
     private func reload() {
-        filter.accept(makeFilter())
+        filters.accept(filter: makeFilter(), for: .summary)
         date.accept(currentDate.formatted(style: .long))
         isntFirstDate.accept(isntFirstDay())
         isntLastDate.accept(isntLastDay())
@@ -71,14 +70,6 @@ extension SummaryViewModelImpl {
     }
     
     private func makeFilter() -> DeviceActivityFilter {
-        DeviceActivityFilter(
-            segment: .daily(
-                during: Calendar.current.dateInterval(
-                    of: .day, for: currentDate
-                 )!
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
+        SLDeviceActivityReportType.summary.getFilter(for: currentDate)
     }
 }

@@ -13,18 +13,17 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class SummaryController: UIViewController {
-    private let disposeBag = DisposeBag()
+final class SummaryController: SLReportsController {
     private let contentView = SummaryView()
     private let viewModel: SummaryViewModel
-    
-    private lazy var innerController = UIHostingController(rootView: makeReport(filter: viewModel.output.filter.value))
     
     init(viewModel: SummaryViewModel) {
         self.viewModel = viewModel
         
-        super.init(nibName: nil, bundle: nil)
-    }
+        super.init(reports: [.init(reportType: .summary,
+                                   view: contentView.reportView)],
+                   viewModel: viewModel)
+    } 
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,11 +45,6 @@ final class SummaryController: UIViewController {
     
     private func configView() {
         contentView.set(title: SLTexts.Summary.title.localized())
-        
-        add(controller: innerController,
-            to: contentView.reportView)
-        
-        innerController.view.backgroundColor = SLColors.background1.getColor()
     }
     
     private func bindView() {
@@ -66,12 +60,6 @@ final class SummaryController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.output.filter.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            innerController.rootView = makeReport(filter: $0)
-        })
-        .disposed(by: disposeBag)
-        
         viewModel.output.date
             .bind(to: contentView.dateSwitcherView.titleLabel.rx.text)
             .disposed(by: disposeBag)
@@ -81,10 +69,5 @@ final class SummaryController: UIViewController {
         
         viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
             .disposed(by: disposeBag)
-    }
-    
-    private func makeReport(filter: DeviceActivityFilter) -> DeviceActivityReport {
-        .init(.init(Constants.ContextName.summary),
-              filter: filter)
     }
 }
