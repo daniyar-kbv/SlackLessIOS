@@ -21,7 +21,7 @@ final class ProgressController: UIViewController {
 //    TODO: try setting sizingOptions
     
     private lazy var weekController = UIHostingController(rootView: makeWeekReport(filter: viewModel.output.weekFilter.value))
-    private lazy var pastWeeksController = UIHostingController(rootView: DeviceActivityReport(.init(Constants.ContextName.Progress.pastWeeks),
+    private lazy var pastWeeksController = UIHostingController(rootView: DeviceActivityReport(SLDeviceActivityReportType.pastWeeks.getContext(),
                                                                                               filter: viewModel.output.pastWeeksFilter.value))
     
     init(viewModel: ProgressViewModel) {
@@ -91,7 +91,7 @@ final class ProgressController: UIViewController {
     }
     
     private func makeWeekReport(filter: DeviceActivityFilter) -> DeviceActivityReport {
-        .init(.init(Constants.ContextName.Progress.week),
+        .init(SLDeviceActivityReportType.week.getContext(),
               filter: filter)
     }
 }

@@ -17,19 +17,19 @@ struct SummaryScene: DeviceActivityReportScene {
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> ARDay? {
         guard let activitySegment = await data.flatMap({ $0.activitySegments }).first(where: { _ in true })
         else { return nil }
-              
+
         let date = activitySegment.dateInterval.start
-        
+
         guard let appSelection = appSettingsService.output.getSelectedApps(for: date)
         else { return nil }
-        
+
         let timeLimit = appSettingsService.output.getTimeLimit(for: date)
 
         let allApps = activitySegment
             .categories
             .flatMap { $0.applications }
             .filter({ $0.totalActivityDuration >= 60 })
-        
+
         let selectedApps = allApps
             .filter {
                 guard let token = $0.application.token else { return false }
@@ -46,7 +46,7 @@ struct SummaryScene: DeviceActivityReportScene {
         let totalTime = await allApps
             .map { $0.totalActivityDuration }
             .reduce(0, +)
-        
+
         var selectedMinTime: Double = .infinity
         var selectedMaxTime: Double = .zero
         for await app in selectedApps {
@@ -57,7 +57,7 @@ struct SummaryScene: DeviceActivityReportScene {
                 selectedMaxTime = app.totalActivityDuration
             }
         }
-        
+
         var otherMinTime: Double = .infinity
         var otherMaxTime: Double = .zero
         for await app in otherApps {
@@ -68,7 +68,7 @@ struct SummaryScene: DeviceActivityReportScene {
                 otherMaxTime = app.totalActivityDuration
             }
         }
-        
+
         var selectedAppsTransformed = [ARApp]()
         for await app in selectedApps {
             let appTimeRelative = app.totalActivityDuration-selectedMinTime
@@ -76,7 +76,7 @@ struct SummaryScene: DeviceActivityReportScene {
                                                  time: app.totalActivityDuration,
                                                  ratio: appTimeRelative != 0 ? appTimeRelative/(selectedMaxTime-selectedMinTime) : 0))
         }
-        
+
         var otherAppsTransformed = [ARApp]()
         for await app in otherApps {
             let appTimeRelative = app.totalActivityDuration-otherMinTime
@@ -84,10 +84,10 @@ struct SummaryScene: DeviceActivityReportScene {
                                               time: app.totalActivityDuration,
                                               ratio: appTimeRelative != 0 ? appTimeRelative/(otherMaxTime-otherMinTime) : 0))
         }
-        
+
         selectedAppsTransformed.sort(by: { $0.time > $1.time })
         otherAppsTransformed.sort(by: { $0.time > $1.time })
-        
+
         return .init(date: date,
                      time: .init(slacked: slackedTime,
                                  total: totalTime,

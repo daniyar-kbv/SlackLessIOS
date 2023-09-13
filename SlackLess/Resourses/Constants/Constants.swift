@@ -42,15 +42,6 @@ struct Constants {
             static let appsSelection = "AppsSelection"
         }
     }
-    
-    struct ContextName {
-        static let summary = "Summary"
-        
-        struct Progress {
-            static let week = "ProgressWeek"
-            static let pastWeeks = "ProgressPastWeeks"
-        }
-    }
 }
 
 extension Constants {
