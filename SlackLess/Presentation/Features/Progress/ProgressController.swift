@@ -13,21 +13,20 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class ProgressController: UIViewController {
-    private let disposeBag = DisposeBag()
+final class ProgressController: SLReportsController {
     private let contentView = ProgressView()
     private let viewModel: ProgressViewModel
-    
-//    TODO: try setting sizingOptions
-    
-    private lazy var weekController = UIHostingController(rootView: makeWeekReport(filter: viewModel.output.weekFilter.value))
-    private lazy var pastWeeksController = UIHostingController(rootView: DeviceActivityReport(SLDeviceActivityReportType.pastWeeks.getContext(),
-                                                                                              filter: viewModel.output.pastWeeksFilter.value))
     
     init(viewModel: ProgressViewModel) {
         self.viewModel = viewModel
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(
+            reports: [
+                .init(reportType: .week, view: contentView.weekReportView),
+                .init(reportType: .pastWeeks, view: contentView.pastWeeksReportView)
+            ],
+            viewModel: viewModel
+        )
     }
     
     required init?(coder: NSCoder) {
@@ -50,14 +49,6 @@ final class ProgressController: UIViewController {
     
     private func configView() {
         contentView.set(title: SLTexts.Progress.title.localized())
-        
-        add(controller: weekController,
-            to: contentView.weekReportView)
-        weekController.view.backgroundColor = SLColors.background1.getColor()
-        
-        add(controller: pastWeeksController,
-            to: contentView.pastWeeksReportView)
-        pastWeeksController.view.backgroundColor = SLColors.background1.getColor()
     }
     
     private func bindView() {
@@ -73,12 +64,6 @@ final class ProgressController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.output.weekFilter.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            weekController.rootView = makeWeekReport(filter: $0)
-        })
-        .disposed(by: disposeBag)
-        
         viewModel.output.date
             .bind(to: contentView.dateSwitcherView.titleLabel.rx.text)
             .disposed(by: disposeBag)
@@ -88,10 +73,5 @@ final class ProgressController: UIViewController {
         
         viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
             .disposed(by: disposeBag)
-    }
-    
-    private func makeWeekReport(filter: DeviceActivityFilter) -> DeviceActivityReport {
-        .init(SLDeviceActivityReportType.week.getContext(),
-              filter: filter)
     }
 }

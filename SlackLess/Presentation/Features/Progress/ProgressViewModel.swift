@@ -15,14 +15,12 @@ protocol ProgressViewModelInput {
 }
 
 protocol ProgressViewModelOutput {
-    var weekFilter: BehaviorRelay<DeviceActivityFilter> { get }
-    var pastWeeksFilter: BehaviorRelay<DeviceActivityFilter> { get }
     var date: BehaviorRelay<String?> { get }
     var isntFirstDate: BehaviorRelay<Bool> { get }
     var isntLastDate: BehaviorRelay<Bool> { get }
 }
 
-protocol ProgressViewModel: AnyObject {
+protocol ProgressViewModel: SLReportsViewModel {
     var input: ProgressViewModelInput { get }
     var output: ProgressViewModelOutput { get }
 }
@@ -39,8 +37,10 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
     }
     
     //    Output
-    lazy var weekFilter: BehaviorRelay<DeviceActivityFilter> = .init(value: makeWeekFilter())
-    lazy var pastWeeksFilter: BehaviorRelay<DeviceActivityFilter> = .init(value: makePastWeeksFilter())
+    lazy var filters: [SLDeviceActivityReportFilter] = [
+        .init(reportType: .week, filter: makeWeekFilter()),
+        .init(reportType: .pastWeeks, filter: makePastWeeksFilter())
+    ]
     lazy var date: BehaviorRelay<String?> = .init(value: makeCurrentDateString())
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstWeek())
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: isntLastWeek())
@@ -58,7 +58,8 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
 
 extension ProgressViewModelImpl {
     private func reload() {
-        weekFilter.accept(makeWeekFilter())
+        filters.accept(filter: makeWeekFilter(), for: .week)
+        filters.accept(filter: makePastWeeksFilter(), for: .pastWeeks)
         date.accept(makeCurrentDateString())
         isntFirstDate.accept(isntFirstWeek())
         isntLastDate.accept(isntLastWeek())
