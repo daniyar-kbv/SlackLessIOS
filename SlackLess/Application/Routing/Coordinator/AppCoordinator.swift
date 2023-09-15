@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 
 final class AppCoordinator: BaseCoordinator {
-    private let tabBarBarTypes: [SLTabBarType] = [.summary]
+    private let tabBarBarTypes: [SLTabBarType] = [.summary, .progress]
     
     private var preparedViewControllers: [UIViewController] = []
 

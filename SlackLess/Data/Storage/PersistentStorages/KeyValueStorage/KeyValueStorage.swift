@@ -7,6 +7,8 @@
 
 import Foundation
 import FamilyControls
+import RxSwift
+import RxCocoa
 
 enum KeyValueStorageKey: String, StorageKey, Equatable {
     case appLocale
@@ -14,6 +16,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
     case selectedApps
     case timeLimit
     case startDate
+    case progressDate
 
     public var value: String { return rawValue }
 }
@@ -22,6 +25,8 @@ protocol KeyValueStorage {
     var appLocale: Language { get }
     var onbardingShown: Bool { get }
     var startDate: Date? { get }
+    var progressDate: Date? { get }
+    var progressDateObservable: PublishRelay<Date?> { get }
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
 
@@ -30,20 +35,32 @@ protocol KeyValueStorage {
     func persist(selectedApps: FamilyActivitySelection, for date: Date)
     func persist(timeLimit: TimeInterval, for date: Date)
     func persist(startDate: Date)
+    func persist(progressDate: Date)
 
     func cleanUp(key: KeyValueStorageKey)
 }
 
 final class KeyValueStorageImpl: KeyValueStorage {
+    private let disposeBag = DisposeBag()
     private let storageProvider: UserDefaults = .init(suiteName: Constants.UserDefaults.SuiteName.main) ?? .standard
     private let decoder = PropertyListDecoder()
-
-    public init() {}
+    
+    public init() {
+        bind()
+    }
+    
+    private func bind() {
+        storageProvider.rx
+            .observe(Date.self, KeyValueStorageKey.progressDate.value)
+            .debounce(.milliseconds(1), scheduler: MainScheduler.asyncInstance)
+            .bind(to: progressDateObservable)
+            .disposed(by: disposeBag)
+    }
     
     var onbardingShown: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
     }
-
+    
     var appLocale: Language {
         Language.get(by: storageProvider.string(forKey: KeyValueStorageKey.appLocale.value))
     }
@@ -51,6 +68,14 @@ final class KeyValueStorageImpl: KeyValueStorage {
     var startDate: Date? {
         storageProvider.object(forKey: KeyValueStorageKey.startDate.value) as? Date
     }
+    
+    var progressDate: Date? {
+        storageProvider.object(forKey: KeyValueStorageKey.progressDate.value) as? Date
+    }
+    
+    let progressDateObservable = PublishRelay<Date?>()
+    
+//  TODO: Refactor with DB
     
     func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
         guard let data = storageProvider.data(forKey: KeyValueStorageKey.selectedApps.value+makeString(from: date))
@@ -91,6 +116,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
     
     func persist(startDate: Date) {
         storageProvider.set(startDate, forKey: KeyValueStorageKey.startDate.value)
+    }
+    
+    func persist(progressDate: Date) {
+        storageProvider.set(progressDate, forKey: KeyValueStorageKey.progressDate.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {

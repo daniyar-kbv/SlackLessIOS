@@ -11,8 +11,7 @@ import DeviceActivity
 
 enum SLDeviceActivityReportType {
     case summary
-    case week
-    case pastWeeks
+    case progress
     
     private var calendar: Calendar {
         .current
@@ -21,8 +20,7 @@ enum SLDeviceActivityReportType {
     var contextName: String {
         switch self {
         case .summary: return "Summary"
-        case .week: return "Week"
-        case .pastWeeks: return "PastWeeks"
+        case .progress: return "Progress"
         }
     }
     
@@ -42,29 +40,18 @@ enum SLDeviceActivityReportType {
                 users: .all,
                 devices: .init([.iPhone])
             )
-        case .week:
-            let minusWeekDate = calendar.date(byAdding: .weekOfYear, value: -1, to: Date())!
-            let startDate = calendar.dateInterval(of: .weekOfYear, for: minusWeekDate)!.start
-            let endDate = calendar.dateInterval(of: .weekOfYear, for: Date())!.end
+        case .progress:
+            let currentDate = Date()
+            let minusFiveWeeksDate = currentDate.add(.weekOfYear, value: -4)
+            let startDate = minusFiveWeeksDate.getWeekInterval().start
+            let endDate = currentDate.getWeekInterval().end
             return DeviceActivityFilter(
                 segment: .daily(
                     during: .init(start: startDate,
                                   end: endDate)
                 ),
                 users: .all,
-                devices: .init([.iPhone])
-            )
-        case .pastWeeks:
-            let minusFiveWeeksDate = calendar.date(byAdding: .weekOfYear, value: -4, to: Date())!
-            let startDate = calendar.dateInterval(of: .weekOfYear, for: minusFiveWeeksDate)!.start
-            let endDate = calendar.dateInterval(of: .weekOfYear, for: Date())!.end
-            return DeviceActivityFilter(
-                segment: .weekly(
-                    during: .init(start: startDate,
-                                  end: endDate)
-                ),
-                users: .all,
-                devices: .init([.iPhone])
+                devices: .init([.iPhone, .iPad])
             )
         }
     }

@@ -16,6 +16,7 @@ protocol AppSettingsRepositoryInput {
     func set(timeLimit: TimeInterval, for date: Date)
     func set(selectedApps: FamilyActivitySelection, for date: Date)
     func set(startDate: Date)
+    func set(progressDate: Date)
 }
 
 protocol AppSettingsRepositoryOutput {
@@ -23,6 +24,9 @@ protocol AppSettingsRepositoryOutput {
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getStartDate() -> Date?
+    func getProgressDate() -> Date?
+    
+    var progressDateObservable: PublishRelay<Date?> { get }
 }
 
 protocol AppSettingsRepository: AnyObject {
@@ -34,13 +38,25 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
     var input: AppSettingsRepositoryInput { self }
     var output: AppSettingsRepositoryOutput { self }
     
+    private let disposeBag = DisposeBag()
     private let keyValueStorage: KeyValueStorage
     
     init(keyValueStorage: KeyValueStorage) {
         self.keyValueStorage = keyValueStorage
+        
+        bindStorage()
+    }
+    
+    func bindStorage() {
+        keyValueStorage
+            .progressDateObservable
+            .bind(to: progressDateObservable)
+            .disposed(by: disposeBag)
     }
     
     //    Output
+    var progressDateObservable: PublishRelay<Date?> = .init()
+    
     func getOnboardingShown() -> Bool {
         keyValueStorage.onbardingShown
     }
@@ -62,6 +78,10 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.startDate
     }
     
+    func getProgressDate() -> Date? {
+        keyValueStorage.progressDate
+    }
+    
     //    Input
     
     func set(onboardingShown: Bool) {
@@ -78,5 +98,9 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
     
     func set(startDate: Date) {
         keyValueStorage.persist(startDate: startDate)
+    }
+    
+    func set(progressDate: Date) {
+        keyValueStorage.persist(progressDate: progressDate)
     }
 }

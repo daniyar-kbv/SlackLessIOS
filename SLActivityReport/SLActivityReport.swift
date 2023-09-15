@@ -13,23 +13,17 @@ struct SLActivityReport: DeviceActivityReportExtension {
     private let appComponentsFactory = AppComponentsFactoryImpl()
     
     var body: some DeviceActivityReportScene {
-        SummaryScene(appSettingsService: appComponentsFactory
+        SummaryScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
+            .init(day: $0)
+        }
+        ProgressScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
+            .init(appSettingsService: getServiceFactory().makeAppSettingsService(), weeks: $0)
+        }
+    }
+    
+    private func getServiceFactory() -> ServiceFactory {
+        appComponentsFactory
             .makeDomainComponentsFactory()
             .makeServiceFactory()
-            .makeAppSettingsService()) {
-                .init(day: $0)
-            }
-        ProgressWeekScene(appSettingsService: appComponentsFactory
-            .makeDomainComponentsFactory()
-            .makeServiceFactory()
-            .makeAppSettingsService()) {
-                .init(weeks: $0)
-            }
-        ProgressPastWeeksScene(appSettingsService: appComponentsFactory
-            .makeDomainComponentsFactory()
-            .makeServiceFactory()
-            .makeAppSettingsService()) {
-                .init(weeks: $0)
-            }
     }
 }

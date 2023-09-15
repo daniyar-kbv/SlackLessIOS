@@ -44,8 +44,15 @@ class SLReportsController: UIViewController {
         super.viewDidLayoutSubviews()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self else { return }
-            reports.reloadIfNeeded()
+            self?.reports.reloadIfNeeded()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.reports.reloadIfNeeded()
         }
     }
 }
@@ -64,7 +71,7 @@ extension SLReportsController {
             self.view = view
             self.hostingController = UIHostingController(rootView: DeviceActivityReport(reportType.getContext()))
             
-            hostingController.view.backgroundColor = SLColors.background1.getColor()
+            layoutHostingController()
         }
         
         func update(filter: DeviceActivityFilter) {
@@ -83,10 +90,15 @@ extension SLReportsController {
             addToParent()
         }
         
-        func addToParent() {
+        private func addToParent() {
             guard let filter = filter else { return }
             hostingController = UIHostingController(rootView: DeviceActivityReport(reportType.getContext(), filter: filter))
             parentController?.add(controller: hostingController, to: view)
+            layoutHostingController()
+        }
+        
+        private func layoutHostingController() {
+            hostingController.view.backgroundColor = SLColors.background1.getColor()
         }
     }
 }
