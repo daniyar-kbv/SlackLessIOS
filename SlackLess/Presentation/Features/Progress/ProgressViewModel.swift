@@ -29,17 +29,18 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
     var input: ProgressViewModelInput { self }
     var output: ProgressViewModelOutput { self }
     
-    private var currentDate = Date()
+    private lazy var currentDate = Date().getFirstDayOfWeek()
     private let appSettingsService: AppSettingsService
     
     init(appSettingsService: AppSettingsService) {
         self.appSettingsService = appSettingsService
+        
+        appSettingsService.input.set(progressDate: currentDate)
     }
     
     //    Output
     lazy var filters: [SLDeviceActivityReportFilter] = [
-        .init(reportType: .week, filter: makeWeekFilter()),
-        .init(reportType: .pastWeeks, filter: makePastWeeksFilter())
+        .init(reportType: .progress, filter: SLDeviceActivityReportType.progress.getFilter()),
     ]
     lazy var date: BehaviorRelay<String?> = .init(value: makeCurrentDateString())
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstWeek())
@@ -49,17 +50,14 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
     
     func changeDate(forward: Bool) {
         guard (forward && isntLastWeek()) || (!forward && isntFirstWeek()) else { return }
-        currentDate = Calendar.current.date(byAdding: .weekOfYear,
-                                            value: forward ? 1 : -1,
-                                            to: currentDate)!
+        currentDate = currentDate.add(.weekOfYear, value: forward ? 1 : -1)
+        appSettingsService.input.set(progressDate: currentDate)
         reload()
     }
 }
 
 extension ProgressViewModelImpl {
     private func reload() {
-        filters.accept(filter: makeWeekFilter(), for: .week)
-        filters.accept(filter: makePastWeeksFilter(), for: .pastWeeks)
         date.accept(makeCurrentDateString())
         isntFirstDate.accept(isntFirstWeek())
         isntLastDate.accept(isntLastWeek())
@@ -70,41 +68,11 @@ extension ProgressViewModelImpl {
     }
     
     private func isntLastWeek() -> Bool {
-        currentDate.compareByDate(to: Date()) == .orderedAscending
-    }
-    
-    private func makeWeekFilter() -> DeviceActivityFilter {
-        let calendar = Calendar.current
-        let minusWeekDate = calendar.date(byAdding: .weekOfYear, value: -1, to: Date())!
-        let startDate = calendar.dateInterval(of: .weekOfYear, for: minusWeekDate)!.start
-        let endDate = calendar.dateInterval(of: .weekOfYear, for: Date())!.end
-        return DeviceActivityFilter(
-            segment: .daily(
-                during: .init(start: startDate,
-                              end: endDate)
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
-    }
-    
-    private func makePastWeeksFilter() -> DeviceActivityFilter {
-        let calendar = Calendar.current
-        let minusFiveWeeksDate = calendar.date(byAdding: .weekOfYear, value: -4, to: Date())!
-        let startDate = calendar.dateInterval(of: .weekOfYear, for: minusFiveWeeksDate)!.start
-        let endDate = calendar.dateInterval(of: .weekOfYear, for: Date())!.end
-        return DeviceActivityFilter(
-            segment: .weekly(
-                during: .init(start: startDate,
-                              end: endDate)
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
+        currentDate != Date().getFirstDayOfWeek()
     }
     
     private func makeCurrentDateString() -> String {
-        "\(currentDate.getFirstDayOfWeek().formatted(style: .short)) - \(currentDate.getLastDayOfWeek().formatted(style: .short))"
+        "\(currentDate.formatted(style: .short)) - \(currentDate.getLastDayOfWeek().formatted(style: .short))"
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 import DeviceActivity
 
 struct SummaryRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = SummaryReportController
+    typealias UIViewControllerType = SummaryController
     
     private let day: ARDay?
     
@@ -19,7 +19,7 @@ struct SummaryRepresentable: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        SummaryReportController(viewModel: SummaryReportViewModelImpl(day: day))
+        SummaryController(viewModel: SummaryViewModelImpl(day: day))
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

@@ -20,13 +20,8 @@ final class ProgressController: SLReportsController {
     init(viewModel: ProgressViewModel) {
         self.viewModel = viewModel
         
-        super.init(
-            reports: [
-                .init(reportType: .week, view: contentView.weekReportView),
-                .init(reportType: .pastWeeks, view: contentView.pastWeeksReportView)
-            ],
-            viewModel: viewModel
-        )
+        super.init(reports: [.init(reportType: .progress, view: contentView.reportView)],
+                   viewModel: viewModel)
     }
     
     required init?(coder: NSCoder) {

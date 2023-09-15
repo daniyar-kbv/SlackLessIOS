@@ -29,7 +29,7 @@ final class SummaryViewModelImpl: SummaryViewModel, SLReportsViewModel, SummaryV
     var input: SummaryViewModelInput { self }
     var output: SummaryViewModelOutput { self }
     
-    private var currentDate = Date()
+    private var currentDate = Date().getDate()
     private let appSettingsService: AppSettingsService
     
     init(appSettingsService: AppSettingsService) {
@@ -46,9 +46,7 @@ final class SummaryViewModelImpl: SummaryViewModel, SLReportsViewModel, SummaryV
     
     func changeDate(forward: Bool) {
         guard (forward && isntLastDay()) || (!forward && isntFirstDay()) else { return }
-        currentDate = Calendar.current.date(byAdding: .day,
-                                            value: forward ? 1 : -1,
-                                            to: currentDate)!
+        currentDate = currentDate.add(.day, value: forward ? 1 : -1)
         reload()
     }
 }
@@ -66,7 +64,7 @@ extension SummaryViewModelImpl {
     }
     
     private func isntLastDay() -> Bool {
-        currentDate.compareByDate(to: Date()) == .orderedAscending
+        return currentDate != Date().getDate()
     }
     
     private func makeFilter() -> DeviceActivityFilter {

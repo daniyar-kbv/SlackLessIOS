@@ -8,18 +8,24 @@
 import Foundation
 
 extension Date {
+    func getDate() -> Date {
+        Calendar.current.dateInterval(of: .day, for: self)!.start
+    }
+    
+    func getWeekInterval() -> DateInterval {
+        Calendar.current.dateInterval(of: .weekOfYear, for: self)!
+    }
+    
     func getFirstDayOfWeek() -> Date {
-        return Calendar(identifier: .gregorian)
-            .dateComponents([.calendar, .yearForWeekOfYear, .weekOfYear], from: self)
-            .date!
+        getWeekInterval().start
     }
     
     func getLastDayOfWeek() -> Date {
-        return Calendar
-            .current
-            .date(byAdding: .day,
-                  value: 6,
-                  to: getFirstDayOfWeek())!
+        getWeekInterval().end.add(.day, value: -1)
+    }
+    
+    func add(_ component: Calendar.Component, value: Int) -> Date {
+        Calendar.current.date(byAdding: component, value: value, to: self)!
     }
     
     func formatted(style: DateStyle) -> String {
