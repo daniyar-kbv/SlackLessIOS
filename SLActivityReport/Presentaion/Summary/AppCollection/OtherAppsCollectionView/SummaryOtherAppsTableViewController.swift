@@ -1,22 +1,21 @@
 //
-//  SummaryOtherAppsCollectionViewController.swift
+//  SummaryOtherAppsTableViewController.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-10.
 //
 
 import Foundation
-import UIKit
-import SnapKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import SnapKit
+import UIKit
 
 final class SummaryOtherAppsTableViewController: UIViewController {
     private let disposeBag = DisposeBag()
-    private let iconMaker = SummaryAppCollectionIconMaker()
     private let viewModel: SummaryAppsCollectionViewModel
     var height: Int = 1
-    
+
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
         view.register(SummaryOtherAppsTableViewCell.self, forCellReuseIdentifier: String(describing: SummaryOtherAppsTableViewCell.self))
@@ -27,40 +26,35 @@ final class SummaryOtherAppsTableViewController: UIViewController {
         view.backgroundColor = SLColors.backgroundElevated.getColor()
         view.separatorInset = .init(top: 0, left: 40, bottom: 0, right: 0)
         view.isScrollEnabled = false
-        view.snp.makeConstraints({
+        view.snp.makeConstraints {
             $0.height.equalTo(1)
-        })
+        }
         return view
     }()
-    
+
     init(viewModel: SummaryAppsCollectionViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(nibName: .none, bundle: .none)
     }
-    
+
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func loadView() {
         super.loadView()
-        
+
         view = tableView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configure()
+
         bindViewModel()
     }
-    
-    private func configure() {
-        iconMaker.controller = self
-    }
-    
+
     private func bindViewModel() {
         viewModel.output.appsChanged
             .subscribe(onNext: tableView.reloadData)
@@ -69,28 +63,24 @@ final class SummaryOtherAppsTableViewController: UIViewController {
 }
 
 extension SummaryOtherAppsTableViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection _: Int) -> Int {
         let numberOfItems = viewModel.output.getNumberOfApps()
-        tableView.snp.updateConstraints({
-            $0.height.equalTo((numberOfItems*48)+(12))
-        })
+        tableView.snp.updateConstraints {
+            $0.height.equalTo((numberOfItems * 48) + 12)
+        }
         return numberOfItems
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SummaryOtherAppsTableViewCell.self), for: indexPath) as! SummaryOtherAppsTableViewCell
         let app = viewModel.output.getApp(for: indexPath.row)
         cell.appTimeView?.set(app: app, type: .large)
-        iconMaker.addAppIcon(to: cell.appTimeView?.appIconView, with: app.token)
-        cell.onReuse = { [weak self] in
-            self?.iconMaker.removeAppIcon(for: app.token)
-        }
         return cell
     }
 }
 
 extension SummaryOtherAppsTableViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return 48
     }
 }

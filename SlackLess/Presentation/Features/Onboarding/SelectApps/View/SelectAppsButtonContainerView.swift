@@ -1,17 +1,17 @@
 //
-//  SelectAppsView.swift
+//  SelectAppsButtonContainerView.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-06-24.
 //
 
+import FamilyControls
 import Foundation
 import SwiftUI
-import FamilyControls
 
 struct SelectAppsButtonContainerView: View {
-    var onSelect: (FamilyActivitySelection)->()
-    
+    var onSelect: (FamilyActivitySelection) -> Void
+
     @State var selection = FamilyActivitySelection()
     @State var isPresented = false
 
@@ -24,10 +24,9 @@ struct SelectAppsButtonContainerView: View {
                                   selection: $selection)
         }
         .onChange(of: isPresented) {
-            if !$0 && (!selection.applicationTokens.isEmpty || (!selection.categoryTokens.isEmpty)) {
+            if (Constants.appMode == .debug && !$0 && (!selection.applicationTokens.isEmpty || (!selection.categoryTokens.isEmpty))) || Constants.appMode == .debug {
                 onSelect(selection)
             }
         }
     }
 }
-

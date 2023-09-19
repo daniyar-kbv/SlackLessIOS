@@ -5,22 +5,22 @@
 //  Created by Daniyar Kurmanbayev on 2023-05-29.
 //
 
-import UIKit
 import DeviceActivity
+import UIKit
 
 //  Tech debt: Refactor
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
-    static let appMode: AppMode = .normal
-    
+    static let appMode: AppMode = .debug
+
     enum AppMode {
         case normal
         case debug
     }
 
     enum URLs {
-        struct ITunesAPI {
+        enum ITunesAPI {
             static let search = URL(string: "https://itunes.apple.com")!
         }
     }
@@ -31,21 +31,16 @@ struct Constants {
         static let success = 200
         static let unauthorized = 401
     }
-    
+
 //    Shared constants
-    struct UserDefaults {
-        struct SuiteName {
+    enum UserDefaults {
+        enum SuiteName {
             static let main = "group.kz.slackless"
         }
-        
-        struct Key {
+
+        enum Key {
             static let appsSelection = "AppsSelection"
         }
-    }
-    
-    struct ContextName {
-        static let summary = "Summary"
-        static let progress = "Progress"
     }
 }
 
@@ -59,28 +54,5 @@ extension Constants {
             fatalError("Couldn't find key '\(key)' in 'SLInfo.plist'.")
         }
         return value
-    }
-}
-
-extension Constants {
-    struct DeviceActivityFilters {
-        private static var today = Date()
-        
-        static let summary = DeviceActivityFilter(
-            segment: .daily(
-                during: .init(start: Calendar.current.date(byAdding: .day, value: -6, to: Date())!,
-                              end: Date())
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
-        static let progress = DeviceActivityFilter(
-            segment: .daily(
-                during: .init(start: Calendar.current.date(byAdding: .weekOfYear, value: -4, to: Date().getFirstDayOfWeek())!,
-                              end: Date().getLastDayOfWeek())
-            ),
-            users: .all,
-            devices: .init([.iPhone])
-        )
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Tech debt: change to uppercase
+// TODO: Refactor image names to match Enum names and remove raw values
 
 enum SLImages: String, ImageGetable {
     case appIcon = "AppIcon"
@@ -21,12 +21,12 @@ enum SLImages: String, ImageGetable {
             case selected = "TabBar.Summary.selected"
             case unselected = "TabBar.Summary.unselected"
         }
-        
+
         enum Progress: String, ImageGetable {
             case selected = "TabBar.Progress.selected"
             case unselected = "TabBar.Progress.unselected"
         }
-        
+
         enum Customize: String, ImageGetable {
             case selected = "TabBar.Customize.selected"
             case unselected = "TabBar.Customize.unselected"
@@ -36,12 +36,12 @@ enum SLImages: String, ImageGetable {
     enum Common: String, ImageGetable {
         case logo = "Common.Logo"
         case appIconPlaceholder = "Common.AppIcon.Placeholder"
-        
+
         enum Arrows {
             enum Chevron: String, ImageGetable {
                 case right = "Common.Arrows.Chevron.Right"
             }
-            
+
             enum Circle: String, ImageGetable {
                 case right = "Common.Arrows.Cicle.right"
                 case left = "Common.Arrows.Cicle.left"
@@ -52,7 +52,7 @@ enum SLImages: String, ImageGetable {
     enum WelcomeScreen: String, ImageGetable {
         case main = "WelcomeScreen.Main"
     }
-    
+
     enum Settings: String, ImageGetable {
         case apps = "Settings.Apps"
         case time = "Settings.Time"
@@ -60,5 +60,11 @@ enum SLImages: String, ImageGetable {
         case notifications = "Settings.Notifications"
         case emails = "Settings.Emails"
         case feedback = "Settings.Feedback"
+    }
+}
+
+extension SLImages {
+    static func getIcon(for appName: String) -> UIImage? {
+        return .init(named: "Apps.\(appName.lowercased())")
     }
 }
