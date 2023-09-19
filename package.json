@@ -1,23 +1,27 @@
 {
-  "name": "slacklessios",
-  "version": "0.0.1",
-  "description": "SlackLess app",
-  "main": "commitlint.config.js",
+  "name": "SlackLessIOS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daniyarka/SlackLessIOS.git"
+    "url": "git+ssh://git@github.com:daniyarka/SlackLessIOS.git"
   },
-  "author": "Daniyar Kurmanbayev",
-  "license": "MIT",
+  "author": "Daniyar",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/daniyarka/SlackLessIOS/issues"
   },
   "homepage": "https://github.com/daniyarka/SlackLessIOS#readme",
   "devDependencies": {
-    "husky": "^8.0.0"
+    "husky": "^6.0.0"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1"
   }
 }
