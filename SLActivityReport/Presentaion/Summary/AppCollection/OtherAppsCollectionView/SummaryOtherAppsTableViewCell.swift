@@ -1,47 +1,45 @@
 //
-//  SummarySelectedAppsTableViewCell.swift
+//  SummaryOtherAppsTableViewCell.swift
 //  SLActivityReport
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-10.
 //
 
 import Foundation
-import UIKit
 import SnapKit
+import UIKit
 
 // Tech debt: refactor cells
 
 final class SummaryOtherAppsTableViewCell: UITableViewCell {
     private(set) var appTimeView: ARAppView?
-    
-    var onReuse: (() -> Void)?
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         layoutUI()
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+
         layoutUI()
-        onReuse?()
     }
-    
+
     private func layoutUI() {
         appTimeView?.removeFromSuperview()
-        
+
         appTimeView = .init()
-        
+
         addSubview(appTimeView!)
-        appTimeView?.snp.makeConstraints({
+        appTimeView?.snp.makeConstraints {
             $0.centerY.horizontalEdges.equalToSuperview()
             $0.height.equalTo(28)
-        })
+        }
     }
 }

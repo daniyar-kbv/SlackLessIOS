@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import UIKit
-import SwiftUI
 import SnapKit
+import SwiftUI
+import UIKit
 
 extension UIViewController {
     func topViewController() -> UIViewController? {
@@ -27,26 +27,33 @@ extension UIViewController {
         }
         return self
     }
-    
+
     func add(controller: UIViewController, to view: UIView? = nil, with constraints: ((ConstraintMaker) -> Void)? = nil) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
-        
+
         if let view = view {
             view.addSubview(controller.view)
-            
+
             if let constraints = constraints {
                 controller.view.snp.makeConstraints(constraints)
             } else {
-                controller.view.snp.makeConstraints({
+                controller.view.snp.makeConstraints {
                     $0.edges.equalToSuperview()
-                })
+                }
             }
         }
 
         addChild(controller)
         controller.didMove(toParent: self)
     }
-    
+
+    func add(controller: UIViewController, addView: () -> Void) {
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        addView()
+        addChild(controller)
+        controller.didMove(toParent: self)
+    }
+
     func remove(controller: UIViewController) {
         controller.willMove(toParent: nil)
         controller.removeFromParent()

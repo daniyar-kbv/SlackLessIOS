@@ -2,66 +2,72 @@
 //  ProgressScene.swift
 //  SLActivityReport
 //
-//  Created by Daniyar Kurmanbayev on 2023-07-19.
+//  Created by Daniyar Kurmanbayev on 2023-09-12.
 //
 
 import DeviceActivity
 import SwiftUI
 
-// Tech debt: refactor to use service
-
 struct ProgressScene: DeviceActivityReportScene {
-    let appSettingsRepository: AppSettingsRepository
-    
+    let appSettingsService: AppSettingsService
+
     let context: DeviceActivityReport.Context = .progress
     let content: ([ARWeek]) -> ProgressRepresentable
-    
+
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [ARWeek] {
-        var weeks = [ARWeek]()
-        let activitySegments = data.flatMap({
-            $0.activitySegments
-        })
-        
-        let startDate = Date().getLastDayOfWeek()
         let calendar = Calendar.current
+        let currentDate = Date()
 
-        for i in (0..<5).reversed() {
-            let lastDayOfWeek = calendar.date(byAdding: .weekOfYear, value: -i, to: startDate)!
-            var days = [ARWeek.Day]()
-            for j in (0..<7).reversed() {
-                let date = calendar.date(byAdding: .day, value: -j, to: lastDayOfWeek)!
-                guard let activitySegment = await activitySegments.first(where: {
-                    getDate(from: $0.dateInterval.end) == getDate(from: date)
-                }) else {
-                    days.append(getEmptyDay(from: date))
-                    continue
-                }
+        let activitySegments = data.flatMap {
+            $0.activitySegments
+        }
 
-                guard let appSelection = appSettingsRepository.output.getSelectedApps(for: date) else {
-                    days.append(getEmptyDay(from: date))
-                    continue
-                }
+        guard let _ = await activitySegments.first(where: { _ in true })
+        else { return [] }
 
-                let slackedTime = await activitySegment
+        let weeks = (0 ..< 5)
+            .reversed()
+            .map {
+                let date = currentDate.add(.weekOfYear, value: -$0)
+                let startDate = date.getWeekInterval().start
+                return ARWeek(startDate: startDate, days: [])
+            }
+
+        for await activitySegment in activitySegments {
+            let date = activitySegment.dateInterval.start
+            let week = weeks.first(where: {
+                $0.startDate.getWeekInterval().containsDate(date)
+            })
+
+            var slackedTime = 0.0
+            if let appSelection = appSettingsService.output.getSelectedApps(for: date) {
+                slackedTime = await activitySegment
                     .categories
                     .flatMap { $0.applications }
-                    .filter({ $0.totalActivityDuration >= 60 })
                     .filter {
-                        guard let token = $0.application.token else { return false }
+                        guard let token = $0.application.token,
+                              $0.totalActivityDuration >= 60
+                        else { return false }
                         return appSelection.applicationTokens.contains(token)
                     }
                     .map { $0.totalActivityDuration }
                     .reduce(0, +)
-
-                days.append(.init(weekday: calendar.component(.weekday, from: date),
-                                  time: .init(slacked: slackedTime,
-                                              total: activitySegment.totalActivityDuration,
-                                              limit: nil,
-                                              average: nil)))
             }
 
-            weeks.append(.init(startDate: lastDayOfWeek.getFirstDayOfWeek(),
-                               days: days))
+            week?.days.append(.init(weekday: calendar.component(.weekday, from: date),
+                                    time: .init(slacked: slackedTime,
+                                                total: activitySegment.totalActivityDuration,
+                                                limit: nil,
+                                                average: nil)))
+        }
+
+        for week in weeks {
+            for i in 0 ..< 7 {
+                let date = week.startDate.add(.day, value: i)
+                let weekday = calendar.component(.weekday, from: date)
+                guard !week.days.contains(where: { $0.weekday == weekday }) else { continue }
+                week.days.insert(getEmptyDay(from: date), at: i)
+            }
         }
 
         return weeks
@@ -69,11 +75,6 @@ struct ProgressScene: DeviceActivityReportScene {
 }
 
 extension ProgressScene {
-    private func getDate(from date: Date) -> DateComponents {
-        let calendar = Calendar.current
-        return calendar.dateComponents([.day, .month, .year], from: date)
-    }
-    
     private func getEmptyDay(from date: Date) -> ARWeek.Day {
         let calendar = Calendar.current
         return .init(weekday: calendar.component(.weekday, from: date),

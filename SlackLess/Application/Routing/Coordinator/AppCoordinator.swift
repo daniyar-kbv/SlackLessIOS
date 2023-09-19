@@ -11,11 +11,8 @@ import RxSwift
 import UIKit
 
 final class AppCoordinator: BaseCoordinator {
-    private let tabBarBarTypes: [SLTabBarType] =
-    Constants.appMode == .normal ?
-    [.summary, .progress] :
-    [.progress, .summary]
-    
+    private let tabBarBarTypes: [SLTabBarType] = [.summary, .progress]
+
     private var preparedViewControllers: [UIViewController] = []
 
     private let serviceFactory: ServiceFactory
@@ -37,7 +34,7 @@ final class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        if appSettingsService.output.getOnboardingShown() || Constants.appMode == .debug {
+        if appSettingsService.output.getOnboardingShown() {
             configureCoordinators()
             showTabBarController()
         } else {
@@ -57,12 +54,12 @@ extension AppCoordinator {
 
     private func startOnboardingFlow() {
         let onBoardingCoordinator = appCoordinatorsFactory.makeOnboardingCoordinator()
-        
+
         onBoardingCoordinator.didFinish = { [weak self] in
             self?.appSettingsService.input.set(onboardingShown: true)
             self?.start()
         }
-        
+
         add(onBoardingCoordinator)
         onBoardingCoordinator.start()
     }
@@ -79,7 +76,7 @@ extension AppCoordinator {
             }
         }
     }
-    
+
     private func configureSummaryCoordinator(tabBarItem: UITabBarItem) {
         let coordinator = appCoordinatorsFactory.makeSummaryCoordinator()
 
@@ -89,7 +86,7 @@ extension AppCoordinator {
         preparedViewControllers.append(coordinator.router.getNavigationController())
         add(coordinator)
     }
-    
+
     private func configureProgressCoordinator(tabBarItem: UITabBarItem) {
         let coordinator = appCoordinatorsFactory.makeProgressCoordinator()
 

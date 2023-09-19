@@ -20,7 +20,8 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
 
     init(routersFactory: RoutersFactory,
          serviceFactory: ServiceFactory,
-         helpersFactory: HelpersFactory) {
+         helpersFactory: HelpersFactory)
+    {
         self.routersFactory = routersFactory
         self.serviceFactory = serviceFactory
         self.helpersFactory = helpersFactory
@@ -30,12 +31,14 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
         return scoped(OnboardingCoordinator(router: routersFactory.makeMainRouter(),
                                             modulesFactory: OnboardingModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
-    
+
     func makeSummaryCoordinator() -> SummaryCoordinator {
-        return scoped(SummaryCoordinator(router: routersFactory.makeMainRouter()))
+        return scoped(SummaryCoordinator(router: routersFactory.makeMainRouter(),
+                                         modulesFactory: SummaryModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
-    
+
     func makeProgressCoordinator() -> ProgressCoordinator {
-        return scoped(ProgressCoordinator(router: routersFactory.makeMainRouter()))
+        return scoped(ProgressCoordinator(router: routersFactory.makeMainRouter(),
+                                          modulesFactory: ProgressModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
 }

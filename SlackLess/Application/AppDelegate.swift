@@ -18,22 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var presentationComponentsFactory = appComponentsFactory.makePresentationComponentsFactory()
     private var appCoordinator: AppCoordinator?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureAppCoordinator()
         configureKeyboardManager()
         configureLocalization()
         startReachabilityManager()
         return true
     }
-    
+
     private func makeWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        
-        switch Constants.appMode {
-        case .debug: window?.overrideUserInterfaceStyle = .light
-        default: break
-        }
+
+//        TODO: remove
+        window?.overrideUserInterfaceStyle = .light
     }
 
     private func configureAppCoordinator() {
@@ -42,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appCoordinatorsFactory: appComponentsFactory.makePresentationComponentsFactory().makeApplicationCoordinatorFactory(),
             modulesFactory: appComponentsFactory.makePresentationComponentsFactory().makeApplicationModulesFactory()
         )
-        
+
         makeWindow()
         appCoordinator?.start()
     }
