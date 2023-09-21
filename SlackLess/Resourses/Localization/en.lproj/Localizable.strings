@@ -14,13 +14,13 @@
 "Error.Domain.categoriesNotAllowed" = "Неудалось отправить запрос";
 
 //  MARK: - Keyboard
-"Keyboard.Toolbar.done" = "Готово";
+"Keyboard.Toolbar.done" = "Done";
 
 //  MARK: - Alert
 "Alert.Error.title" = "Error";
 "Alert.Action.defauiltTitle" = "Ok";
 "Alert.Action.cancel" = "Cancel";
-"Alert.Action.toSettings" = "To seetings";
+"Alert.Action.toSettings" = "To settings";
 "Alert.Action.yes" = "Yes";
 "Alert.Action.no" = "No";
 
@@ -60,13 +60,15 @@
 
 //  MARK: - Customize
 "Customize.title" = "Customize";
-"Customize.FirstSection.title" = "SETTINGS";
-"Customize.FirstSection.selectedApps" = "Selected Apps";
-"Customize.FirstSection.timeLimit" = "Time Limit";
-"Customize.FirstSection.unlockPrice" = "Unlock Price";
-"Customize.SecondSection.title" = "NOTIFICATIONS";
-"Customize.SecondSection.pushNotifications" = "Push-notifications";
-"Customize.SecondSection.emails" = "Emails";
-"Customize.ThirdSection.title" = "FEEDBACK";
-"Customize.ThirdSection.leaveFeedback" = "Leave Feedback";
+
+//  MARK: - Settings
+"Settings.Settings.title" = "SETTINGS";
+"Settings.Settings.selectedApps" = "Selected Apps";
+"Settings.Settings.timeLimit" = "Time Limit";
+"Settings.Settings.unlockPrice" = "Unlock Price";
+"Settings.Notifications.title" = "NOTIFICATIONS";
+"Settings.Notifications.pushNotifications" = "Push-notifications";
+"Settings.Notifications.emails" = "Emails";
+"Settings.Feedback.title" = "FEEDBACK";
+"Settings.Feedback.leaveFeedback" = "Leave Feedback";
 
