@@ -48,11 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureKeyboardManager() {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-//        IQKeyboardManager.shared.toolbarTintColor = SLColors.carbonGrey.getColor()
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = SLTexts.Keyboard.Toolbar.done.localized()
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared.disabledToolbarClasses = []
-        IQKeyboardManager.shared.disabledDistanceHandlingClasses = []
+        IQKeyboardManager.shared.previousNextDisplayMode = .alwaysHide
     }
 
     private func configureLocalization() {

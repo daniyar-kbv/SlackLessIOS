@@ -1,5 +1,5 @@
 //
-//  ABLocalization.swift
+//  SLTexts.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-05-29.
@@ -39,10 +39,11 @@ enum SLTexts {
             case no = "Alert.Action.no"
         }
     }
-    
+
     enum TabBar: String, Localizable {
         case summary = "TabBar.summaryTitle"
         case progress = "TabBar.progressTitle"
+        case customize = "TabBar.customizeTitle"
     }
 
     enum WelcomeScreen: String, Localizable {
@@ -54,58 +55,60 @@ enum SLTexts {
         case termsAndPrivacy3 = "WelcomeScreen.TermsAndPrivacy3"
         case termsAndPrivacy4 = "WelcomeScreen.TermsAndPrivacy4"
     }
-    
+
     enum Legend: String, Localizable {
         case firstTitle = "Legend.firstTitle"
         case secondTitle = "Legend.secondTitle"
     }
-    
+
     enum Summary: String, Localizable {
         case title = "Summary.title"
         case firstSectionTitle = "Summary.firstSectionTitle"
         case secondSectonTitle = "Summary.secondSectonTitle"
-        
+
         enum FirstContainer: String, Localizable {
             case title = "Summary.FirstContainer.title"
             case subtitle = "Summary.FirstContainer.subitle"
         }
-        
+
         enum ThirdContainer: String, Localizable {
             case title = "Summary.ThirdContainer.title"
         }
     }
-    
+
     enum Progress: String, Localizable {
         case title = "Progress.title"
         case firstSectionTitle = "Progress.firstSectionTitle"
         case secondSectonTitle = "Progress.secondSectonTitle"
-        
+
         enum Dashboard: String, Localizable {
             case firstTitle = "Progress.Dashboard.firstTitle"
             case secondTitle = "Progress.Dashboard.secondTitle"
             case thirdTitle = "Progress.Dashboard.thirdTitle"
         }
     }
-    
+
     enum Customize: String, Localizable {
         case title = "Customize.title"
-        
-        enum FirstSection: String, Localizable {
-            case title = "Customize.FirstSection.title"
-            case selectedApps = "Customize.FirstSection.selectedApps"
-            case timeLimit = "Customize.FirstSection.timeLimit"
-            case unlockPrice = "Customize.FirstSection.unlockPrice"
+    }
+
+    enum Settings {
+        enum Settings: String, Localizable {
+            case title = "Settings.Settings.title"
+            case selectedApps = "Settings.Settings.selectedApps"
+            case timeLimit = "Settings.Settings.timeLimit"
+            case unlockPrice = "Settings.Settings.unlockPrice"
         }
-        
-        enum SecondSection: String, Localizable {
-            case title = "Customize.SecondSection.title"
-            case pushNotifications = "Customize.SecondSection.pushNotifications"
-            case email = "Customize.SecondSection.emails"
+
+        enum Notifications: String, Localizable {
+            case title = "Settings.Notifications.title"
+            case pushNotifications = "Settings.Notifications.pushNotifications"
+            case email = "Settings.Notifications.emails"
         }
-    
-        enum ThirdSection: String, Localizable {
-            case title = "Customize.ThirdSection.title"
-            case leaveFeedback = "Customize.ThirdSection.leaveFeedback"
+
+        enum Feedback: String, Localizable {
+            case title = "Settings.Feedback.title"
+            case leaveFeedback = "Settings.Feedback.leaveFeedback"
         }
     }
 }

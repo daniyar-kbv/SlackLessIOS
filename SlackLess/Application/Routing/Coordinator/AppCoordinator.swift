@@ -11,7 +11,7 @@ import RxSwift
 import UIKit
 
 final class AppCoordinator: BaseCoordinator {
-    private let tabBarBarTypes: [SLTabBarType] = [.summary, .progress]
+    private let tabBarBarTypes: [SLTabBarType] = [.customize]
 
     private var preparedViewControllers: [UIViewController] = []
 
@@ -73,6 +73,7 @@ extension AppCoordinator {
             switch type {
             case .summary: configureSummaryCoordinator(tabBarItem: type.tabBarItem)
             case .progress: configureProgressCoordinator(tabBarItem: type.tabBarItem)
+            case .customize: configureCustomizeCoordinator(tabBarItem: type.tabBarItem)
             }
         }
     }
@@ -89,6 +90,16 @@ extension AppCoordinator {
 
     private func configureProgressCoordinator(tabBarItem: UITabBarItem) {
         let coordinator = appCoordinatorsFactory.makeProgressCoordinator()
+
+        coordinator.start()
+        coordinator.router.getNavigationController().tabBarItem = tabBarItem
+
+        preparedViewControllers.append(coordinator.router.getNavigationController())
+        add(coordinator)
+    }
+
+    private func configureCustomizeCoordinator(tabBarItem: UITabBarItem) {
+        let coordinator = appCoordinatorsFactory.makeCustomizeCoordinator()
 
         coordinator.start()
         coordinator.router.getNavigationController().tabBarItem = tabBarItem

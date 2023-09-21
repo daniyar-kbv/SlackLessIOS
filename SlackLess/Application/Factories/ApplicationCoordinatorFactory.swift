@@ -11,6 +11,7 @@ protocol ApplicationCoordinatorFactory: AnyObject {
     func makeOnboardingCoordinator() -> OnboardingCoordinator
     func makeSummaryCoordinator() -> SummaryCoordinator
     func makeProgressCoordinator() -> ProgressCoordinator
+    func makeCustomizeCoordinator() -> CustomizeCoordinator
 }
 
 final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoordinatorFactory {
@@ -40,5 +41,10 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
     func makeProgressCoordinator() -> ProgressCoordinator {
         return scoped(ProgressCoordinator(router: routersFactory.makeMainRouter(),
                                           modulesFactory: ProgressModulesFactoryImpl(serviceFactory: serviceFactory)))
+    }
+
+    func makeCustomizeCoordinator() -> CustomizeCoordinator {
+        return scoped(CustomizeCoordinator(router: routersFactory.makeMainRouter(),
+                                           modulesFactory: CustomizeModulesFactoryImpl()))
     }
 }
