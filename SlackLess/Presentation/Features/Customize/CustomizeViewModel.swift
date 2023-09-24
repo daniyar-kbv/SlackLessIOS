@@ -22,8 +22,15 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
     var input: CustomizeViewModelInput { self }
     var output: CustomizeViewModelOutput { self }
 
+    private let appSettingsService: AppSettingsService
+
+    init(appSettingsService: AppSettingsService) {
+        self.appSettingsService = appSettingsService
+    }
+
 //    Output
-    lazy var settingViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .full)
+    lazy var settingViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .full,
+                                                                             appSettingsService: appSettingsService)
 
 //    Input
 }

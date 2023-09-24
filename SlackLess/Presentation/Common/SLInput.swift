@@ -11,8 +11,8 @@ import UIKit
 
 final class SLInput: UIView {
     private let type: InputType
-    private var value: Double
-    private let output: (Double) -> Void
+    private var value: Double?
+    private let output: (Double?) -> Void
 
     private(set) lazy var timePicker: UIPickerView = {
         let view = UIPickerView()
@@ -31,7 +31,7 @@ final class SLInput: UIView {
         return view
     }()
 
-    init(type: InputType, value: Double, output: @escaping (Double) -> Void) {
+    init(type: InputType, value: Double?, output: @escaping (Double?) -> Void) {
         self.type = type
         self.value = value
         self.output = output
@@ -51,8 +51,10 @@ final class SLInput: UIView {
         switch type {
         case .time:
             textField.inputView = timePicker
-            timePicker.selectRow(value.get(component: .hours), inComponent: 0, animated: false)
-            timePicker.selectRow(value.get(component: .minutes), inComponent: 3, animated: false)
+            if let value = value {
+                timePicker.selectRow(value.get(component: .hours), inComponent: 0, animated: false)
+                timePicker.selectRow(value.get(component: .minutes), inComponent: 3, animated: false)
+            }
         case .price:
             break
         }
@@ -70,14 +72,17 @@ final class SLInput: UIView {
 
         switch type {
         case .time:
-            textField.text = value.toString()
+            textField.placeholder = "0:00"
+            textField.text = value?.toString()
         case .price:
-            textField.text = makePriceString()
+            textField.placeholder = "$1"
+            textField.text = makePriceString(from: value)
         }
     }
 
-    private func makePriceString() -> String {
-        "$\(Int(value))"
+    private func makePriceString(from value: Double?) -> String? {
+        guard let value = value else { return nil }
+        return "$\(Int(value))"
     }
 }
 
@@ -95,7 +100,7 @@ extension SLInput: UITextFieldDelegate {
         case .price:
             updatedText = updatedText.replacingOccurrences(of: "$", with: "")
             value = Double(updatedText) ?? 0
-            updatedText = "$\(Int(value))"
+            updatedText = makePriceString(from: value) ?? makePriceString(from: 1)!
         }
         textField.text = updatedText
         return false
@@ -115,13 +120,17 @@ extension SLInput: UITextFieldDelegate {
         switch type {
         case .time:
             value = TimeInterval.makeFrom(hours: timePicker.selectedRow(inComponent: 0), minutes: timePicker.selectedRow(inComponent: 3))
-            textField.text = value.toString()
+            if value == 0 {
+                value = nil
+            }
+            textField.text = value?.toString()
         case .price:
             if value == 0 {
-                value = 1
-                textField.text = makePriceString()
+                value = nil
             }
+            textField.text = makePriceString(from: value)
         }
+        output(value)
     }
 }
 

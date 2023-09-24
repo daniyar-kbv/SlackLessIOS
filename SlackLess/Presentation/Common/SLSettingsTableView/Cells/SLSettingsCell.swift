@@ -5,17 +5,24 @@
 //  Created by Daniyar Kurmanbayev on 2023-07-29.
 //
 
+import FamilyControls
 import Foundation
+import RxCocoa
+import RxSwift
 import SnapKit
+import SwiftUI
 import UIKit
 
 final class SLSettingsCell: UITableViewCell {
     private var type: CellType?
-    private var output: ((OutputType) -> Void)?
+    private var output: ((Output) -> Void)?
+    private var appsSelectionHostingController: UIHostingController<SLAppsSelectionView>?
+    weak var parentConroller: UIViewController?
 
     private(set) lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = SLColors.backgroundElevated.getColor()
+        view.clipsToBounds = true
         return view
     }()
 
@@ -70,23 +77,21 @@ final class SLSettingsCell: UITableViewCell {
         type = nil
         output = nil
         rightItemView.subviews.forEach { $0.removeFromSuperview() }
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        guard type?.inputType == .action else { return }
-
-        output?(.trigger)
+        if let appsSelectionHostingController = appsSelectionHostingController {
+            parentConroller?.remove(controller: appsSelectionHostingController)
+            self.appsSelectionHostingController = nil
+        }
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
-        guard type?.inputType == .action else { return }
-
-        UIView.animate(withDuration: 0.1) { [weak self] in
-            self?.containerView.backgroundColor = highlighted ? SLColors.gray5.getColor() : SLColors.backgroundElevated.getColor()
+        switch type {
+        case .selectedApps, .leaveFeedback:
+            UIView.animate(withDuration: 0.1) { [weak self] in
+                self?.containerView.backgroundColor = highlighted ? SLColors.gray5.getColor() : SLColors.backgroundElevated.getColor()
+            }
+        default: break
         }
     }
 
@@ -119,7 +124,7 @@ final class SLSettingsCell: UITableViewCell {
         }
     }
 
-    func set(type: CellType, position: Position, output: @escaping (OutputType) -> Void) {
+    func set(type: CellType, position: Position, output: @escaping (Output) -> Void) {
         self.type = type
         self.output = output
 
@@ -128,16 +133,29 @@ final class SLSettingsCell: UITableViewCell {
 
         var inputView: UIView?
 
-        switch type.inputType {
-        case .action:
+        switch type {
+        case let .selectedApps(selection):
             inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
-        case let .timeInput(limit):
-            inputView = SLInput(type: .time, value: limit) { _ in
+
+            appsSelectionHostingController = .init(rootView: .init(
+                selection: selection,
+                onSelect: { [weak self] in
+                    self?.output?(.appsSelection($0))
+                }
+            ))
+            parentConroller?.add(controller: appsSelectionHostingController!, to: containerView)
+            appsSelectionHostingController?.view.backgroundColor = .clear
+        case .leaveFeedback:
+            inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
+        case let .timeLimit(limit):
+            inputView = SLInput(type: .time, value: limit) { [weak self] in
+                self?.output?(.time($0))
             }
-        case let .priceInput(price):
-            inputView = SLInput(type: .price, value: Double(price)) { _ in
+        case let .unlockPrice(price):
+            inputView = SLInput(type: .price, value: price) { [weak self] in
+                self?.output?(.price($0))
             }
-        case .toggle:
+        case .pushNotifications, .emails:
             inputView = UISwitch()
         }
 
@@ -145,8 +163,10 @@ final class SLSettingsCell: UITableViewCell {
             rightItemView.addSubview(inputView)
             inputView.snp.makeConstraints {
                 $0.edges.equalToSuperview()
-                if type.inputType == .action {
+                switch type {
+                case .selectedApps, .leaveFeedback:
                     $0.size.equalTo(16)
+                default: break
                 }
             }
         }
@@ -167,10 +187,10 @@ final class SLSettingsCell: UITableViewCell {
 }
 
 extension SLSettingsCell {
-    enum CellType {
-        case selectedApps
-        case timeLimit(TimeInterval)
-        case unlockPrice(Int)
+    enum CellType: Equatable {
+        case selectedApps(FamilyActivitySelection)
+        case timeLimit(TimeInterval?)
+        case unlockPrice(Double?)
         case pushNotifications
         case emails
         case leaveFeedback
@@ -197,38 +217,24 @@ extension SLSettingsCell {
             }
         }
 
-        var inputType: InputType {
-            switch self {
-            case .selectedApps, .leaveFeedback: return .action
-            case let .timeLimit(limit): return .timeInput(limit)
-            case let .unlockPrice(price): return .priceInput(price)
-            case .pushNotifications, .emails: return .toggle
-            }
-        }
-    }
-
-    enum InputType: Equatable {
-        case action
-        case timeInput(TimeInterval)
-        case priceInput(Int)
-        case toggle
-
         static func == (lhs: Self, rhs: Self) -> Bool {
             switch (lhs, rhs) {
-            case (.action, .action): return true
-            case (.timeInput, .timeInput): return true
-            case (.priceInput, .priceInput): return true
-            case (.toggle, .toggle): return true
+            case (.selectedApps, .selectedApps): return true
+            case (.timeLimit, .timeLimit): return true
+            case (.unlockPrice, .unlockPrice): return true
+            case (.pushNotifications, .pushNotifications): return true
+            case (.emails, .emails): return true
+            case (.leaveFeedback, .leaveFeedback): return true
             default: return false
             }
         }
     }
 
-    enum OutputType {
-        case trigger
-        case toggle(Bool)
-        case time(TimeInterval)
-        case price(Int)
+    enum Output {
+        case appsSelection(FamilyActivitySelection)
+        case time(TimeInterval?)
+        case price(Double?)
+//        case pushNotifications
     }
 
     enum Position {

@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import UIKit
 
 final class OnboardingCoordinator: BaseCoordinator {
     private let disposeBag = DisposeBag()
@@ -30,7 +30,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeWelcomeScreenModule()
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
-        
+
         module.viewModel.output.didFinish
             .subscribe(onNext: { [weak self] in
                 self?.showRequestAuth()
@@ -39,40 +39,28 @@ final class OnboardingCoordinator: BaseCoordinator {
 
         UIApplication.shared.set(rootViewController: router.getNavigationController())
     }
-    
+
     private func showRequestAuth() {
         let module = modulesFactory.makeRequestAuthModule()
-        
+
         module.viewModel.output.authorizationSuccessful
             .subscribe(onNext: { [weak self] in
-                self?.showSelectApps()
+                self?.showSetUp()
             })
             .disposed(by: disposeBag)
-        
+
         router.push(viewController: module.controller, animated: true)
     }
-    
-    private func showSelectApps() {
-        let module = modulesFactory.makeSelectAppsModule()
-        
-        module.viewModel.output.appsSelected
-            .subscribe(onNext: { [weak self] in
-                self?.showSelectPrices()
-            })
-            .disposed(by: disposeBag)
-        
-        router.push(viewController: module.controller, animated: true)
-    }
-    
-    private func showSelectPrices() {
-        let module = modulesFactory.makeSelectPriceModule()
-        
-        module.viewModel.output.timeLimitSaved
+
+    private func showSetUp() {
+        let module = modulesFactory.makeSetUpModule()
+
+        module.viewModel.output.didFinish
             .subscribe(onNext: { [weak self] in
                 self?.didFinish?()
             })
             .disposed(by: disposeBag)
-        
+
         router.push(viewController: module.controller, animated: true)
     }
 }

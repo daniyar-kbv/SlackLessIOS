@@ -12,8 +12,14 @@ protocol CustomizeModulesFactory: AnyObject {
 }
 
 final class CustomizeModulesFactoryImpl: CustomizeModulesFactory {
+    private let appSettingsService: AppSettingsService
+
+    init(appSettingsService: AppSettingsService) {
+        self.appSettingsService = appSettingsService
+    }
+
     func makeCustomizeModule() -> (viewModel: CustomizeViewModel, controller: CustomizeController) {
-        let viewModel = CustomizeViewModelImpl()
+        let viewModel = CustomizeViewModelImpl(appSettingsService: appSettingsService)
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 }
