@@ -29,6 +29,9 @@
 "TabBar.progressTitle" = "Progress";
 "TabBar.customizeTitle" = "Customize";
 
+//  MARK: - Button
+"Button.continue" = "Continue";
+
 //  MARK: - WelcomeScreen
 "WelcomeScreen.Title" = "Hey!";
 "WelcomeScreen.Subtitle" = "Starting today, free yourself\nfrom distractions";
@@ -37,6 +40,11 @@
 "WelcomeScreen.TermsAndPrivacy2" = "Terms";
 "WelcomeScreen.TermsAndPrivacy3" = "and";
 "WelcomeScreen.TermsAndPrivacy4" = "Privacy Policy";
+
+//  MARK: - SetUp
+"SetUp.title" = "Let’s set up!";
+"SetUp.subtitle" = "Choose apps and set the limit for the rest of the week. The limit can’t be changed until this week ends.\n\nSet a payment fee in case if you would need additional time.";
+"SetUp.bottomText" = "Assessment of your current Screen Time patterns, based on the average of 16 hours you are awake each day";
 
 //  MARK: - Legend
 "Legend.firstTitle" = "Slacked";

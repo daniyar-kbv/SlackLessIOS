@@ -46,6 +46,10 @@ enum SLTexts {
         case customize = "TabBar.customizeTitle"
     }
 
+    enum Button: String, Localizable {
+        case continue_ = "Button.continue"
+    }
+
     enum WelcomeScreen: String, Localizable {
         case title = "WelcomeScreen.Title"
         case subtitle = "WelcomeScreen.Subtitle"
@@ -54,6 +58,12 @@ enum SLTexts {
         case termsAndPrivacy2 = "WelcomeScreen.TermsAndPrivacy2"
         case termsAndPrivacy3 = "WelcomeScreen.TermsAndPrivacy3"
         case termsAndPrivacy4 = "WelcomeScreen.TermsAndPrivacy4"
+    }
+
+    enum SetUp: String, Localizable {
+        case title = "SetUp.title"
+        case subtitle = "SetUp.subtitle"
+        case bottomText = "SetUp.bottomText"
     }
 
     enum Legend: String, Localizable {

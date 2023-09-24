@@ -72,7 +72,7 @@ extension SLButton {
 
         private var textColor: UIColor? {
             switch self {
-            case .filled: return SLColors.label1.getColor()
+            case .filled: return SLColors.label2.getColor()
             case .tinted: return SLColors.accent1.getColor()
             case .gray: return SLColors.accent1.getColor()
             case .white: return SLColors.black.getColor()

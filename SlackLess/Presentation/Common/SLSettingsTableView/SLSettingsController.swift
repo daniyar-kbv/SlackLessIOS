@@ -73,6 +73,7 @@ extension SLSettingsController: UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsSpacerCell.self), for: indexPath)
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsCell.self), for: indexPath) as! SLSettingsCell
+            cell.parentConroller = self
 
             var position: SLSettingsCell.Position = .middle
             if tableView.numberOfRows(inSection: indexPath.section) == 3 {
@@ -83,7 +84,15 @@ extension SLSettingsController: UITableViewDataSource {
                 position = .bottom
             }
 
-            cell.set(type: viewModel.output.getItemType(for: indexPath), position: position) { _ in
+            cell.set(type: viewModel.output.getItemType(for: indexPath), position: position) { [weak self] in
+                switch $0 {
+                case let .appsSelection(selection):
+                    self?.viewModel.input.set(appSelection: selection)
+                case let .time(limit):
+                    self?.viewModel.input.set(timeLimit: limit)
+                case let .price(price):
+                    self?.viewModel.input.set(unlockPrice: price)
+                }
             }
             return cell
         }

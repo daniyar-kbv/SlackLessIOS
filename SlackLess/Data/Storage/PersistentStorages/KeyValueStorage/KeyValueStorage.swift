@@ -15,6 +15,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
     case onbardingShown
     case selectedApps
     case timeLimit
+    case unlockPrice
     case startDate
     case progressDate
 
@@ -24,6 +25,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
 protocol KeyValueStorage {
     var appLocale: Language { get }
     var onbardingShown: Bool { get }
+    var unlockPrice: Double { get }
     var startDate: Date? { get }
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
@@ -34,6 +36,7 @@ protocol KeyValueStorage {
     func persist(onbardingShown: Bool)
     func persist(selectedApps: FamilyActivitySelection, for date: Date)
     func persist(timeLimit: TimeInterval, for date: Date)
+    func persist(unlockPrice: Double)
     func persist(startDate: Date)
     func persist(progressDate: Date)
 
@@ -63,6 +66,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     var appLocale: Language {
         Language.get(by: storageProvider.string(forKey: KeyValueStorageKey.appLocale.value))
+    }
+
+    var unlockPrice: Double {
+        storageProvider.double(forKey: KeyValueStorageKey.unlockPrice.value)
     }
 
     var startDate: Date? {
@@ -112,6 +119,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     func persist(timeLimit: TimeInterval, for date: Date) {
         storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value + makeString(from: date))
+    }
+
+    func persist(unlockPrice: Double) {
+        storageProvider.set(unlockPrice, forKey: KeyValueStorageKey.unlockPrice.value)
     }
 
     func persist(startDate: Date) {

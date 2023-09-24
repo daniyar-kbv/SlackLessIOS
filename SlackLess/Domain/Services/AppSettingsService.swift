@@ -15,6 +15,7 @@ protocol AppSettingsServiceInput {
     func set(timeLimit: TimeInterval)
     func set(onboardingShown: Bool)
     func set(selectedApps: FamilyActivitySelection)
+    func set(unlockPrice: Double)
     func set(progressDate: Date)
 }
 
@@ -27,6 +28,7 @@ protocol AppSettingsServiceOutput {
 
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getUnlockPrice() -> Double?
     func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
     func getIsLastWeek(_ date: Date) -> Bool
@@ -37,6 +39,8 @@ protocol AppSettingsService: AnyObject {
     var input: AppSettingsServiceInput { get }
     var output: AppSettingsServiceOutput { get }
 }
+
+//  TODO: Add validation
 
 final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput, AppSettingsServiceOutput {
     var input: AppSettingsServiceInput { self }
@@ -109,6 +113,10 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         return appsSelection
     }
 
+    func getUnlockPrice() -> Double? {
+        appSettingsRepository.output.getUnlockPrice()
+    }
+
     func getIsLastDate(_ date: Date) -> Bool {
         guard let startDate = appSettingsRepository.output.getStartDate()
         else { return true }
@@ -161,6 +169,11 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
             appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
         }
         appsSelectionSaved.accept(())
+    }
+
+    func set(unlockPrice: Double) {
+        guard unlockPrice > 0 else { return }
+        appSettingsRepository.input.set(unlockPrice: unlockPrice)
     }
 
     func set(onboardingShown: Bool) {
