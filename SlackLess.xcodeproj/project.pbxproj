@@ -518,6 +518,16 @@
 			path = KeyValueStorage;
 			sourceTree = "<group>";
 		};
+		15322A8E43CB55A4D77159EAA8BC1381 /* SetUp */ = {
+			isa = PBXGroup;
+			children = (
+				718974B360518CD77A7315467AD84121 /* SetUpController.swift */,
+				F1A2A196DF0C4A1DB9AD930B7E1CD6A8 /* SetUpView.swift */,
+				4E51DB457829AB60606224F7509179CD /* SetUpViewModel.swift */,
+			);
+			path = SetUp;
+			sourceTree = "<group>";
+		};
 		17DD24AD5A4469AEF4E4042C9E3E64F3 /* NavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -865,24 +875,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		15322A8E43CB55A4D77159EAA8BC1381 /* SetUp */ = {
-			isa = PBXGroup;
-			children = (
-				718974B360518CD77A7315467AD84121 /* SetUpController.swift */,
-				F1A2A196DF0C4A1DB9AD930B7E1CD6A8 /* SetUpView.swift */,
-				4E51DB457829AB60606224F7509179CD /* SetUpViewModel.swift */,
-			);
-			path = SetUp;
-			sourceTree = "<group>";
-		};
-		8DCA7D0B6FADD25AD7B204A9821A3790 /* AppsSelection */ = {
-			isa = PBXGroup;
-			children = (
-				37999D941FB5723BB134680374863954 /* SLAppsSelectionView.swift */,
-			);
-			path = AppsSelection;
-			sourceTree = "<group>";
-		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,6 +928,14 @@
 				1EEDAB7EDE020B39026483E652B653FA /* OnboardingModulesFactory.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		8DCA7D0B6FADD25AD7B204A9821A3790 /* AppsSelection */ = {
+			isa = PBXGroup;
+			children = (
+				37999D941FB5723BB134680374863954 /* SLAppsSelectionView.swift */,
+			);
+			path = AppsSelection;
 			sourceTree = "<group>";
 		};
 		900317A0BB73B749F4CEE03F32AE4491 /* Assets */ = {
@@ -1798,7 +1798,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -1812,7 +1812,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.8;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1888,7 +1888,7 @@
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
@@ -1900,7 +1900,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.8;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1919,7 +1919,7 @@
 				CODE_SIGN_ENTITLEMENTS = SLActivityReport/Resourses/SLActivityReport.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SLActivityReport/Resourses/Info.plist;
@@ -1931,7 +1931,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.0.8;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless.SLActivityReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1951,7 +1951,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -1965,7 +1965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.8;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
