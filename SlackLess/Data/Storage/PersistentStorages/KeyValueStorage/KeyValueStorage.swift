@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 
 enum KeyValueStorageKey: String, StorageKey, Equatable {
-    case appLocale
     case onbardingShown
     case selectedApps
     case timeLimit
@@ -23,7 +22,6 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
 }
 
 protocol KeyValueStorage {
-    var appLocale: Language { get }
     var onbardingShown: Bool { get }
     var unlockPrice: Double { get }
     var startDate: Date? { get }
@@ -32,7 +30,6 @@ protocol KeyValueStorage {
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
 
-    func persist(appLocale: Language)
     func persist(onbardingShown: Bool)
     func persist(selectedApps: FamilyActivitySelection, for date: Date)
     func persist(timeLimit: TimeInterval, for date: Date)
@@ -62,10 +59,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     var onbardingShown: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
-    }
-
-    var appLocale: Language {
-        Language.get(by: storageProvider.string(forKey: KeyValueStorageKey.appLocale.value))
     }
 
     var unlockPrice: Double {
@@ -98,10 +91,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     func getTimeLimit(for date: Date) -> TimeInterval {
         storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value + makeString(from: date))
-    }
-
-    func persist(appLocale: Language) {
-        storageProvider.set(appLocale.code, forKey: KeyValueStorageKey.appLocale.value)
     }
 
     func persist(onbardingShown: Bool) {

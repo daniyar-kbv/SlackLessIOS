@@ -5,6 +5,7 @@
 //  Created by Daniyar Kurmanbayev on 2023-05-29.
 //
 
+import DeviceActivity
 import IQKeyboardManagerSwift
 import UIKit
 
@@ -21,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureAppCoordinator()
         configureKeyboardManager()
-        configureLocalization()
         startReachabilityManager()
+        initializeServices()
         return true
     }
 
@@ -30,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
 
-//        TODO: remove
+        //        TODO: remove
         window?.overrideUserInterfaceStyle = .light
     }
 
@@ -54,13 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.previousNextDisplayMode = .alwaysHide
     }
 
-    private func configureLocalization() {
-        Localization.keyValueStorage = appComponentsFactory.makeDataComponenentsFactory().makeKeyValueStorage()
-    }
-
     private func startReachabilityManager() {
         let helpersFactory = appComponentsFactory.makeHelpersFactory()
         let reachabilityManager = helpersFactory.makeReachabilityManager()
         reachabilityManager.input.start()
+    }
+
+    private func initializeServices() {
+        _ = domainComponentsFactory.makeServiceFactory().mameAppLockingService()
     }
 }

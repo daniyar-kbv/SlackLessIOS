@@ -8,5 +8,5 @@
 import Foundation
 
 enum EventType: CaseIterable {
-    case empty
+    case appLimitSettingsChanged
 }

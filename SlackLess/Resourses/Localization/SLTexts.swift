@@ -50,6 +50,13 @@ enum SLTexts {
         case continue_ = "Button.continue"
     }
 
+    enum Shield: String, Localizable {
+        case title = "Shield.title"
+        case subtitle = "Shield.subtitle"
+        case primaryButtonTitle = "Shield.primaryButtonTitle"
+        case secondaryButtonTitle = "Shield.secondaryButtonTitle"
+    }
+
     enum WelcomeScreen: String, Localizable {
         case title = "WelcomeScreen.Title"
         case subtitle = "WelcomeScreen.Subtitle"

@@ -39,6 +39,18 @@ target 'SLActivityReport' do
     shared_pods
 end
 
+target 'SLActivityMonitor' do
+    shared_pods
+end
+
+target 'SLShieldConfiguration' do
+    shared_pods
+end
+
+target 'SLShieldAction' do
+    shared_pods
+end
+
 post_install do |installer|
     installer.generated_projects.each do |project|
           project.targets.each do |target|

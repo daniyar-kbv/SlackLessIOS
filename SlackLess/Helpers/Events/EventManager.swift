@@ -9,22 +9,12 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol EventManagerInput {
+protocol EventManager {
     func send(event: Event)
     func subscribe(to eventType: EventType, disposeBag: DisposeBag, onEvent: @escaping (Event) -> Void)
 }
 
-protocol EventManagerOutput {}
-
-protocol EventManager {
-    var input: EventManagerInput { get }
-    var output: EventManagerOutput { get }
-}
-
-final class EventManagerImpl: EventManager, EventManagerInput, EventManagerOutput {
-    var input: EventManagerInput { self }
-    var output: EventManagerOutput { self }
-
+final class EventManagerImpl: EventManager {
     private let disposeBag = DisposeBag()
 
     private let eventObservables = EventType.allCases.map { EventObservable(eventType: $0, observable: .init()) }
