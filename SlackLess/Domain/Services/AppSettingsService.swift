@@ -48,11 +48,15 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     private let disposeBag = DisposeBag()
     private let appSettingsRepository: AppSettingsRepository
-    private let center = AuthorizationCenter.shared
+    private let eventManager: EventManager
+    private let authorizationCenter = AuthorizationCenter.shared
     private let calendar = Calendar.current
 
-    init(appSettingsRepository: AppSettingsRepository) {
+    init(appSettingsRepository: AppSettingsRepository,
+         eventManager: EventManager)
+    {
         self.appSettingsRepository = appSettingsRepository
+        self.eventManager = eventManager
 
         bindRepository()
     }
@@ -110,6 +114,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
             appsSelection = foundAppsSelection
             return true
         }
+
         return appsSelection
     }
 
@@ -138,7 +143,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     func requestAuthorization() {
         Task {
             do {
-                try await center.requestAuthorization(for: FamilyControlsMember.individual)
+                try await authorizationCenter.requestAuthorization(for: FamilyControlsMember.individual)
                 appSettingsRepository.input.set(startDate: .now.getDate())
                 DispatchQueue.main.async { [weak self] in
                     self?.authorizaionStatus.accept(.success(()))
@@ -155,6 +160,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         getWeek().forEach {
             appSettingsRepository.input.set(timeLimit: timeLimit, for: $0)
         }
+        eventManager.send(event: .init(type: .appLimitSettingsChanged, value: ()))
         timeLimitSaved.accept(())
     }
 
@@ -168,6 +174,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         getWeek().forEach {
             appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
         }
+        eventManager.send(event: .init(type: .appLimitSettingsChanged, value: ()))
         appsSelectionSaved.accept(())
     }
 

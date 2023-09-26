@@ -32,6 +32,12 @@
 //  MARK: - Button
 "Button.continue" = "Continue";
 
+//  MARK: - Shield
+"Shield.title" = "SlackLess";
+"Shield.subtitle" = "Your limit time is over. Please close the App and wait for the next day.";
+"Shield.primaryButtonTitle" = "Close app";
+"Shield.secondaryButtonTitle" = "Pay for slacking";
+
 //  MARK: - WelcomeScreen
 "WelcomeScreen.Title" = "Hey!";
 "WelcomeScreen.Subtitle" = "Starting today, free yourself\nfrom distractions";

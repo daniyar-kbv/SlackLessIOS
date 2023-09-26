@@ -1,5 +1,5 @@
 //
-//  RepositoryComponents.swift
+//  ServiceFactory.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-05-29.
@@ -9,6 +9,7 @@ import Foundation
 
 protocol ServiceFactory: AnyObject {
     func makeAppSettingsService() -> AppSettingsService
+    func mameAppLockingService() -> AppLockingService
 }
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
@@ -24,8 +25,14 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
         self.repositoryFactory = repositoryFactory
         self.helpersFactory = helpersFactory
     }
-    
+
     func makeAppSettingsService() -> AppSettingsService {
-        return weakShared(AppSettingsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository()))
+        return shared(AppSettingsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
+                                             eventManager: helpersFactory.makeEventManager()))
+    }
+
+    func mameAppLockingService() -> AppLockingService {
+        return shared(AppLockingServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
+                                            eventManager: helpersFactory.makeEventManager()))
     }
 }

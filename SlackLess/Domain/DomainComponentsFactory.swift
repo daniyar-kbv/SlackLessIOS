@@ -14,9 +14,10 @@ protocol DomainComponentsFactory: AnyObject {
 final class DomainComponentsFactoryImpl: DependencyFactory, DomainComponentsFactory {
     private let dataComponentsFactory: DataComponentsFactory
     private let helpersFactory: HelpersFactory
-    
+
     init(dataComponentsFactory: DataComponentsFactory,
-         helpersFactory: HelpersFactory) {
+         helpersFactory: HelpersFactory)
+    {
         self.helpersFactory = helpersFactory
         self.dataComponentsFactory = dataComponentsFactory
     }
@@ -25,7 +26,8 @@ final class DomainComponentsFactoryImpl: DependencyFactory, DomainComponentsFact
         return shared(ServiceFactoryImpl(
             apiFactory: dataComponentsFactory.makeAPIFactory(),
             repositoryFactory: dataComponentsFactory.makeRepositoryFactory(),
-            helpersFactory: helpersFactory)
+            helpersFactory: helpersFactory
+        )
         )
     }
 }

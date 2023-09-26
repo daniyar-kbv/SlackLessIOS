@@ -15,20 +15,22 @@ protocol PresentationComponentsFactory: AnyObject {
 final class PresentationComponentsFactoryImpl: DependencyFactory, PresentationComponentsFactory {
     private let domainComponentsFactory: DomainComponentsFactory
     private let helpersFactory: HelpersFactory
-    
+
     init(domainComponentsFactory: DomainComponentsFactory,
-         helpersFactory: HelpersFactory) {
+         helpersFactory: HelpersFactory)
+    {
         self.domainComponentsFactory = domainComponentsFactory
         self.helpersFactory = helpersFactory
     }
-    
+
 //    MARK: - ApplicationCoordinators
 
     func makeApplicationCoordinatorFactory() -> ApplicationCoordinatorFactory {
         return shared(ApplicationCoordinatorFactoryImpl(
             routersFactory: makeRoutersFactory(),
             serviceFactory: domainComponentsFactory.makeServiceFactory(),
-            helpersFactory: helpersFactory)
+            helpersFactory: helpersFactory
+        )
         )
     }
 
