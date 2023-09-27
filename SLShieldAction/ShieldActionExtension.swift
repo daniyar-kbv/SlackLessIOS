@@ -17,9 +17,6 @@ class ShieldActionExtension: ShieldActionDelegate {
         case .primaryButtonPressed:
             completionHandler(.close)
         case .secondaryButtonPressed:
-            let webView = WKWebView()
-            let url = URL(string: "slackless://test")
-            webView.load(URLRequest(url: url!))
             completionHandler(.defer)
         @unknown default:
             fatalError()
