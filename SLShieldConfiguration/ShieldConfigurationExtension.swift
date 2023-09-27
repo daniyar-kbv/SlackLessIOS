@@ -27,8 +27,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
 
     private func makeShieldConfiguration() -> ShieldConfiguration {
-//        .init()
-        .init(backgroundBlurStyle: .light,
+        .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
               backgroundColor: SLColors.accent1.getColor(),
               icon: SLImages.Common.logo.getImage(),
               title: .init(text: SLTexts.Shield.title.localized(),
