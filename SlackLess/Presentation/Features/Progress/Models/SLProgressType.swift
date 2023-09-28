@@ -49,7 +49,7 @@ enum SLProgressType {
     var bottomOffset: CGFloat {
         switch self {
         case .normal: return 16
-        case .weeklyReport: return 92
+        case .weeklyReport: return 76
         }
     }
 
