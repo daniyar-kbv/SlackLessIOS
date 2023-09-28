@@ -17,6 +17,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
     case unlockPrice
     case startDate
     case progressDate
+    case currentWeek
 
     public var value: String { return rawValue }
 }
@@ -26,6 +27,7 @@ protocol KeyValueStorage {
     var unlockPrice: Double { get }
     var startDate: Date? { get }
     var progressDate: Date? { get }
+    var currentWeek: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
@@ -36,6 +38,7 @@ protocol KeyValueStorage {
     func persist(unlockPrice: Double)
     func persist(startDate: Date)
     func persist(progressDate: Date)
+    func persist(currentWeek: Date)
 
     func cleanUp(key: KeyValueStorageKey)
 }
@@ -71,6 +74,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     var progressDate: Date? {
         storageProvider.object(forKey: KeyValueStorageKey.progressDate.value) as? Date
+    }
+
+    var currentWeek: Date? {
+        storageProvider.object(forKey: KeyValueStorageKey.currentWeek.value) as? Date
     }
 
     let progressDateObservable = PublishRelay<Date?>()
@@ -120,6 +127,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     func persist(progressDate: Date) {
         storageProvider.set(progressDate, forKey: KeyValueStorageKey.progressDate.value)
+    }
+
+    func persist(currentWeek: Date) {
+        storageProvider.set(currentWeek, forKey: KeyValueStorageKey.currentWeek.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {

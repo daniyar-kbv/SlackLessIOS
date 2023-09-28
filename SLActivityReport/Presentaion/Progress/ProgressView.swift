@@ -15,7 +15,7 @@ final class ProgressView: ARView {
     private(set) lazy var firstContentView = SLContainerView()
 
     private(set) lazy var firstSectionView: ARSectionView = {
-        let view = ARSectionView(titleText: SLTexts.Progress.firstSectionTitle.localized())
+        let view = ARSectionView(titleText: type.firstSectionTitle)
         view.addContainer(view: dashboardView)
         view.addContainer(view: firstContentView)
         return view
@@ -29,7 +29,11 @@ final class ProgressView: ARView {
         return view
     }()
 
-    override init(frame _: CGRect) {
+    private let type: SLProgressType
+
+    init(type: SLProgressType) {
+        self.type = type
+
         super.init(frame: .zero)
 
         layoutUI()
@@ -41,6 +45,11 @@ final class ProgressView: ARView {
     }
 
     private func layoutUI() {
+        getRootScrollView().contentInset = .init(top: getRootScrollView().contentInset.top,
+                                                 left: getRootScrollView().contentInset.left,
+                                                 bottom: type.bottomOffset,
+                                                 right: getRootScrollView().contentInset.right)
+
         [firstSectionView, secondSectionView].forEach(add(view:))
     }
 }

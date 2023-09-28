@@ -1,19 +1,21 @@
 //
-//  Coordinator.swift
+//  BaseCoordinator.swift
 //  SlackLess
 //
 //  Created by Dan on 23.08.2021.
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 protocol Coordinator: AnyObject {
-    var onFinish: (() -> Void)? { get set }
+    var didFinish: PublishRelay<Void> { get }
     func start()
 }
 
 class BaseCoordinator: Coordinator {
-    var onFinish: (() -> Void)?
+    lazy var didFinish: PublishRelay<Void> = .init()
 
     private(set) var childCoordinators: [Coordinator] = []
 

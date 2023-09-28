@@ -20,7 +20,7 @@ final class ProgressController: SLReportsController {
     init(viewModel: ProgressViewModel) {
         self.viewModel = viewModel
 
-        super.init(reports: [.init(reportType: .progress, view: contentView.reportView)],
+        super.init(reports: [.init(reportType: viewModel.output.getType().reportType, view: contentView.reportView)],
                    viewModel: viewModel)
     }
 
@@ -44,7 +44,10 @@ final class ProgressController: SLReportsController {
     }
 
     private func configView() {
-        contentView.set(title: SLTexts.Progress.title.localized())
+        contentView.set(title: viewModel.output.getType().title)
+        contentView.dateSwitcherView.isHidden = viewModel.output.getType().hideDateSwitcher
+        contentView.button.isHidden = viewModel.output.getType().hideButton
+        contentView.addTopOffset(viewModel.output.getType().addTopOffset)
     }
 
     private func bindView() {
@@ -56,6 +59,11 @@ final class ProgressController: SLReportsController {
         contentView.dateSwitcherView.rightButton.rx.tap.bind { [weak self] in
             self?.viewModel.input.changeDate(forward: true)
         }
+        .disposed(by: disposeBag)
+
+        contentView.button.rx.tap.subscribe(onNext: { [weak self] in
+            self?.viewModel.input.finish()
+        })
         .disposed(by: disposeBag)
     }
 

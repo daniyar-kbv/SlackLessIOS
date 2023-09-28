@@ -23,7 +23,7 @@
 		AFE25B3FB1C38D2B7C0DAD5CAA84F4D6 /* ARLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BA157BB7E07A2B2D57B65CF6713103 /* ARLegendView.swift */; };
 		51FB66B5A2C41FA3D19E01F354001610 /* ARPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891658E2BD2706F253A7A1F4B9347FD /* ARPageControlView.swift */; };
 		FEAC966BE55479E466F9F1B7CEAB13DF /* ARPartitionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F3A0736837E659A420CA4E53DCAE2E /* ARPartitionsView.swift */; };
-		D20F3F4443B556F28C44B06C8FEBEEE9 /* ARProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C3804671668888208A04E9268A83D9 /* ARProgress.swift */; };
+		FB8FF85BD9B56289D0FD94EAB27E30CA /* ARProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36E090C1A2EBDAD83090BC53672F96F /* ARProgress.swift */; };
 		D2D92F4FE091085C54C9A0EDB1B85AB5 /* ARSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AF3788BAD433BAA22207E5A4AE6794 /* ARSectionView.swift */; };
 		36DFD620AC54F75B1F86F5CF768541A1 /* ARTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E259163638057FE785109F50431244AE /* ARTime.swift */; };
 		14E32513BE12DAE6DAA2371222A0C7D6 /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46570E565BEC4AFD6D78DBACCB77F74C /* ARView.swift */; };
@@ -197,7 +197,7 @@
 		0777FE61B40BF6091C335169BC917E8C /* SLActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 21D73C29ECC31C339974D4221E143FB6 /* SLActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2FEC363F466DEB4E55C0BE85D0B738B0 /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 4AB78B40FFE8A3FFA9D43FC4855897CC /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0F05B5381F014AEEA78F5AA0FCD57AE1 /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502EEABC875602DFFE9F704C15DCA28 /* SLActivityReport.swift */; };
-		1639A9988598932DCEFB832F7E7E6708 /* SLAppsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37999D941FB5723BB134680374863954 /* SLAppsSelectionView.swift */; };
+		35D79A38C5679CE6DD4E81C18132216A /* SLAppsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */; };
 		989489A8455B64B8FF5A7E3B9C651AC3 /* SLBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A230E4427D585CD5AA26F741EA13B /* SLBaseView.swift */; };
 		F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344838B149DA6AAD8A0C4A1DCE6A9E3 /* SLButton.swift */; };
 		22734BB7A9F9BF879ED186402098D8AC /* SLColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727A515F3791AD84160C8E398DC8317 /* SLColors.swift */; };
@@ -228,13 +228,16 @@
 		475E153A90BCD7F3A1B44E544B873A2E /* SLLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFD3484CCCD1E1877BDF831950B02E /* SLLoaderView.swift */; };
 		A94AB94BAC52B26453A43A729910E545 /* SLLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EFD3484CCCD1E1877BDF831950B02E /* SLLoaderView.swift */; };
 		F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61AF0257DDC6AA056B5DE39BE196A03 /* SLNavigationController.swift */; };
+		61A37EC417479230728BA8D01E86EEAD /* SLProgressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */; };
+		909F466D1F649A14F0EE70B1E3FF818A /* SLProgressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */; };
 		34ACD64071BDAC4B02D50AC5918D2CF2 /* SLReportsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A6670123CE4D88A69B3360B2826D2 /* SLReportsController.swift */; };
 		303BA5A42D29C3C3097140D1C11C061E /* SLReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B613C772334FBAC23495C2DB41748 /* SLReportsViewModel.swift */; };
-		2EF25388C91943EE4B2B92BAA2D4DDFF /* SLSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD35CA48F99A5BD67CC5ACC4AC218A6 /* SLSettingsCell.swift */; };
-		43AA732DB4F3ADE7918EF22EE7501104 /* SLSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F29CADDAA8F5F6C03E318A37FDD2454 /* SLSettingsController.swift */; };
-		DAF1674CE2725F3910B7F384B3A8CCF1 /* SLSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16401A1F82460A9E1B5AECCE37C6F3B /* SLSettingsHeaderCell.swift */; };
-		1C6AB9D4F50A5CE6DA0459D9E558833B /* SLSettingsSpacerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E36A29498C31BF45352DC8C8219F16 /* SLSettingsSpacerCell.swift */; };
-		63C132FECB454FAD82C9ED131902382D /* SLSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD06F6AB8A5194B562CE87DA365A54 /* SLSettingsViewModel.swift */; };
+		D357E422965A9E44B1A1A3CFE48D48BC /* SLSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */; };
+		2585568CBFDD2F975A331C37CBFCD118 /* SLSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3906935030679BA44670966C9C5465 /* SLSettingsController.swift */; };
+		4A5DB8C5FE7BE028884A4271F4202EA1 /* SLSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DFB02D9501455A977E92C0D4165725 /* SLSettingsHeaderCell.swift */; };
+		EDC3EF59CB6CE5E9E1F651FEF9BE5B27 /* SLSettingsSpacerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D13AD0E27178767C6C097D6E87045 /* SLSettingsSpacerCell.swift */; };
+		2B52D5482B00F1AE689A758A22730CA4 /* SLSettingsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8A32DAC1F7C28974BD7E5C9DA47931 /* SLSettingsType.swift */; };
+		253A1A8B9A8E0FE8AF20EC198D2E5139 /* SLSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A059ABC332DA5A14F5A02A2FAD76E760 /* SLSettingsViewModel.swift */; };
 		089E5D3617DA2A5498319887B2F1940A /* SLShieldAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3764286ACE6FE957E4A942C38BA6B867 /* SLShieldAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2AD26437B7408EEDFF268A7F0B972171 /* SLShieldConfiguration.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB3017559F9B70F47F82E69DE7B3DC56 /* SLShieldConfiguration.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A893937BAD6744652634953553C2548D /* SLTabBarController.swift */; };
@@ -296,6 +299,9 @@
 		075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */; };
 		40714857EA14C4B99935747D022BEAEA /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */; };
 		6C0A4AF030A9E1D02C7E38CC34677C87 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBC04D48F0B1801D69051197DD468F /* UIView.swift */; };
+		FC434CC90D37630CDAE68335EF1EA3D3 /* WeeklyReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */; };
+		85BA8A5DF656175799E77B86740FA0B2 /* WeeklyReportModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */; };
+		E35CD6E8DE3EE6B7308F26CB343BD6D1 /* WeeklyReportScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */; };
 		DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E09968366BA517BE5383D52D2F103F8 /* WelcomeScreenController.swift */; };
 		2332B4FD37A974AD83DF4F981D385DFC /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FEBE0F002CCBAE7844787179CC9C1E /* WelcomeScreenView.swift */; };
 		DD7A5346104B0A4EACA0E9C7B4F181D4 /* WelcomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA62DE5FBA5418404D3ABD127F1CFC6 /* WelcomeScreenViewModel.swift */; };
@@ -374,7 +380,7 @@
 		40BA157BB7E07A2B2D57B65CF6713103 /* ARLegendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARLegendView.swift; sourceTree = "<group>"; };
 		0891658E2BD2706F253A7A1F4B9347FD /* ARPageControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARPageControlView.swift; sourceTree = "<group>"; };
 		D2F3A0736837E659A420CA4E53DCAE2E /* ARPartitionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARPartitionsView.swift; sourceTree = "<group>"; };
-		68C3804671668888208A04E9268A83D9 /* ARProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARProgress.swift; sourceTree = "<group>"; };
+		B36E090C1A2EBDAD83090BC53672F96F /* ARProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARProgress.swift; sourceTree = "<group>"; };
 		16AF3788BAD433BAA22207E5A4AE6794 /* ARSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARSectionView.swift; sourceTree = "<group>"; };
 		E259163638057FE785109F50431244AE /* ARTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTime.swift; sourceTree = "<group>"; };
 		46570E565BEC4AFD6D78DBACCB77F74C /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
@@ -485,7 +491,7 @@
 		4AB78B40FFE8A3FFA9D43FC4855897CC /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD0BB8230C7B56094FE13C15949E7BAF /* SLActivityReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLActivityReport.entitlements; sourceTree = "<group>"; };
 		B502EEABC875602DFFE9F704C15DCA28 /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
-		37999D941FB5723BB134680374863954 /* SLAppsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsSelectionView.swift; sourceTree = "<group>"; };
+		31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsSelectionView.swift; sourceTree = "<group>"; };
 		CE4A230E4427D585CD5AA26F741EA13B /* SLBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLBaseView.swift; sourceTree = "<group>"; };
 		C344838B149DA6AAD8A0C4A1DCE6A9E3 /* SLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLButton.swift; sourceTree = "<group>"; };
 		C727A515F3791AD84160C8E398DC8317 /* SLColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLColors.swift; sourceTree = "<group>"; };
@@ -500,13 +506,15 @@
 		C7366C17CA9EAB2FD8CE941DB9C0532B /* SLInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLInput.swift; sourceTree = "<group>"; };
 		86EFD3484CCCD1E1877BDF831950B02E /* SLLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLLoaderView.swift; sourceTree = "<group>"; };
 		A61AF0257DDC6AA056B5DE39BE196A03 /* SLNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLNavigationController.swift; sourceTree = "<group>"; };
+		7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLProgressType.swift; sourceTree = "<group>"; };
 		296A6670123CE4D88A69B3360B2826D2 /* SLReportsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLReportsController.swift; sourceTree = "<group>"; };
 		F87B613C772334FBAC23495C2DB41748 /* SLReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLReportsViewModel.swift; sourceTree = "<group>"; };
-		7BD35CA48F99A5BD67CC5ACC4AC218A6 /* SLSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsCell.swift; sourceTree = "<group>"; };
-		5F29CADDAA8F5F6C03E318A37FDD2454 /* SLSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsController.swift; sourceTree = "<group>"; };
-		D16401A1F82460A9E1B5AECCE37C6F3B /* SLSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsHeaderCell.swift; sourceTree = "<group>"; };
-		E3E36A29498C31BF45352DC8C8219F16 /* SLSettingsSpacerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsSpacerCell.swift; sourceTree = "<group>"; };
-		04CD06F6AB8A5194B562CE87DA365A54 /* SLSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsViewModel.swift; sourceTree = "<group>"; };
+		8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsCell.swift; sourceTree = "<group>"; };
+		FD3906935030679BA44670966C9C5465 /* SLSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsController.swift; sourceTree = "<group>"; };
+		77DFB02D9501455A977E92C0D4165725 /* SLSettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsHeaderCell.swift; sourceTree = "<group>"; };
+		1D7D13AD0E27178767C6C097D6E87045 /* SLSettingsSpacerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsSpacerCell.swift; sourceTree = "<group>"; };
+		CD8A32DAC1F7C28974BD7E5C9DA47931 /* SLSettingsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsType.swift; sourceTree = "<group>"; };
+		A059ABC332DA5A14F5A02A2FAD76E760 /* SLSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsViewModel.swift; sourceTree = "<group>"; };
 		3764286ACE6FE957E4A942C38BA6B867 /* SLShieldAction.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SLShieldAction.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FB7885BFC69134C009600C15B166440 /* SLShieldAction.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLShieldAction.entitlements; sourceTree = "<group>"; };
 		DB3017559F9B70F47F82E69DE7B3DC56 /* SLShieldConfiguration.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SLShieldConfiguration.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -556,6 +564,9 @@
 		5B5224CE8F473147921538A9CCE10EE9 /* UIVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIew.swift; sourceTree = "<group>"; };
 		D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVIewControllerExtension.swift; sourceTree = "<group>"; };
 		ABFBC04D48F0B1801D69051197DD468F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportCoordinator.swift; sourceTree = "<group>"; };
+		ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportModulesFactory.swift; sourceTree = "<group>"; };
+		939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportScene.swift; sourceTree = "<group>"; };
 		2E09968366BA517BE5383D52D2F103F8 /* WelcomeScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenController.swift; sourceTree = "<group>"; };
 		46FEBE0F002CCBAE7844787179CC9C1E /* WelcomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		7BA62DE5FBA5418404D3ABD127F1CFC6 /* WelcomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewModel.swift; sourceTree = "<group>"; };
@@ -736,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				0C6AA270DB0404150698633CA195B0C8 /* Coordinator */,
+				9CD0BC906EF08754E1897167AA7FD774 /* Models */,
 				5548BE047F697A31160CF851A5F53044 /* ProgressController.swift */,
 				1DED5FF67C9642FC2DC4DD4CEAE66367 /* ProgressView.swift */,
 				86E756F59B755E7B1AC47BDE34C4BC9F /* ProgressViewModel.swift */,
@@ -757,7 +769,7 @@
 			isa = PBXGroup;
 			children = (
 				AF85AA6A504FAB01D08F79E87593A642 /* Reports */,
-				C9F3D61655A003FF6E9B557819118E99 /* SLSettingsTableView */,
+				62E38D28C7E2AC06DA20C01FCA9E0A5E /* SettingsTableView */,
 				CE4A230E4427D585CD5AA26F741EA13B /* SLBaseView.swift */,
 				C344838B149DA6AAD8A0C4A1DCE6A9E3 /* SLButton.swift */,
 				AAD90A149FDF47C9F859F1B8F247DAE8 /* SLContainerView.swift */,
@@ -996,6 +1008,7 @@
 				BA86EEAB7ABDD5F81B6CD1678D65F9FD /* Extensions */,
 				6C25D45A633A913BE623655591943846 /* Progress */,
 				FA05B36FB9D3126C43A6E0FD9A18268B /* Summary */,
+				3D89EBF7CC9AC51637450F7E07F7759F /* WeeklyReport */,
 			);
 			path = Presentaion;
 			sourceTree = "<group>";
@@ -1034,6 +1047,39 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		3C38DEC0B681AD4ED09DE25B4D24C851 /* WeeklyReport */ = {
+			isa = PBXGroup;
+			children = (
+				D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */,
+				ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */,
+			);
+			path = WeeklyReport;
+			sourceTree = "<group>";
+		};
+		3D89EBF7CC9AC51637450F7E07F7759F /* WeeklyReport */ = {
+			isa = PBXGroup;
+			children = (
+				939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */,
+			);
+			path = WeeklyReport;
+			sourceTree = "<group>";
+		};
+		9CD0BC906EF08754E1897167AA7FD774 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EE451975AC0C56980E2844B6F5030A99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD8A32DAC1F7C28974BD7E5C9DA47931 /* SLSettingsType.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -1092,10 +1138,10 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		8DCA7D0B6FADD25AD7B204A9821A3790 /* AppsSelection */ = {
+		2A0C4C0DE2C47EE246393F404880EA33 /* AppsSelection */ = {
 			isa = PBXGroup;
 			children = (
-				37999D941FB5723BB134680374863954 /* SLAppsSelectionView.swift */,
+				31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */,
 			);
 			path = AppsSelection;
 			sourceTree = "<group>";
@@ -1291,15 +1337,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C9F3D61655A003FF6E9B557819118E99 /* SLSettingsTableView */ = {
+		62E38D28C7E2AC06DA20C01FCA9E0A5E /* SettingsTableView */ = {
 			isa = PBXGroup;
 			children = (
-				8DCA7D0B6FADD25AD7B204A9821A3790 /* AppsSelection */,
-				E8277478E804D84CC4E630B944FD3EEB /* Cells */,
-				5F29CADDAA8F5F6C03E318A37FDD2454 /* SLSettingsController.swift */,
-				04CD06F6AB8A5194B562CE87DA365A54 /* SLSettingsViewModel.swift */,
+				2A0C4C0DE2C47EE246393F404880EA33 /* AppsSelection */,
+				04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */,
+				EE451975AC0C56980E2844B6F5030A99 /* Model */,
+				FD3906935030679BA44670966C9C5465 /* SLSettingsController.swift */,
+				A059ABC332DA5A14F5A02A2FAD76E760 /* SLSettingsViewModel.swift */,
 			);
-			path = SLSettingsTableView;
+			path = SettingsTableView;
 			sourceTree = "<group>";
 		};
 		D16025F968A698CB7D0E096031F58E27 /* Summary */ = {
@@ -1380,6 +1427,7 @@
 				20475216A6911110F2784ADE334FF8FF /* Progress */,
 				D16025F968A698CB7D0E096031F58E27 /* Summary */,
 				6D1704EC58B5702CE2E10B98A62C2F36 /* TabBar */,
+				3C38DEC0B681AD4ED09DE25B4D24C851 /* WeeklyReport */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -1393,12 +1441,12 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
-		E8277478E804D84CC4E630B944FD3EEB /* Cells */ = {
+		04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7BD35CA48F99A5BD67CC5ACC4AC218A6 /* SLSettingsCell.swift */,
-				D16401A1F82460A9E1B5AECCE37C6F3B /* SLSettingsHeaderCell.swift */,
-				E3E36A29498C31BF45352DC8C8219F16 /* SLSettingsSpacerCell.swift */,
+				8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */,
+				77DFB02D9501455A977E92C0D4165725 /* SLSettingsHeaderCell.swift */,
+				1D7D13AD0E27178767C6C097D6E87045 /* SLSettingsSpacerCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1468,7 +1516,6 @@
 			children = (
 				5A0A3533EEFFC3CA27F0B87E6396C5E4 /* ARApp.swift */,
 				14133B6CC1C0AE879C07D6418B6C3E35 /* ARDay.swift */,
-				68C3804671668888208A04E9268A83D9 /* ARProgress.swift */,
 				E259163638057FE785109F50431244AE /* ARTime.swift */,
 				45FCEEB3D185E2B4A0567827F51835A2 /* ARWeek.swift */,
 			);
@@ -1497,6 +1544,7 @@
 				40BA157BB7E07A2B2D57B65CF6713103 /* ARLegendView.swift */,
 				0891658E2BD2706F253A7A1F4B9347FD /* ARPageControlView.swift */,
 				D2F3A0736837E659A420CA4E53DCAE2E /* ARPartitionsView.swift */,
+				B36E090C1A2EBDAD83090BC53672F96F /* ARProgress.swift */,
 				16AF3788BAD433BAA22207E5A4AE6794 /* ARSectionView.swift */,
 				46570E565BEC4AFD6D78DBACCB77F74C /* ARView.swift */,
 			);
@@ -1992,7 +2040,7 @@
 				2F949F87544D3A01D1E3A6402585A4FF /* RequestAuthViewModel.swift in Sources */,
 				0A831317D0F3F9A8A85CE8560302922C /* Router.swift in Sources */,
 				A80262B9806A3057EC0D84F82E7D651F /* RoutersFactory.swift in Sources */,
-				1639A9988598932DCEFB832F7E7E6708 /* SLAppsSelectionView.swift in Sources */,
+				35D79A38C5679CE6DD4E81C18132216A /* SLAppsSelectionView.swift in Sources */,
 				989489A8455B64B8FF5A7E3B9C651AC3 /* SLBaseView.swift in Sources */,
 				F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */,
 				4BF8B3E55E785E78E313F621767BA432 /* SLColors.swift in Sources */,
@@ -2006,13 +2054,15 @@
 				80B942D2D755634C9846589066E09B79 /* SLInput.swift in Sources */,
 				475E153A90BCD7F3A1B44E544B873A2E /* SLLoaderView.swift in Sources */,
 				F6C56474D47CB44B0DAB4ECD9D56D082 /* SLNavigationController.swift in Sources */,
+				61A37EC417479230728BA8D01E86EEAD /* SLProgressType.swift in Sources */,
 				34ACD64071BDAC4B02D50AC5918D2CF2 /* SLReportsController.swift in Sources */,
 				303BA5A42D29C3C3097140D1C11C061E /* SLReportsViewModel.swift in Sources */,
-				2EF25388C91943EE4B2B92BAA2D4DDFF /* SLSettingsCell.swift in Sources */,
-				43AA732DB4F3ADE7918EF22EE7501104 /* SLSettingsController.swift in Sources */,
-				DAF1674CE2725F3910B7F384B3A8CCF1 /* SLSettingsHeaderCell.swift in Sources */,
-				1C6AB9D4F50A5CE6DA0459D9E558833B /* SLSettingsSpacerCell.swift in Sources */,
-				63C132FECB454FAD82C9ED131902382D /* SLSettingsViewModel.swift in Sources */,
+				D357E422965A9E44B1A1A3CFE48D48BC /* SLSettingsCell.swift in Sources */,
+				2585568CBFDD2F975A331C37CBFCD118 /* SLSettingsController.swift in Sources */,
+				4A5DB8C5FE7BE028884A4271F4202EA1 /* SLSettingsHeaderCell.swift in Sources */,
+				EDC3EF59CB6CE5E9E1F651FEF9BE5B27 /* SLSettingsSpacerCell.swift in Sources */,
+				2B52D5482B00F1AE689A758A22730CA4 /* SLSettingsType.swift in Sources */,
+				253A1A8B9A8E0FE8AF20EC198D2E5139 /* SLSettingsViewModel.swift in Sources */,
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
 				A9F73ED042F6C4339D992D08815595E6 /* SLTabBarType.swift in Sources */,
 				436B2147B0393B575289D3FC2A8C783D /* SLTabBarViewModel.swift in Sources */,
@@ -2040,6 +2090,8 @@
 				E2BFF212B61DA546E385648668AC2C72 /* UIImage.swift in Sources */,
 				075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */,
 				6C0A4AF030A9E1D02C7E38CC34677C87 /* UIView.swift in Sources */,
+				FC434CC90D37630CDAE68335EF1EA3D3 /* WeeklyReportCoordinator.swift in Sources */,
+				85BA8A5DF656175799E77B86740FA0B2 /* WeeklyReportModulesFactory.swift in Sources */,
 				DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */,
 				2332B4FD37A974AD83DF4F981D385DFC /* WelcomeScreenView.swift in Sources */,
 				DD7A5346104B0A4EACA0E9C7B4F181D4 /* WelcomeScreenViewModel.swift in Sources */,
@@ -2064,7 +2116,7 @@
 				AFE25B3FB1C38D2B7C0DAD5CAA84F4D6 /* ARLegendView.swift in Sources */,
 				51FB66B5A2C41FA3D19E01F354001610 /* ARPageControlView.swift in Sources */,
 				FEAC966BE55479E466F9F1B7CEAB13DF /* ARPartitionsView.swift in Sources */,
-				D20F3F4443B556F28C44B06C8FEBEEE9 /* ARProgress.swift in Sources */,
+				FB8FF85BD9B56289D0FD94EAB27E30CA /* ARProgress.swift in Sources */,
 				D2D92F4FE091085C54C9A0EDB1B85AB5 /* ARSectionView.swift in Sources */,
 				36DFD620AC54F75B1F86F5CF768541A1 /* ARTime.swift in Sources */,
 				14E32513BE12DAE6DAA2371222A0C7D6 /* ARView.swift in Sources */,
@@ -2121,6 +2173,7 @@
 				021E7415A749AF6482605F034C183DCB /* SLFonts.swift in Sources */,
 				5AD504606AC591683AED19072D2BAD6D /* SLImages.swift in Sources */,
 				A94AB94BAC52B26453A43A729910E545 /* SLLoaderView.swift in Sources */,
+				909F466D1F649A14F0EE70B1E3FF818A /* SLProgressType.swift in Sources */,
 				67A403ED9A206625DCAA440D322DC451 /* SLTexts.swift in Sources */,
 				B2927DDD67B4D38D6E5524C3DC4028D7 /* SecureStorage.swift in Sources */,
 				503820F7F7FFA904857566289FD92527 /* SecureStorageProvider.swift in Sources */,
@@ -2142,6 +2195,7 @@
 				A19B31A207A8639D851518530445A82D /* TimeInterval.swift in Sources */,
 				79EBC46EFD6C7EA22B59E8A8BD15A726 /* UIVIew.swift in Sources */,
 				40714857EA14C4B99935747D022BEAEA /* UIVIewControllerExtension.swift in Sources */,
+				E35CD6E8DE3EE6B7308F26CB343BD6D1 /* WeeklyReportScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2354,7 +2408,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -2368,7 +2422,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.9;
+				MARKETING_VERSION = 0.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2539,7 +2593,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -2553,7 +2607,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.9;
+				MARKETING_VERSION = 0.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

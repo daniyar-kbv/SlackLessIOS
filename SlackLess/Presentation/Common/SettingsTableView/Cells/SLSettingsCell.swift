@@ -19,6 +19,13 @@ final class SLSettingsCell: UITableViewCell {
     private var appsSelectionHostingController: UIHostingController<SLAppsSelectionView>?
     weak var parentConroller: UIViewController?
 
+    var isEnabled = true {
+        didSet {
+            isUserInteractionEnabled = isEnabled
+            contentView.alpha = isEnabled ? 1 : 0.5
+        }
+    }
+
     private(set) lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = SLColors.backgroundElevated.getColor()

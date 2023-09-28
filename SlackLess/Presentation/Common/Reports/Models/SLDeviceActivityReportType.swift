@@ -12,6 +12,7 @@ import SwiftUI
 enum SLDeviceActivityReportType {
     case summary
     case progress
+    case weeklyReport
 
     private var calendar: Calendar {
         .current
@@ -21,6 +22,7 @@ enum SLDeviceActivityReportType {
         switch self {
         case .summary: return "Summary"
         case .progress: return "Progress"
+        case .weeklyReport: return "WeeklyReport"
         }
     }
 
@@ -40,7 +42,7 @@ enum SLDeviceActivityReportType {
                 users: .all,
                 devices: .init([.iPhone])
             )
-        case .progress:
+        case .progress, .weeklyReport:
             let currentDate = Date()
             let minusFiveWeeksDate = currentDate.add(.weekOfYear, value: -4)
             let startDate = minusFiveWeeksDate.getWeekInterval().start

@@ -37,6 +37,7 @@ final class AppCoordinator: BaseCoordinator {
         if appSettingsService.output.getOnboardingShown() {
             configureCoordinators()
             showTabBarController()
+            showWeeklyReportIfNeeded()
         } else {
             startOnboardingFlow()
         }
@@ -53,15 +54,33 @@ extension AppCoordinator {
     }
 
     private func startOnboardingFlow() {
-        let onBoardingCoordinator = appCoordinatorsFactory.makeOnboardingCoordinator()
+        let coordinator = appCoordinatorsFactory.makeOnboardingCoordinator()
 
-        onBoardingCoordinator.didFinish = { [weak self] in
+        coordinator.didFinish.subscribe(onNext: { [weak self] in
             self?.appSettingsService.input.set(onboardingShown: true)
             self?.start()
-        }
+            self?.remove(coordinator)
+        })
+        .disposed(by: disposeBag)
 
-        add(onBoardingCoordinator)
-        onBoardingCoordinator.start()
+        add(coordinator)
+        coordinator.start()
+    }
+
+//    Uncomment to turn on weekly reports
+    func showWeeklyReportIfNeeded() {
+        let service = serviceFactory.makeAppSettingsService()
+//        guard service.output.getShowWeeklyReport() else { return }
+        let coordinator = appCoordinatorsFactory.makeWeeklyReportCoordinator()
+
+        coordinator.didFinish.subscribe(onNext: { [weak self, weak service] in
+//            service?.input.setWeeklyReportShown()
+            self?.remove(coordinator)
+        })
+        .disposed(by: disposeBag)
+
+        add(coordinator)
+        coordinator.start()
     }
 }
 

@@ -17,7 +17,10 @@ struct SLActivityReport: DeviceActivityReportExtension {
             .init(day: $0)
         }
         ProgressScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
-            .init(appSettingsService: getServiceFactory().makeAppSettingsService(), weeks: $0)
+            .init(appSettingsService: getServiceFactory().makeAppSettingsService(), type: .normal, weeks: $0)
+        }
+        WeeklyReportScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
+            .init(appSettingsService: getServiceFactory().makeAppSettingsService(), type: .weeklyReport, weeks: $0)
         }
     }
 

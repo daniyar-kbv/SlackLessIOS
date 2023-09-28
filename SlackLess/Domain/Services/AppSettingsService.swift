@@ -17,6 +17,7 @@ protocol AppSettingsServiceInput {
     func set(selectedApps: FamilyActivitySelection)
     func set(unlockPrice: Double)
     func set(progressDate: Date)
+    func setWeeklyReportShown()
 }
 
 protocol AppSettingsServiceOutput {
@@ -33,6 +34,7 @@ protocol AppSettingsServiceOutput {
     func getIsLastDate(_ date: Date) -> Bool
     func getIsLastWeek(_ date: Date) -> Bool
     func getProgressDate() -> Date?
+    func getShowWeeklyReport() -> Bool
 }
 
 protocol AppSettingsService: AnyObject {
@@ -138,6 +140,11 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.output.getProgressDate()
     }
 
+    func getShowWeeklyReport() -> Bool {
+        let currentWeek = appSettingsRepository.output.getCurrentWeek() ?? Date().getFirstDayOfWeek()
+        return !Date().getWeekInterval().containsDate(currentWeek)
+    }
+
     //    Input
 
     func requestAuthorization() {
@@ -154,6 +161,10 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
                 }
             }
         }
+    }
+
+    func setWeeklyReportShown() {
+        appSettingsRepository.input.set(currentWeek: Date().getFirstDayOfWeek())
     }
 
     func set(timeLimit: TimeInterval) {

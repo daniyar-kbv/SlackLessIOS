@@ -28,6 +28,39 @@ extension UIViewController {
         return self
     }
 
+    func dismiss(to viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        let thisAnimated = presentingViewController?.presentingViewController == viewController && animated
+
+        dismiss(animated: thisAnimated) { [weak self,
+                                           weak viewController] in
+                guard let viewController = viewController,
+                      self != viewController
+                else {
+                    completion?()
+                    return
+                }
+
+                self?.dismiss(to: viewController, animated: animated, completion: completion)
+        }
+    }
+
+    func dismissAll(animated: Bool, completion: (() -> Void)?) {
+        let presentingViewController = presentingViewController
+        let isLast = presentingViewController?.presentingViewController == nil
+        let thisAnimated = isLast && animated
+
+        dismiss(animated: thisAnimated) {
+            guard !isLast else {
+                completion?()
+                return
+            }
+
+            presentingViewController?.dismissAll(animated: animated, completion: completion)
+        }
+    }
+}
+
+extension UIViewController {
     func add(controller: UIViewController, to view: UIView? = nil, with constraints: ((ConstraintMaker) -> Void)? = nil) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
 

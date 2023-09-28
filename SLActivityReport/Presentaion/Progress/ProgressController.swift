@@ -13,7 +13,7 @@ import UIKit
 
 final class ProgressController: UIViewController {
     private let disposeBag = DisposeBag()
-    private let contentView = ProgressView()
+    private lazy var contentView = ProgressView(type: viewModel.output.getType())
     let viewModel: ProgressViewModel
 
     private lazy var currentWeekChartViewModel = ARChartViewModelImpl(

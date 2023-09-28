@@ -15,10 +15,14 @@ protocol SLSettingsViewModelInput {
 }
 
 protocol SLSettingsViewModelOutput {
+    var canChangeSettings: Bool { get }
+
+    func getType() -> SLSettingsType
     func getNumberOfSections() -> Int
     func getNumberOfItems(in section: Int) -> Int
     func getTitle(for section: Int) -> String?
     func getItemType(for indexPath: IndexPath) -> SLSettingsCell.CellType
+    func isSettings(section: Int) -> Bool
 }
 
 protocol SLSettingsViewModel: AnyObject {
@@ -30,14 +34,14 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     var input: SLSettingsViewModelInput { self }
     var output: SLSettingsViewModelOutput { self }
 
-    private let type: SettingsType
+    private let type: SLSettingsType
     private let appSettingsService: AppSettingsService
 
     private lazy var appsSelection = appSettingsService.output.getSelectedApps(for: Date().getDate())
     private lazy var timeLimit = appSettingsService.output.getTimeLimit(for: Date().getDate())
     private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
 
-    init(type: SettingsType,
+    init(type: SLSettingsType,
          appSettingsService: AppSettingsService)
     {
         self.type = type
@@ -45,12 +49,26 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     }
 
     //    Output
+    var canChangeSettings: Bool {
+        switch type {
+        case .full: return false
+        case .appSettingsOnly: return true
+        }
+    }
+
+    func getType() -> SLSettingsType {
+        type
+    }
+
     func getNumberOfSections() -> Int {
         type.sections.count
     }
 
     func getNumberOfItems(in section: Int) -> Int {
-        type.sections[section].items.count + 2
+        switch type {
+        case .full: return type.sections[section].items.count + 2
+        case .appSettingsOnly: return type.sections[section].items.count
+        }
     }
 
     func getTitle(for section: Int) -> String? {
@@ -58,7 +76,14 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     }
 
     func getItemType(for indexPath: IndexPath) -> SLSettingsCell.CellType {
-        switch type.sections[indexPath.section].items[indexPath.item - 1] {
+        var index: Int?
+
+        switch type {
+        case .full: index = indexPath.item - 1
+        case .appSettingsOnly: index = indexPath.item
+        }
+
+        switch type.sections[indexPath.section].items[index ?? 0] {
         case .selectedApps: return .selectedApps(appsSelection ?? .init())
         case .timeLimit: return .timeLimit(timeLimit)
         case .unlockPrice: return .unlockPrice(unlockPrice)
@@ -66,6 +91,10 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         case .emails: return .emails
         case .leaveFeedback: return .leaveFeedback
         }
+    }
+
+    func isSettings(section: Int) -> Bool {
+        type.sections[section] == .settings
     }
 
     //    Input
@@ -85,50 +114,5 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     func set(unlockPrice: Double?) {
         guard let unlockPrice = unlockPrice else { return }
         appSettingsService.input.set(unlockPrice: unlockPrice)
-    }
-}
-
-extension SLSettingsViewModelImpl {
-    enum SettingsType {
-        case appSettingsOnly
-        case full
-
-        var sections: [Section] {
-            switch self {
-            case .full: return [.settings, .notifications, .feedback]
-            case .appSettingsOnly: return [.settings]
-            }
-        }
-    }
-
-    enum Section: Int {
-        case settings
-        case notifications
-        case feedback
-
-        var title: String? {
-            switch self {
-            case .settings: return SLTexts.Settings.Settings.title.localized()
-            case .notifications: return SLTexts.Settings.Notifications.title.localized()
-            case .feedback: return SLTexts.Settings.Feedback.title.localized()
-            }
-        }
-
-        var items: [Item] {
-            switch self {
-            case .settings: return [.selectedApps, .timeLimit, .unlockPrice]
-            case .notifications: return [.pushNotifications, .emails]
-            case .feedback: return [.leaveFeedback]
-            }
-        }
-
-        enum Item {
-            case selectedApps
-            case timeLimit
-            case unlockPrice
-            case pushNotifications
-            case emails
-            case leaveFeedback
-        }
     }
 }

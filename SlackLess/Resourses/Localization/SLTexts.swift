@@ -98,6 +98,16 @@ enum SLTexts {
         case firstSectionTitle = "Progress.firstSectionTitle"
         case secondSectonTitle = "Progress.secondSectonTitle"
 
+        enum Title: String, Localizable {
+            case normal = "Progress.Title.normal"
+            case weeklyReport = "Progress.Title.weeklyReport"
+        }
+
+        enum FirstSectionTitle: String, Localizable {
+            case normal = "Progress.FirstSectionTitle.normal"
+            case weeklyReport = "Progress.FirstSectionTitle.weeklyReport"
+        }
+
         enum Dashboard: String, Localizable {
             case firstTitle = "Progress.Dashboard.firstTitle"
             case secondTitle = "Progress.Dashboard.secondTitle"
