@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+//    Uncomment to turn on weekly reports
+//    func applicationWillEnterForeground(_ application: UIApplication) {
+//        appCoordinator?.showWeeklyReportIfNeeded()
+//    }
+
     private func makeWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

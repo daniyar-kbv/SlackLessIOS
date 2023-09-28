@@ -19,7 +19,7 @@ final class ProgressModulesFactoryImpl: ProgressModulesFactory {
     }
 
     func makeProgressModule() -> (viewModel: ProgressViewModel, controller: ProgressController) {
-        let viewModel = ProgressViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService())
+        let viewModel = ProgressViewModelImpl(type: .normal, appSettingsService: serviceFactory.makeAppSettingsService())
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 }

@@ -12,4 +12,5 @@ import SwiftUI
 extension DeviceActivityReport.Context {
     static let summary = Self(SLDeviceActivityReportType.summary.contextName)
     static let progress = Self(SLDeviceActivityReportType.progress.contextName)
+    static let weeklyReport = Self(SLDeviceActivityReportType.weeklyReport.contextName)
 }

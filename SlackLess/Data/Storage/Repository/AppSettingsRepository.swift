@@ -18,6 +18,7 @@ protocol AppSettingsRepositoryInput {
     func set(unlockPrice: Double)
     func set(startDate: Date)
     func set(progressDate: Date)
+    func set(currentWeek: Date)
 }
 
 protocol AppSettingsRepositoryOutput {
@@ -27,6 +28,7 @@ protocol AppSettingsRepositoryOutput {
     func getUnlockPrice() -> Double?
     func getStartDate() -> Date?
     func getProgressDate() -> Date?
+    func getCurrentWeek() -> Date?
 
     var progressDateObservable: PublishRelay<Date?> { get }
 }
@@ -87,6 +89,10 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.progressDate
     }
 
+    func getCurrentWeek() -> Date? {
+        keyValueStorage.currentWeek
+    }
+
     //    Input
 
     func set(onboardingShown: Bool) {
@@ -111,5 +117,9 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
 
     func set(progressDate: Date) {
         keyValueStorage.persist(progressDate: progressDate)
+    }
+
+    func set(currentWeek: Date) {
+        keyValueStorage.persist(currentWeek: currentWeek)
     }
 }

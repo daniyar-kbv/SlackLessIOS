@@ -10,14 +10,13 @@ import RxCocoa
 import RxSwift
 import UIKit
 
+//  TODO: Check for memroy leakage
+
 final class OnboardingCoordinator: BaseCoordinator {
     private let disposeBag = DisposeBag()
     private(set) var router: Router
 
     private let modulesFactory: OnboardingModulesFactory
-
-    var didTerminate: (() -> Void)?
-    var didFinish: (() -> Void)?
 
     init(router: Router,
          modulesFactory: OnboardingModulesFactory)
@@ -56,9 +55,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeSetUpModule()
 
         module.viewModel.output.didFinish
-            .subscribe(onNext: { [weak self] in
-                self?.didFinish?()
-            })
+            .bind(to: didFinish)
             .disposed(by: disposeBag)
 
         router.push(viewController: module.controller, animated: true)

@@ -10,7 +10,7 @@ import SnapKit
 import UIKit
 
 class SLBaseView: UIView {
-    fileprivate lazy var titleLabel: UILabel = {
+    private(set) lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 28, weight: .bold)
         view.textColor = SLColors.label1.getColor()

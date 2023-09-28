@@ -83,35 +83,11 @@ final class MainRouter: Router {
     }
 
     func dismiss(to viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        let thisAnimated = navigationController.topViewController()?.presentingViewController?.presentingViewController == viewController && animated
-
-        navigationController.topViewController()?
-            .dismiss(animated: thisAnimated) { [weak self,
-                                                weak viewController] in
-                    guard let viewController = viewController,
-                          self?.navigationController.topViewController() != viewController
-                    else {
-                        completion?()
-                        return
-                    }
-
-                    self?.dismiss(to: viewController, animated: animated, completion: completion)
-            }
+        navigationController.topViewController()?.dismiss(to: viewController, animated: animated, completion: completion)
     }
 
     func dismissAll(animated: Bool, completion: (() -> Void)?) {
-        let isLast = navigationController.topViewController()?.presentingViewController?.presentingViewController == nil
-        let thisAnimated = isLast && animated
-
-        navigationController.topViewController()?
-            .dismiss(animated: thisAnimated) { [weak self] in
-                guard !isLast else {
-                    completion?()
-                    return
-                }
-
-                self?.dismissAll(animated: animated, completion: completion)
-            }
+        navigationController.topViewController()?.dismissAll(animated: animated, completion: completion)
     }
 
     func show(_ viewController: UIViewController) {

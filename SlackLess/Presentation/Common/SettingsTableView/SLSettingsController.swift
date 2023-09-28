@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SnapKit
 import UIKit
 
 final class SLSettingsController: UIViewController {
@@ -48,9 +49,35 @@ final class SLSettingsController: UIViewController {
         configure()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        switch viewModel.output.getType() {
+        case .full: break
+        case .appSettingsOnly:
+            var height = 0.0
+            for section in 0 ..< viewModel.output.getNumberOfSections() {
+                for row in 0 ..< viewModel.output.getNumberOfItems(in: section) {
+                    height += tableView(tableView, heightForRowAt: .init(row: row, section: section))
+                }
+            }
+            tableView.snp.updateConstraints {
+                $0.height.equalTo(height)
+            }
+        }
+    }
+
     private func configure() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.title = SLTexts.Customize.title.localized()
+
+        switch viewModel.output.getType() {
+        case .full: break
+        case .appSettingsOnly:
+            tableView.snp.makeConstraints {
+                $0.height.equalTo(1)
+            }
+        }
     }
 }
 
@@ -64,24 +91,37 @@ extension SLSettingsController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        switch (viewModel.output.getType(), indexPath.row) {
+        case (.full, 0):
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsHeaderCell.self), for: indexPath) as! SLSettingsHeaderCell
             cell.titleLabel.text = viewModel.output.getTitle(for: indexPath.section)
             return cell
-        case tableView.numberOfRows(inSection: indexPath.section) - 1:
+        case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1):
             return tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsSpacerCell.self), for: indexPath)
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsCell.self), for: indexPath) as! SLSettingsCell
             cell.parentConroller = self
 
             var position: SLSettingsCell.Position = .middle
-            if tableView.numberOfRows(inSection: indexPath.section) == 3 {
-                position = .single
-            } else if indexPath.row == 1 {
+            switch (viewModel.output.getType(), indexPath.row) {
+            case (.full, 1):
+                switch tableView.numberOfRows(inSection: indexPath.section) {
+                case 3: position = .single
+                default: position = .top
+                }
+                guard tableView.numberOfRows(inSection: indexPath.section) > 3 else { break }
                 position = .top
-            } else if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 2 {
+            case (.full, tableView.numberOfRows(inSection: indexPath.section) - 2):
                 position = .bottom
+            case (.appSettingsOnly, 0):
+                switch tableView.numberOfRows(inSection: indexPath.section) {
+                case 1: position = .single
+                default: position = .top
+                }
+            case (.appSettingsOnly, tableView.numberOfRows(inSection: indexPath.section) - 1):
+                position = .bottom
+            default:
+                break
             }
 
             cell.set(type: viewModel.output.getItemType(for: indexPath), position: position) { [weak self] in
@@ -94,6 +134,9 @@ extension SLSettingsController: UITableViewDataSource {
                     self?.viewModel.input.set(unlockPrice: price)
                 }
             }
+
+            cell.isEnabled = viewModel.output.canChangeSettings || !viewModel.output.isSettings(section: indexPath.section)
+
             return cell
         }
     }
@@ -101,9 +144,9 @@ extension SLSettingsController: UITableViewDataSource {
 
 extension SLSettingsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0: return 20
-        case tableView.numberOfRows(inSection: indexPath.section) - 1: return 16
+        switch (viewModel.output.getType(), indexPath.row) {
+        case (.full, 0): return 20
+        case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1): return 16
         default: return 40
         }
     }

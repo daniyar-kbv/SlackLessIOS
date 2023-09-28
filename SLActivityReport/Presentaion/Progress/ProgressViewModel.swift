@@ -17,6 +17,8 @@ protocol ProgressViewModelOutput {
     var time: BehaviorRelay<(currentWeekTime: ARTime?, previousWeekTime: ARTime?)> { get }
     var days: BehaviorRelay<[ARWeek.Day]> { get }
     var lastWeeks: BehaviorRelay<[ARWeek]> { get }
+
+    func getType() -> SLProgressType
 }
 
 protocol ProgressViewModel: AnyObject {
@@ -33,17 +35,20 @@ final class ProgressViewModelImpl: ProgressViewModel,
 
     private let disposeBag = DisposeBag()
     private let appSettingsService: AppSettingsService
+    private let type: SLProgressType
     private var weeks: [ARWeek]
     private var currentWeekIndex = 4
 
     init(appSettingsService: AppSettingsService,
+         type: SLProgressType,
          weeks: [ARWeek])
     {
         self.appSettingsService = appSettingsService
+        self.type = type
         self.weeks = weeks
 
         bindService()
-        processProgressDate(appSettingsService.output.getProgressDate())
+        configureDate()
     }
 
     //    Output
@@ -51,6 +56,10 @@ final class ProgressViewModelImpl: ProgressViewModel,
                                                                                                         previousWeekTime: getPreviousWeek()?.getTime()))
     lazy var days: BehaviorRelay<[ARWeek.Day]> = .init(value: getCurrentWeek()?.days ?? [])
     lazy var lastWeeks: BehaviorRelay<[ARWeek]> = .init(value: weeks)
+
+    func getType() -> SLProgressType {
+        type
+    }
 
     //    Input
     func update(weeks: [ARWeek]) {
@@ -61,9 +70,24 @@ final class ProgressViewModelImpl: ProgressViewModel,
 
 extension ProgressViewModelImpl {
     private func bindService() {
-        appSettingsService.output.progressDateObservable
-            .subscribe(onNext: processProgressDate(_:))
-            .disposed(by: disposeBag)
+        switch type {
+        case .normal:
+            appSettingsService.output.progressDateObservable
+                .subscribe(onNext: processProgressDate(_:))
+                .disposed(by: disposeBag)
+        case .weeklyReport:
+            break
+        }
+    }
+
+    private func configureDate() {
+        switch type {
+        case .normal:
+            processProgressDate(appSettingsService.output.getProgressDate())
+        case .weeklyReport:
+            guard weeks.count > 1 else { return }
+            currentWeekIndex = weeks.endIndex - 1
+        }
     }
 
     private func processProgressDate(_ date: Date?) {

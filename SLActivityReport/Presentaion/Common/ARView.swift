@@ -14,7 +14,7 @@ class ARView: UIView {
         let view = UIScrollView()
         view.delaysContentTouches = false
         view.showsVerticalScrollIndicator = false
-        view.contentInset = .init(top: view.safeAreaLayoutGuide.layoutFrame.size.height, left: 0, bottom: 16, right: 0)
+        view.contentInset = .init(top: 0, left: 0, bottom: 16, right: 0)
         return view
     }()
 
@@ -46,10 +46,13 @@ class ARView: UIView {
 
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.verticalEdges.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview()
             $0.width.equalToSuperview().inset(16)
         }
+    }
+
+    func getRootScrollView() -> UIScrollView {
+        scrollView
     }
 }

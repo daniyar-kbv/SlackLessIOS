@@ -12,12 +12,16 @@ import RxSwift
 
 protocol ProgressViewModelInput {
     func changeDate(forward: Bool)
+    func finish()
 }
 
 protocol ProgressViewModelOutput {
     var date: BehaviorRelay<String?> { get }
     var isntFirstDate: BehaviorRelay<Bool> { get }
     var isntLastDate: BehaviorRelay<Bool> { get }
+    var isFinished: PublishRelay<Void> { get }
+
+    func getType() -> SLProgressType
 }
 
 protocol ProgressViewModel: SLReportsViewModel {
@@ -29,22 +33,31 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
     var input: ProgressViewModelInput { self }
     var output: ProgressViewModelOutput { self }
 
-    private lazy var currentDate = Date().getFirstDayOfWeek()
+    private let type: SLProgressType
     private let appSettingsService: AppSettingsService
+    private lazy var currentDate = Date().getFirstDayOfWeek()
 
-    init(appSettingsService: AppSettingsService) {
+    init(type: SLProgressType,
+         appSettingsService: AppSettingsService)
+    {
+        self.type = type
         self.appSettingsService = appSettingsService
 
-        appSettingsService.input.set(progressDate: currentDate)
+        configure()
     }
 
     //    Output
     lazy var filters: [SLDeviceActivityReportFilter] = [
-        .init(reportType: .progress, filter: SLDeviceActivityReportType.progress.getFilter()),
+        .init(reportType: type.reportType, filter: type.reportType.getFilter()),
     ]
     lazy var date: BehaviorRelay<String?> = .init(value: makeCurrentDateString())
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstWeek())
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: isntLastWeek())
+    lazy var isFinished: PublishRelay<Void> = .init()
+
+    func getType() -> SLProgressType {
+        type
+    }
 
     //    Input
 
@@ -54,9 +67,22 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
         appSettingsService.input.set(progressDate: currentDate)
         reload()
     }
+
+    func finish() {
+        isFinished.accept(())
+    }
 }
 
 extension ProgressViewModelImpl {
+    private func configure() {
+        switch type {
+        case .normal:
+            appSettingsService.input.set(progressDate: currentDate)
+        case .weeklyReport:
+            changeDate(forward: false)
+        }
+    }
+
     private func reload() {
         date.accept(makeCurrentDateString())
         isntFirstDate.accept(isntFirstWeek())

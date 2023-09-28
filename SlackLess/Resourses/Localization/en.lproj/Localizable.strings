@@ -65,8 +65,10 @@
 "Summary.ThirdContainer.title" = "Total Screen Time";
 
 //  MARK: - Progress
-"Progress.title" = "Progress";
-"Progress.firstSectionTitle" = "Time spent this week";
+"Progress.Title.normal" = "Progress";
+"Progress.Title.weeklyReport" = "Review Your Progress";
+"Progress.FirstSectionTitle.normal" = "Time spent this week";
+"Progress.FirstSectionTitle.weeklyReport" = "Time spent last week";
 "Progress.secondSectonTitle" = "Last few weeks";
 "Progress.Dashboard.firstTitle" = "Slacked";
 "Progress.Dashboard.secondTitle" = "Total";

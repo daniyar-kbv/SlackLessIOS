@@ -1,17 +1,17 @@
 //
-//  ProgressScene.swift
+//  WeeklyReportScene.swift
 //  SLActivityReport
 //
-//  Created by Daniyar Kurmanbayev on 2023-09-12.
+//  Created by Daniyar Kurmanbayev on 2023-09-26.
 //
 
 import DeviceActivity
 import SwiftUI
 
-struct ProgressScene: DeviceActivityReportScene {
+struct WeeklyReportScene: DeviceActivityReportScene {
     let appSettingsService: AppSettingsService
 
-    let context: DeviceActivityReport.Context = .progress
+    let context: DeviceActivityReport.Context = .weeklyReport
     let content: ([ARWeek]) -> ProgressRepresentable
 
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [ARWeek] {
