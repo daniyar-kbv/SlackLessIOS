@@ -52,7 +52,7 @@ final class ProgressView: SLBaseView {
         }
 
         button.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }

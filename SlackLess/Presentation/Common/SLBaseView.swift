@@ -43,8 +43,7 @@ class SLBaseView: UIView {
 
         contentView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
     }
 
