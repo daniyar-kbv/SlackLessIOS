@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct Event {
+class Event {
     let type: EventType
     let value: Any?
+
+    init(type: EventType, value: Any? = nil) {
+        self.type = type
+        self.value = value
+    }
 }

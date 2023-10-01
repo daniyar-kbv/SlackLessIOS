@@ -9,7 +9,7 @@ import Foundation
 import SnapKit
 import UIKit
 
-// Tech debt: refactor cells
+// TODO: refactor cells
 
 final class SummaryOtherAppsTableViewCell: UITableViewCell {
     private(set) var appTimeView: ARAppView?

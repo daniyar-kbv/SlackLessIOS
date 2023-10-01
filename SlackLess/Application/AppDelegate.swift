@@ -67,6 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func initializeServices() {
-        _ = domainComponentsFactory.makeServiceFactory().mameAppLockingService()
+        _ = domainComponentsFactory.makeServiceFactory().makeLockService()
     }
 }

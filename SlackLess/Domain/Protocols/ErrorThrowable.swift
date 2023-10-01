@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+//  TODO: Refactor to use Data/Domain Errors
+
 protocol ErrorThrowable {
     typealias Element = Any
 

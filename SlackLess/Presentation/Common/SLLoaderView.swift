@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import SnapKit
+import UIKit
 
 final class SLLoaderView: UIView {
     private(set) lazy var container: UIView = {
@@ -50,11 +50,11 @@ final class SLLoaderView: UIView {
 
     func showLoader(on view: UIView) {
         indicatorView.startAnimating()
-        
+
         view.addSubview(self)
-        snp.makeConstraints({
+        snp.makeConstraints {
             $0.edges.equalToSuperview()
-        })
+        }
 
         layoutIfNeeded()
 
@@ -79,8 +79,8 @@ final class SLLoaderView: UIView {
                            self?.container.alpha = 0
                            self?.layoutIfNeeded()
                        },
-                       completion: { [weak self] finished in
-                           guard finished else { return }
+                       completion: { [weak self] didFinish in
+                           guard didFinish else { return }
                            self?.removeFromSuperview()
                            self?.indicatorView.stopAnimating()
                        })

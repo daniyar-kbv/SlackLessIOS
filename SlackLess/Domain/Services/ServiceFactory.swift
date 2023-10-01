@@ -9,7 +9,8 @@ import Foundation
 
 protocol ServiceFactory: AnyObject {
     func makeAppSettingsService() -> AppSettingsService
-    func mameAppLockingService() -> AppLockingService
+    func makeLockService() -> LockService
+    func makePaymentService() -> PaymentService
 }
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
@@ -27,12 +28,16 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     }
 
     func makeAppSettingsService() -> AppSettingsService {
-        return shared(AppSettingsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
-                                             eventManager: helpersFactory.makeEventManager()))
+        shared(AppSettingsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
+                                      eventManager: helpersFactory.makeEventManager()))
     }
 
-    func mameAppLockingService() -> AppLockingService {
-        return shared(AppLockingServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
-                                            eventManager: helpersFactory.makeEventManager()))
+    func makeLockService() -> LockService {
+        shared(LockServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
+                               eventManager: helpersFactory.makeEventManager()))
+    }
+
+    func makePaymentService() -> PaymentService {
+        shared(PaymentServiceImpl(eventManager: helpersFactory.makeEventManager()))
     }
 }

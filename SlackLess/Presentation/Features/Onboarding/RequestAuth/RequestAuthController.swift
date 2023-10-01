@@ -6,39 +6,39 @@
 //
 
 import Foundation
-import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import UIKit
 
 final class RequestAuthController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentView = RequestAuthView()
     private let viewModel: RequestAuthViewModel
-    
+
     init(viewModel: RequestAuthViewModel) {
         self.viewModel = viewModel
-        
+
         super.init(nibName: .none, bundle: .none)
     }
-    
+
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func loadView() {
         super.loadView()
-        
+
         view = contentView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         bindView()
         bindViewModel()
     }
-    
+
     private func bindView() {
         contentView.button.rx.tap
             .subscribe(onNext: { [weak self] in
@@ -47,15 +47,15 @@ final class RequestAuthController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-    
+
     private func bindViewModel() {
         viewModel.output.authorizationComplete.subscribe(onNext: { [weak self] in
             self?.hideLoader()
         })
         .disposed(by: disposeBag)
-        
-//        Tech debt: test if app setings open in production version
-        
+
+//        TODO: test if app setings open in production version
+
         viewModel.output.gotError.subscribe(onNext: { [weak self] in
             self?.showAlert(title: SLTexts.Alert.Error.title.localized(),
                             message: $0,

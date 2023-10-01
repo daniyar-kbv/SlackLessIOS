@@ -7,7 +7,8 @@
 
 import UIKit
 
-// TODO: Refactor image names to match Enum names and remove raw values
+//  TODO: Refactor image names to match Enum names and remove raw values
+//  TODO: Refactor SF Symbols to use UIImage(systemName: )
 
 enum SLImages: String, ImageGetable {
     case appIcon = "AppIcon"

@@ -8,15 +8,19 @@
 import DeviceActivity
 import UIKit
 
-//  Tech debt: Refactor
+//  TODO: Refactor
 
 struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
-    static let appMode: AppMode = .debug
 
-    enum AppMode {
-        case normal
-        case debug
+    enum Settings {
+        static let appMode: AppMode = .debug
+        static let unlockTime: TimeInterval = 10 * 60
+
+        enum AppMode {
+            case normal
+            case debug
+        }
     }
 
     enum URLs {
@@ -38,6 +42,10 @@ struct Constants {
             intervalEnd: DateComponents(hour: 23, minute: 59, second: 59),
             repeats: true
         )
+    }
+
+    enum Payment {
+        static let applePayMerchantId = "merchant.kz.slackless"
     }
 
 //    Shared constants

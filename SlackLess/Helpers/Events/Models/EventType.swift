@@ -9,4 +9,7 @@ import Foundation
 
 enum EventType: CaseIterable {
     case appLimitSettingsChanged
+    case paymentFinished
+    case updateLimitsSucceed
+    case updateLimitsFailed
 }

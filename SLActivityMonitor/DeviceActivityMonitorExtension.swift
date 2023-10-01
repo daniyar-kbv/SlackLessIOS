@@ -16,6 +16,10 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         .makeAppSettingsRepository()
     private let store = ManagedSettingsStore()
 
+    override func intervalDidStart(for _: DeviceActivityName) {
+        appSettingsRepository.input.set(isLocked: false)
+    }
+
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
 
@@ -29,5 +33,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         else { return }
 
         store.shield.applications = selection.applicationTokens
+        appSettingsRepository.input.set(isLocked: true)
     }
 }

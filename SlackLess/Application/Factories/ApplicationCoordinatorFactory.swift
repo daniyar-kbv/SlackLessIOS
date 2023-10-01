@@ -12,6 +12,7 @@ protocol ApplicationCoordinatorFactory: AnyObject {
     func makeSummaryCoordinator() -> SummaryCoordinator
     func makeProgressCoordinator() -> ProgressCoordinator
     func makeCustomizeCoordinator() -> CustomizeCoordinator
+    func makeUnlockCoordinator() -> UnlockCoordinator
     func makeWeeklyReportCoordinator() -> WeeklyReportCoordinator
 }
 
@@ -47,6 +48,10 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
     func makeCustomizeCoordinator() -> CustomizeCoordinator {
         return scoped(CustomizeCoordinator(router: routersFactory.makeMainRouter(),
                                            modulesFactory: CustomizeModulesFactoryImpl(appSettingsService: serviceFactory.makeAppSettingsService())))
+    }
+
+    func makeUnlockCoordinator() -> UnlockCoordinator {
+        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(paymentService: serviceFactory.makePaymentService())))
     }
 
     func makeWeeklyReportCoordinator() -> WeeklyReportCoordinator {
