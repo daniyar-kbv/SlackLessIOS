@@ -6,29 +6,30 @@
 //
 
 import Foundation
-import UIKit
 import SnapKit
+import UIKit
 
-// Tech debt: change Type name
+// TODO: change Type name
 
 final class ARLegendView: UIStackView {
     private let type: `Type`
-    
+
     private lazy var slackedView = LegendView(type: .slacked(sliced: type == .twoColor))
     private lazy var otherAppsView = LegendView(type: .otherApps)
-    
+
     init(type: Type) {
         self.type = type
-        
+
         super.init(frame: .zero)
-        
+
         layoutUI()
     }
-    
-    required init(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func layoutUI() {
         [slackedView, otherAppsView].forEach(addArrangedSubview(_:))
         axis = .horizontal
@@ -44,9 +45,9 @@ extension ARLegendView {
     }
 }
 
-fileprivate final class LegendView: UIStackView {
+private final class LegendView: UIStackView {
     let type: `Type`
-    
+
     private(set) lazy var circleView: UIView = {
         let view = UIView()
         view.backgroundColor = type.color
@@ -54,14 +55,14 @@ fileprivate final class LegendView: UIStackView {
         view.clipsToBounds = true
         return view
     }()
-    
+
     private(set) lazy var halfCircleView: UIView = {
         let view = UIView()
         view.backgroundColor = SLColors.gray4.getColor()
-        view.transform = view.transform.rotated(by: 45.0/180.0*CGFloat.pi)
+        view.transform = view.transform.rotated(by: 45.0 / 180.0 * CGFloat.pi)
         return view
     }()
-    
+
     private(set) lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.text = type.text
@@ -69,38 +70,39 @@ fileprivate final class LegendView: UIStackView {
         view.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
         return view
     }()
-    
-    init(type: `Type`) {
+
+    init(type: Type) {
         self.type = type
-        
+
         super.init(frame: .zero)
-        
+
         layoutUI()
     }
-    
-    required init(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func layoutUI() {
         [circleView, titleLabel].forEach(addArrangedSubview(_:))
         axis = .horizontal
         alignment = .center
         spacing = 4
-        
-        circleView.snp.makeConstraints({
+
+        circleView.snp.makeConstraints {
             $0.size.equalTo(8)
-        })
-        
+        }
+
         switch type {
         case let .slacked(sliced):
             if sliced {
                 circleView.addSubview(halfCircleView)
-                halfCircleView.snp.makeConstraints({
+                halfCircleView.snp.makeConstraints {
                     $0.size.equalTo(8)
                     $0.centerX.equalToSuperview().offset(CGFloat.squareRoot(8)())
                     $0.centerY.equalToSuperview().offset(CGFloat.squareRoot(8)())
-                })
+                }
             }
         default: break
         }
@@ -111,14 +113,14 @@ extension LegendView {
     enum `Type` {
         case slacked(sliced: Bool)
         case otherApps
-        
+
         var text: String {
             switch self {
             case .slacked: return SLTexts.Legend.firstTitle.localized()
             case .otherApps: return SLTexts.Legend.secondTitle.localized()
             }
         }
-        
+
         var color: UIColor? {
             switch self {
             case .slacked: return SLColors.accent1.getColor()

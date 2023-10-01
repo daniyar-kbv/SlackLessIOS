@@ -7,21 +7,22 @@
 
 import Foundation
 
-struct DomainErrorResponse: ErrorPresentable {
-    let code: String
-    let message: String
-
-    var presentationDescription: String { return message }
-}
-
 enum DomainError: ErrorPresentable {
+    case dataError(String)
+    case general
     case request
-    case categoriesNotAllowed
+    case cantMakeApplePayPayment
+    case unsupportedApplePayPaymentMethods
+    case updateLimitsFailed
 
     var presentationDescription: String {
         switch self {
+        case let .dataError(message): return message
+        case .general: return SLTexts.Error.Domain.general.localized()
         case .request: return SLTexts.Error.Domain.request.localized()
-        case .categoriesNotAllowed: return SLTexts.Error.Domain.categoriesNotAllowed.localized()
+        case .cantMakeApplePayPayment: return SLTexts.Error.Domain.cantMakeApplePayPayment.localized()
+        case .unsupportedApplePayPaymentMethods: return SLTexts.Error.Domain.unsupportedApplePayPaymentMethods.localized()
+        case .updateLimitsFailed: return SLTexts.Error.Domain.updateLimitsFailed.localized()
         }
     }
 }

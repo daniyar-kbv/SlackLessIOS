@@ -22,6 +22,8 @@ final class AppCoordinator: BaseCoordinator {
 
     private var disposeBag = DisposeBag()
 
+//    TODO: Change lazy var to let where needed
+
     private lazy var appSettingsService = serviceFactory.makeAppSettingsService()
 
     init(serviceFactory: ServiceFactory,
@@ -31,6 +33,8 @@ final class AppCoordinator: BaseCoordinator {
         self.serviceFactory = serviceFactory
         self.appCoordinatorsFactory = appCoordinatorsFactory
         self.modulesFactory = modulesFactory
+
+        super.init()
     }
 
     override func start() {

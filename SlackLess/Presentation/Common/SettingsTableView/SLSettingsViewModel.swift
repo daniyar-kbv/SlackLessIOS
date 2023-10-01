@@ -7,6 +7,8 @@
 
 import FamilyControls
 import Foundation
+import RxCocoa
+import RxSwift
 
 protocol SLSettingsViewModelInput {
     func set(appSelection: FamilyActivitySelection)
@@ -15,6 +17,7 @@ protocol SLSettingsViewModelInput {
 }
 
 protocol SLSettingsViewModelOutput {
+    var errorOccured: PublishRelay<ErrorPresentable> { get }
     var canChangeSettings: Bool { get }
 
     func getType() -> SLSettingsType
@@ -37,6 +40,7 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     private let type: SLSettingsType
     private let appSettingsService: AppSettingsService
 
+    private let disposeBag = DisposeBag()
     private lazy var appsSelection = appSettingsService.output.getSelectedApps(for: Date().getDate())
     private lazy var timeLimit = appSettingsService.output.getTimeLimit(for: Date().getDate())
     private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
@@ -46,9 +50,13 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     {
         self.type = type
         self.appSettingsService = appSettingsService
+
+        bindService()
     }
 
     //    Output
+    let errorOccured: PublishRelay<ErrorPresentable> = .init()
+
     var canChangeSettings: Bool {
         switch type {
         case .full: return false
@@ -114,5 +122,13 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     func set(unlockPrice: Double?) {
         guard let unlockPrice = unlockPrice else { return }
         appSettingsService.input.set(unlockPrice: unlockPrice)
+    }
+}
+
+extension SLSettingsViewModelImpl {
+    private func bindService() {
+        appSettingsService.output.errorOccured
+            .bind(to: errorOccured)
+            .disposed(by: disposeBag)
     }
 }

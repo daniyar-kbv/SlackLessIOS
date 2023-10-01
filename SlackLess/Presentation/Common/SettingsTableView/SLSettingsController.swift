@@ -6,11 +6,15 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 import SnapKit
 import UIKit
 
 final class SLSettingsController: UIViewController {
     private let viewModel: SLSettingsViewModel
+
+    private let disposeBag = DisposeBag()
 
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
@@ -47,6 +51,7 @@ final class SLSettingsController: UIViewController {
         super.viewDidLoad()
 
         configure()
+        bindViewModel()
     }
 
     override func viewDidLayoutSubviews() {
@@ -78,6 +83,15 @@ final class SLSettingsController: UIViewController {
                 $0.height.equalTo(1)
             }
         }
+    }
+
+    private func bindViewModel() {
+        viewModel.output.errorOccured.subscribe(onNext: { [weak self] in
+            self?.showError($0) {
+                self?.tableView.reloadData()
+            }
+        })
+        .disposed(by: disposeBag)
     }
 }
 

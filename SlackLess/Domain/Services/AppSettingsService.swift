@@ -21,15 +21,17 @@ protocol AppSettingsServiceInput {
 }
 
 protocol AppSettingsServiceOutput {
+    var errorOccured: PublishRelay<ErrorPresentable> { get }
     var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
     var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
-    var selectionCategoryError: PublishRelay<DomainError> { get }
+    var isLocked: PublishRelay<Bool> { get }
     var progressDateObservable: PublishRelay<Date?> { get }
 
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getUnlockPrice() -> Double?
+    func getIsLocked() -> Bool
     func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
     func getIsLastWeek(_ date: Date) -> Bool
@@ -61,22 +63,16 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         self.eventManager = eventManager
 
         bindRepository()
-    }
-
-    func bindRepository() {
-        appSettingsRepository
-            .output
-            .progressDateObservable
-            .bind(to: progressDateObservable)
-            .disposed(by: disposeBag)
+        bindEventManager()
     }
 
     //    Output
-    var authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
-    var timeLimitSaved: PublishRelay<Void> = .init()
-    var appsSelectionSaved: PublishRelay<Void> = .init()
-    let selectionCategoryError: PublishRelay<DomainError> = .init()
-    var progressDateObservable: PublishRelay<Date?> = .init()
+    let errorOccured: PublishRelay<ErrorPresentable> = .init()
+    let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
+    let timeLimitSaved: PublishRelay<Void> = .init()
+    let appsSelectionSaved: PublishRelay<Void> = .init()
+    let isLocked: PublishRelay<Bool> = .init()
+    let progressDateObservable: PublishRelay<Date?> = .init()
 
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
@@ -122,6 +118,10 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     func getUnlockPrice() -> Double? {
         appSettingsRepository.output.getUnlockPrice()
+    }
+
+    func getIsLocked() -> Bool {
+        appSettingsRepository.output.getIsLocked()
     }
 
     func getIsLastDate(_ date: Date) -> Bool {
@@ -171,21 +171,15 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         getWeek().forEach {
             appSettingsRepository.input.set(timeLimit: timeLimit, for: $0)
         }
-        eventManager.send(event: .init(type: .appLimitSettingsChanged, value: ()))
+        eventManager.send(event: .init(type: .appLimitSettingsChanged))
         timeLimitSaved.accept(())
     }
 
     func set(selectedApps: FamilyActivitySelection) {
-        guard selectedApps.categories.isEmpty,
-              selectedApps.webDomains.isEmpty
-        else {
-            selectionCategoryError.accept(.categoriesNotAllowed)
-            return
-        }
         getWeek().forEach {
             appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
         }
-        eventManager.send(event: .init(type: .appLimitSettingsChanged, value: ()))
+        eventManager.send(event: .init(type: .appLimitSettingsChanged))
         appsSelectionSaved.accept(())
     }
 
@@ -200,6 +194,23 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     func set(progressDate: Date) {
         appSettingsRepository.input.set(progressDate: progressDate)
+    }
+}
+
+extension AppSettingsServiceImpl {
+    private func bindRepository() {
+        appSettingsRepository
+            .output
+            .progressDateObservable
+            .bind(to: progressDateObservable)
+            .disposed(by: disposeBag)
+    }
+
+    private func bindEventManager() {
+        eventManager.subscribe(to: .updateLimitsFailed, disposeBag: disposeBag) { [weak self] in
+            guard let error = $0 as? ErrorPresentable else { return }
+            self?.errorOccured.accept(error)
+        }
     }
 }
 

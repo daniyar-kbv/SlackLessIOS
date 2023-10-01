@@ -15,8 +15,11 @@ enum SLTexts {
         }
 
         enum Domain: String, Localizable {
+            case general = "Error.Domain.general"
             case request = "Error.Domain.request"
-            case categoriesNotAllowed = "Error.Domain.categoriesNotAllowed"
+            case cantMakeApplePayPayment = "Error.Domain.cantMakeApplePayPayment"
+            case unsupportedApplePayPaymentMethods = "Error.Domain.unsupportedApplePayPaymentMethods"
+            case updateLimitsFailed = "Error.Domain.updateLimitsFailed"
         }
     }
 
@@ -136,6 +139,21 @@ enum SLTexts {
         enum Feedback: String, Localizable {
             case title = "Settings.Feedback.title"
             case leaveFeedback = "Settings.Feedback.leaveFeedback"
+        }
+    }
+
+    enum Unlock: String, Localizable {
+        case title = "Unlock.title"
+
+        enum Payment: String, Localizable {
+            case itemLabel = "Unlock.Payment.itemLabel"
+        }
+
+        enum Alert {
+            enum Success: String, Localizable {
+                case title = "Unlock.Alert.Success.title"
+                case message = "Unlock.Alert.Success.message"
+            }
         }
     }
 }

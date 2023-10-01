@@ -9,16 +9,19 @@
 
 //  MARK: - Error
 "Error.Data.badmapping" = "Coudn't read the response";
-"Error.Data.noData" = "No date";
+"Error.Data.noData" = "No data";
+"Error.Domain.general" = "Something went wrong";
 "Error.Domain.request" = "Couldn't send a request";
-"Error.Domain.categoriesNotAllowed" = "Неудалось отправить запрос";
+"Error.Domain.cantMakeApplePayPayment" = "Can't make payment";
+"Error.Domain.unsupportedApplePayPaymentMethods" = "Your payment methods are unsopported";
+"Error.Domain.updateLimitsFailed" = "Couldn't update limits";
 
 //  MARK: - Keyboard
 "Keyboard.Toolbar.done" = "Done";
 
 //  MARK: - Alert
 "Alert.Error.title" = "Error";
-"Alert.Action.defauiltTitle" = "Ok";
+"Alert.Action.defauiltTitle" = "OK";
 "Alert.Action.cancel" = "Cancel";
 "Alert.Action.toSettings" = "To settings";
 "Alert.Action.yes" = "Yes";
@@ -88,3 +91,8 @@
 "Settings.Feedback.title" = "FEEDBACK";
 "Settings.Feedback.leaveFeedback" = "Leave Feedback";
 
+//  MARK: - Unlock
+"Unlock.title" = "Unlock";
+"Unlock.Payment.itemLabel" = "Slacking";
+"Unlock.Alert.Success.title" = "Success";
+"Unlock.Alert.Success.message" = "Unlocked for 10 minutes";

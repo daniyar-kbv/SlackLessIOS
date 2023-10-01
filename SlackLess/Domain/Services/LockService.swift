@@ -1,5 +1,5 @@
 //
-//  AppLockingService.swift
+//  LockService.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-09-24.
@@ -10,18 +10,18 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol AppLockingServiceInput: AnyObject {}
+protocol LockServiceInput: AnyObject {}
 
-protocol AppLockingServiceOutput: AnyObject {}
+protocol LockServiceOutput: AnyObject {}
 
-protocol AppLockingService: AnyObject {
-    var input: AppLockingServiceInput { get }
-    var output: AppLockingServiceOutput { get }
+protocol LockService: AnyObject {
+    var input: LockServiceInput { get }
+    var output: LockServiceOutput { get }
 }
 
-final class AppLockingServiceImpl: AppLockingService, AppLockingServiceInput, AppLockingServiceOutput {
-    var input: AppLockingServiceInput { self }
-    var output: AppLockingServiceOutput { self }
+final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
+    var input: LockServiceInput { self }
+    var output: LockServiceOutput { self }
 
     private let appSettingsRepository: AppSettingsRepository
     private let eventManager: EventManager
@@ -40,19 +40,28 @@ final class AppLockingServiceImpl: AppLockingService, AppLockingServiceInput, Ap
     //    Input
 }
 
-extension AppLockingServiceImpl {
+extension LockServiceImpl {
     private func bindEventManager() {
         eventManager.subscribe(to: .appLimitSettingsChanged, disposeBag: disposeBag) { [weak self] _ in
-            self?.updateLockingEvent()
+            self?.updateLimits()
+        }
+
+        eventManager.subscribe(to: .paymentFinished, disposeBag: disposeBag) { [weak self] _ in
+            self?.updateLimits(unlockTime: Constants.Settings.unlockTime)
         }
     }
 
-    private func updateLockingEvent() {
+    private func updateLimits(unlockTime: TimeInterval = 0) {
         let date = Date().getDate()
 
         guard let selection = appSettingsRepository.output.getSelectedApps(for: date),
               let limit = appSettingsRepository.output.getTimeLimit(for: date)
-        else { return }
+        else {
+            eventManager.send(event: .init(type: .updateLimitsFailed, value: DomainError.updateLimitsFailed))
+            return
+        }
+        let unlockedTime = appSettingsRepository.output.getUnlockedTime(for: date)
+        var newLimit = limit + unlockedTime + unlockTime
 
         deviceActivityCenter.stopMonitoring()
 
@@ -71,8 +80,12 @@ extension AppLockingServiceImpl {
                     .limitReached: event,
                 ]
             )
+
+            appSettingsRepository.input.set(unlockedTime: unlockedTime + unlockTime, for: date)
+            eventManager.send(event: .init(type: .updateLimitsSucceed))
         } catch {
             print(error)
+            eventManager.send(event: .init(type: .updateLimitsFailed, value: error))
         }
     }
 }

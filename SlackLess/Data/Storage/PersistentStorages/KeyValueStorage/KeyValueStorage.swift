@@ -10,11 +10,15 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+//  TODO: Make all observable
+
 enum KeyValueStorageKey: String, StorageKey, Equatable {
     case onbardingShown
     case selectedApps
     case timeLimit
+    case unlockedTime
     case unlockPrice
+    case isLocked
     case startDate
     case progressDate
     case currentWeek
@@ -25,17 +29,22 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
 protocol KeyValueStorage {
     var onbardingShown: Bool { get }
     var unlockPrice: Double { get }
+    var isLocked: Bool { get }
+    var isLockedObservable: PublishRelay<Bool> { get }
     var startDate: Date? { get }
     var progressDate: Date? { get }
-    var currentWeek: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
+    var currentWeek: Date? { get }
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
+    func getUnlockedTime(for date: Date) -> TimeInterval
 
     func persist(onbardingShown: Bool)
     func persist(selectedApps: FamilyActivitySelection, for date: Date)
     func persist(timeLimit: TimeInterval, for date: Date)
+    func persist(unlockedTime: TimeInterval, for date: Date)
     func persist(unlockPrice: Double)
+    func persist(isLocked: Bool)
     func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
@@ -58,6 +67,14 @@ final class KeyValueStorageImpl: KeyValueStorage {
             .debounce(.milliseconds(1), scheduler: MainScheduler.asyncInstance)
             .bind(to: progressDateObservable)
             .disposed(by: disposeBag)
+
+        storageProvider.rx
+            .observe(Bool.self, KeyValueStorageKey.isLocked.value)
+            .debounce(.milliseconds(1), scheduler: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] in
+                self?.isLockedObservable.accept($0 ?? false)
+            })
+            .disposed(by: disposeBag)
     }
 
     var onbardingShown: Bool {
@@ -68,6 +85,12 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.double(forKey: KeyValueStorageKey.unlockPrice.value)
     }
 
+    var isLocked: Bool {
+        storageProvider.bool(forKey: KeyValueStorageKey.isLocked.value)
+    }
+
+    lazy var isLockedObservable: PublishRelay<Bool> = .init()
+
     var startDate: Date? {
         storageProvider.object(forKey: KeyValueStorageKey.startDate.value) as? Date
     }
@@ -76,11 +99,11 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.object(forKey: KeyValueStorageKey.progressDate.value) as? Date
     }
 
+    let progressDateObservable: PublishRelay<Date?> = .init()
+
     var currentWeek: Date? {
         storageProvider.object(forKey: KeyValueStorageKey.currentWeek.value) as? Date
     }
-
-    let progressDateObservable = PublishRelay<Date?>()
 
     //  TODO: Refactor with DB
 
@@ -100,6 +123,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value + makeString(from: date))
     }
 
+    func getUnlockedTime(for date: Date) -> TimeInterval {
+        storageProvider.double(forKey: KeyValueStorageKey.unlockedTime.value + makeString(from: date))
+    }
+
     func persist(onbardingShown: Bool) {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
@@ -117,8 +144,16 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value + makeString(from: date))
     }
 
+    func persist(unlockedTime: TimeInterval, for date: Date) {
+        storageProvider.set(unlockedTime, forKey: KeyValueStorageKey.unlockedTime.value + makeString(from: date))
+    }
+
     func persist(unlockPrice: Double) {
         storageProvider.set(unlockPrice, forKey: KeyValueStorageKey.unlockPrice.value)
+    }
+
+    func persist(isLocked: Bool) {
+        storageProvider.set(isLocked, forKey: KeyValueStorageKey.isLocked.value)
     }
 
     func persist(startDate: Date) {

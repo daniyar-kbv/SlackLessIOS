@@ -33,8 +33,6 @@
 		E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57EC41FA972B27B99A3234345E33C7 /* AppComponentsFactory.swift */; };
 		F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C371BB1CF7ABC83E229083F8D2A95BC /* AppCoordinator.swift */; };
 		B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC613E7285B734EAF32D316F895C05 /* AppDelegate.swift */; };
-		31FBE924E62E2E8CE518D889FBEF35FB /* AppLockingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9564D063C00823B0BEBC2D24F075C3 /* AppLockingService.swift */; };
-		E9E4CEFDA131724C5912D468FAC16889 /* AppLockingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9564D063C00823B0BEBC2D24F075C3 /* AppLockingService.swift */; };
 		013A275B81153958018ABE500ACC458E /* AppSettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD740B924A5434B1161B77D5D0E2421 /* AppSettingsRepository.swift */; };
 		19F8A94F6ED1C53411B21A558D45A940 /* AppSettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD740B924A5434B1161B77D5D0E2421 /* AppSettingsRepository.swift */; };
 		681365EAE0A64423E851BA76BA53EA1A /* AppSettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD740B924A5434B1161B77D5D0E2421 /* AppSettingsRepository.swift */; };
@@ -149,6 +147,8 @@
 		7B9EEDCAA8CE2F2B54BE90C9773218C0 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
 		E87FDC3032BCAB7BF37D29C599E9F47B /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
 		F08E6710D2FE2BA9CEC746C0638B2500 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
+		F738191A704BE43BF6DBFD7D2B2CCD23 /* LockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8CC8028411207F86D46A4514A9505 /* LockService.swift */; };
+		A9E65B6BD737D6A1B92D93CF40426439 /* LockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8CC8028411207F86D46A4514A9505 /* LockService.swift */; };
 		677C292B9D7A37926A13A5DF21015B68 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */; };
 		B9DE7C56BEAB53ADB4F71B200300799A /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */; };
 		B08158C05A87119302EBB016C95B8C2F /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B21C6EB2E88392C8C78F6A6B0219D70 /* ManagedSettingsUI.framework */; };
@@ -161,6 +161,8 @@
 		FD3AB24A44F268BCAEB3B0015EBEA372 /* NumericExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90226FBE0221C17A2C1DF7D1383200B7 /* NumericExtension.swift */; };
 		44612AFE92BF05FE4D68FA0FE5C39349 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64901180FCF67ADF191AAEDCE02FEE01 /* OnboardingCoordinator.swift */; };
 		3B4EE4E323986B97341167C5B0BE50CB /* OnboardingModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEDAB7EDE020B39026483E652B653FA /* OnboardingModulesFactory.swift */; };
+		12D5ECFF417DF82D16C4FE8BACA04798 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B78182ECF2999E27D2899F4CB9E48 /* PaymentService.swift */; };
+		F5DA04AC369E68054A5683E9E850D7A3 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8B78182ECF2999E27D2899F4CB9E48 /* PaymentService.swift */; };
 		C3DEBA470FB1BF7618567CC1CCB5F480 /* Pods_SLActivityMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7D603F5C881064E8C2D78FA25ED0040 /* Pods_SLActivityMonitor.framework */; };
 		DE6C631A7968E166621925B0166E8958 /* Pods_SLActivityReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F56245C59B20F2CD0117AB13F4CABD /* Pods_SLActivityReport.framework */; };
 		3619BED3DC5C93130DB6B7875520EF1C /* Pods_SLShieldAction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DDA81D7D97ED41273FE8586451AEAF1 /* Pods_SLShieldAction.framework */; };
@@ -197,6 +199,7 @@
 		0777FE61B40BF6091C335169BC917E8C /* SLActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 21D73C29ECC31C339974D4221E143FB6 /* SLActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2FEC363F466DEB4E55C0BE85D0B738B0 /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 4AB78B40FFE8A3FFA9D43FC4855897CC /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0F05B5381F014AEEA78F5AA0FCD57AE1 /* SLActivityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B502EEABC875602DFFE9F704C15DCA28 /* SLActivityReport.swift */; };
+		AE9EC748CCF830893934662955F54B2A /* SLApplePayButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F839651999E6A054FAF7F9756979D00 /* SLApplePayButtonType.swift */; };
 		35D79A38C5679CE6DD4E81C18132216A /* SLAppsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */; };
 		989489A8455B64B8FF5A7E3B9C651AC3 /* SLBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A230E4427D585CD5AA26F741EA13B /* SLBaseView.swift */; };
 		F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C344838B149DA6AAD8A0C4A1DCE6A9E3 /* SLButton.swift */; };
@@ -299,6 +302,11 @@
 		075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */; };
 		40714857EA14C4B99935747D022BEAEA /* UIVIewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */; };
 		6C0A4AF030A9E1D02C7E38CC34677C87 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBC04D48F0B1801D69051197DD468F /* UIView.swift */; };
+		4B1B7837AB94504C9B495F3D4E942D7B /* UnlockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5426E03A0F6CF23F37432CC232C72AEB /* UnlockController.swift */; };
+		12659AFAAC5DD38877CF3D2961C39247 /* UnlockCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A866798503C887C36243A943E09AC8C /* UnlockCoordinator.swift */; };
+		5E2771AD959D516F488D1C1C3BF68CC2 /* UnlockModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F793CCF00EF4A7A59AF1D0F0CC80FC40 /* UnlockModulesFactory.swift */; };
+		DC2A872298494D0CEC8AA48A3645862C /* UnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D9F3473E3AECFD297C8B1BFDA46993 /* UnlockView.swift */; };
+		F9C849F48CD2EF29229BAE106553715E /* UnlockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */; };
 		FC434CC90D37630CDAE68335EF1EA3D3 /* WeeklyReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */; };
 		85BA8A5DF656175799E77B86740FA0B2 /* WeeklyReportModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */; };
 		E35CD6E8DE3EE6B7308F26CB343BD6D1 /* WeeklyReportScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */; };
@@ -390,7 +398,6 @@
 		9B57EC41FA972B27B99A3234345E33C7 /* AppComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppComponentsFactory.swift; sourceTree = "<group>"; };
 		8C371BB1CF7ABC83E229083F8D2A95BC /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CEFC613E7285B734EAF32D316F895C05 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EE9564D063C00823B0BEBC2D24F075C3 /* AppLockingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockingService.swift; sourceTree = "<group>"; };
 		DCD740B924A5434B1161B77D5D0E2421 /* AppSettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsRepository.swift; sourceTree = "<group>"; };
 		B367DB2CECFEDAB6869670885894CF6E /* AppSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsService.swift; sourceTree = "<group>"; };
 		02B720349AAE44C250F63FEDCA3495DE /* ApplicationCoordinatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorFactory.swift; sourceTree = "<group>"; };
@@ -440,6 +447,7 @@
 		1F18AC7C28D3CAB2CC69A1D8EA8E3E8F /* LoaderPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderPresentable.swift; sourceTree = "<group>"; };
 		BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		7992175DA18EA0E468D114518B0A9105 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		33B8CC8028411207F86D46A4514A9505 /* LockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockService.swift; sourceTree = "<group>"; };
 		505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettings.framework; path = System/Library/Frameworks/ManagedSettings.framework; sourceTree = SDKROOT; };
 		7B21C6EB2E88392C8C78F6A6B0219D70 /* ManagedSettingsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettingsUI.framework; path = System/Library/Frameworks/ManagedSettingsUI.framework; sourceTree = SDKROOT; };
 		68247330220B1CA9A5369744C78CFB2F /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -448,6 +456,7 @@
 		90226FBE0221C17A2C1DF7D1383200B7 /* NumericExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericExtension.swift; sourceTree = "<group>"; };
 		64901180FCF67ADF191AAEDCE02FEE01 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		1EEDAB7EDE020B39026483E652B653FA /* OnboardingModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModulesFactory.swift; sourceTree = "<group>"; };
+		2A8B78182ECF2999E27D2899F4CB9E48 /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		B966EAA1AF80CDEEAA4706B12B5A6FB4 /* Pods-SLActivityMonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLActivityMonitor.debug.xcconfig"; path = "Target Support Files/Pods-SLActivityMonitor/Pods-SLActivityMonitor.debug.xcconfig"; sourceTree = "<group>"; };
 		B477CEAADE71B95368D62445D3A5C27A /* Pods-SLActivityMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLActivityMonitor.release.xcconfig"; path = "Target Support Files/Pods-SLActivityMonitor/Pods-SLActivityMonitor.release.xcconfig"; sourceTree = "<group>"; };
 		7A6B2AB361C36EC4071B8B1D9BCD3A84 /* Pods-SLActivityReport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLActivityReport.debug.xcconfig"; path = "Target Support Files/Pods-SLActivityReport/Pods-SLActivityReport.debug.xcconfig"; sourceTree = "<group>"; };
@@ -491,6 +500,7 @@
 		4AB78B40FFE8A3FFA9D43FC4855897CC /* SLActivityReport.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SLActivityReport.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD0BB8230C7B56094FE13C15949E7BAF /* SLActivityReport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLActivityReport.entitlements; sourceTree = "<group>"; };
 		B502EEABC875602DFFE9F704C15DCA28 /* SLActivityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLActivityReport.swift; sourceTree = "<group>"; };
+		8F839651999E6A054FAF7F9756979D00 /* SLApplePayButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLApplePayButtonType.swift; sourceTree = "<group>"; };
 		31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLAppsSelectionView.swift; sourceTree = "<group>"; };
 		CE4A230E4427D585CD5AA26F741EA13B /* SLBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLBaseView.swift; sourceTree = "<group>"; };
 		C344838B149DA6AAD8A0C4A1DCE6A9E3 /* SLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLButton.swift; sourceTree = "<group>"; };
@@ -564,6 +574,11 @@
 		5B5224CE8F473147921538A9CCE10EE9 /* UIVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIew.swift; sourceTree = "<group>"; };
 		D90A3DECC2B499B7A276C381BB2B8835 /* UIVIewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVIewControllerExtension.swift; sourceTree = "<group>"; };
 		ABFBC04D48F0B1801D69051197DD468F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		5426E03A0F6CF23F37432CC232C72AEB /* UnlockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockController.swift; sourceTree = "<group>"; };
+		9A866798503C887C36243A943E09AC8C /* UnlockCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockCoordinator.swift; sourceTree = "<group>"; };
+		F793CCF00EF4A7A59AF1D0F0CC80FC40 /* UnlockModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockModulesFactory.swift; sourceTree = "<group>"; };
+		62D9F3473E3AECFD297C8B1BFDA46993 /* UnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockView.swift; sourceTree = "<group>"; };
+		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
 		D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportCoordinator.swift; sourceTree = "<group>"; };
 		ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportModulesFactory.swift; sourceTree = "<group>"; };
 		939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReportScene.swift; sourceTree = "<group>"; };
@@ -621,6 +636,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */,
+				77DFB02D9501455A977E92C0D4165725 /* SLSettingsHeaderCell.swift */,
+				1D7D13AD0E27178767C6C097D6E87045 /* SLSettingsSpacerCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		073887B9F49A696F055E846959A666A8 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +851,14 @@
 			path = SlackLess;
 			sourceTree = "<group>";
 		};
+		2A0C4C0DE2C47EE246393F404880EA33 /* AppsSelection */ = {
+			isa = PBXGroup;
+			children = (
+				31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */,
+			);
+			path = AppsSelection;
+			sourceTree = "<group>";
+		};
 		2AEFCF4431E2DDD5CA6012A7726EE92B /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +893,23 @@
 				08A02C6916127501F1819B27222FC623 /* RoutersFactory.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		3C38DEC0B681AD4ED09DE25B4D24C851 /* WeeklyReport */ = {
+			isa = PBXGroup;
+			children = (
+				D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */,
+				ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */,
+			);
+			path = WeeklyReport;
+			sourceTree = "<group>";
+		};
+		3D89EBF7CC9AC51637450F7E07F7759F /* WeeklyReport */ = {
+			isa = PBXGroup;
+			children = (
+				939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */,
+			);
+			path = WeeklyReport;
 			sourceTree = "<group>";
 		};
 		3E510243FD9402CD06AE29F4414B65C0 /* Models */ = {
@@ -899,8 +949,9 @@
 		41CD9EDE78BA2401178E14693BE48AEE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EE9564D063C00823B0BEBC2D24F075C3 /* AppLockingService.swift */,
 				B367DB2CECFEDAB6869670885894CF6E /* AppSettingsService.swift */,
+				33B8CC8028411207F86D46A4514A9505 /* LockService.swift */,
+				2A8B78182ECF2999E27D2899F4CB9E48 /* PaymentService.swift */,
 				A78EAC9A7EC243CB884D14721ECF2548 /* ServiceFactory.swift */,
 			);
 			path = Services;
@@ -1001,6 +1052,18 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		62E38D28C7E2AC06DA20C01FCA9E0A5E /* SettingsTableView */ = {
+			isa = PBXGroup;
+			children = (
+				2A0C4C0DE2C47EE246393F404880EA33 /* AppsSelection */,
+				04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */,
+				EE451975AC0C56980E2844B6F5030A99 /* Model */,
+				FD3906935030679BA44670966C9C5465 /* SLSettingsController.swift */,
+				A059ABC332DA5A14F5A02A2FAD76E760 /* SLSettingsViewModel.swift */,
+			);
+			path = SettingsTableView;
+			sourceTree = "<group>";
+		};
 		678746F5B5D16F7DB29C079352D5AC5E /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
@@ -1049,37 +1112,33 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		3C38DEC0B681AD4ED09DE25B4D24C851 /* WeeklyReport */ = {
+		5C9915367195021BC75264D872A27C28 /* Unlock */ = {
 			isa = PBXGroup;
 			children = (
-				D261DA6104B50F64467215DB5B923AA6 /* WeeklyReportCoordinator.swift */,
-				ACCFA510EB4978E0F4D3961ED9CDDC88 /* WeeklyReportModulesFactory.swift */,
+				4DC158126B6B12A93949585AF61675CA /* Coordinator */,
+				F412F44248E63DC9F8D26B0FF5D6C896 /* Models */,
+				5426E03A0F6CF23F37432CC232C72AEB /* UnlockController.swift */,
+				62D9F3473E3AECFD297C8B1BFDA46993 /* UnlockView.swift */,
+				6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */,
 			);
-			path = WeeklyReport;
+			path = Unlock;
 			sourceTree = "<group>";
 		};
-		3D89EBF7CC9AC51637450F7E07F7759F /* WeeklyReport */ = {
+		4DC158126B6B12A93949585AF61675CA /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */,
+				9A866798503C887C36243A943E09AC8C /* UnlockCoordinator.swift */,
+				F793CCF00EF4A7A59AF1D0F0CC80FC40 /* UnlockModulesFactory.swift */,
 			);
-			path = WeeklyReport;
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		9CD0BC906EF08754E1897167AA7FD774 /* Models */ = {
+		F412F44248E63DC9F8D26B0FF5D6C896 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */,
+				8F839651999E6A054FAF7F9756979D00 /* SLApplePayButtonType.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		EE451975AC0C56980E2844B6F5030A99 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CD8A32DAC1F7C28974BD7E5C9DA47931 /* SLSettingsType.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -1138,14 +1197,6 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		2A0C4C0DE2C47EE246393F404880EA33 /* AppsSelection */ = {
-			isa = PBXGroup;
-			children = (
-				31DC7FC6005E726978BF314AC756A1FF /* SLAppsSelectionView.swift */,
-			);
-			path = AppsSelection;
-			sourceTree = "<group>";
-		};
 		900317A0BB73B749F4CEE03F32AE4491 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1179,6 +1230,14 @@
 				C727A515F3791AD84160C8E398DC8317 /* SLColors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		9CD0BC906EF08754E1897167AA7FD774 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9EF1FF778BEE147A1BD78062AC058EAE /* Customize */ = {
@@ -1337,18 +1396,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		62E38D28C7E2AC06DA20C01FCA9E0A5E /* SettingsTableView */ = {
-			isa = PBXGroup;
-			children = (
-				2A0C4C0DE2C47EE246393F404880EA33 /* AppsSelection */,
-				04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */,
-				EE451975AC0C56980E2844B6F5030A99 /* Model */,
-				FD3906935030679BA44670966C9C5465 /* SLSettingsController.swift */,
-				A059ABC332DA5A14F5A02A2FAD76E760 /* SLSettingsViewModel.swift */,
-			);
-			path = SettingsTableView;
-			sourceTree = "<group>";
-		};
 		D16025F968A698CB7D0E096031F58E27 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -1427,6 +1474,7 @@
 				20475216A6911110F2784ADE334FF8FF /* Progress */,
 				D16025F968A698CB7D0E096031F58E27 /* Summary */,
 				6D1704EC58B5702CE2E10B98A62C2F36 /* TabBar */,
+				5C9915367195021BC75264D872A27C28 /* Unlock */,
 				3C38DEC0B681AD4ED09DE25B4D24C851 /* WeeklyReport */,
 			);
 			path = Features;
@@ -1439,16 +1487,6 @@
 				BDF67A40EB36D8597E320B1B90FC13CD /* EmptyError.swift */,
 			);
 			path = Error;
-			sourceTree = "<group>";
-		};
-		04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */,
-				77DFB02D9501455A977E92C0D4165725 /* SLSettingsHeaderCell.swift */,
-				1D7D13AD0E27178767C6C097D6E87045 /* SLSettingsSpacerCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		E8CECF3000065E0BD1999B9F1B23F518 /* Dasboards */ = {
@@ -1488,6 +1526,14 @@
 				D1CE78DC39DB16BEBE2D29B57FCF100E /* WelcomeScreen */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EE451975AC0C56980E2844B6F5030A99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD8A32DAC1F7C28974BD7E5C9DA47931 /* SLSettingsType.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F0908A7ECD711C7402403A58548278F1 /* SLActivityMonitor */ = {
@@ -1980,7 +2026,6 @@
 				E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */,
 				F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
-				E9E4CEFDA131724C5912D468FAC16889 /* AppLockingService.swift in Sources */,
 				19F8A94F6ED1C53411B21A558D45A940 /* AppSettingsRepository.swift in Sources */,
 				D2D0DD10ED2BD8409007A9F0649F5D53 /* AppSettingsService.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
@@ -2020,11 +2065,13 @@
 				E6888123E1EDF35C79A4B5F5075AB4EC /* LoaderPresentable.swift in Sources */,
 				BD5C447FFBA6858E77FF12E0887C30A1 /* Localizable.swift in Sources */,
 				54D632CAAFE6BF183C8EC62276B2DA5B /* Localization.swift in Sources */,
+				A9E65B6BD737D6A1B92D93CF40426439 /* LockService.swift in Sources */,
 				22A1658761A291C28884A095B454AD74 /* NavBarConfigurable.swift in Sources */,
 				64A39129D0B6EA9180BDA9102495280F /* NetworkError.swift in Sources */,
 				DCB5DAD20C499A5F7D4DAF3C5F46A2C1 /* NumericExtension.swift in Sources */,
 				44612AFE92BF05FE4D68FA0FE5C39349 /* OnboardingCoordinator.swift in Sources */,
 				3B4EE4E323986B97341167C5B0BE50CB /* OnboardingModulesFactory.swift in Sources */,
+				12D5ECFF417DF82D16C4FE8BACA04798 /* PaymentService.swift in Sources */,
 				49F742636E33E53283B3A2F7EDF04030 /* PresentationComponentsFactory.swift in Sources */,
 				BFCEB4197F1CD5F8CD70B19F94FADFA1 /* ProgressController.swift in Sources */,
 				B62738A66B009349E8F18C7FE6CE93F8 /* ProgressCoordinator.swift in Sources */,
@@ -2040,6 +2087,7 @@
 				2F949F87544D3A01D1E3A6402585A4FF /* RequestAuthViewModel.swift in Sources */,
 				0A831317D0F3F9A8A85CE8560302922C /* Router.swift in Sources */,
 				A80262B9806A3057EC0D84F82E7D651F /* RoutersFactory.swift in Sources */,
+				AE9EC748CCF830893934662955F54B2A /* SLApplePayButtonType.swift in Sources */,
 				35D79A38C5679CE6DD4E81C18132216A /* SLAppsSelectionView.swift in Sources */,
 				989489A8455B64B8FF5A7E3B9C651AC3 /* SLBaseView.swift in Sources */,
 				F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */,
@@ -2090,6 +2138,11 @@
 				E2BFF212B61DA546E385648668AC2C72 /* UIImage.swift in Sources */,
 				075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */,
 				6C0A4AF030A9E1D02C7E38CC34677C87 /* UIView.swift in Sources */,
+				4B1B7837AB94504C9B495F3D4E942D7B /* UnlockController.swift in Sources */,
+				12659AFAAC5DD38877CF3D2961C39247 /* UnlockCoordinator.swift in Sources */,
+				5E2771AD959D516F488D1C1C3BF68CC2 /* UnlockModulesFactory.swift in Sources */,
+				DC2A872298494D0CEC8AA48A3645862C /* UnlockView.swift in Sources */,
+				F9C849F48CD2EF29229BAE106553715E /* UnlockViewModel.swift in Sources */,
 				FC434CC90D37630CDAE68335EF1EA3D3 /* WeeklyReportCoordinator.swift in Sources */,
 				85BA8A5DF656175799E77B86740FA0B2 /* WeeklyReportModulesFactory.swift in Sources */,
 				DD0D0965B38D9566B95CA5A5CF5C7721 /* WelcomeScreenController.swift in Sources */,
@@ -2122,7 +2175,6 @@
 				14E32513BE12DAE6DAA2371222A0C7D6 /* ARView.swift in Sources */,
 				BE029C3919E5F76528702D117B738E7E /* ARWeek.swift in Sources */,
 				BFC6E08E2974432E08D715644D0A356F /* AppComponentsFactory.swift in Sources */,
-				31FBE924E62E2E8CE518D889FBEF35FB /* AppLockingService.swift in Sources */,
 				013A275B81153958018ABE500ACC458E /* AppSettingsRepository.swift in Sources */,
 				A37321FC45418A0D5001F996062F6F8C /* AppSettingsService.swift in Sources */,
 				AFB5BBD2BA2E21C593CC558FFAA14B73 /* BaseCacheStorage.swift in Sources */,
@@ -2151,9 +2203,11 @@
 				ABE879A31BE456917B943E75888EE0D5 /* LoaderPresentable.swift in Sources */,
 				5BFBAE9A218393439A877CEE0E8BF1BE /* Localizable.swift in Sources */,
 				7B9EEDCAA8CE2F2B54BE90C9773218C0 /* Localization.swift in Sources */,
+				F738191A704BE43BF6DBFD7D2B2CCD23 /* LockService.swift in Sources */,
 				C128F083E03E4F68D183000E477EEFF4 /* MockData.swift in Sources */,
 				4275B1EF716DF04C6DEDE81572B1060A /* NetworkError.swift in Sources */,
 				9F36DC7DAB77CC4623976FC4005CE63C /* NumericExtension.swift in Sources */,
+				F5DA04AC369E68054A5683E9E850D7A3 /* PaymentService.swift in Sources */,
 				CD95DF48D32E88A11E0185C145877BA8 /* ProgressController.swift in Sources */,
 				98AEFB67E08639435D96400FA6DA08BF /* ProgressDasboardContainerView.swift in Sources */,
 				4FC0E03DB45CDD08FDE82430CAB70B33 /* ProgressDasboardView.swift in Sources */,

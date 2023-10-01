@@ -5,7 +5,7 @@
 //  Created by Daniyar Kurmanbayev on 2023-05-29.
 //
 
-// Tech debt: Refactor
+// TODO: Refactor
 
 import Foundation
 
@@ -41,7 +41,7 @@ struct ErrorResponseDTO: Codable, ErrorPresentable {
 }
 
 extension ErrorResponseDTO {
-    func toDomainEntity() -> DomainErrorResponse {
-        return .init(code: code, message: message)
+    func toDomainEntity() -> DomainError {
+        return .dataError(message)
     }
 }
