@@ -61,6 +61,11 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
             .progressDateObservable
             .bind(to: progressDateObservable)
             .disposed(by: disposeBag)
+
+        keyValueStorage
+            .isLockedObservable
+            .bind(to: isLockedObservable)
+            .disposed(by: disposeBag)
     }
 
     //    Output

@@ -12,6 +12,7 @@ import RxSwift
 
 protocol ProgressViewModelInput {
     func changeDate(forward: Bool)
+    func unlock()
     func finish()
 }
 
@@ -19,6 +20,8 @@ protocol ProgressViewModelOutput {
     var date: BehaviorRelay<String?> { get }
     var isntFirstDate: BehaviorRelay<Bool> { get }
     var isntLastDate: BehaviorRelay<Bool> { get }
+    var showUnlockButton: BehaviorRelay<Bool> { get }
+    var startUnlock: PublishRelay<Void> { get }
     var isFinished: PublishRelay<Void> { get }
 
     func getType() -> SLProgressType
@@ -35,6 +38,8 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
 
     private let type: SLProgressType
     private let appSettingsService: AppSettingsService
+
+    private let disposeBag = DisposeBag()
     private lazy var currentDate = Date().getFirstDayOfWeek()
 
     init(type: SLProgressType,
@@ -44,6 +49,7 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
         self.appSettingsService = appSettingsService
 
         configure()
+        bindService()
     }
 
     //    Output
@@ -53,6 +59,8 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
     lazy var date: BehaviorRelay<String?> = .init(value: makeCurrentDateString())
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstWeek())
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: isntLastWeek())
+    lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
+    let startUnlock: PublishRelay<Void> = .init()
     lazy var isFinished: PublishRelay<Void> = .init()
 
     func getType() -> SLProgressType {
@@ -68,6 +76,10 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
         reload()
     }
 
+    func unlock() {
+        startUnlock.accept(())
+    }
+
     func finish() {
         isFinished.accept(())
     }
@@ -81,6 +93,12 @@ extension ProgressViewModelImpl {
         case .weeklyReport:
             changeDate(forward: false)
         }
+    }
+
+    private func bindService() {
+        appSettingsService.output.isLocked
+            .bind(to: showUnlockButton)
+            .disposed(by: disposeBag)
     }
 
     private func reload() {

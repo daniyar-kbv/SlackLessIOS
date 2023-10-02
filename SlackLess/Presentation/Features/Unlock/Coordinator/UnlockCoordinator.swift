@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+//  TODO: Check for memory leakage
+
 final class UnlockCoordinator: BaseCoordinator {
     private let modulesFactory: UnlockModulesFactory
 

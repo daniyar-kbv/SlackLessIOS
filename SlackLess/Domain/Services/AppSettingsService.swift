@@ -204,6 +204,10 @@ extension AppSettingsServiceImpl {
             .progressDateObservable
             .bind(to: progressDateObservable)
             .disposed(by: disposeBag)
+
+        appSettingsRepository.output.isLockedObservable
+            .bind(to: isLocked)
+            .disposed(by: disposeBag)
     }
 
     private func bindEventManager() {
@@ -228,7 +232,7 @@ extension AppSettingsServiceImpl {
     private func getWeek() -> [Date] {
         var currentDate = Date().getDate()
         var days = [Date]()
-        while currentDate != currentDate.getLastDayOfWeek() {
+        while currentDate <= Date().getLastDayOfWeek() {
             days.append(currentDate)
             currentDate = currentDate.add(.day, value: 1)
         }

@@ -92,6 +92,7 @@
 "Settings.Feedback.leaveFeedback" = "Leave Feedback";
 
 //  MARK: - Unlock
+"Unlock.buttonTitle" = "Unlock Limit";
 "Unlock.title" = "Unlock";
 "Unlock.Payment.itemLabel" = "Slacking";
 "Unlock.Alert.Success.title" = "Success";

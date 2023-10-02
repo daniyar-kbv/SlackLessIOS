@@ -12,12 +12,15 @@ import RxSwift
 
 protocol SummaryViewModelInput: AnyObject {
     func changeDate(forward: Bool)
+    func unlock()
 }
 
 protocol SummaryViewModelOutput: AnyObject {
     var date: BehaviorRelay<String?> { get }
     var isntFirstDate: BehaviorRelay<Bool> { get }
     var isntLastDate: BehaviorRelay<Bool> { get }
+    var showUnlockButton: BehaviorRelay<Bool> { get }
+    var startUnlock: PublishRelay<Void> { get }
 }
 
 protocol SummaryViewModel: SLReportsViewModel {
@@ -29,11 +32,15 @@ final class SummaryViewModelImpl: SummaryViewModel, SLReportsViewModel, SummaryV
     var input: SummaryViewModelInput { self }
     var output: SummaryViewModelOutput { self }
 
-    private var currentDate = Date().getDate()
     private let appSettingsService: AppSettingsService
+
+    private let disposeBag = DisposeBag()
+    private var currentDate = Date().getDate()
 
     init(appSettingsService: AppSettingsService) {
         self.appSettingsService = appSettingsService
+
+        bindService()
     }
 
     //    Output
@@ -41,6 +48,8 @@ final class SummaryViewModelImpl: SummaryViewModel, SLReportsViewModel, SummaryV
     lazy var date: BehaviorRelay<String?> = .init(value: Date().formatted(style: .long))
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstDay())
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: isntLastDay())
+    lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
+    let startUnlock: PublishRelay<Void> = .init()
 
     //    Input
 
@@ -49,9 +58,19 @@ final class SummaryViewModelImpl: SummaryViewModel, SLReportsViewModel, SummaryV
         currentDate = currentDate.add(.day, value: forward ? 1 : -1)
         reload()
     }
+
+    func unlock() {
+        startUnlock.accept(())
+    }
 }
 
 extension SummaryViewModelImpl {
+    private func bindService() {
+        appSettingsService.output.isLocked
+            .bind(to: showUnlockButton)
+            .disposed(by: disposeBag)
+    }
+
     private func reload() {
         filters.accept(filter: makeFilter(), for: .summary)
         date.accept(currentDate.formatted(style: .long))
