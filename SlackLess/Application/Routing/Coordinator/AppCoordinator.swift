@@ -86,6 +86,19 @@ extension AppCoordinator {
         add(coordinator)
         coordinator.start()
     }
+
+    private func startUnlockCoordinator() {
+        let coordinator = appCoordinatorsFactory.makeUnlockCoordinator()
+
+        coordinator.didFinish
+            .subscribe(onNext: { [weak self] in
+                self?.remove(coordinator)
+            })
+            .disposed(by: disposeBag)
+
+        coordinator.start()
+        add(coordinator)
+    }
 }
 
 //  MARK: Coordinators configurations
@@ -104,6 +117,10 @@ extension AppCoordinator {
     private func configureSummaryCoordinator(tabBarItem: UITabBarItem) {
         let coordinator = appCoordinatorsFactory.makeSummaryCoordinator()
 
+        coordinator.startUnlock
+            .subscribe(onNext: startUnlockCoordinator)
+            .disposed(by: disposeBag)
+
         coordinator.start()
         coordinator.router.getNavigationController().tabBarItem = tabBarItem
 
@@ -114,6 +131,10 @@ extension AppCoordinator {
     private func configureProgressCoordinator(tabBarItem: UITabBarItem) {
         let coordinator = appCoordinatorsFactory.makeProgressCoordinator()
 
+        coordinator.startUnlock
+            .subscribe(onNext: startUnlockCoordinator)
+            .disposed(by: disposeBag)
+
         coordinator.start()
         coordinator.router.getNavigationController().tabBarItem = tabBarItem
 
@@ -123,6 +144,10 @@ extension AppCoordinator {
 
     private func configureCustomizeCoordinator(tabBarItem: UITabBarItem) {
         let coordinator = appCoordinatorsFactory.makeCustomizeCoordinator()
+
+        coordinator.startUnlock
+            .subscribe(onNext: startUnlockCoordinator)
+            .disposed(by: disposeBag)
 
         coordinator.start()
         coordinator.router.getNavigationController().tabBarItem = tabBarItem

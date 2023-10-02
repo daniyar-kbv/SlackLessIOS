@@ -30,17 +30,15 @@ final class SLButton: UIButton {
 
     private func layoutUI() {
         titleLabel?.font = SLFonts.primary.getFont(ofSize: 17, weight: .bold)
-
         setBackgroundColor(color: style.getBackgroundColor(for: .normal), forState: .normal)
         setBackgroundColor(color: style.getBackgroundColor(for: .highlighted), forState: .highlighted)
         setBackgroundColor(color: style.getBackgroundColor(for: .disabled), forState: .disabled)
-
         setTitle(SLTexts.WelcomeScreen.buttonText.localized(), for: .normal)
         setTitleColor(style.getTextColor(for: .normal), for: .normal)
         setTitleColor(style.getTextColor(for: .highlighted), for: .highlighted)
         setTitleColor(style.getTextColor(for: .disabled), for: .disabled)
-
         layer.cornerRadius = size.cornerRadius
+        contentEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
 
         snp.makeConstraints { [weak self] in
             $0.height.equalTo(self?.size.height ?? 0).priority(.required)

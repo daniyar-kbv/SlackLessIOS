@@ -143,6 +143,7 @@ enum SLTexts {
     }
 
     enum Unlock: String, Localizable {
+        case buttonTitle = "Unlock.buttonTitle"
         case title = "Unlock.title"
 
         enum Payment: String, Localizable {

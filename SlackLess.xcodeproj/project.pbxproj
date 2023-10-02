@@ -147,8 +147,8 @@
 		7B9EEDCAA8CE2F2B54BE90C9773218C0 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
 		E87FDC3032BCAB7BF37D29C599E9F47B /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
 		F08E6710D2FE2BA9CEC746C0638B2500 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
-		F738191A704BE43BF6DBFD7D2B2CCD23 /* LockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8CC8028411207F86D46A4514A9505 /* LockService.swift */; };
 		A9E65B6BD737D6A1B92D93CF40426439 /* LockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8CC8028411207F86D46A4514A9505 /* LockService.swift */; };
+		F738191A704BE43BF6DBFD7D2B2CCD23 /* LockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8CC8028411207F86D46A4514A9505 /* LockService.swift */; };
 		677C292B9D7A37926A13A5DF21015B68 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */; };
 		B9DE7C56BEAB53ADB4F71B200300799A /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */; };
 		B08158C05A87119302EBB016C95B8C2F /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B21C6EB2E88392C8C78F6A6B0219D70 /* ManagedSettingsUI.framework */; };
@@ -987,6 +987,15 @@
 			path = Chart;
 			sourceTree = "<group>";
 		};
+		4DC158126B6B12A93949585AF61675CA /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				9A866798503C887C36243A943E09AC8C /* UnlockCoordinator.swift */,
+				F793CCF00EF4A7A59AF1D0F0CC80FC40 /* UnlockModulesFactory.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		51E6434D523D073DA0CC8031E771F81D /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1034,18 @@
 				40CDDB772DFA2355F171FB45BD1BEC73 /* SecureStorage */,
 			);
 			path = PersistentStorages;
+			sourceTree = "<group>";
+		};
+		5C9915367195021BC75264D872A27C28 /* Unlock */ = {
+			isa = PBXGroup;
+			children = (
+				4DC158126B6B12A93949585AF61675CA /* Coordinator */,
+				F412F44248E63DC9F8D26B0FF5D6C896 /* Models */,
+				5426E03A0F6CF23F37432CC232C72AEB /* UnlockController.swift */,
+				62D9F3473E3AECFD297C8B1BFDA46993 /* UnlockView.swift */,
+				6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */,
+			);
+			path = Unlock;
 			sourceTree = "<group>";
 		};
 		5C9ABB9C435B3DA322A635AD3A569A2F /* Models */ = {
@@ -1110,35 +1131,6 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
-			sourceTree = "<group>";
-		};
-		5C9915367195021BC75264D872A27C28 /* Unlock */ = {
-			isa = PBXGroup;
-			children = (
-				4DC158126B6B12A93949585AF61675CA /* Coordinator */,
-				F412F44248E63DC9F8D26B0FF5D6C896 /* Models */,
-				5426E03A0F6CF23F37432CC232C72AEB /* UnlockController.swift */,
-				62D9F3473E3AECFD297C8B1BFDA46993 /* UnlockView.swift */,
-				6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */,
-			);
-			path = Unlock;
-			sourceTree = "<group>";
-		};
-		4DC158126B6B12A93949585AF61675CA /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				9A866798503C887C36243A943E09AC8C /* UnlockCoordinator.swift */,
-				F793CCF00EF4A7A59AF1D0F0CC80FC40 /* UnlockModulesFactory.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		F412F44248E63DC9F8D26B0FF5D6C896 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8F839651999E6A054FAF7F9756979D00 /* SLApplePayButtonType.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -1555,6 +1547,14 @@
 				369C002598E2548664D756D9B499EE8E /* SLTexts.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		F412F44248E63DC9F8D26B0FF5D6C896 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8F839651999E6A054FAF7F9756979D00 /* SLApplePayButtonType.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F41ED0628374FFBB482090191FCBE6C7 /* Model */ = {

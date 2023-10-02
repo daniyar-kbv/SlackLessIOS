@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 import SnapKit
 import UIKit
 
@@ -18,12 +20,30 @@ class SLBaseView: UIView {
         return view
     }()
 
+    private(set) lazy var unlockButton: SLButton = {
+        let view = SLButton(style: .filled, size: .small)
+        view.setTitle(SLTexts.Unlock.buttonTitle.localized(), for: .normal)
+        view.isHidden = true
+        return view
+    }()
+
+    fileprivate lazy var stackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [titleLabel, unlockButton])
+        view.axis = .horizontal
+        view.distribution = .equalSpacing
+        view.alignment = .fill
+        return view
+    }()
+
     fileprivate lazy var contentView = UIView()
+    fileprivate let diposeBag = DisposeBag()
+    let unlockButtonTap: PublishRelay<Void> = .init()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         layoutUI()
+        bindView()
     }
 
     @available(*, unavailable)
@@ -34,17 +54,23 @@ class SLBaseView: UIView {
     private func layoutUI() {
         backgroundColor = SLColors.background1.getColor()
 
-        [titleLabel, contentView].forEach(super.addSubview(_:))
+        [stackView, contentView].forEach(super.addSubview(_:))
 
-        titleLabel.snp.makeConstraints {
+        stackView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview().inset(16)
         }
 
         contentView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(16)
+            $0.top.equalTo(stackView.snp.bottom).offset(16)
             $0.horizontalEdges.bottom.equalToSuperview()
         }
+    }
+
+    private func bindView() {
+        unlockButton.rx.tap
+            .bind(to: unlockButtonTap)
+            .disposed(by: diposeBag)
     }
 
     override func addSubview(_ view: UIView) {

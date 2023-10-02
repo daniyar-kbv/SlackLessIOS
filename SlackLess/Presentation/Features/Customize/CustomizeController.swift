@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class CustomizeController: UIViewController {
-    private lazy var contentView = CustomizeView()
     private let viewModel: CustomizeViewModel
 
+    private let disposeBag = DisposeBag()
+    private lazy var contentView = CustomizeView()
     private lazy var settingsController = SLSettingsController(viewModel: viewModel.output.settingViewModel)
 
     init(viewModel: CustomizeViewModel) {
@@ -35,10 +38,26 @@ final class CustomizeController: UIViewController {
         super.viewDidLoad()
 
         configureView()
+        bindView()
+        bindViewModel()
     }
 
     private func configureView() {
         contentView.set(title: SLTexts.Customize.title.localized())
         add(controller: settingsController, to: contentView)
+    }
+
+    private func bindView() {
+        contentView.unlockButtonTap
+            .subscribe(onNext: viewModel.input.unlock)
+            .disposed(by: disposeBag)
+    }
+
+    private func bindViewModel() {
+        viewModel.output.showUnlockButton
+            .subscribe(onNext: { [weak self] in
+                self?.contentView.unlockButton.isHidden = !$0
+            })
+            .disposed(by: disposeBag)
     }
 }
