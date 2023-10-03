@@ -1,7 +1,0 @@
-#!/bin/sh
-
-brew install swiftformat
-pod install 
-npm install
-pip3 install xUnique
-chmod +x .husky/pre-commit
