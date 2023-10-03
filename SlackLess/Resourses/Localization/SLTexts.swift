@@ -8,6 +8,15 @@
 import Foundation
 
 enum SLTexts {
+    enum Common {
+        enum TermsAndPrivacy: String, Localizable {
+            case text1 = "Common.TermsAndPrivacy.text1"
+            case text2 = "Common.TermsAndPrivacy.text2"
+            case text3 = "Common.TermsAndPrivacy.text3"
+            case text4 = "Common.TermsAndPrivacy.text4"
+        }
+    }
+    
     enum Error {
         enum Data: String, Localizable {
             case badMapping = "Error.Data.badmapping"
@@ -64,10 +73,6 @@ enum SLTexts {
         case title = "WelcomeScreen.Title"
         case subtitle = "WelcomeScreen.Subtitle"
         case buttonText = "WelcomeScreen.ButtonText"
-        case termsAndPrivacy1 = "WelcomeScreen.TermsAndPrivacy1"
-        case termsAndPrivacy2 = "WelcomeScreen.TermsAndPrivacy2"
-        case termsAndPrivacy3 = "WelcomeScreen.TermsAndPrivacy3"
-        case termsAndPrivacy4 = "WelcomeScreen.TermsAndPrivacy4"
     }
 
     enum SetUp: String, Localizable {

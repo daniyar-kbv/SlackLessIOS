@@ -6,6 +6,11 @@
   
 */
 
+//  MARK: - Common
+"Common.TermsAndPrivacy.text1" = "By clicking “%@”, you accept our";
+"Common.TermsAndPrivacy.text2" = "Terms";
+"Common.TermsAndPrivacy.text3" = "and";
+"Common.TermsAndPrivacy.text4" = "Privacy Policy";
 
 //  MARK: - Error
 "Error.Data.badmapping" = "Coudn't read the response";
@@ -45,10 +50,6 @@
 "WelcomeScreen.Title" = "Hey!";
 "WelcomeScreen.Subtitle" = "Starting today, free yourself\nfrom distractions";
 "WelcomeScreen.ButtonText" = "Let’s get started";
-"WelcomeScreen.TermsAndPrivacy1" = "By clicking “Let’s get started”, you accept our";
-"WelcomeScreen.TermsAndPrivacy2" = "Terms";
-"WelcomeScreen.TermsAndPrivacy3" = "and";
-"WelcomeScreen.TermsAndPrivacy4" = "Privacy Policy";
 
 //  MARK: - SetUp
 "SetUp.title" = "Let’s set up!";
