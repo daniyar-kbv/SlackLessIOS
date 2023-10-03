@@ -59,7 +59,7 @@ final class SLSettingsController: UIViewController {
 
         switch viewModel.output.getType() {
         case .full: break
-        case .appSettingsOnly:
+        case .setUp, .display:
             var height = 0.0
             for section in 0 ..< viewModel.output.getNumberOfSections() {
                 for row in 0 ..< viewModel.output.getNumberOfItems(in: section) {
@@ -78,7 +78,7 @@ final class SLSettingsController: UIViewController {
 
         switch viewModel.output.getType() {
         case .full: break
-        case .appSettingsOnly:
+        case .setUp, .display:
             tableView.snp.makeConstraints {
                 $0.height.equalTo(1)
             }
@@ -127,12 +127,13 @@ extension SLSettingsController: UITableViewDataSource {
                 position = .top
             case (.full, tableView.numberOfRows(inSection: indexPath.section) - 2):
                 position = .bottom
-            case (.appSettingsOnly, 0):
+            case (.setUp, 0), (.display, 0):
                 switch tableView.numberOfRows(inSection: indexPath.section) {
                 case 1: position = .single
                 default: position = .top
                 }
-            case (.appSettingsOnly, tableView.numberOfRows(inSection: indexPath.section) - 1):
+            case (.setUp, tableView.numberOfRows(inSection: indexPath.section) - 1),
+                (.display, tableView.numberOfRows(inSection: indexPath.section) - 1):
                 position = .bottom
             default:
                 break

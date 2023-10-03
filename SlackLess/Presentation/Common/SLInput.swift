@@ -75,14 +75,18 @@ final class SLInput: UIView {
             textField.placeholder = "0:00"
             textField.text = value?.toString()
         case .price:
-            textField.placeholder = "$1"
+            textField.placeholder = makePriceString(from: 1)
             textField.text = makePriceString(from: value)
         }
     }
 
     private func makePriceString(from value: Double?) -> String? {
         guard let value = value else { return nil }
-        return "$\(Int(value))"
+        return "$\(Int(value))/30min"
+    }
+    
+    private func extractPriceValue(from string: String) -> Double? {
+        return string.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap({ Double($0) }).first
     }
 }
 
@@ -98,8 +102,7 @@ extension SLInput: UITextFieldDelegate {
         case .time:
             break
         case .price:
-            updatedText = updatedText.replacingOccurrences(of: "$", with: "")
-            value = Double(updatedText) ?? 0
+            value = extractPriceValue(from: <#T##String#>)
             updatedText = makePriceString(from: value) ?? makePriceString(from: 1)!
         }
         textField.text = updatedText
