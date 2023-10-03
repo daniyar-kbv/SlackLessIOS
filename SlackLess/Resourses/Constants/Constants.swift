@@ -5,6 +5,7 @@
 //  Created by Daniyar Kurmanbayev on 2023-05-29.
 //
 
+import Foundation
 import DeviceActivity
 import UIKit
 
@@ -15,7 +16,8 @@ struct Constants {
 
     enum Settings {
         static let appMode: AppMode = .debug
-        static let unlockTime: TimeInterval = 10 * 60
+        static let shortUnlockTime: TimeInterval = 1 * 60
+        static let unlockTime: TimeInterval = 15 * 60
 
         enum AppMode {
             case normal

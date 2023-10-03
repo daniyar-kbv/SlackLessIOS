@@ -30,7 +30,7 @@ protocol AppSettingsServiceOutput {
 
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
-    func getUnlockPrice() -> Double?
+    func getUnlockPrice() -> Double
     func getIsLocked() -> Bool
     func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
@@ -116,8 +116,8 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         return appsSelection
     }
 
-    func getUnlockPrice() -> Double? {
-        appSettingsRepository.output.getUnlockPrice()
+    func getUnlockPrice() -> Double {
+        appSettingsRepository.output.getUnlockPrice() ?? 1
     }
 
     func getIsLocked() -> Bool {
@@ -211,7 +211,7 @@ extension AppSettingsServiceImpl {
     }
 
     private func bindEventManager() {
-        eventManager.subscribe(to: .updateLimitsFailed, disposeBag: disposeBag) { [weak self] in
+        eventManager.subscribe(to: .updateLockFailed, disposeBag: disposeBag) { [weak self] in
             guard let error = $0 as? ErrorPresentable else { return }
             self?.errorOccured.accept(error)
         }

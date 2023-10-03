@@ -9,43 +9,46 @@ import Foundation
 import UIKit
 
 extension SLTexts.Common.TermsAndPrivacy {
-    static func makeText(clickElementName: String) -> NSAttributedString {
+    static func makeText(font: UIFont, baseColor: UIColor?, accentColor: UIColor?, split: Bool, clickElementName: String) -> NSAttributedString {
         let baseAttriibutes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: SLColors.white.getColor() as Any,
-            .font: SLFonts.primary.getFont(ofSize: 13, weight: .regular),
+            .foregroundColor: baseColor as Any,
+            .font: font,
         ]
         let accentAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: SLColors.black.getColor() as Any,
+            .foregroundColor: accentColor as Any,
             .underlineStyle: NSUnderlineStyle.single.rawValue,
-            .underlineColor: SLColors.black.getColor() as Any,
+            .underlineColor: accentColor as Any,
         ]
 
-        var text1 = NSMutableAttributedString(
+        let text1 = NSMutableAttributedString(
             string: Self.text1.localized(clickElementName),
             attributes: baseAttriibutes
         )
-        var text2 = NSMutableAttributedString(
+        let text2 = NSMutableAttributedString(
             string: Self.text2.localized(),
             attributes: baseAttriibutes
         )
-        var text3 = NSMutableAttributedString(
+        let text3 = NSMutableAttributedString(
             string: Self.text3.localized(),
             attributes: baseAttriibutes
         )
-        var text4 = NSMutableAttributedString(
+        let text4 = NSMutableAttributedString(
             string: Self.text4.localized(),
             attributes: baseAttriibutes
         )
         let space = NSAttributedString(string: " ")
-        let newLine = NSAttributedString(string: "\n")
 
         let text2Range = NSRange(location: 0, length: text2.string.count)
         let text4Range = NSRange(location: 0, length: text4.string.count)
 
         text2.addAttributes(accentAttributes, range: text2Range)
         text4.addAttributes(accentAttributes, range: text4Range)
-
-        text1.append(newLine)
+        if split {
+            let newLine = NSAttributedString(string: "\n")
+            text1.append(newLine)
+        } else {
+            text1.append(space)
+        }
         text1.append(text2)
         text1.append(space)
         text1.append(text3)

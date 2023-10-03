@@ -82,11 +82,17 @@ final class SLInput: UIView {
 
     private func makePriceString(from value: Double?) -> String? {
         guard let value = value else { return nil }
-        return "$\(Int(value))/30min"
+        return SLTexts.Settings.Settings.UnlockPrice.placeholder.localized(
+            String(Int(value)),
+            String(Int(Constants.Settings.unlockTime.get(component: .minutes))))
     }
     
-    private func extractPriceValue(from string: String) -> Double? {
-        return string.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap({ Double($0) }).first
+    private func extractPriceValue(from string: String?) -> Double? {
+        let components = string?.components(separatedBy: "/") ?? []
+        switch components.count {
+        case 1...2: return components.first?.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap({ Double($0) }).first
+        default: return nil
+        }
     }
 }
 
@@ -96,26 +102,32 @@ extension SLInput: UITextFieldDelegate {
         guard let text = textField.text,
               let textRange = Range(range, in: text)
         else { return false }
-        var updatedText = text.replacingCharacters(in: textRange,
+        var updatedText: String? = text.replacingCharacters(in: textRange,
                                                    with: string)
         switch type {
         case .time:
             break
         case .price:
-            value = extractPriceValue(from: <#T##String#>)
-            updatedText = makePriceString(from: value) ?? makePriceString(from: 1)!
+            value = extractPriceValue(from: updatedText)
+            updatedText = makePriceString(from: value)
         }
+        
         textField.text = updatedText
         return false
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let newPosition = textField.endOfDocument
-        textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
+        updateCursor(for: textField)
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        let newPosition = textField.endOfDocument
+        updateCursor(for: textField)
+    }
+    
+    private func updateCursor(for textFiel: UITextField) {
+        guard let newPosition = textField.position(from: textField.endOfDocument,
+                                                   offset: -(textField.text?.components(separatedBy: "/").last?.count ?? 0) - 1)
+        else { return }
         textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
     }
 

@@ -13,7 +13,7 @@ enum DomainError: ErrorPresentable {
     case request
     case cantMakeApplePayPayment
     case unsupportedApplePayPaymentMethods
-    case updateLimitsFailed
+    case updateLockFailed
 
     var presentationDescription: String {
         switch self {
@@ -22,7 +22,7 @@ enum DomainError: ErrorPresentable {
         case .request: return SLTexts.Error.Domain.request.localized()
         case .cantMakeApplePayPayment: return SLTexts.Error.Domain.cantMakeApplePayPayment.localized()
         case .unsupportedApplePayPaymentMethods: return SLTexts.Error.Domain.unsupportedApplePayPaymentMethods.localized()
-        case .updateLimitsFailed: return SLTexts.Error.Domain.updateLimitsFailed.localized()
+        case .updateLockFailed: return SLTexts.Error.Domain.updateLockFailed.localized()
         }
     }
 }

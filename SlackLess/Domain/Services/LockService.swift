@@ -10,9 +10,13 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol LockServiceInput: AnyObject {}
+protocol LockServiceInput: AnyObject {
+    func updateLock(type: SLLockUpdateType)
+}
 
-protocol LockServiceOutput: AnyObject {}
+protocol LockServiceOutput: AnyObject {
+    var didUpdateLock: PublishRelay<SLLockUpdateType> { get }
+}
 
 protocol LockService: AnyObject {
     var input: LockServiceInput { get }
@@ -36,32 +40,21 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
     }
 
     //    Output
+    let didUpdateLock: PublishRelay<SLLockUpdateType> = .init()
 
     //    Input
-}
-
-extension LockServiceImpl {
-    private func bindEventManager() {
-        eventManager.subscribe(to: .appLimitSettingsChanged, disposeBag: disposeBag) { [weak self] _ in
-            self?.updateLimits()
-        }
-
-        eventManager.subscribe(to: .paymentFinished, disposeBag: disposeBag) { [weak self] _ in
-            self?.updateLimits(unlockTime: Constants.Settings.unlockTime)
-        }
-    }
-
-    private func updateLimits(unlockTime: TimeInterval = 0) {
+    func updateLock(type: SLLockUpdateType) {
         let date = Date().getDate()
 
         guard let selection = appSettingsRepository.output.getSelectedApps(for: date),
               let limit = appSettingsRepository.output.getTimeLimit(for: date)
         else {
-            eventManager.send(event: .init(type: .updateLimitsFailed, value: DomainError.updateLimitsFailed))
+            eventManager.send(event: .init(type: .updateLockFailed, value: DomainError.updateLockFailed))
             return
         }
         let unlockedTime = appSettingsRepository.output.getUnlockedTime(for: date)
-        var newLimit = limit + unlockedTime + unlockTime
+        let unlockTime = unlockedTime + type.unlockTime
+        let newLimit = limit + unlockTime
 
         deviceActivityCenter.stopMonitoring()
 
@@ -69,7 +62,7 @@ extension LockServiceImpl {
             applications: selection.applicationTokens,
             categories: selection.categoryTokens,
             webDomains: selection.webDomainTokens,
-            threshold: DateComponents(second: Int(limit))
+            threshold: DateComponents(second: Int(newLimit))
         )
 
         do {
@@ -81,11 +74,24 @@ extension LockServiceImpl {
                 ]
             )
 
-            appSettingsRepository.input.set(unlockedTime: unlockedTime + unlockTime, for: date)
-            eventManager.send(event: .init(type: .updateLimitsSucceed))
+            appSettingsRepository.input.set(unlockedTime: unlockTime, for: date)
+            eventManager.send(event: .init(type: .updateLockSucceed, value: type))
+            didUpdateLock.accept(type)
         } catch {
             print(error)
-            eventManager.send(event: .init(type: .updateLimitsFailed, value: error))
+            eventManager.send(event: .init(type: .updateLockFailed, value: error))
+        }
+    }
+}
+
+extension LockServiceImpl {
+    private func bindEventManager() {
+        eventManager.subscribe(to: .appLimitSettingsChanged, disposeBag: disposeBag) { [weak self] _ in
+            self?.updateLock(type: .refresh)
+        }
+
+        eventManager.subscribe(to: .paymentFinished, disposeBag: disposeBag) { [weak self] _ in
+            self?.updateLock(type: .longUnlock)
         }
     }
 }

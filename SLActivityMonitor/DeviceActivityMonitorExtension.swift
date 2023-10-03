@@ -10,6 +10,8 @@ import Foundation
 import ManagedSettings
 
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
+//    FIXME: Refactor DI
+    private let keyValueStorage = KeyValueStorageImpl()
     private let dataComponentsFactory: DataComponentsFactory = DataComponenetsFactoryImpl()
     private lazy var appSettingsRepository = dataComponentsFactory
         .makeRepositoryFactory()
@@ -18,6 +20,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
 
     override func intervalDidStart(for _: DeviceActivityName) {
         appSettingsRepository.input.set(isLocked: false)
+        keyValueStorage.persist(shieldState: .normal)
     }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {

@@ -33,6 +33,9 @@ target 'SlackLess' do
   # Helpers
   pod 'SwiftFormat'
   pod 'IQKeyboardManagerSwift'
+  
+#  UI
+  pod 'FittedSheets'
 end
 
 target 'SLActivityReport' do

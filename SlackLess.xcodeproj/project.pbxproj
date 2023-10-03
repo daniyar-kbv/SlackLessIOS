@@ -148,6 +148,13 @@
 		70DA6DE52ACB8C0800356E24 /* SLSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DE42ACB8C0800356E24 /* SLSettingsSection.swift */; };
 		70DA6DE72ACB8C2800356E24 /* SLSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DE62ACB8C2800356E24 /* SLSettingsItem.swift */; };
 		70DA6DE92ACB8EBE00356E24 /* SLTextsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DE82ACB8EBE00356E24 /* SLTextsExtensions.swift */; };
+		70DA6DEC2ACBB59400356E24 /* SLUnlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DEB2ACBB59400356E24 /* SLUnlockType.swift */; };
+		70DA6DED2ACBBBFB00356E24 /* SLUnlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DEB2ACBB59400356E24 /* SLUnlockType.swift */; };
+		70DA6DF72ACBC83400356E24 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DF62ACBC83400356E24 /* SLShieldState.swift */; };
+		70DA6DF82ACBC85C00356E24 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DF62ACBC83400356E24 /* SLShieldState.swift */; };
+		70DA6DF92ACBC85C00356E24 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DF62ACBC83400356E24 /* SLShieldState.swift */; };
+		70DA6DFA2ACBC85D00356E24 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DF62ACBC83400356E24 /* SLShieldState.swift */; };
+		70DA6DFB2ACBC85D00356E24 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6DF62ACBC83400356E24 /* SLShieldState.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
 		7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		75365FF18CF7CA5A7591D9CB190F5D7B /* APIFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2CED5527AADC1C3AF54F238300810 /* APIFactory.swift */; };
@@ -470,6 +477,8 @@
 		70DA6DE42ACB8C0800356E24 /* SLSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsSection.swift; sourceTree = "<group>"; };
 		70DA6DE62ACB8C2800356E24 /* SLSettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLSettingsItem.swift; sourceTree = "<group>"; };
 		70DA6DE82ACB8EBE00356E24 /* SLTextsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTextsExtensions.swift; sourceTree = "<group>"; };
+		70DA6DEB2ACBB59400356E24 /* SLUnlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLUnlockType.swift; sourceTree = "<group>"; };
+		70DA6DF62ACBC83400356E24 /* SLShieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLShieldState.swift; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		722C5C5E529B0A46FAB331B2CC82CCC8 /* DomainComponentsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainComponentsFactory.swift; sourceTree = "<group>"; };
 		7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLProgressType.swift; sourceTree = "<group>"; };
@@ -1067,6 +1076,7 @@
 		5DBCAD0F1DAA0701EBE761357BE1DEBC /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				70DA6DF52ACBC82900356E24 /* Shield */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1137,6 +1147,22 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		70DA6DEA2ACBB58700356E24 /* Unlock */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6DEB2ACBB59400356E24 /* SLUnlockType.swift */,
+			);
+			path = Unlock;
+			sourceTree = "<group>";
+		};
+		70DA6DF52ACBC82900356E24 /* Shield */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6DF62ACBC83400356E24 /* SLShieldState.swift */,
+			);
+			path = Shield;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -1509,6 +1535,7 @@
 		E9EDECB128AEC56CC5470EABF0559CAC /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				70DA6DEA2ACBB58700356E24 /* Unlock */,
 				ADB8668F1F1CB9C269C65DB9A2654E48 /* DeviceActivity */,
 				E62CAE853B92C0CE022C5AF8EB46FC8A /* Error */,
 			);
@@ -1964,6 +1991,7 @@
 				F08E6710D2FE2BA9CEC746C0638B2500 /* Localization.swift in Sources */,
 				4191BBE03043579A38F749B04FA2178E /* SLColors.swift in Sources */,
 				F961FB650D967FAEFEAE50FF7E580B9B /* SLFonts.swift in Sources */,
+				70DA6DFA2ACBC85D00356E24 /* SLShieldState.swift in Sources */,
 				0228F9ECBF16C3489564EBCDC3B92170 /* SLImages.swift in Sources */,
 				CD28A9CB121E1D107C8DDFB73EEFD82D /* SLTexts.swift in Sources */,
 				0589D185F0E63408A8C21B3DC3DFF959 /* SecureStorageProvider.swift in Sources */,
@@ -1984,6 +2012,7 @@
 				2A43114CAFD39F31D966223105724B37 /* Localization.swift in Sources */,
 				22734BB7A9F9BF879ED186402098D8AC /* SLColors.swift in Sources */,
 				4686F2E4FFB23CECF89A4D2EEB8C1AA6 /* SLFonts.swift in Sources */,
+				70DA6DFB2ACBC85D00356E24 /* SLShieldState.swift in Sources */,
 				35F21A72E0F42B4F0B8BB2CC4C8761A4 /* SLImages.swift in Sources */,
 				BE57151E271F1769C1869DD8AB8BABAC /* SLTexts.swift in Sources */,
 				336AD9D3A4CF9418B7DD14EA6DEB792C /* SecureStorageProvider.swift in Sources */,
@@ -2012,6 +2041,7 @@
 				1CC49743CCCBD308BEFF41022CF5DF32 /* KeyValueStorage.swift in Sources */,
 				BA651A05BB108DB7031B2410146699AA /* Localizable.swift in Sources */,
 				E87FDC3032BCAB7BF37D29C599E9F47B /* Localization.swift in Sources */,
+				70DA6DF92ACBC85C00356E24 /* SLShieldState.swift in Sources */,
 				FD3AB24A44F268BCAEB3B0015EBEA372 /* NumericExtension.swift in Sources */,
 				1711913073915D745E1931AB7F9D6E2A /* ReactiveExtension.swift in Sources */,
 				3102E3521F89BBE23E0E6ACD7C5E162A /* RepositoryFactory.swift in Sources */,
@@ -2037,6 +2067,7 @@
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
 				19F8A94F6ED1C53411B21A558D45A940 /* AppSettingsRepository.swift in Sources */,
 				D2D0DD10ED2BD8409007A9F0649F5D53 /* AppSettingsService.swift in Sources */,
+				70DA6DF72ACBC83400356E24 /* SLShieldState.swift in Sources */,
 				CE58AD839DEED3F992BA22D35F5A31D2 /* ApplicationCoordinatorFactory.swift in Sources */,
 				2A64E7F72406FAB107DCE58E1DBC4D5A /* ApplicationPagesFactory.swift in Sources */,
 				04EBAB1104782F578D9506880E9EDF75 /* BaseCacheStorage.swift in Sources */,
@@ -2074,6 +2105,7 @@
 				E6888123E1EDF35C79A4B5F5075AB4EC /* LoaderPresentable.swift in Sources */,
 				BD5C447FFBA6858E77FF12E0887C30A1 /* Localizable.swift in Sources */,
 				54D632CAAFE6BF183C8EC62276B2DA5B /* Localization.swift in Sources */,
+				70DA6DEC2ACBB59400356E24 /* SLUnlockType.swift in Sources */,
 				A9E65B6BD737D6A1B92D93CF40426439 /* LockService.swift in Sources */,
 				22A1658761A291C28884A095B454AD74 /* NavBarConfigurable.swift in Sources */,
 				64A39129D0B6EA9180BDA9102495280F /* NetworkError.swift in Sources */,
@@ -2193,6 +2225,7 @@
 				27212BC75071BBE591B06D4BFB0A96B2 /* ColorGetable.swift in Sources */,
 				5D524C9B30574384FA56DE8C3CCA4E96 /* Constants.swift in Sources */,
 				A02A325C33B27C0E5F0275ACDC36E0AA /* Context.swift in Sources */,
+				70DA6DED2ACBBBFB00356E24 /* SLUnlockType.swift in Sources */,
 				E30D89A2C56EF2DB0B2F40255EA620C6 /* DataComponenetsFactory.swift in Sources */,
 				EDC3DC20F6FC0FD5298588E903172724 /* Date.swift in Sources */,
 				D17D882777C76FC38F74C02BC3E77152 /* DateInterval.swift in Sources */,
@@ -2242,6 +2275,7 @@
 				909F466D1F649A14F0EE70B1E3FF818A /* SLProgressType.swift in Sources */,
 				67A403ED9A206625DCAA440D322DC451 /* SLTexts.swift in Sources */,
 				B2927DDD67B4D38D6E5524C3DC4028D7 /* SecureStorage.swift in Sources */,
+				70DA6DF82ACBC85C00356E24 /* SLShieldState.swift in Sources */,
 				503820F7F7FFA904857566289FD92527 /* SecureStorageProvider.swift in Sources */,
 				65A5D9930D080A95EEB028B1D39386A6 /* ServiceFactory.swift in Sources */,
 				77107B9227394DC466BEE6A8F6A3CEDC /* StringExtension.swift in Sources */,

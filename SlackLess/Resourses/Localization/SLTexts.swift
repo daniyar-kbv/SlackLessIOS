@@ -28,7 +28,7 @@ enum SLTexts {
             case request = "Error.Domain.request"
             case cantMakeApplePayPayment = "Error.Domain.cantMakeApplePayPayment"
             case unsupportedApplePayPaymentMethods = "Error.Domain.unsupportedApplePayPaymentMethods"
-            case updateLimitsFailed = "Error.Domain.updateLimitsFailed"
+            case updateLockFailed = "Error.Domain.updateLockFailed"
         }
     }
 
@@ -64,9 +64,13 @@ enum SLTexts {
 
     enum Shield: String, Localizable {
         case title = "Shield.title"
-        case subtitle = "Shield.subtitle"
         case primaryButtonTitle = "Shield.primaryButtonTitle"
         case secondaryButtonTitle = "Shield.secondaryButtonTitle"
+        
+        enum Subtitle: String, Localizable {
+            case normal = "Shield.Subtitle.normal"
+            case unlock = "Shield.Subtitle.unlock"
+        }
     }
 
     enum WelcomeScreen: String, Localizable {
@@ -166,6 +170,8 @@ enum SLTexts {
     enum Unlock: String, Localizable {
         case buttonTitle = "Unlock.buttonTitle"
         case title = "Unlock.title"
+        case subtitle = "Unlock.subtitle"
+        case bottomButtonTitle = "Unlock.bottomButtonTitle"
 
         enum Payment: String, Localizable {
             case itemLabel = "Unlock.Payment.itemLabel"
