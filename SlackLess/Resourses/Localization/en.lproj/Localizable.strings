@@ -82,9 +82,13 @@
 
 //  MARK: - Settings
 "Settings.Settings.title" = "SETTINGS";
-"Settings.Settings.selectedApps" = "Selected Apps";
-"Settings.Settings.timeLimit" = "Time Limit";
-"Settings.Settings.unlockPrice" = "Unlock Price";
+"Settings.Settings.SelectedAppsLabel.normal" = "Selected Apps";
+"Settings.Settings.SelectedAppsLabel.setUp" = "Selected Apps";
+"Settings.Settings.TimeLimitLabel.normal" = "Time Limit";
+"Settings.Settings.TimeLimitLabel.setUp" = "Set the Time Limit";
+"Settings.Settings.UnlockPriceLabel.normal" = "Unlock Fee";
+"Settings.Settings.UnlockPriceLabel.setUp" = "Set the Unlock Fee";
+"Settigns.Settings.UnlockPrice.placeholder" = "$%@/%@min";
 "Settings.Notifications.title" = "NOTIFICATIONS";
 "Settings.Notifications.pushNotifications" = "Push-notifications";
 "Settings.Notifications.emails" = "Emails";

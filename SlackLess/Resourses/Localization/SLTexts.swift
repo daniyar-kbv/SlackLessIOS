@@ -125,9 +125,25 @@ enum SLTexts {
     enum Settings {
         enum Settings: String, Localizable {
             case title = "Settings.Settings.title"
-            case selectedApps = "Settings.Settings.selectedApps"
-            case timeLimit = "Settings.Settings.timeLimit"
-            case unlockPrice = "Settings.Settings.unlockPrice"
+            
+            enum UnlockPrice: String, Localizable {
+                case placeholder = "Settigns.Settings.UnlockPrice.placeholder"
+                
+                enum Label: String, Localizable {
+                    case normal = "Settings.Settings.UnlockPriceLabel.normal"
+                    case setUp = "Settings.Settings.UnlockPriceLabel.setUp"
+                }
+            }
+            
+            enum SelectedAppsLabel: String, Localizable {
+                case normal = "Settings.Settings.SelectedAppsLabel.normal"
+                case setUp = "Settings.Settings.SelectedAppsLabel.setUp"
+            }
+            
+            enum TimeLimitLabel: String, Localizable {
+                case normal = "Settings.Settings.TimeLimitLabel.normal"
+                case setUp = "Settings.Settings.TimeLimitLabel.setUp"
+            }
         }
 
         enum Notifications: String, Localizable {

@@ -60,7 +60,7 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     var canChangeSettings: Bool {
         switch type {
         case .full: return false
-        case .appSettingsOnly: return true
+        case .setUp, .display: return true
         }
     }
 
@@ -75,7 +75,7 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     func getNumberOfItems(in section: Int) -> Int {
         switch type {
         case .full: return type.sections[section].items.count + 2
-        case .appSettingsOnly: return type.sections[section].items.count
+        case .setUp, .display: return type.sections[section].items.count
         }
     }
 
@@ -88,13 +88,13 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
         switch type {
         case .full: index = indexPath.item - 1
-        case .appSettingsOnly: index = indexPath.item
+        case .setUp, .display: index = indexPath.item
         }
 
         switch type.sections[indexPath.section].items[index ?? 0] {
-        case .selectedApps: return .selectedApps(appsSelection ?? .init())
-        case .timeLimit: return .timeLimit(timeLimit)
-        case .unlockPrice: return .unlockPrice(unlockPrice)
+        case .selectedApps: return .selectedApps(type, appsSelection ?? .init())
+        case .timeLimit: return .timeLimit(type, timeLimit)
+        case .unlockPrice: return .unlockPrice(type, unlockPrice)
         case .pushNotifications: return .pushNotifications
         case .emails: return .emails
         case .leaveFeedback: return .leaveFeedback
@@ -102,7 +102,10 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     }
 
     func isSettings(section: Int) -> Bool {
-        type.sections[section] == .settings
+        switch type.sections[section] {
+        case .settings: return true
+        default: return false
+        }
     }
 
     //    Input

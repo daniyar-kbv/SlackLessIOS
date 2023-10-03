@@ -29,7 +29,7 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
     var output: SetUpViewModelOutput { self }
 
     private let appSettingsService: AppSettingsService
-    private lazy var settingsViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .appSettingsOnly, appSettingsService: appSettingsService)
+    private lazy var settingsViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .setUp, appSettingsService: appSettingsService)
 
     init(appSettingsService: AppSettingsService) {
         self.appSettingsService = appSettingsService

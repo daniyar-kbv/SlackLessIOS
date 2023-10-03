@@ -141,7 +141,7 @@ final class SLSettingsCell: UITableViewCell {
         var inputView: UIView?
 
         switch type {
-        case let .selectedApps(selection):
+        case let .selectedApps(_, selection):
             inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
 
             appsSelectionHostingController = .init(rootView: .init(
@@ -154,11 +154,11 @@ final class SLSettingsCell: UITableViewCell {
             appsSelectionHostingController?.view.backgroundColor = .clear
         case .leaveFeedback:
             inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
-        case let .timeLimit(limit):
+        case let .timeLimit(_, limit):
             inputView = SLInput(type: .time, value: limit) { [weak self] in
                 self?.output?(.time($0))
             }
-        case let .unlockPrice(price):
+        case let .unlockPrice(_, price):
             inputView = SLInput(type: .price, value: price) { [weak self] in
                 self?.output?(.price($0))
             }
@@ -195,9 +195,9 @@ final class SLSettingsCell: UITableViewCell {
 
 extension SLSettingsCell {
     enum CellType: Equatable {
-        case selectedApps(FamilyActivitySelection)
-        case timeLimit(TimeInterval?)
-        case unlockPrice(Double?)
+        case selectedApps(SLSettingsType, FamilyActivitySelection)
+        case timeLimit(SLSettingsType, TimeInterval?)
+        case unlockPrice(SLSettingsType, Double?)
         case pushNotifications
         case emails
         case leaveFeedback
@@ -215,9 +215,21 @@ extension SLSettingsCell {
 
         var title: String? {
             switch self {
-            case .selectedApps: return SLTexts.Settings.Settings.selectedApps.localized()
-            case .timeLimit: return SLTexts.Settings.Settings.timeLimit.localized()
-            case .unlockPrice: return SLTexts.Settings.Settings.unlockPrice.localized()
+            case let .selectedApps(settingsType, _):
+                switch settingsType {
+                case .display, .full: return SLTexts.Settings.Settings.SelectedAppsLabel.normal.localized()
+                case .setUp: return SLTexts.Settings.Settings.SelectedAppsLabel.setUp.localized()
+                }
+            case let .timeLimit(settingsType, _):
+                switch settingsType {
+                case .display, .full: return SLTexts.Settings.Settings.TimeLimitLabel.normal.localized()
+                case .setUp: return SLTexts.Settings.Settings.TimeLimitLabel.setUp.localized()
+                }
+            case let .unlockPrice(settingsType, _):
+                switch settingsType {
+                case .display, .full: return SLTexts.Settings.Settings.UnlockPrice.Label.normal.localized()
+                case .setUp: return SLTexts.Settings.Settings.UnlockPrice.Label.setUp.localized()
+                }
             case .pushNotifications: return SLTexts.Settings.Notifications.pushNotifications.localized()
             case .emails: return SLTexts.Settings.Notifications.email.localized()
             case .leaveFeedback: return SLTexts.Settings.Feedback.leaveFeedback.localized()
