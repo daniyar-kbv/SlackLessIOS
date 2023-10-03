@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SwiftUI
 
+//  TODO: Refactor to use styles
+
 protocol FontGetable {
     var rawValue: String { get }
     func getFont(ofSize: CGFloat, weight: UIFont.Weight) -> UIFont

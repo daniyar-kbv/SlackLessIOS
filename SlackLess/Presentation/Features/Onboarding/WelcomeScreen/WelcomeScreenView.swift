@@ -62,7 +62,12 @@ final class WelcomeScreenView: SLView {
         let view = UILabel()
         view.numberOfLines = 0
         view.textAlignment = .center
-        view.attributedText = SLTexts.Common.TermsAndPrivacy.makeText(clickElementName: mainButton.titleLabel?.text ?? "")
+        view.attributedText = SLTexts.Common.TermsAndPrivacy.makeText(
+            font: SLFonts.primary.getFont(ofSize: 13, weight: .regular),
+            baseColor: SLColors.white.getColor(),
+            accentColor: SLColors.black.getColor(),
+            split: true,
+            clickElementName: mainButton.titleLabel?.text ?? "")
         return view
     }()
 

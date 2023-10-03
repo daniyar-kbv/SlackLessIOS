@@ -51,7 +51,9 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
     }
 
     func makeUnlockCoordinator() -> UnlockCoordinator {
-        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(paymentService: serviceFactory.makePaymentService())))
+        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+                                                                                 paymentService: serviceFactory.makePaymentService(),
+                                                                                 lockService: serviceFactory.makeLockService())))
     }
 
     func makeWeeklyReportCoordinator() -> WeeklyReportCoordinator {

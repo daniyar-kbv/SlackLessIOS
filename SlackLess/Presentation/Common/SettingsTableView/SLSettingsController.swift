@@ -66,6 +66,7 @@ final class SLSettingsController: UIViewController {
                     height += tableView(tableView, heightForRowAt: .init(row: row, section: section))
                 }
             }
+            
             tableView.snp.updateConstraints {
                 $0.height.equalTo(height)
             }

@@ -16,6 +16,7 @@ final class UnlockController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private lazy var contentView = UnlockView()
+    private lazy var settingsController = SLSettingsController(viewModel: viewModel.output.getSettingsViewModel())
 
     init(viewModel: UnlockViewModel) {
         self.viewModel = viewModel
@@ -26,6 +27,10 @@ final class UnlockController: UIViewController {
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        viewModel.input.finish()
     }
 
     override func loadView() {
@@ -38,11 +43,27 @@ final class UnlockController: UIViewController {
         super.viewDidLoad()
 
         configureView()
+        bindView()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        add(controller: settingsController, to: contentView.settingsView)
     }
 
     private func configureView() {
         contentView.set(title: SLTexts.Unlock.title.localized())
+        
+        let settingsValues = viewModel.output.getSettingsValues()
+        contentView.subtitleLabel.text = SLTexts.Unlock.subtitle.localized(String(Int(settingsValues.unlockPrice)), String(settingsValues.unlockTime.get(component: .minutes)))
+    }
+    
+    private func bindView() {
+        contentView.bottomButton.rx.tap
+            .subscribe(onNext: viewModel.input.shortUnlock)
+            .disposed(by: disposeBag)
     }
 
     private func bindViewModel() {
@@ -59,9 +80,10 @@ final class UnlockController: UIViewController {
         viewModel.output.unlockSucceed
             .subscribe(onNext: { [weak self] in
                 self?.showAlert(title: SLTexts.Unlock.Alert.Success.title.localized(),
-                                message: SLTexts.Unlock.Alert.Success.message.localized(),
-                                submitTitle: SLTexts.Alert.Action.defaultTitle.localized(),
-                                completion: nil)
+                                message: SLTexts.Unlock.Alert.Success.message.localized(String($0.unlockTime.get(component: .minutes))),
+                                submitTitle: SLTexts.Alert.Action.defaultTitle.localized()) {
+                    self?.dismiss(animated: true)
+                }
             })
             .disposed(by: disposeBag)
 

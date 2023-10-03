@@ -22,6 +22,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable {
     case startDate
     case progressDate
     case currentWeek
+    case shieldState
 
     public var value: String { return rawValue }
 }
@@ -35,6 +36,7 @@ protocol KeyValueStorage {
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
     var currentWeek: Date? { get }
+    var shieldState: SLShieldState { get }
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
     func getUnlockedTime(for date: Date) -> TimeInterval
@@ -48,6 +50,7 @@ protocol KeyValueStorage {
     func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
+    func persist(shieldState: SLShieldState)
 
     func cleanUp(key: KeyValueStorageKey)
 }
@@ -103,6 +106,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     var currentWeek: Date? {
         storageProvider.object(forKey: KeyValueStorageKey.currentWeek.value) as? Date
+    }
+    
+    var shieldState: SLShieldState {
+        .init(rawValue: storageProvider.object(forKey: KeyValueStorageKey.shieldState.value) as? Int)
     }
 
     //  TODO: Refactor with DB
@@ -166,6 +173,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     func persist(currentWeek: Date) {
         storageProvider.set(currentWeek, forKey: KeyValueStorageKey.currentWeek.value)
+    }
+    
+    func persist(shieldState: SLShieldState) {
+        storageProvider.set(shieldState.rawValue, forKey: KeyValueStorageKey.shieldState.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {

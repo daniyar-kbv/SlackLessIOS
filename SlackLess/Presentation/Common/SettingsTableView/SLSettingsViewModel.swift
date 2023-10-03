@@ -59,8 +59,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
     var canChangeSettings: Bool {
         switch type {
-        case .full: return false
-        case .setUp, .display: return true
+        case .full, .display: return false
+        case .setUp: return true
         }
     }
 

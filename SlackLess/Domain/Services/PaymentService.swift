@@ -84,11 +84,14 @@ final class PaymentServiceImpl: NSObject, PaymentService, PaymentServiceInput, P
 
 extension PaymentServiceImpl {
     private func bindEventManager() {
-        eventManager.subscribe(to: .updateLimitsSucceed, disposeBag: disposeBag) { [weak self] _ in
-            self?.unlockSucceed.accept(())
+        eventManager.subscribe(to: .updateLockSucceed, disposeBag: disposeBag) { [weak self] type in
+            switch type.value as? SLLockUpdateType {
+            case .longUnlock: self?.unlockSucceed.accept(())
+            default: break
+            }
         }
 
-        eventManager.subscribe(to: .updateLimitsFailed, disposeBag: disposeBag) { [weak self] in
+        eventManager.subscribe(to: .updateLockFailed, disposeBag: disposeBag) { [weak self] in
             guard let error = $0.value as? DomainError else { return }
             self?.errorOccured.accept(error)
         }
