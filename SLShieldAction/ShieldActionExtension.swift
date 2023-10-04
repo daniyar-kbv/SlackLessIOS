@@ -19,7 +19,11 @@ class ShieldActionExtension: ShieldActionDelegate {
         case .primaryButtonPressed:
             completionHandler(.close)
         case .secondaryButtonPressed:
-            keyValueStorage.persist(shieldState: .unlock)
+            switch keyValueStorage.shieldState {
+            case .normal:
+                keyValueStorage.persist(shieldState: .unlock)
+            case .unlock: break
+            }
             completionHandler(.defer)
         @unknown default:
             fatalError()

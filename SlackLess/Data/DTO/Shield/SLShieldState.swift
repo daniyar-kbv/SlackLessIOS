@@ -37,7 +37,8 @@ enum SLShieldState {
         switch self {
         case .normal: return .init(text: SLTexts.Shield.secondaryButtonTitle.localized(),
                                    color: SLColors.white.getColor() ?? .white)
-        case .unlock: return nil
+        case .unlock: return .init(text: SLTexts.Shield.secondaryButtonTitle.localized(),
+                                   color: SLColors.white.getColor()?.withAlphaComponent(0.5) ?? .white)
         }
     }
 }
