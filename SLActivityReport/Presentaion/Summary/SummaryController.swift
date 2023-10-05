@@ -66,7 +66,6 @@ final class SummaryController: UIViewController {
         viewModel.output.time.subscribe(onNext: { [weak self] in
             self?.contentView.summarySelectedAppsDashboardView.set(time: $0)
             self?.contentView.otherAppsDashboardView.set(time: $0)
-            self?.contentView.thirdSectionFirstContentView.isHidden = true
             self?.showLoader($0 == nil)
         })
         .disposed(by: disposeBag)
