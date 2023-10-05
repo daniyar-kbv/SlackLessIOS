@@ -14,15 +14,6 @@ final class ProgressView: SLBaseView {
 
     private(set) lazy var reportView = UIView()
 
-    private(set) lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [dateSwitcherView, reportView])
-        view.axis = .vertical
-        view.distribution = .fill
-        view.alignment = .fill
-        view.spacing = 8
-        return view
-    }()
-
     private(set) lazy var button: SLButton = {
         let view = SLButton(style: .filled, size: .large)
         view.setTitle(SLTexts.Button.continue_.localized(), for: .normal)
@@ -41,14 +32,17 @@ final class ProgressView: SLBaseView {
     }
 
     private func layoutUI() {
-        [stackView, button].forEach(addSubview(_:))
-
-        stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        [dateSwitcherView, reportView, button].forEach(addSubview(_:))
 
         dateSwitcherView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(28)
+        }
+
+        reportView.snp.makeConstraints {
+            $0.top.equalTo(dateSwitcherView.snp.bottom).offset(8)
+            $0.horizontalEdges.bottom.equalToSuperview()
         }
 
         button.snp.makeConstraints {
