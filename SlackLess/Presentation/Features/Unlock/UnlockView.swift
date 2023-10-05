@@ -29,16 +29,10 @@ final class UnlockView: SLBaseView {
         return view
     }()
     
-    private(set) lazy var termsLabel: UILabel = {
+    lazy var termsLabel: UILabel = {
         let view = UILabel()
-//        FIXME: Change localize "Pay"
-        view.attributedText = SLTexts.Common.TermsAndPrivacy.makeText(
-            font: SLFonts.primary.getFont(ofSize: 13, weight: .regular),
-            baseColor: SLColors.label1.getColor(),
-            accentColor: SLColors.accent1.getColor(),
-            split: false,
-            clickElementName: "Pay")
-        view.textAlignment = .center
+        view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
+        view.textColor = SLColors.label1.getColor()
         return view
     }()
     

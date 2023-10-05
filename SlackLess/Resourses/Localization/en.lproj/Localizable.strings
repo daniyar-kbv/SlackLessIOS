@@ -20,6 +20,7 @@
 "Error.Domain.cantMakeApplePayPayment" = "Can't make payment";
 "Error.Domain.unsupportedApplePayPaymentMethods" = "Your payment methods are unsopported";
 "Error.Domain.updateLockFailed" = "Couldn't update limits";
+"Error.Presentation.cantOpenTermsAndPrivacy" = "Coudn't open Terms and Conditions, and Privacy Policy";
 
 //  MARK: - Keyboard
 "Keyboard.Toolbar.done" = "Done";
