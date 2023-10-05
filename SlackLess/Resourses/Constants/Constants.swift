@@ -26,9 +26,7 @@ struct Constants {
     }
 
     enum URLs {
-        enum ITunesAPI {
-            static let search = URL(string: "https://itunes.apple.com")!
-        }
+        static let termsPrivacy = URL(string: "https://docs.google.com/document/d/1BfIia5RW9RQG0aqWUFCyWI3ZLoDh-HnR3EKsM5r3EW0/edit?usp=sharing")!
     }
 
     enum ErrorCode {}

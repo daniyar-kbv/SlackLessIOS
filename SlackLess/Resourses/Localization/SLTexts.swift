@@ -30,6 +30,10 @@ enum SLTexts {
             case unsupportedApplePayPaymentMethods = "Error.Domain.unsupportedApplePayPaymentMethods"
             case updateLockFailed = "Error.Domain.updateLockFailed"
         }
+        
+        enum Presentation: String, Localizable {
+            case cantOpenTermsAndPrivacy = "Error.Presentation.cantOpenTermsAndPrivacy"
+        }
     }
 
     enum Keyboard {

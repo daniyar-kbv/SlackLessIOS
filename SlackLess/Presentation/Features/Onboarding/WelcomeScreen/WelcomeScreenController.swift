@@ -33,7 +33,15 @@ final class WelcomeScreenController: UIViewController {
     }
 
     override func viewDidLoad() {
+        configure()
         bindView()
+    }
+    
+    private func configure() {
+        setUpTerms(label: &contentView.bottomLabel,
+                   accentColor: SLColors.black.getColor(),
+                   clickElementName: contentView.mainButton.titleLabel?.text ?? "",
+                   twoLined: true)
     }
     
     private func bindView() {
