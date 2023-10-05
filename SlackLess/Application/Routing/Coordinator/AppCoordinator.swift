@@ -71,14 +71,13 @@ extension AppCoordinator {
         coordinator.start()
     }
 
-//    Uncomment to turn on weekly reports
     func showWeeklyReportIfNeeded() {
         let service = serviceFactory.makeAppSettingsService()
-//        guard service.output.getShowWeeklyReport() else { return }
+        guard service.output.getShowWeeklyReport() else { return }
         let coordinator = appCoordinatorsFactory.makeWeeklyReportCoordinator()
 
         coordinator.didFinish.subscribe(onNext: { [weak self, weak service] in
-//            service?.input.setWeeklyReportShown()
+            service?.input.setWeeklyReportShown()
             self?.remove(coordinator)
         })
         .disposed(by: disposeBag)
