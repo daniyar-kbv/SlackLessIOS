@@ -12,7 +12,7 @@ import RxSwift
 
 //  TODO: Make all observable
 
-enum KeyValueStorageKey: String, StorageKey, Equatable {
+enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case onbardingShown
     case selectedApps
     case timeLimit
@@ -53,6 +53,7 @@ protocol KeyValueStorage {
     func persist(shieldState: SLShieldState)
 
     func cleanUp(key: KeyValueStorageKey)
+    func cleanUp()
 }
 
 final class KeyValueStorageImpl: KeyValueStorage {
@@ -181,6 +182,11 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     func cleanUp(key: KeyValueStorageKey) {
         storageProvider.set(nil, forKey: key.value)
+    }
+    
+    func cleanUp() {
+        storageProvider.removePersistentDomain(forName: Constants.UserDefaults.SuiteName.main)
+        storageProvider.synchronize()
     }
 }
 
