@@ -30,7 +30,7 @@ protocol AppSettingsServiceOutput {
 
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
-    func getUnlockPrice() -> Double
+    func getUnlockPrice() -> Double?
     func getIsLocked() -> Bool
     func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
@@ -116,8 +116,8 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         return appsSelection
     }
 
-    func getUnlockPrice() -> Double {
-        appSettingsRepository.output.getUnlockPrice() ?? 1
+    func getUnlockPrice() -> Double? {
+        appSettingsRepository.output.getUnlockPrice()
     }
 
     func getIsLocked() -> Bool {

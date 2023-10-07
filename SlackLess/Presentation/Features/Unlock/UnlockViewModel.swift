@@ -23,7 +23,7 @@ protocol UnlockViewModelOutput: AnyObject {
     var didFinish: PublishRelay<Void> { get }
     
     func getSettingsViewModel() -> SLSettingsViewModel
-    func getSettingsValues() -> (unlockPrice: Double, unlockTime: Double)
+    func getSettingsValues() -> (unlockPrice: Double?, unlockTime: Double)
 }
 
 protocol UnlockViewModel: AnyObject {
@@ -62,7 +62,7 @@ final class UnlockViewModelImpl: UnlockViewModel, UnlockViewModelInput, UnlockVi
         settingsViewModel
     }
     
-    func getSettingsValues() -> (unlockPrice: Double, unlockTime: Double) {
+    func getSettingsValues() -> (unlockPrice: Double?, unlockTime: Double) {
         return (appSettingsService.output.getUnlockPrice(), Constants.Settings.unlockTime)
     }
 

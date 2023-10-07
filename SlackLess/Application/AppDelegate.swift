@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appCoordinator: AppCoordinator?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        Uncomment to clean up
+//        dataComponentsFactory.makeKeyValueStorage().cleanUp()
+        
         configureAppCoordinator()
         configureKeyboardManager()
         startReachabilityManager()

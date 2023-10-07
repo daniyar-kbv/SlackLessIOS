@@ -40,6 +40,7 @@ final class SetUpController: UIViewController {
 
         configureView()
         bindView()
+        bindViewModel()
     }
 
     private func configureView() {
@@ -48,8 +49,20 @@ final class SetUpController: UIViewController {
 
     private func bindView() {
         contentView.button.rx.tap.subscribe(onNext: { [weak self] in
-            self?.viewModel.input.finish()
+            self?.viewModel.input.save()
         })
         .disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        viewModel.output.didSave
+            .subscribe(onNext: viewModel.input.finish)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.isComplete
+            .subscribe(onNext: { [weak self] in
+                self?.contentView.button.isEnabled = $0
+            })
+            .disposed(by: disposeBag)
     }
 }
