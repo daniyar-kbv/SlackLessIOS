@@ -14,10 +14,13 @@ protocol SLSettingsViewModelInput {
     func set(appSelection: FamilyActivitySelection)
     func set(timeLimit: TimeInterval?)
     func set(unlockPrice: Double?)
+    func save()
 }
 
 protocol SLSettingsViewModelOutput {
     var errorOccured: PublishRelay<ErrorPresentable> { get }
+    var didSave: PublishRelay<Void> { get }
+    var isComplete: BehaviorRelay<Bool> { get }
     var canChangeSettings: Bool { get }
 
     func getType() -> SLSettingsType
@@ -55,7 +58,9 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     }
 
     //    Output
+    let didSave: PublishRelay<Void> = .init()
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
+    lazy var isComplete: BehaviorRelay<Bool> = .init(value: getIsComplete())
 
     var canChangeSettings: Bool {
         switch type {
@@ -110,21 +115,32 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
     //    Input
     func set(appSelection: FamilyActivitySelection) {
-        guard !appSelection.applicationTokens.isEmpty &&
-            !appSelection.categoryTokens.isEmpty &&
-            !appSelection.webDomainTokens.isEmpty
-        else { return }
-        appSettingsService.input.set(selectedApps: appSelection)
+        self.appsSelection = appSelection
+        isComplete.accept(getIsComplete())
     }
 
     func set(timeLimit: TimeInterval?) {
-        guard let timeLimit = timeLimit else { return }
-        appSettingsService.input.set(timeLimit: timeLimit)
+        self.timeLimit = timeLimit
+        isComplete.accept(getIsComplete())
     }
 
     func set(unlockPrice: Double?) {
-        guard let unlockPrice = unlockPrice else { return }
+        self.unlockPrice = unlockPrice
+        isComplete.accept(getIsComplete())
+    }
+    
+    func save() {
+        guard getIsComplete(),
+              let appsSelection = appsSelection,
+              let timeLimit = timeLimit,
+              let unlockPrice = unlockPrice
+        else { return }
+        
+        appSettingsService.input.set(selectedApps: appsSelection)
+        appSettingsService.input.set(timeLimit: timeLimit)
         appSettingsService.input.set(unlockPrice: unlockPrice)
+        
+        didSave.accept(())
     }
 }
 
@@ -133,5 +149,13 @@ extension SLSettingsViewModelImpl {
         appSettingsService.output.errorOccured
             .bind(to: errorOccured)
             .disposed(by: disposeBag)
+    }
+    
+    private func getIsComplete() -> Bool {
+        return (!(appsSelection?.applications.isEmpty ?? true)
+                || !(appsSelection?.categories.isEmpty ?? true)
+                || !(appsSelection?.webDomains.isEmpty ?? true))
+        && !(timeLimit?.isZero ?? true)
+        && !(unlockPrice?.isZero ?? true)
     }
 }

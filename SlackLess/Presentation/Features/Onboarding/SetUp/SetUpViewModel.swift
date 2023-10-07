@@ -10,10 +10,13 @@ import RxCocoa
 import RxSwift
 
 protocol SetUpViewModelInput: AnyObject {
+    func save()
     func finish()
 }
 
 protocol SetUpViewModelOutput: AnyObject {
+    var isComplete: BehaviorRelay<Bool> { get }
+    var didSave: PublishRelay<Void> { get }
     var didFinish: PublishRelay<Void> { get }
 
     func getSettingsViewModel() -> SLSettingsViewModel
@@ -29,20 +32,30 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
     var output: SetUpViewModelOutput { self }
 
     private let appSettingsService: AppSettingsService
-    private lazy var settingsViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .setUp, appSettingsService: appSettingsService)
+    private let settingsViewModel: SLSettingsViewModel
 
     init(appSettingsService: AppSettingsService) {
         self.appSettingsService = appSettingsService
+        
+        settingsViewModel = SLSettingsViewModelImpl(type: .setUp, appSettingsService: appSettingsService)
+        didSave = settingsViewModel.output.didSave
+        isComplete = settingsViewModel.output.isComplete
     }
 
     //    Output
-    var didFinish: PublishRelay<Void> = .init()
+    let didSave: PublishRelay<Void>
+    let isComplete: BehaviorRelay<Bool>
+    let didFinish: PublishRelay<Void> = .init()
 
     func getSettingsViewModel() -> SLSettingsViewModel {
         settingsViewModel
     }
 
     //    Input
+    func save() {
+        settingsViewModel.input.save()
+    }
+    
     func finish() {
         didFinish.accept(())
     }

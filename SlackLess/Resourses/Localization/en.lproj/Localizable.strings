@@ -86,7 +86,7 @@
 //  MARK: - Settings
 "Settings.Settings.title" = "SETTINGS";
 "Settings.Settings.SelectedAppsLabel.normal" = "Selected Apps";
-"Settings.Settings.SelectedAppsLabel.setUp" = "Selected Apps";
+"Settings.Settings.SelectedAppsLabel.setUp" = "Select Apps";
 "Settings.Settings.TimeLimitLabel.normal" = "Time Limit";
 "Settings.Settings.TimeLimitLabel.setUp" = "Set the Time Limit";
 "Settings.Settings.UnlockPriceLabel.normal" = "Unlock Fee";
