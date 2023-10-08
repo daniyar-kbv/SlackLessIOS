@@ -2566,7 +2566,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -2751,7 +2751,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
