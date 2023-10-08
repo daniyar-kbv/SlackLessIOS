@@ -11,6 +11,7 @@ protocol ServiceFactory: AnyObject {
     func makeAppSettingsService() -> AppSettingsService
     func makeLockService() -> LockService
     func makePaymentService() -> PaymentService
+    func makePushNotificationsService() -> PushNotificationsService
 }
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
@@ -39,5 +40,9 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
 
     func makePaymentService() -> PaymentService {
         shared(PaymentServiceImpl(eventManager: helpersFactory.makeEventManager()))
+    }
+    
+    func makePushNotificationsService() -> PushNotificationsService {
+        shared(PushNotificationsServiceImpl())
     }
 }
