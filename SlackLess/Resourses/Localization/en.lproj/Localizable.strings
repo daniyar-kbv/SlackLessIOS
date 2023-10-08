@@ -97,6 +97,7 @@
 "Settings.Notifications.emails" = "Emails";
 "Settings.Feedback.title" = "FEEDBACK";
 "Settings.Feedback.leaveFeedback" = "Leave Feedback";
+"Settings.Error.pushNotificationsUnauthorized" = "Push-notifications are disabled in device settings, go to app's settings and enable push-notifications";
 
 //  MARK: - Unlock
 "Unlock.buttonTitle" = "Unlock Limit";

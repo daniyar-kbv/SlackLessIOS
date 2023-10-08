@@ -18,6 +18,7 @@ final class SLSettingsCell: UITableViewCell {
     private var output: ((Output) -> Void)?
     private var appsSelectionHostingController: UIHostingController<SLAppsSelectionView>?
     weak var parentConroller: UIViewController?
+    private var disposeBag = DisposeBag()
 
     var isEnabled = true {
         didSet {
@@ -81,6 +82,7 @@ final class SLSettingsCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
+        disposeBag = .init()
         type = nil
         output = nil
         rightItemView.subviews.forEach { $0.removeFromSuperview() }
@@ -152,8 +154,6 @@ final class SLSettingsCell: UITableViewCell {
             ))
             parentConroller?.add(controller: appsSelectionHostingController!, to: containerView)
             appsSelectionHostingController?.view.backgroundColor = .clear
-        case .leaveFeedback:
-            inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
         case let .timeLimit(_, limit):
             inputView = SLInput(type: .time, value: limit) { [weak self] in
                 self?.output?(.time($0))
@@ -162,8 +162,21 @@ final class SLSettingsCell: UITableViewCell {
             inputView = SLInput(type: .price, value: price) { [weak self] in
                 self?.output?(.price($0))
             }
-        case .pushNotifications, .emails:
-            inputView = UISwitch()
+        case let .pushNotifications(enabled):
+            let switch_ = UISwitch()
+            switch_.isOn = enabled
+            switch_.rx.controlEvent(.valueChanged)
+                .withLatestFrom(switch_.rx.value)
+                .subscribe(onNext: { [weak self] in
+                    self?.output?(.pushNotifications($0))
+                })
+                .disposed(by: disposeBag)
+            inputView = switch_
+        case .emails:
+            let switch_ = UISwitch()
+            inputView = switch_
+        case .leaveFeedback:
+            inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
         }
 
         if let inputView = inputView {
@@ -198,7 +211,7 @@ extension SLSettingsCell {
         case selectedApps(SLSettingsType, FamilyActivitySelection)
         case timeLimit(SLSettingsType, TimeInterval?)
         case unlockPrice(SLSettingsType, Double?)
-        case pushNotifications
+        case pushNotifications(Bool)
         case emails
         case leaveFeedback
 
@@ -253,7 +266,7 @@ extension SLSettingsCell {
         case appsSelection(FamilyActivitySelection)
         case time(TimeInterval?)
         case price(Double?)
-//        case pushNotifications
+        case pushNotifications(Bool)
     }
 
     enum Position {

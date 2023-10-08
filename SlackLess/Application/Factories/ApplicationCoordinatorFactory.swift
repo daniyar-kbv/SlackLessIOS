@@ -47,16 +47,14 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
 
     func makeCustomizeCoordinator() -> CustomizeCoordinator {
         return scoped(CustomizeCoordinator(router: routersFactory.makeMainRouter(),
-                                           modulesFactory: CustomizeModulesFactoryImpl(appSettingsService: serviceFactory.makeAppSettingsService())))
+                                           modulesFactory: CustomizeModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
 
     func makeUnlockCoordinator() -> UnlockCoordinator {
-        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
-                                                                                 paymentService: serviceFactory.makePaymentService(),
-                                                                                 lockService: serviceFactory.makeLockService())))
+        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
 
     func makeWeeklyReportCoordinator() -> WeeklyReportCoordinator {
-        return scoped(WeeklyReportCoordinator(modulesFactory: WeeklyReportModulesFactoryImpl(appSettingsService: serviceFactory.makeAppSettingsService())))
+        return scoped(WeeklyReportCoordinator(modulesFactory: WeeklyReportModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
 }

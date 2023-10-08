@@ -40,7 +40,9 @@ final class UnlockViewModelImpl: UnlockViewModel, UnlockViewModelInput, UnlockVi
     private let lockService: LockService
 
     private let disposeBag = DisposeBag()
-    private lazy var settingsViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .display, appSettingsService: appSettingsService)
+    private lazy var settingsViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .display,
+                                                                                      appSettingsService: appSettingsService,
+                                                                                      pushNotificationsService: nil)
 
     init(appSettingsService: AppSettingsService,
          paymentService: PaymentService,

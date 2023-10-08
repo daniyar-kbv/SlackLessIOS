@@ -37,7 +37,9 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
     init(appSettingsService: AppSettingsService) {
         self.appSettingsService = appSettingsService
         
-        settingsViewModel = SLSettingsViewModelImpl(type: .setUp, appSettingsService: appSettingsService)
+        settingsViewModel = SLSettingsViewModelImpl(type: .setUp,
+                                                    appSettingsService: appSettingsService,
+                                                    pushNotificationsService: nil)
         didSave = settingsViewModel.output.didSave
         isComplete = settingsViewModel.output.isComplete
     }

@@ -13,22 +13,16 @@ protocol UnlockModulesFactory: AnyObject {
 }
 
 final class UnlockModulesFactoryImpl: UnlockModulesFactory {
-    private let appSettingsService: AppSettingsService
-    private let paymentService: PaymentService
-    private let lockService: LockService
+    private let serviceFactory: ServiceFactory
 
-    init(appSettingsService: AppSettingsService,
-         paymentService: PaymentService,
-         lockService: LockService) {
-        self.appSettingsService = appSettingsService
-        self.paymentService = paymentService
-        self.lockService = lockService
+    init(serviceFactory: ServiceFactory) {
+        self.serviceFactory = serviceFactory
     }
 
     func makeUnlockModule() -> (viewModel: UnlockViewModel, controller: SheetViewController) {
-        let viewModel = UnlockViewModelImpl(appSettingsService: appSettingsService,
-                                            paymentService: paymentService,
-                                            lockService: lockService)
+        let viewModel = UnlockViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+                                            paymentService: serviceFactory.makePaymentService(),
+                                            lockService: serviceFactory.makeLockService())
         let unlockController = UnlockController(viewModel: viewModel)
         let sheetOptions = SheetOptions(
             shrinkPresentingViewController: false

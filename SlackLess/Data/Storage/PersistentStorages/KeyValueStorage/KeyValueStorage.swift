@@ -23,6 +23,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case progressDate
     case currentWeek
     case shieldState
+    case pushNotificationsEnabled
 
     public var value: String { return rawValue }
 }
@@ -37,6 +38,7 @@ protocol KeyValueStorage {
     var progressDateObservable: PublishRelay<Date?> { get }
     var currentWeek: Date? { get }
     var shieldState: SLShieldState { get }
+    var pushNotificationsEnabled: Bool { get }
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
     func getTimeLimit(for date: Date) -> TimeInterval
     func getUnlockedTime(for date: Date) -> TimeInterval
@@ -51,6 +53,7 @@ protocol KeyValueStorage {
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
     func persist(shieldState: SLShieldState)
+    func persist(pushNotificationsEnabled: Bool)
 
     func cleanUp(key: KeyValueStorageKey)
     func cleanUp()
@@ -111,6 +114,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
     
     var shieldState: SLShieldState {
         .init(rawValue: storageProvider.object(forKey: KeyValueStorageKey.shieldState.value) as? Int)
+    }
+    
+    var pushNotificationsEnabled: Bool {
+        storageProvider.bool(forKey: KeyValueStorageKey.pushNotificationsEnabled.value)
     }
 
     //  TODO: Refactor with DB
@@ -178,6 +185,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
     
     func persist(shieldState: SLShieldState) {
         storageProvider.set(shieldState.rawValue, forKey: KeyValueStorageKey.shieldState.value)
+    }
+    
+    func persist(pushNotificationsEnabled: Bool) {
+        storageProvider.set(pushNotificationsEnabled, forKey: KeyValueStorageKey.pushNotificationsEnabled.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {

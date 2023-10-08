@@ -21,6 +21,7 @@ protocol AppSettingsRepositoryInput {
     func set(startDate: Date)
     func set(progressDate: Date)
     func set(currentWeek: Date)
+    func set(pushNotificationsEnabled: Bool)
 }
 
 protocol AppSettingsRepositoryOutput {
@@ -33,6 +34,7 @@ protocol AppSettingsRepositoryOutput {
     func getStartDate() -> Date?
     func getProgressDate() -> Date?
     func getCurrentWeek() -> Date?
+    func getPushNotificationsEnabled() -> Bool
 
     var progressDateObservable: PublishRelay<Date?> { get }
     var isLockedObservable: PublishRelay<Bool> { get }
@@ -42,6 +44,8 @@ protocol AppSettingsRepository: AnyObject {
     var input: AppSettingsRepositoryInput { get }
     var output: AppSettingsRepositoryOutput { get }
 }
+
+//  TODO: Refactor to use right storage
 
 final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsRepositoryInput, AppSettingsRepositoryOutput {
     var input: AppSettingsRepositoryInput { self }
@@ -111,6 +115,10 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
     func getCurrentWeek() -> Date? {
         keyValueStorage.currentWeek
     }
+    
+    func getPushNotificationsEnabled() -> Bool {
+        keyValueStorage.pushNotificationsEnabled
+    }
 
     //    Input
 
@@ -148,5 +156,9 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
 
     func set(currentWeek: Date) {
         keyValueStorage.persist(currentWeek: currentWeek)
+    }
+    
+    func set(pushNotificationsEnabled: Bool) {
+        keyValueStorage.persist(pushNotificationsEnabled: pushNotificationsEnabled)
     }
 }
