@@ -29,18 +29,22 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
     var output: CustomizeViewModelOutput { self }
 
     private let appSettingsService: AppSettingsService
+    private let pushNotificationsService: PushNotificationsService
 
     private let disposeBag = DisposeBag()
 
-    init(appSettingsService: AppSettingsService) {
+    init(appSettingsService: AppSettingsService,
+         pushNotificationsService: PushNotificationsService) {
         self.appSettingsService = appSettingsService
+        self.pushNotificationsService = pushNotificationsService
 
         bindService()
     }
 
 //    Output
     lazy var settingViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .full,
-                                                                             appSettingsService: appSettingsService)
+                                                                             appSettingsService: appSettingsService,
+                                                                             pushNotificationsService: pushNotificationsService)
     lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
     let startUnlock: PublishRelay<Void> = .init()
 

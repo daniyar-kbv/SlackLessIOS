@@ -11,17 +11,21 @@ import RxCocoa
 import RxSwift
 
 protocol SLSettingsViewModelInput {
+    func load()
     func set(appSelection: FamilyActivitySelection)
     func set(timeLimit: TimeInterval?)
     func set(unlockPrice: Double?)
+    func set(pushNotificationsEnabled: Bool)
     func save()
 }
 
 protocol SLSettingsViewModelOutput {
+    var reload: PublishRelay<Void> { get }
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var didSave: PublishRelay<Void> { get }
     var isComplete: BehaviorRelay<Bool> { get }
     var canChangeSettings: Bool { get }
+    var pushNotificationsUnauthorized: PublishRelay<Void> { get }
 
     func getType() -> SLSettingsType
     func getNumberOfSections() -> Int
@@ -42,25 +46,32 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
     private let type: SLSettingsType
     private let appSettingsService: AppSettingsService
+    private let pushNotificationsService: PushNotificationsService?
 
     private let disposeBag = DisposeBag()
     private lazy var appsSelection = appSettingsService.output.getSelectedApps(for: Date().getDate())
     private lazy var timeLimit = appSettingsService.output.getTimeLimit(for: Date().getDate())
     private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
+    private var pushNotificationsEnabled = false
 
     init(type: SLSettingsType,
-         appSettingsService: AppSettingsService)
+         appSettingsService: AppSettingsService,
+         pushNotificationsService: PushNotificationsService?)
     {
         self.type = type
         self.appSettingsService = appSettingsService
+        self.pushNotificationsService = pushNotificationsService
 
-        bindService()
+        bindAppSettingsService()
+        bindPushNotificationsService()
     }
 
     //    Output
+    let reload: PublishRelay<Void> = .init()
     let didSave: PublishRelay<Void> = .init()
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     lazy var isComplete: BehaviorRelay<Bool> = .init(value: getIsComplete())
+    let pushNotificationsUnauthorized: PublishRelay<Void> = .init()
 
     var canChangeSettings: Bool {
         switch type {
@@ -95,12 +106,12 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         case .full: index = indexPath.item - 1
         case .setUp, .display: index = indexPath.item
         }
-
+        
         switch type.sections[indexPath.section].items[index ?? 0] {
         case .selectedApps: return .selectedApps(type, appsSelection ?? .init())
         case .timeLimit: return .timeLimit(type, timeLimit)
         case .unlockPrice: return .unlockPrice(type, unlockPrice)
-        case .pushNotifications: return .pushNotifications
+        case .pushNotifications: return .pushNotifications(pushNotificationsEnabled)
         case .emails: return .emails
         case .leaveFeedback: return .leaveFeedback
         }
@@ -114,6 +125,10 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     }
 
     //    Input
+    func load() {
+        pushNotificationsService?.input.getPushNotificationsEnabled()
+    }
+    
     func set(appSelection: FamilyActivitySelection) {
         self.appsSelection = appSelection
         isComplete.accept(getIsComplete())
@@ -127,6 +142,10 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     func set(unlockPrice: Double?) {
         self.unlockPrice = unlockPrice
         isComplete.accept(getIsComplete())
+    }
+    
+    func set(pushNotificationsEnabled: Bool) {
+        pushNotificationsService?.input.set(pushNotificationsEnabled: pushNotificationsEnabled)
     }
     
     func save() {
@@ -145,9 +164,26 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 }
 
 extension SLSettingsViewModelImpl {
-    private func bindService() {
+    private func bindAppSettingsService() {
         appSettingsService.output.errorOccured
             .bind(to: errorOccured)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindPushNotificationsService() {
+        pushNotificationsService?.output.errorOccured
+            .bind(to: errorOccured)
+            .disposed(by: disposeBag)
+        
+        pushNotificationsService?.output.pushNotificationEnabled
+            .subscribe(onNext: { [weak self] in
+                self?.pushNotificationsEnabled = $0
+                self?.reload.accept(())
+            })
+            .disposed(by: disposeBag)
+        
+        pushNotificationsService?.output.pushNotificationsUnauthorized
+            .bind(to: pushNotificationsUnauthorized)
             .disposed(by: disposeBag)
     }
     

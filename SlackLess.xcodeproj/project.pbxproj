@@ -235,10 +235,10 @@
 		427D4BA117DEED242CDF5F28B99DEAD9 /* SLNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57C376568F9395E9D235729B00B5328 /* SLNavigationController.swift */; };
 		61A37EC417479230728BA8D01E86EEAD /* SLProgressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */; };
 		909F466D1F649A14F0EE70B1E3FF818A /* SLProgressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */; };
-		74EE46F4B1701FABE181BEB50C6CDCA1 /* SLPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */; };
 		5A1C0E7B37F7515669253CC51903429E /* SLPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */; };
-		D83EA227B66C203B6CF9DECEB817DB63 /* SLPushNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638DA1503DE9ADD9F7137A75A1B5283C /* SLPushNotificationType.swift */; };
+		74EE46F4B1701FABE181BEB50C6CDCA1 /* SLPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */; };
 		0D342578757D851A8FE12CC8240FA100 /* SLPushNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638DA1503DE9ADD9F7137A75A1B5283C /* SLPushNotificationType.swift */; };
+		D83EA227B66C203B6CF9DECEB817DB63 /* SLPushNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638DA1503DE9ADD9F7137A75A1B5283C /* SLPushNotificationType.swift */; };
 		34ACD64071BDAC4B02D50AC5918D2CF2 /* SLReportsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296A6670123CE4D88A69B3360B2826D2 /* SLReportsController.swift */; };
 		303BA5A42D29C3C3097140D1C11C061E /* SLReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B613C772334FBAC23495C2DB41748 /* SLReportsViewModel.swift */; };
 		D357E422965A9E44B1A1A3CFE48D48BC /* SLSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */; };
@@ -927,6 +927,15 @@
 			path = CacheStorage;
 			sourceTree = "<group>";
 		};
+		3745C5341E010A98CA6F9C427FC35049 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */,
+				638DA1503DE9ADD9F7137A75A1B5283C /* SLPushNotificationType.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		397F2E2368FF1E7AC257C895227F80E9 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -1182,15 +1191,6 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
-			sourceTree = "<group>";
-		};
-		3745C5341E010A98CA6F9C427FC35049 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */,
-				638DA1503DE9ADD9F7137A75A1B5283C /* SLPushNotificationType.swift */,
-			);
-			path = Notifications;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {

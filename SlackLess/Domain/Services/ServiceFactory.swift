@@ -43,6 +43,6 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     }
     
     func makePushNotificationsService() -> PushNotificationsService {
-        shared(PushNotificationsServiceImpl())
+        shared(PushNotificationsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository()))
     }
 }

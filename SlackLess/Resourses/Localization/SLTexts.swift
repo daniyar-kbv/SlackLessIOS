@@ -169,6 +169,10 @@ enum SLTexts {
             case title = "Settings.Feedback.title"
             case leaveFeedback = "Settings.Feedback.leaveFeedback"
         }
+        
+        enum Error: String, Localizable {
+            case pushNotificationsUnauthorized = "Settings.Error.pushNotificationsUnauthorized"
+        }
     }
 
     enum Unlock: String, Localizable {

@@ -14,7 +14,7 @@ enum SLSettingsType {
 
     var sections: [SLSettingsSection] {
         switch self {
-        case .full: return [.settings(self)]
+        case .full: return [.settings(self), .notifications]
         case .setUp: return [.settings(self)]
         case .display: return [.settings(self)]
         }

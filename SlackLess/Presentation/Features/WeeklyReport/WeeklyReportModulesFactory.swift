@@ -13,19 +13,20 @@ protocol WeeklyReportModulesFactory: AnyObject {
 }
 
 final class WeeklyReportModulesFactoryImpl: WeeklyReportModulesFactory {
-    private let appSettingsService: AppSettingsService
+    private let serviceFactory: ServiceFactory
 
-    init(appSettingsService: AppSettingsService) {
-        self.appSettingsService = appSettingsService
+    init(serviceFactory: ServiceFactory) {
+        self.serviceFactory = serviceFactory
     }
 
     func makeReportModule() -> (viewModel: ProgressViewModel, controller: ProgressController) {
-        let viewModel = ProgressViewModelImpl(type: .weeklyReport, appSettingsService: appSettingsService)
+        let viewModel = ProgressViewModelImpl(type: .weeklyReport,
+                                              appSettingsService: serviceFactory.makeAppSettingsService())
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 
     func makeSetUpModule() -> (viewModel: SetUpViewModel, controller: SetUpController) {
-        let viewModel = SetUpViewModelImpl(appSettingsService: appSettingsService)
+        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService())
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 }

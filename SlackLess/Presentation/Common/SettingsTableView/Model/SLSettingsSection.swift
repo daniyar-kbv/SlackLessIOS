@@ -27,7 +27,7 @@ enum SLSettingsSection: Equatable {
             case .full, .setUp: return [.selectedApps, .timeLimit, .unlockPrice]
             case .display: return [.timeLimit, .unlockPrice]
             }
-        case .notifications: return [.pushNotifications, .emails]
+        case .notifications: return [.pushNotifications]
         case .feedback: return [.leaveFeedback]
         }
     }

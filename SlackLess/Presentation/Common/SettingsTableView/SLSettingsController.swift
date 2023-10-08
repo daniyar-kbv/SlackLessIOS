@@ -14,7 +14,9 @@ import UIKit
 final class SLSettingsController: UIViewController {
     private let viewModel: SLSettingsViewModel
 
+    private let notificationCenter = NotificationCenter.default
     private let disposeBag = DisposeBag()
+    private var didAppear = false
 
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
@@ -49,9 +51,16 @@ final class SLSettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configure()
         bindViewModel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        reload()
+        didAppear = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -72,6 +81,10 @@ final class SLSettingsController: UIViewController {
             }
         }
     }
+    
+    @objc private func appMovedToForeground() {
+        reload()
+    }
 
     private func configure() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -84,15 +97,60 @@ final class SLSettingsController: UIViewController {
                 $0.height.equalTo(1)
             }
         }
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     private func bindViewModel() {
-        viewModel.output.errorOccured.subscribe(onNext: { [weak self] in
-            self?.showError($0) {
+        viewModel.output.reload
+            .subscribe(onNext: { [weak self] in
+                self?.hideLoader()
                 self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorOccured
+            .subscribe(onNext: { [weak self] in
+                self?.showError($0) {
+                    self?.tableView.reloadData()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.pushNotificationsUnauthorized
+            .subscribe(onNext: { [weak self] in
+//                TODO: Refactor to settings alerts
+                self?.showAlert(title: SLTexts.Alert.Error.title.localized(),
+                                message: SLTexts.Settings.Error.pushNotificationsUnauthorized.localized(),
+                                actions: [
+                                    .init(
+                                        title: SLTexts.Alert.Action.cancel.localized(),
+                                        style: .cancel
+                                    ),
+                                    .init(
+                                        title: SLTexts.Alert.Action.toSettings.localized(),
+                                        style: .default,
+                                        handler: { _ in
+                                            guard let url = URL(string: UIApplication.openSettingsURLString),
+                                                  UIApplication.shared.canOpenURL(url)
+                                            else { return }
+                                            UIApplication.shared.open(url, options: [:])
+                                        }
+                                    ),
+                                ])
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func reload() {
+        switch viewModel.output.getType() {
+        case .full:
+            if !didAppear {
+                showLoader()
             }
-        })
-        .disposed(by: disposeBag)
+            viewModel.input.load()
+        case .setUp, .display: break
+        }
     }
 }
 
@@ -148,6 +206,8 @@ extension SLSettingsController: UITableViewDataSource {
                     self?.viewModel.input.set(timeLimit: limit)
                 case let .price(price):
                     self?.viewModel.input.set(unlockPrice: price)
+                case let .pushNotifications(enabled):
+                    self?.viewModel.input.set(pushNotificationsEnabled: enabled)
                 }
             }
 
