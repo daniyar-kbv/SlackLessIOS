@@ -9,6 +9,21 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol SLTabBarViewModel: AnyObject {}
+protocol SLTabBarViewModelInput: AnyObject {
+}
 
-final class SLTabBarViewModelImpl: SLTabBarViewModel {}
+protocol SLTabBarViewModelOutput: AnyObject {
+}
+
+protocol SLTabBarViewModel: AnyObject {
+    var input: SLTabBarViewModelInput { get }
+    var output: SLTabBarViewModelOutput { get }
+}
+
+final class SLTabBarViewModelImpl: SLTabBarViewModel, SLTabBarViewModelInput, SLTabBarViewModelOutput {
+    var input: SLTabBarViewModelInput { self }
+    var output: SLTabBarViewModelOutput { self }
+    //    Output
+    
+    //    Input
+}

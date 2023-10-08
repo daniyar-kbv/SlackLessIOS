@@ -24,7 +24,8 @@ final class AppCoordinator: BaseCoordinator {
 
 //    TODO: Change lazy var to let where needed
 
-    private lazy var appSettingsService = serviceFactory.makeAppSettingsService()
+    private let appSettingsService: AppSettingsService
+    private let pushNotificationsService: PushNotificationsService
 
     init(serviceFactory: ServiceFactory,
          appCoordinatorsFactory: ApplicationCoordinatorFactory,
@@ -33,8 +34,13 @@ final class AppCoordinator: BaseCoordinator {
         self.serviceFactory = serviceFactory
         self.appCoordinatorsFactory = appCoordinatorsFactory
         self.modulesFactory = modulesFactory
+        
+        appSettingsService = serviceFactory.makeAppSettingsService()
+        pushNotificationsService = serviceFactory.makePushNotificationsService()
 
         super.init()
+        
+        bindPushNotificationService()
     }
 
     override func start() {
@@ -55,6 +61,8 @@ extension AppCoordinator {
         modulesFactory.makeSLTabBarController().viewControllers = preparedViewControllers
 
         UIApplication.shared.set(rootViewController: modulesFactory.makeSLTabBarController())
+        
+        pushNotificationsService.input.configure()
     }
 
     private func startOnboardingFlow() {
@@ -153,5 +161,39 @@ extension AppCoordinator {
 
         preparedViewControllers.append(coordinator.router.getNavigationController())
         add(coordinator)
+    }
+}
+
+//  MARK: Push Notifications
+
+extension AppCoordinator {
+    private func bindPushNotificationService() {
+        pushNotificationsService.output.receivedNotification
+            .subscribe(onNext: handle(notification:))
+            .disposed(by: disposeBag)
+        
+        pushNotificationsService.output.errorOccured
+            .subscribe(onNext: {
+                UIApplication.shared.topViewController()?.showError($0)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func handle(notification: SLPushNotification) {
+        switch notification.state {
+        case .foreground:
+            UIApplication.shared.topViewController()?
+                .showAlert(title: notification.type.title,
+                           message: notification.type.body,
+                           submitTitle: SLTexts.Alert.Action.defaultTitle.localized()) { [weak self] in
+                    self?.process(notificationType: notification.type)
+                }
+        case .background:
+            process(notificationType: notification.type)
+        }
+    }
+    
+    private func process(notificationType: SLPushNotificationType) {
+        print("Processing notification: \(notificationType)")
     }
 }
