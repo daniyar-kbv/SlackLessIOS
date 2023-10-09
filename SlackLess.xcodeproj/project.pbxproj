@@ -149,6 +149,7 @@
 		6F278D3D7ADBA7DB733BFE424397E38C /* ProgressModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365310E2DD1546206DB29B41A2822C /* ProgressModulesFactory.swift */; };
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
+		70DA6E142AD4B58000356E24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DA6E132AD4B58000356E24 /* GoogleService-Info.plist */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
 		7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		74EE46F4B1701FABE181BEB50C6CDCA1 /* SLPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */; };
@@ -486,6 +487,7 @@
 		6BF7838DEA4C37DC9DABEBDAC482FD56 /* AlertDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDisplayable.swift; sourceTree = "<group>"; };
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
+		70DA6E132AD4B58000356E24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLProgressType.swift; sourceTree = "<group>"; };
 		772B474E051DEAA53318498114D5339A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 				B7F73DFD874584CA256A0AD6E5507A42 /* Constants.swift */,
 				318AB5ED631A588B1812DA3FC95D8109 /* SLInfo.plist */,
 				04E889D7AA51FBB33E79EB21893D7A70 /* SlackLess.entitlements */,
+				70DA6E132AD4B58000356E24 /* GoogleService-Info.plist */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1744,6 +1747,7 @@
 				A55F0A3D163B90AC7F4D99DC1C6FF100 /* [CP] Embed Pods Frameworks */,
 				857FA7417161911825BB1F90FCDA9AC6 /* Embed Foundation Extensions */,
 				CFD4B2AC38143A3C74AF00B488E701C4 /* Embed ExtensionKit Extensions */,
+				70DA6E162AD4BC7300356E24 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1894,6 +1898,7 @@
 				DD234A3A1221491D921EB554D6CA239C /* LaunchScreen.storyboard in Resources */,
 				88D7ED7D3A829A85E521CD01DADAF897 /* Localizable.strings in Resources */,
 				8EC19ACC4B135499DF1E81D325267258 /* SLInfo.plist in Resources */,
+				70DA6E142AD4B58000356E24 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1942,6 +1947,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70DA6E162AD4BC7300356E24 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A25E23B7BF198425EC270C6AC7DD483 /* [CP] Check Pods Manifest.lock */ = {
@@ -2752,6 +2780,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
