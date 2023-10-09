@@ -27,8 +27,8 @@ target 'SlackLess' do
   
   # Firebase
   pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics'
+  pod 'FirebaseFirestore'
   
   # Helpers
   pod 'SwiftFormat'
