@@ -150,6 +150,29 @@
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
 		70DA6E142AD4B58000356E24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70DA6E132AD4B58000356E24 /* GoogleService-Info.plist */; };
+		70DA6E1D2AD4CADF00356E24 /* FeedbackAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E1C2AD4CADF00356E24 /* FeedbackAPI.swift */; };
+		70DA6E212AD4CB9300356E24 /* SendFeedbackRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E202AD4CB9300356E24 /* SendFeedbackRequestDTO.swift */; };
+		70DA6E272AD4E8D700356E24 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E262AD4E8D700356E24 /* FirestoreClient.swift */; };
+		70DA6E292AD4E9A300356E24 /* FirestoreEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E282AD4E9A300356E24 /* FirestoreEndpoint.swift */; };
+		70DA6E2B2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E2A2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift */; };
+		70DA6E2E2AD4F12900356E24 /* FirestoreCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E2D2AD4F12900356E24 /* FirestoreCodable.swift */; };
+		70DA6E322AD4FAEA00356E24 /* FeedbackEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E312AD4FAEA00356E24 /* FeedbackEndpoint.swift */; };
+		70DA6E342AD5006800356E24 /* FeedbackAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E1C2AD4CADF00356E24 /* FeedbackAPI.swift */; };
+		70DA6E352AD5006900356E24 /* FeedbackAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E1C2AD4CADF00356E24 /* FeedbackAPI.swift */; };
+		70DA6E362AD5006D00356E24 /* SendFeedbackRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E202AD4CB9300356E24 /* SendFeedbackRequestDTO.swift */; };
+		70DA6E372AD5006D00356E24 /* SendFeedbackRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E202AD4CB9300356E24 /* SendFeedbackRequestDTO.swift */; };
+		70DA6E382AD5007000356E24 /* FirestoreCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E2D2AD4F12900356E24 /* FirestoreCodable.swift */; };
+		70DA6E392AD5007100356E24 /* FirestoreCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E2D2AD4F12900356E24 /* FirestoreCodable.swift */; };
+		70DA6E3A2AD5009C00356E24 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E262AD4E8D700356E24 /* FirestoreClient.swift */; };
+		70DA6E3B2AD5009D00356E24 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E262AD4E8D700356E24 /* FirestoreClient.swift */; };
+		70DA6E3C2AD500A000356E24 /* FirestoreEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E282AD4E9A300356E24 /* FirestoreEndpoint.swift */; };
+		70DA6E3D2AD500A000356E24 /* FirestoreEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E282AD4E9A300356E24 /* FirestoreEndpoint.swift */; };
+		70DA6E3E2AD500A300356E24 /* FirestoreEndpointMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E2A2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift */; };
+		70DA6E3F2AD500A300356E24 /* FirestoreEndpointMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E2A2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift */; };
+		70DA6E402AD500C100356E24 /* FeedbackEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E312AD4FAEA00356E24 /* FeedbackEndpoint.swift */; };
+		70DA6E412AD500C200356E24 /* FeedbackEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E312AD4FAEA00356E24 /* FeedbackEndpoint.swift */; };
+		70DA6E422AD500E700356E24 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D63EF3B0B264849A80B4707D0DB83 /* NetworkError.swift */; };
+		70DA6E432AD501C600356E24 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B0DE215ABEE12761FA503F2B055F1 /* DomainError.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
 		7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAE4EA33EEF5728BB516643A6F06C1 /* DependencyFactory.swift */; };
 		74EE46F4B1701FABE181BEB50C6CDCA1 /* SLPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */; };
@@ -488,6 +511,13 @@
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
 		70DA6E132AD4B58000356E24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		70DA6E1C2AD4CADF00356E24 /* FeedbackAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackAPI.swift; sourceTree = "<group>"; };
+		70DA6E202AD4CB9300356E24 /* SendFeedbackRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackRequestDTO.swift; sourceTree = "<group>"; };
+		70DA6E262AD4E8D700356E24 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
+		70DA6E282AD4E9A300356E24 /* FirestoreEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreEndpoint.swift; sourceTree = "<group>"; };
+		70DA6E2A2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreEndpointMethod.swift; sourceTree = "<group>"; };
+		70DA6E2D2AD4F12900356E24 /* FirestoreCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCodable.swift; sourceTree = "<group>"; };
+		70DA6E312AD4FAEA00356E24 /* FeedbackEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEndpoint.swift; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		7350CEF9003E8D885166A8A5AA19C929 /* SLProgressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLProgressType.swift; sourceTree = "<group>"; };
 		772B474E051DEAA53318498114D5339A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -700,11 +730,12 @@
 			path = SLShieldAction;
 			sourceTree = "<group>";
 		};
-		0ADE6150CD71BFB1C40353D4E15999BA /* RequestDTO */ = {
+		0ADE6150CD71BFB1C40353D4E15999BA /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				70DA6E222AD4CBED00356E24 /* Feedback */,
 			);
-			path = RequestDTO;
+			path = Request;
 			sourceTree = "<group>";
 		};
 		0B7D6AAAE29C8B06958432AEA5308A9E /* Plugins */ = {
@@ -857,9 +888,10 @@
 		243247A508C5C1076A6DBC87BADF9772 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				70DA6E1F2AD4CB0400356E24 /* Firestore */,
+				70DA6E1E2AD4CAEF00356E24 /* REST */,
+				70DA6E1B2AD4CA5D00356E24 /* APIs */,
 				5C9ABB9C435B3DA322A635AD3A569A2F /* Models */,
-				0B7D6AAAE29C8B06958432AEA5308A9E /* Plugins */,
-				B0EC2EF554B0C99CA3E8C5B69E4231B9 /* Targets */,
 				82F2CED5527AADC1C3AF54F238300810 /* APIFactory.swift */,
 			);
 			path = Network;
@@ -1106,7 +1138,7 @@
 			isa = PBXGroup;
 			children = (
 				5E3C57A0FE763FF52B556683F5FD56DE /* Error */,
-				0ADE6150CD71BFB1C40353D4E15999BA /* RequestDTO */,
+				0ADE6150CD71BFB1C40353D4E15999BA /* Request */,
 				2BB242F57C69C20FD58B6CBE83F72BDE /* Response */,
 			);
 			path = Models;
@@ -1194,6 +1226,59 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		70DA6E1B2AD4CA5D00356E24 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6E1C2AD4CADF00356E24 /* FeedbackAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		70DA6E1E2AD4CAEF00356E24 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				0B7D6AAAE29C8B06958432AEA5308A9E /* Plugins */,
+				B0EC2EF554B0C99CA3E8C5B69E4231B9 /* Targets */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
+		70DA6E1F2AD4CB0400356E24 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6E332AD4FAEE00356E24 /* Endpoints */,
+				70DA6E2F2AD4FAC000356E24 /* Models */,
+				70DA6E262AD4E8D700356E24 /* FirestoreClient.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		70DA6E222AD4CBED00356E24 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6E202AD4CB9300356E24 /* SendFeedbackRequestDTO.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		70DA6E2F2AD4FAC000356E24 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6E282AD4E9A300356E24 /* FirestoreEndpoint.swift */,
+				70DA6E2D2AD4F12900356E24 /* FirestoreCodable.swift */,
+				70DA6E2A2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		70DA6E332AD4FAEE00356E24 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				70DA6E312AD4FAEA00356E24 /* FeedbackEndpoint.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		7BD4A096DBC9279FFC3BBB5A5DA5F1BD /* Coordinator */ = {
@@ -2104,7 +2189,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70DA6E3D2AD500A000356E24 /* FirestoreEndpoint.swift in Sources */,
 				E3CDE82070B5EA16BDD1026EF5B3F666 /* APIFactory.swift in Sources */,
+				70DA6E352AD5006900356E24 /* FeedbackAPI.swift in Sources */,
 				681365EAE0A64423E851BA76BA53EA1A /* AppSettingsRepository.swift in Sources */,
 				49398FCDB6CACDB647F7381536CECFE2 /* BaseCacheStorage.swift in Sources */,
 				E34871BBCF34FE6EF18653977BAB7F91 /* ColorGetable.swift in Sources */,
@@ -2117,22 +2204,29 @@
 				66E292334041F8DC37E8F6C57EEFB5EA /* FontGetable.swift in Sources */,
 				EC0F76BBAED38478470D0ACD3A19FB86 /* FormattedExtension.swift in Sources */,
 				BEC2DEC8B4BF95C53B158CAD3FBCE00C /* ImageGetable.swift in Sources */,
+				70DA6E392AD5007100356E24 /* FirestoreCodable.swift in Sources */,
+				70DA6E422AD500E700356E24 /* NetworkError.swift in Sources */,
 				19A304DD52549BD38D0F0553864799AC /* Int.swift in Sources */,
 				1CC49743CCCBD308BEFF41022CF5DF32 /* KeyValueStorage.swift in Sources */,
 				BA651A05BB108DB7031B2410146699AA /* Localizable.swift in Sources */,
+				70DA6E412AD500C200356E24 /* FeedbackEndpoint.swift in Sources */,
 				E87FDC3032BCAB7BF37D29C599E9F47B /* Localization.swift in Sources */,
+				70DA6E3F2AD500A300356E24 /* FirestoreEndpointMethod.swift in Sources */,
 				FD3AB24A44F268BCAEB3B0015EBEA372 /* NumericExtension.swift in Sources */,
+				70DA6E432AD501C600356E24 /* DomainError.swift in Sources */,
 				1711913073915D745E1931AB7F9D6E2A /* ReactiveExtension.swift in Sources */,
 				3102E3521F89BBE23E0E6ACD7C5E162A /* RepositoryFactory.swift in Sources */,
 				24FE3FA62D23E4559196F9D6C21507CD /* SLColors.swift in Sources */,
 				37A058E77E98948ED68738F5C8108C64 /* SLFonts.swift in Sources */,
 				922BD7A04A21FDE9EBCCA47EBA8420A4 /* SLImages.swift in Sources */,
+				70DA6E3B2AD5009D00356E24 /* FirestoreClient.swift in Sources */,
 				E355B68EC3332E5A68DA2F48D309C768 /* SLShieldState.swift in Sources */,
 				13F53CCD6D99475D3E29F56EFBC7B3F6 /* SLTexts.swift in Sources */,
 				45EA6DEC5E57DCF9BE8203FEED0E40D6 /* SecureStorage.swift in Sources */,
 				4A90A70486458D46E53FBE483C8BD584 /* SecureStorageProvider.swift in Sources */,
 				29166EB55C61853C08683AEC059390DC /* StringExtension.swift in Sources */,
 				3670BFCE97FAEA8A35D6EFEB61FE7B22 /* TimeInterval.swift in Sources */,
+				70DA6E372AD5006D00356E24 /* SendFeedbackRequestDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2143,6 +2237,7 @@
 				EC41604F39A7EC8748292F6A6AC3FAE6 /* APIFactory.swift in Sources */,
 				D98D54AEF19BF1398A3B9DD8EAEC14CF /* AlertDisplayable.swift in Sources */,
 				E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */,
+				70DA6E1D2AD4CADF00356E24 /* FeedbackAPI.swift in Sources */,
 				F601DB37B1678B6BCD7A943C440FB02A /* AppCoordinator.swift in Sources */,
 				B1BBB21CE783A45216568EB6BF537DCD /* AppDelegate.swift in Sources */,
 				19F8A94F6ED1C53411B21A558D45A940 /* AppSettingsRepository.swift in Sources */,
@@ -2178,6 +2273,7 @@
 				164385B20069807DDF8FDB164B779B57 /* FormattedExtension.swift in Sources */,
 				51E7D2D295A7BB92485320E1D9E1E5FD /* HelpersFactory.swift in Sources */,
 				CED0416BB0006AD0E59854EB3F5EC403 /* ImageGetable.swift in Sources */,
+				70DA6E212AD4CB9300356E24 /* SendFeedbackRequestDTO.swift in Sources */,
 				90E4C77DC3BA8337B08EB97F4D737811 /* Int.swift in Sources */,
 				8FE1969EDB016B43CA54FE2142259080 /* KeyValueStorage.swift in Sources */,
 				3B67D4FEB6898D5CD7B681952D752280 /* KeyboardObservable.swift in Sources */,
@@ -2192,6 +2288,7 @@
 				12D5ECFF417DF82D16C4FE8BACA04798 /* PaymentService.swift in Sources */,
 				F6513A3D46D1A4F64297D0414B09405E /* PresentationComponentsFactory.swift in Sources */,
 				99C9BB816DB5AFB2A08DFDB88A3BAD98 /* PresentationError.swift in Sources */,
+				70DA6E2B2AD4ED7C00356E24 /* FirestoreEndpointMethod.swift in Sources */,
 				BFCEB4197F1CD5F8CD70B19F94FADFA1 /* ProgressController.swift in Sources */,
 				B62738A66B009349E8F18C7FE6CE93F8 /* ProgressCoordinator.swift in Sources */,
 				6F278D3D7ADBA7DB733BFE424397E38C /* ProgressModulesFactory.swift in Sources */,
@@ -2202,6 +2299,7 @@
 				6553FBEB5F86CD6CDC8B48E7E05D7C4D /* ReactiveExtension.swift in Sources */,
 				EED1D685EB2E2E77ACA72543AEDBCEAB /* Reloadable.swift in Sources */,
 				B26FD02F0932457AB1434D059C7B9722 /* RepositoryFactory.swift in Sources */,
+				70DA6E2E2AD4F12900356E24 /* FirestoreCodable.swift in Sources */,
 				21D41BD188F060E4F15BCE54B353F022 /* RequestAuthController.swift in Sources */,
 				B85F476920362F2BD3D0AC698FB93874 /* RequestAuthView.swift in Sources */,
 				2F949F87544D3A01D1E3A6402585A4FF /* RequestAuthViewModel.swift in Sources */,
@@ -2253,8 +2351,10 @@
 				6A9C44EEA3D3AEF44B34BCC804153083 /* StringExtension.swift in Sources */,
 				B1EB5175F08D6C284918676C456E5203 /* SummaryController.swift in Sources */,
 				64B6DA7270823EA8990EFCC4D9EA209A /* SummaryCoordinator.swift in Sources */,
+				70DA6E322AD4FAEA00356E24 /* FeedbackEndpoint.swift in Sources */,
 				046FA52ED15AB38FF5AD7694C8EB76C0 /* SummaryModulesFactory.swift in Sources */,
 				AA524278F34E6E3B0F05D9E0DEBA9978 /* SummaryView.swift in Sources */,
+				70DA6E292AD4E9A300356E24 /* FirestoreEndpoint.swift in Sources */,
 				5DE3EED9BE60E89B4C09F903EDD11BA7 /* SummaryViewModel.swift in Sources */,
 				878B2C11867618C883A4BC8D5BB89B25 /* TermsDisplayable.swift in Sources */,
 				84EFB1E057F4C882A0A3E5AC6AB0C34F /* TimeInterval.swift in Sources */,
@@ -2264,6 +2364,7 @@
 				639F00A102F9C8DDE1A04A8714CA1BA2 /* UIColorExtensions.swift in Sources */,
 				E2BFF212B61DA546E385648668AC2C72 /* UIImage.swift in Sources */,
 				075877BF02235CB538AFCD1D308B63AA /* UIVIewControllerExtension.swift in Sources */,
+				70DA6E272AD4E8D700356E24 /* FirestoreClient.swift in Sources */,
 				6C0A4AF030A9E1D02C7E38CC34677C87 /* UIView.swift in Sources */,
 				4B1B7837AB94504C9B495F3D4E942D7B /* UnlockController.swift in Sources */,
 				12659AFAAC5DD38877CF3D2961C39247 /* UnlockCoordinator.swift in Sources */,
@@ -2292,17 +2393,23 @@
 				3ED26CCA62F6D296E694645206B4A1E8 /* ARChartView.swift in Sources */,
 				3C95E8323550BDD1BABD8EC49556E179 /* ARChartViewModel.swift in Sources */,
 				5376381DEEB21FB0D1CAB2DB432D8D79 /* ARDashedView.swift in Sources */,
+				70DA6E3A2AD5009C00356E24 /* FirestoreClient.swift in Sources */,
+				70DA6E3E2AD500A300356E24 /* FirestoreEndpointMethod.swift in Sources */,
 				C1503CCB0E4F2F0607253926A7B2416F /* ARDay.swift in Sources */,
 				AFE25B3FB1C38D2B7C0DAD5CAA84F4D6 /* ARLegendView.swift in Sources */,
+				70DA6E3C2AD500A000356E24 /* FirestoreEndpoint.swift in Sources */,
 				51FB66B5A2C41FA3D19E01F354001610 /* ARPageControlView.swift in Sources */,
 				FEAC966BE55479E466F9F1B7CEAB13DF /* ARPartitionsView.swift in Sources */,
 				FB8FF85BD9B56289D0FD94EAB27E30CA /* ARProgress.swift in Sources */,
 				D2D92F4FE091085C54C9A0EDB1B85AB5 /* ARSectionView.swift in Sources */,
+				70DA6E342AD5006800356E24 /* FeedbackAPI.swift in Sources */,
 				36DFD620AC54F75B1F86F5CF768541A1 /* ARTime.swift in Sources */,
 				14E32513BE12DAE6DAA2371222A0C7D6 /* ARView.swift in Sources */,
 				BE029C3919E5F76528702D117B738E7E /* ARWeek.swift in Sources */,
 				BFC6E08E2974432E08D715644D0A356F /* AppComponentsFactory.swift in Sources */,
 				013A275B81153958018ABE500ACC458E /* AppSettingsRepository.swift in Sources */,
+				70DA6E362AD5006D00356E24 /* SendFeedbackRequestDTO.swift in Sources */,
+				70DA6E402AD500C100356E24 /* FeedbackEndpoint.swift in Sources */,
 				A37321FC45418A0D5001F996062F6F8C /* AppSettingsService.swift in Sources */,
 				AFB5BBD2BA2E21C593CC558FFAA14B73 /* BaseCacheStorage.swift in Sources */,
 				27212BC75071BBE591B06D4BFB0A96B2 /* ColorGetable.swift in Sources */,
@@ -2321,6 +2428,7 @@
 				3AD9DE3E4BE9BD15945518AEA4D6C478 /* EventManager.swift in Sources */,
 				10ACC427C8E1D97E91B584F6CE264923 /* EventObserver.swift in Sources */,
 				7F8CB75B8C29C042BC7AF8E074095ACC /* EventType.swift in Sources */,
+				70DA6E382AD5007000356E24 /* FirestoreCodable.swift in Sources */,
 				2395EE4DCC76D0510ACE78E45359B7DB /* FontGetable.swift in Sources */,
 				C5A37C9BBDF0380054C29540A5C96EFC /* FormattedExtension.swift in Sources */,
 				DDB7E855C7C5C9051DDDAF6CA29F3500 /* HelpersFactory.swift in Sources */,
