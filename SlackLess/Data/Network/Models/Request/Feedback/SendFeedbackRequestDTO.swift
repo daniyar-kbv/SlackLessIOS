@@ -9,8 +9,6 @@ import Foundation
 import FirebaseFirestore
 
 struct SendFeedbackRequestDTO: FirestoreCodable {
-    let email: String?
     let body: String
+    let email: String?
 }
-
-
