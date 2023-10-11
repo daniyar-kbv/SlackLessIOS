@@ -29,6 +29,7 @@ enum SLTexts {
             case cantMakeApplePayPayment = "Error.Domain.cantMakeApplePayPayment"
             case unsupportedApplePayPaymentMethods = "Error.Domain.unsupportedApplePayPaymentMethods"
             case updateLockFailed = "Error.Domain.updateLockFailed"
+            case invalidEmail = "Error.Domain.invalidEmail"
         }
         
         enum Presentation: String, Localizable {
