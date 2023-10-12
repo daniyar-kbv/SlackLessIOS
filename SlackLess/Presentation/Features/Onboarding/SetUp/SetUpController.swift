@@ -10,8 +10,6 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-// TODO: finish logic
-
 final class SetUpController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: SetUpViewModel
@@ -44,7 +42,7 @@ final class SetUpController: UIViewController {
     }
 
     private func configureView() {
-        add(controller: settingsController, to: contentView.settingsView)
+        add(controller: settingsController, to: contentView.largeTitleView)
     }
 
     private func bindView() {

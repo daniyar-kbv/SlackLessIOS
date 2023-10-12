@@ -65,6 +65,7 @@ enum SLTexts {
 
     enum Button: String, Localizable {
         case continue_ = "Button.continue"
+        case submit = "Button.submit"
     }
 
     enum Shield: String, Localizable {
@@ -191,6 +192,26 @@ enum SLTexts {
                 case title = "Unlock.Alert.Success.title"
                 case message = "Unlock.Alert.Success.message"
             }
+        }
+    }
+    
+    enum Feedback: String, Localizable {
+        case title = "Feedback.title"
+        case subtitle = "Feedback.subtitle"
+        
+        enum FirstTextView: String, Localizable {
+            case placeholder = "Feedback.FirstTextView.placeholder"
+            case bottomText = "Feedback.FirstTextView.bottomText"
+        }
+        
+        enum SecondTextView: String, Localizable {
+            case placeholder = "Feedback.SecondTextView.placeholder"
+            case bottomText = "Feedback.SecondTextView.bottomText"
+        }
+        
+        enum Error: String, Localizable {
+            case invalidEmail = "Feedback.Error.invalidEmail"
+            case bodyEmpty = "Feedback.Error.bodyEmpty"
         }
     }
 }

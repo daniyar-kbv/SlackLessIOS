@@ -33,4 +33,10 @@ final class CustomizeCoordinator: BaseCoordinator {
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
     }
+    
+    private func showFeedback() {
+        let module = modulesFactory.makeFeedbackModule()
+        
+        router.present(module.controller, animated: true, completion: nil)
+    }
 }
