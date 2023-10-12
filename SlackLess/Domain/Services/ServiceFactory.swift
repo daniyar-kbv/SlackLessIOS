@@ -12,6 +12,7 @@ protocol ServiceFactory: AnyObject {
     func makeLockService() -> LockService
     func makePaymentService() -> PaymentService
     func makePushNotificationsService() -> PushNotificationsService
+    func makeFeedbackService() -> FeedbackService
 }
 
 final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
@@ -44,5 +45,9 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     
     func makePushNotificationsService() -> PushNotificationsService {
         shared(PushNotificationsServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository()))
+    }
+    
+    func makeFeedbackService() -> FeedbackService {
+        shared(FeedbackServiceImpl(feedbackAPI: apiFactory.makeFeedbackAPI()))
     }
 }

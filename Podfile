@@ -17,6 +17,9 @@ def shared_pods
   pod 'ReachabilitySwift'
   pod 'Alamofire'
   pod 'Moya/RxSwift'
+  
+  # Firebase
+  pod 'FirebaseFirestore'
 end
 
 target 'SlackLess' do
@@ -25,17 +28,17 @@ target 'SlackLess' do
   # Cache and Storage
   pod 'Kingfisher'
   
-  # Firebase
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/Crashlytics'
-  
   # Helpers
   pod 'SwiftFormat'
   pod 'IQKeyboardManagerSwift'
   
 #  UI
   pod 'FittedSheets'
+  
+  # Firebase
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'FirebaseAppCheck'
 end
 
 target 'SLActivityReport' do

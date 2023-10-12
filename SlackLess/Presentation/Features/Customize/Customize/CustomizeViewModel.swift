@@ -17,6 +17,7 @@ protocol CustomizeViewModelOutput: AnyObject {
     var settingViewModel: SLSettingsViewModel { get }
     var showUnlockButton: BehaviorRelay<Bool> { get }
     var startUnlock: PublishRelay<Void> { get }
+    var startFeedback: PublishRelay<Void> { get }
 }
 
 protocol CustomizeViewModel: AnyObject {
@@ -39,6 +40,7 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
         self.pushNotificationsService = pushNotificationsService
 
         bindService()
+        bindSettingsViewModel()
     }
 
 //    Output
@@ -47,6 +49,7 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
                                                                              pushNotificationsService: pushNotificationsService)
     lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
     let startUnlock: PublishRelay<Void> = .init()
+    let startFeedback: PublishRelay<Void> = .init()
 
 //    Input
     func unlock() {
@@ -58,6 +61,12 @@ extension CustomizeViewModelImpl {
     private func bindService() {
         appSettingsService.output.isLocked
             .bind(to: showUnlockButton)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindSettingsViewModel() {
+        settingViewModel.output.feedbackSelected
+            .bind(to: startFeedback)
             .disposed(by: disposeBag)
     }
 }

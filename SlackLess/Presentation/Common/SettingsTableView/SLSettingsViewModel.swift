@@ -17,6 +17,7 @@ protocol SLSettingsViewModelInput {
     func set(unlockPrice: Double?)
     func set(pushNotificationsEnabled: Bool)
     func save()
+    func selectFeedback()
 }
 
 protocol SLSettingsViewModelOutput {
@@ -26,6 +27,7 @@ protocol SLSettingsViewModelOutput {
     var isComplete: BehaviorRelay<Bool> { get }
     var canChangeSettings: Bool { get }
     var pushNotificationsUnauthorized: PublishRelay<Void> { get }
+    var feedbackSelected: PublishRelay<Void> { get }
 
     func getType() -> SLSettingsType
     func getNumberOfSections() -> Int
@@ -72,6 +74,7 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     lazy var isComplete: BehaviorRelay<Bool> = .init(value: getIsComplete())
     let pushNotificationsUnauthorized: PublishRelay<Void> = .init()
+    let feedbackSelected: PublishRelay<Void> = .init()
 
     var canChangeSettings: Bool {
         switch type {
@@ -161,6 +164,10 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         
         didSave.accept(())
     }
+    
+    func selectFeedback() {
+        feedbackSelected.accept(())
+    }
 }
 
 extension SLSettingsViewModelImpl {
@@ -188,10 +195,14 @@ extension SLSettingsViewModelImpl {
     }
     
     private func getIsComplete() -> Bool {
-        return (!(appsSelection?.applications.isEmpty ?? true)
+        return (
+            Constants.Settings.appMode == .debug
+            || (
+                !(appsSelection?.applications.isEmpty ?? true)
                 || !(appsSelection?.categories.isEmpty ?? true)
                 || !(appsSelection?.webDomains.isEmpty ?? true))
-        && !(timeLimit?.isZero ?? true)
-        && !(unlockPrice?.isZero ?? true)
+            )
+            && !(timeLimit?.isZero ?? true)
+            && !(unlockPrice?.isZero ?? true)
     }
 }
