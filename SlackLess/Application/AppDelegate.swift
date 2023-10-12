@@ -8,6 +8,7 @@
 import DeviceActivity
 import IQKeyboardManagerSwift
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,15 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Uncomment to clean up
 //        dataComponentsFactory.makeKeyValueStorage().cleanUp()
         
-        configureAppCoordinator()
+        configureFirebase()
         configureKeyboardManager()
         startReachabilityManager()
         initializeServices()
+        configureAppCoordinator()
         return true
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         appCoordinator?.showWeeklyReportIfNeeded()
+    }
+    
+    private func configureFirebase() {
+        FirebaseApp.configure()
     }
 
     private func makeWindow() {

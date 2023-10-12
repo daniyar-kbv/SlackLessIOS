@@ -103,6 +103,17 @@ final class SLSettingsCell: UITableViewCell {
         default: break
         }
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            switch type {
+            case .leaveFeedback: output?(.feedback)
+            default: break
+            }
+        }
+    }
 
     private func layoutUI() {
         backgroundColor = .clear
@@ -155,11 +166,11 @@ final class SLSettingsCell: UITableViewCell {
             parentConroller?.add(controller: appsSelectionHostingController!, to: containerView)
             appsSelectionHostingController?.view.backgroundColor = .clear
         case let .timeLimit(_, limit):
-            inputView = SLInput(type: .time, value: limit) { [weak self] in
+            inputView = SLTableInput(type: .time, value: limit) { [weak self] in
                 self?.output?(.time($0))
             }
         case let .unlockPrice(_, price):
-            inputView = SLInput(type: .price, value: price) { [weak self] in
+            inputView = SLTableInput(type: .price, value: price) { [weak self] in
                 self?.output?(.price($0))
             }
         case let .pushNotifications(enabled):
@@ -267,6 +278,7 @@ extension SLSettingsCell {
         case time(TimeInterval?)
         case price(Double?)
         case pushNotifications(Bool)
+        case feedback
     }
 
     enum Position {

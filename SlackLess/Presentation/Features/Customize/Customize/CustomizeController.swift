@@ -14,7 +14,7 @@ final class CustomizeController: UIViewController {
     private let viewModel: CustomizeViewModel
 
     private let disposeBag = DisposeBag()
-    private lazy var contentView = CustomizeView()
+    private lazy var contentView = SLBaseView()
     private lazy var settingsController = SLSettingsController(viewModel: viewModel.output.settingViewModel)
 
     init(viewModel: CustomizeViewModel) {

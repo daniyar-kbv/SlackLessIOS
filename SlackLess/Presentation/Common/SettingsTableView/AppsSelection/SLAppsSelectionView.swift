@@ -27,7 +27,7 @@ struct SLAppsSelectionView: View {
                                   selection: $selection)
         }
         .onChange(of: isPresented) { isPresented in
-            if !isPresented && (Constants.Settings.appMode == .debug || (!selection.applicationTokens.isEmpty || !selection.categoryTokens.isEmpty || !selection.webDomainTokens.isEmpty)) {
+            if !isPresented {
                 onSelect(selection)
             }
         }
