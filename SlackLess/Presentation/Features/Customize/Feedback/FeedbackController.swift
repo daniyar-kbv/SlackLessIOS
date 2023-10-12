@@ -22,6 +22,8 @@ final class FeedbackController: UIViewController {
         self.viewModel = viewModel
 
         super.init(nibName: .none, bundle: .none)
+        
+        hidesBottomBarWhenPushed = true
     }
 
     @available(*, unavailable)
@@ -43,28 +45,20 @@ final class FeedbackController: UIViewController {
         bindViewModel()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if !didLayoutSubviews {
-            let availableSpace = contentView.largeTitleView.frame.height -
-            contentView.largeTitleView.mainStackView.frame.height - 32
-            let fieldMaxHeight = (availableSpace / 2) + contentView.emailTextView.frame.height
-            
-            contentView.bodyTextView.snp.makeConstraints({
-                $0.height.lessThanOrEqualTo(fieldMaxHeight)
-            })
-            
-            contentView.emailTextView.snp.makeConstraints({
-                $0.height.lessThanOrEqualTo(fieldMaxHeight)
-            })
-        }
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        didLayoutSubviews = true
+        navigationController?.isNavigationBarHidden = true
     }
 
     private func configureView() {
-        
+        contentView.set(title: SLTexts.Feedback.title.localized())
     }
 
     private func bindView() {
@@ -97,6 +91,13 @@ final class FeedbackController: UIViewController {
                 self?.viewModel.input.didFinishEditing(text: $0, type: .email)
             })
             .disposed(by: disposeBag)
+        
+        contentView.button.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.showLoader()
+                self?.viewModel.input.submit()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
@@ -104,12 +105,30 @@ final class FeedbackController: UIViewController {
             .bind(to: contentView.button.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        viewModel.output.errorOccured
+        viewModel.output.feedbackSent
+            .subscribe(onNext: { [weak self] in
+                self?.hideLoader()
+                self?.showAlert(title: SLTexts.Feedback.Alert.title.localized(),
+                                message: SLTexts.Feedback.Alert.message.localized(),
+                                submitTitle: SLTexts.Alert.Action.defaultTitle.localized()) {
+                    self?.viewModel.input.finish()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.validationErrorOccured
             .subscribe(onNext: { [weak self] in
                 switch $0 {
                 case .emptyBody: self?.contentView.bodyTextView.set(state: .error($0))
                 case .invalidEmail: self?.contentView.emailTextView.set(state: .error($0))
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.errorOccured
+            .subscribe(onNext: { [weak self] in
+                self?.hideLoader()
+                self?.showError($0)
             })
             .disposed(by: disposeBag)
     }

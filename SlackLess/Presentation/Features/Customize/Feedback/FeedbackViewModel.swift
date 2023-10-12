@@ -10,12 +10,17 @@ import RxSwift
 import RxCocoa
 
 protocol FeedbackViewModelInput: AnyObject {
-    func didFinishEditing(text: String?, type: FeedbackView.FieldType)
+    func didFinishEditing(text: String, type: FeedbackView.FieldType)
+    func submit()
+    func finish()
 }
 
 protocol FeedbackViewModelOutput: AnyObject {
     var isComplete: BehaviorRelay<Bool> { get }
-    var errorOccured: PublishRelay<FeedbackController.Error> { get }
+    var feedbackSent: PublishRelay<Void> { get }
+    var validationErrorOccured: PublishRelay<FeedbackController.Error> { get }
+    var errorOccured: PublishRelay<ErrorPresentable> { get }
+    var isFinished: PublishRelay<Void> { get }
 }
 
 protocol FeedbackViewModel: AnyObject {
@@ -30,8 +35,8 @@ final class FeedbackViewModelImpl: FeedbackViewModel, FeedbackViewModelInput, Fe
     private let feedbackService: FeedbackService
     
     private let disposeBag = DisposeBag()
-    private var email: String?
-    private var body: String? {
+    private var email = ""
+    private var body = "" {
         didSet {
             didEditBody = true
         }
@@ -46,10 +51,13 @@ final class FeedbackViewModelImpl: FeedbackViewModel, FeedbackViewModelInput, Fe
     
     //    Output
     let isComplete: BehaviorRelay<Bool> = .init(value: false)
-    let errorOccured: PublishRelay<FeedbackController.Error> = .init()
+    var feedbackSent: PublishRelay<Void> = .init()
+    let validationErrorOccured: PublishRelay<FeedbackController.Error> = .init()
+    let errorOccured: PublishRelay<ErrorPresentable> = .init()
+    var isFinished: PublishRelay<Void> = .init()
     
     //    Input
-    func didFinishEditing(text: String?, type: FeedbackView.FieldType) {
+    func didFinishEditing(text: String, type: FeedbackView.FieldType) {
         switch type {
         case .email: email = text
         case .body: body = text
@@ -57,25 +65,38 @@ final class FeedbackViewModelImpl: FeedbackViewModel, FeedbackViewModelInput, Fe
 
         validate()
     }
+    
+    func submit() {
+        guard isComplete.value else { return }
+        feedbackService.input.sendFeedback(body: body, email: email)
+    }
+    
+    func finish() {
+        isFinished.accept(())
+    }
 }
 
 extension FeedbackViewModelImpl {
     private func bindFeedbackService() {
+        feedbackService.output.feedbackSent
+            .bind(to: feedbackSent)
+            .disposed(by: disposeBag)
         
+        feedbackService.output.errorOccured
+            .bind(to: errorOccured)
+            .disposed(by: disposeBag)
     }
     
     private func validate() {
-        let emailValid = email?.isValidEmail() ?? true
-        let bodyEmpty = body?.isEmpty ?? true
-        
+        let emailValid = email.isEmpty || email.isValidEmail()
         if !emailValid {
-            errorOccured.accept(.invalidEmail)
+            validationErrorOccured.accept(.invalidEmail)
         }
         
-        if didEditBody && bodyEmpty {
-            errorOccured.accept(.emptyBody)
+        if didEditBody && body.isEmpty {
+            validationErrorOccured.accept(.emptyBody)
         }
         
-        isComplete.accept(emailValid && !bodyEmpty)
+        isComplete.accept(emailValid && !body.isEmpty)
     }
 }

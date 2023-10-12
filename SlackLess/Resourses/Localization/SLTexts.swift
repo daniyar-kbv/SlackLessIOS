@@ -213,5 +213,10 @@ enum SLTexts {
             case invalidEmail = "Feedback.Error.invalidEmail"
             case bodyEmpty = "Feedback.Error.bodyEmpty"
         }
+        
+        enum Alert: String, Localizable {
+            case title = "Feedback.Alert.title"
+            case message = "Feedback.Alert.message"
+        }
     }
 }

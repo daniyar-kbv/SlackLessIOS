@@ -15,7 +15,7 @@ struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
 
     enum Settings {
-        static let appMode: AppMode = .debug
+        static let appMode: AppMode = .normal
         static let shortUnlockTime: TimeInterval = 1 * 60
         static let unlockTime: TimeInterval = 15 * 60
 

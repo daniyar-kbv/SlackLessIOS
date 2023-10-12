@@ -208,6 +208,8 @@ extension SLSettingsController: UITableViewDataSource {
                     self?.viewModel.input.set(unlockPrice: price)
                 case let .pushNotifications(enabled):
                     self?.viewModel.input.set(pushNotificationsEnabled: enabled)
+                case .feedback:
+                    self?.viewModel.input.selectFeedback()
                 }
             }
 
