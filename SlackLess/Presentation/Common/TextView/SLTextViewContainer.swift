@@ -14,9 +14,9 @@ import RxCocoa
 final class SLTextViewContainer: UIStackView {
     private let disposeBag = DisposeBag()
     
-    let textChanged = PublishRelay<String?>()
-    let didStartEditing = PublishRelay<String?>()
-    let didEndEditing = PublishRelay<String?>()
+    let textChanged = PublishRelay<String>()
+    let didStartEditing = PublishRelay<String>()
+    let didEndEditing = PublishRelay<String>()
     
     private(set) var state: State = .normal {
         didSet {
@@ -38,20 +38,9 @@ final class SLTextViewContainer: UIStackView {
         }
     }
     
-    var placeholder: String? {
-        didSet {
-            textView.placeholder = placeholder
-        }
-    }
-    
-    var font: UIFont? {
-        didSet {
-            textView.font = font
-        }
-    }
-    
     var bottomText: String? {
         didSet {
+            bottomLabel.text = bottomText
             bottomLabel.isHidden = bottomText?.isEmpty ?? true
         }
     }
@@ -109,7 +98,10 @@ final class SLTextViewContainer: UIStackView {
     
     private func bindView() {
         textView.rx.text
-            .bind(to: textChanged)
+            .subscribe(onNext: { [weak self] in
+                guard let text = $0 else { return }
+                self?.textChanged.accept(text)
+            })
             .disposed(by: disposeBag)
         
         textView.didStartEditing

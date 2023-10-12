@@ -113,9 +113,11 @@
 //  MARK: - Feedback
 "Feedback.title" = "Leave your feedback";
 "Feedback.subtitle" = "Have a moment to spare? We're eager to hear from you. Join us in our journey towards excellence by sharing your feedback.\n\nWe value your feedback and are committed to providing you with the best experience. Share your thoughts and suggestions to help us improve.";
-"Feedback.FirstTextView.placeholder" = "Type your feedback here";
-"Feedback.FirstTextView.bottomText" = "Your feedback fuels our continuous efforts to enhance our app. Let your voice be heard, and let's make it even better together.";
-"Feedback.SecondTextView.placeholder" = "Type your email here (optional)";
-"Feedback.SecondTextView.bottomText" = "By entering an email you you give your consent for us to contact you in case we want to hear more details from you.";
+"Feedback.FirstTextView.placeholder" = "Type your email here (optional)";
+"Feedback.FirstTextView.bottomText" = "By entering an email you you give your consent for us to contact you in case we want to hear more details from you.";
+"Feedback.SecondTextView.placeholder" = "Type your feedback here";
+"Feedback.SecondTextView.bottomText" = "Your feedback fuels our continuous efforts to enhance our app. Let your voice be heard, and let's make it even better together.";
 "Feedback.Error.invalidEmail" = "Entered email is invalid";
 "Feedback.Error.bodyEmpty" = "Feedback can't be empty";
+"Feedback.Alert.title" = "Feedback Sent";
+"Feedback.Alert.message" = "Thank you for your valuable feedback. Your input helps us improve our app. We appreciate your contribution.";

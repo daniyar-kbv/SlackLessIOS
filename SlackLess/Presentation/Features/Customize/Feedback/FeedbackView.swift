@@ -9,24 +9,28 @@ import Foundation
 import SnapKit
 import UIKit
 
-final class FeedbackView: SLView {
-    private(set) lazy var largeTitleView: SLLargeTitleView = {
-        let view = SLLargeTitleView()
-        view.title = SLTexts.Feedback.title.localized()
-        view.subtitle = SLTexts.Feedback.subtitle.localized()
+final class FeedbackView: SLBaseView {
+    private(set) lazy var subtitleLabel: UILabel = {
+        let view = UILabel()
+        view.font = SLFonts.primary.getFont(ofSize: 16, weight: .regular)
+        view.textColor = SLColors.label1.getColor()
+        view.text = SLTexts.Feedback.subtitle.localized()
+        view.numberOfLines = 0
         return view
     }()
     
     private(set) lazy var emailTextView: SLTextViewContainer = {
         let view = SLTextViewContainer()
-        view.placeholder = SLTexts.Feedback.FirstTextView.placeholder.localized()
-        view.bottomText = SLTexts.Feedback.SecondTextView.bottomText.localized()
+        view.textView.placeholder = SLTexts.Feedback.FirstTextView.placeholder.localized()
+        view.bottomText = SLTexts.Feedback.FirstTextView.bottomText.localized()
+        view.textView.keyboardType = .emailAddress
+        view.textView.autocapitalizationType = .none
         return view
     }()
     
     private(set) lazy var bodyTextView: SLTextViewContainer = {
         let view = SLTextViewContainer()
-        view.placeholder = SLTexts.Feedback.FirstTextView.placeholder.localized()
+        view.textView.placeholder = SLTexts.Feedback.SecondTextView.placeholder.localized()
         view.bottomText = SLTexts.Feedback.SecondTextView.bottomText.localized()
         return view
     }()
@@ -53,18 +57,29 @@ final class FeedbackView: SLView {
     }
 
     private func layoutUI() {
-        [button, largeTitleView].forEach { addSubview($0) }
+        [button, subtitleLabel, emailTextView, bodyTextView].forEach { addSubview($0) }
 
-        button.snp.makeConstraints {
-            $0.bottom.horizontalEdges.equalToSuperview()
-        }
-
-        largeTitleView.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(button.snp.top)
-        }
+        button.snp.makeConstraints({
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+        })
         
-        largeTitleView.addSubview(textStackView)
+        subtitleLabel.snp.makeConstraints({
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(16)
+        })
+        
+        emailTextView.snp.makeConstraints({
+            $0.top.equalTo(subtitleLabel.snp.bottom).offset(32)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.height.equalTo(0).priority(.low)
+        })
+        
+        bodyTextView.snp.makeConstraints({
+            $0.top.equalTo(emailTextView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.bottom.equalTo(button.snp.top).offset(-32)
+        })
     }
 }
 

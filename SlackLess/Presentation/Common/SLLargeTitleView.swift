@@ -45,7 +45,7 @@ final class SLLargeTitleView: UIView {
         view.distribution = .fill
         view.spacing = 8
         view.alignment = .fill
-        view.layoutMargins = .init(top: 0, left: 32, bottom: 0, right: 32)
+        view.layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
         view.isLayoutMarginsRelativeArrangement = true
         return view
     }()

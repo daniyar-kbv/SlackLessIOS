@@ -103,6 +103,17 @@ final class SLSettingsCell: UITableViewCell {
         default: break
         }
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            switch type {
+            case .leaveFeedback: output?(.feedback)
+            default: break
+            }
+        }
+    }
 
     private func layoutUI() {
         backgroundColor = .clear
@@ -267,6 +278,7 @@ extension SLSettingsCell {
         case time(TimeInterval?)
         case price(Double?)
         case pushNotifications(Bool)
+        case feedback
     }
 
     enum Position {

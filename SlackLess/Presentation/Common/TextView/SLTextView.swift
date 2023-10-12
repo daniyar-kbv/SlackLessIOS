@@ -12,8 +12,8 @@ import RxSwift
 import RxCocoa
 
 class SLTextView: UITextView {
-    let didStartEditing = PublishRelay<String?>()
-    let didEndEditing = PublishRelay<String?>()
+    let didStartEditing = PublishRelay<String>()
+    let didEndEditing = PublishRelay<String>()
     
     private(set) var state: State = .normal {
         didSet {
@@ -55,16 +55,21 @@ class SLTextView: UITextView {
     private func layoutUI() {
         delegate = self
         isScrollEnabled = false
-        contentInset = .init(top: 8, left: 16, bottom: 0, right: 16)
+        contentInset = .init(top: 8, left: 16, bottom: 8, right: 16)
         backgroundColor = SLColors.backgroundElevated.getColor()
         layer.cornerRadius = 8
         font = SLFonts.primary.getFont(ofSize: 16, weight: .regular)
         textColor = state.textColor
+        isScrollEnabled = true
         
         addSubview(placeholderLabel)
         placeholderLabel.snp.makeConstraints({
-            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(4)
             $0.verticalEdges.equalToSuperview().inset(8)
+        })
+        
+        snp.makeConstraints({
+            $0.height.greaterThanOrEqualTo("Dummy".height(withConstrainedWidth: 100, font: font ?? .systemFont(ofSize: 16))+16)
         })
     }
 }
@@ -85,6 +90,7 @@ extension SLTextView: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        textView.text = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         didEndEditing.accept(textView.text)
     }
 }

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol FeedbackServiceInput: AnyObject {
-    func sendFeedback(body: String, email: String?)
+    func sendFeedback(body: String, email: String)
 }
 
 protocol FeedbackServiceOutput: AnyObject {
@@ -40,16 +40,20 @@ final class FeedbackServiceImpl: FeedbackService, FeedbackServiceInput, Feedback
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     
     //    Input
-    func sendFeedback(body: String, email: String?) {
-        guard email?.isValidEmail() ?? true else {
+    func sendFeedback(body: String, email: String) {
+        guard email.isEmpty || email.isValidEmail() else {
             errorOccured.accept(DomainError.invalidEmail)
             return
         }
         
         feedbackAPI.sendFeedback(dto: .init(body: body, email: email))
-            .subscribe(errorRelay: errorOccured) { [weak self] _ in
-                self?.feedbackSent.accept(())
-            }
+            .subscribe(
+                onSuccess: { [weak self] _ in
+                    self?.feedbackSent.accept(())
+                }, onError: { [weak self] in
+                    guard let error = $0 as? ErrorPresentable else { return }
+                    self?.errorOccured.accept(error)
+                })
             .disposed(by: disposeBag)
     }
 }
