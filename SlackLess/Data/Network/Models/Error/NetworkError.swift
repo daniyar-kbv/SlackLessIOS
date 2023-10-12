@@ -42,6 +42,6 @@ struct ErrorResponseDTO: Codable, ErrorPresentable {
 
 extension ErrorResponseDTO {
     func toDomainEntity() -> DomainError {
-        return .dataError(message)
+        return .error(message)
     }
 }

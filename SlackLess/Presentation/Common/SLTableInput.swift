@@ -1,5 +1,5 @@
 //
-//  SLInput.swift
+//  SLTableInput.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-07-30.
@@ -9,7 +9,7 @@ import Foundation
 import SnapKit
 import UIKit
 
-final class SLInput: UIView {
+final class SLTableInput: UIView {
     private let type: InputType
     private var value: Double?
     private let output: (Double?) -> Void
@@ -96,7 +96,7 @@ final class SLInput: UIView {
     }
 }
 
-extension SLInput: UITextFieldDelegate {
+extension SLTableInput: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         textField.invalidateIntrinsicContentSize()
         guard let text = textField.text,
@@ -149,7 +149,7 @@ extension SLInput: UITextFieldDelegate {
     }
 }
 
-extension SLInput: UIPickerViewDataSource {
+extension SLTableInput: UIPickerViewDataSource {
     func numberOfComponents(in _: UIPickerView) -> Int {
         5
     }
@@ -166,7 +166,7 @@ extension SLInput: UIPickerViewDataSource {
     }
 }
 
-extension SLInput: UIPickerViewDelegate {
+extension SLTableInput: UIPickerViewDelegate {
     func pickerView(_: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0, 3: return String(row)
@@ -181,7 +181,7 @@ extension SLInput: UIPickerViewDelegate {
     }
 }
 
-extension SLInput {
+extension SLTableInput {
     enum InputType {
         case time
         case price
