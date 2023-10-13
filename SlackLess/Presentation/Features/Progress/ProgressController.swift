@@ -13,15 +13,18 @@ import SnapKit
 import SwiftUI
 import UIKit
 
-final class ProgressController: SLReportsController {
-    private let contentView = ProgressView()
+final class ProgressController: UIViewController {
     private let viewModel: ProgressViewModel
+    private let reportController: SLReportController
+    
+    private let disposeBag = DisposeBag()
+    private let contentView = ProgressView()
 
     init(viewModel: ProgressViewModel) {
         self.viewModel = viewModel
-
-        super.init(reports: [.init(reportType: viewModel.output.getType().reportType, view: contentView.reportView)],
-                   viewModel: viewModel)
+        self.reportController = .init(viewModel: viewModel.output.getReportViewModel())
+        
+        super.init(nibName: .none, bundle: .none)
     }
 
     @available(*, unavailable)
@@ -48,6 +51,8 @@ final class ProgressController: SLReportsController {
         contentView.dateSwitcherView.isHidden = viewModel.output.getType().hideDateSwitcher
         contentView.button.isHidden = viewModel.output.getType().hideButton
         contentView.addTopOffset(viewModel.output.getType().addTopOffset)
+        
+        add(controller: reportController, to: contentView.reportView)
     }
 
     private func bindView() {

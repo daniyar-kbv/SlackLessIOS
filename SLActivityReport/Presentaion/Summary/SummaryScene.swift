@@ -13,7 +13,7 @@ struct SummaryScene: DeviceActivityReportScene {
 
     let context: DeviceActivityReport.Context = .summary
     let content: (ARDay?) -> SummaryRepresentable
-
+    
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> ARDay? {
         guard let activitySegment = await data.flatMap({ $0.activitySegments }).first(where: { _ in true })
         else { return nil }
@@ -96,4 +96,6 @@ struct SummaryScene: DeviceActivityReportScene {
                      selectedApps: selectedAppsTransformed,
                      otherApps: otherAppsTransformed)
     }
+    
+    
 }

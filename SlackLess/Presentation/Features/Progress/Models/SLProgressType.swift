@@ -25,7 +25,7 @@ enum SLProgressType {
         }
     }
 
-    var reportType: SLDeviceActivityReportType {
+    var reportType: SLReportType {
         switch self {
         case .normal: return .progress
         case .weeklyReport: return .weeklyReport
