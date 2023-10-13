@@ -19,6 +19,9 @@ def shared_pods
   pod 'Moya/RxSwift'
   
   # Firebase
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'FirebaseAppCheck'
   pod 'FirebaseFirestore'
 end
 
@@ -34,11 +37,6 @@ target 'SlackLess' do
   
 #  UI
   pod 'FittedSheets'
-  
-  # Firebase
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
-  pod 'FirebaseAppCheck'
 end
 
 target 'SLActivityReport' do
