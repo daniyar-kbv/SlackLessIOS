@@ -1,5 +1,5 @@
 //
-//  SLDeviceActivityReportType.swift
+//  SLReportType.swift
 //  SlackLess
 //
 //  Created by Daniyar Kurmanbayev on 2023-09-11.
@@ -9,7 +9,7 @@ import DeviceActivity
 import Foundation
 import SwiftUI
 
-enum SLDeviceActivityReportType {
+enum SLReportType {
     case summary
     case progress
     case weeklyReport
