@@ -12,15 +12,24 @@ import SwiftUI
 typealias ActivitySegment = DeviceActivityData.ActivitySegment
 
 struct ARProgress {
+    private static var loadData = false
+    
     static func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>,
-                                  with appSettingsService: AppSettingsService) async -> [ARWeek] {
+                                  with appSettingsService: AppSettingsService) async -> [ARWeek]? {
+        guard loadData else {
+            loadData = true
+            return nil
+        }
+        
         let days: [ARWeek.Day] = await data
             .flatMap({ $0.activitySegments })
             .compactMap({ await makeDay(activitySegment: $0,
                                         appSettingsService: appSettingsService) })
             .unwrap()
         
-        guard !days.isEmpty else { return [] }
+//        FIXME: Refactor this
+        
+        guard days.count > 1 else { return nil }
 
         var weeks = [ARWeek]()
         var currentIndex = 0
