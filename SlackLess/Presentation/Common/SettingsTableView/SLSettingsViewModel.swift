@@ -196,7 +196,7 @@ extension SLSettingsViewModelImpl {
     
     private func getIsComplete() -> Bool {
         return (
-            Constants.Settings.appMode == .debug
+            Constants.Settings.environmentType == .simulator
             || (
                 !(appsSelection?.applications.isEmpty ?? true)
                 || !(appsSelection?.categories.isEmpty ?? true)
