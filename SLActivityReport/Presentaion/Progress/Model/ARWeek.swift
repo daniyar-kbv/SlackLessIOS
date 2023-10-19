@@ -35,13 +35,13 @@ class ARWeek {
 
 extension ARWeek {
     struct Day: GraphRepresentable {
-        let weekday: Int
+        let date: Date
         let time: ARTime
 
         func getDateText() -> String {
             let calendar = Calendar.current
             let weekdays = calendar.veryShortWeekdaySymbols
-            return weekdays[weekday - 1]
+            return weekdays[getWeekday() - 1]
         }
 
         func getSlackedTimeFormatted() -> String? {
@@ -61,7 +61,11 @@ extension ARWeek {
         }
 
         func getIsCurrent() -> Bool {
-            Calendar.current.component(.weekday, from: Date()) == weekday
+            Calendar.current.component(.weekday, from: Date()) == getWeekday()
+        }
+        
+        func getWeekday() -> Int {
+            date.getComponents([.weekday]).weekday ?? 1
         }
     }
 }
