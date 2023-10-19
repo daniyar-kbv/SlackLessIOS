@@ -166,6 +166,8 @@
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
 		70B6BA232ADB77550094076C /* AsyncSequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6BA212ADB76FA0094076C /* AsyncSequenceExtension.swift */; };
+		70B6BA2A2AE0CA480094076C /* ARViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6BA292AE0CA480094076C /* ARViewState.swift */; };
+		70B6BA2E2AE0CBD60094076C /* ARViewStatePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6BA2D2AE0CBD60094076C /* ARViewStatePresentable.swift */; };
 		70DA6E622AD8CE8F00356E24 /* SLReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E612AD8CE8F00356E24 /* SLReportViewModel.swift */; };
 		70DA6E642AD8CE9700356E24 /* SLReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA6E632AD8CE9700356E24 /* SLReportController.swift */; };
 		712F0E345155A32DF4F043A618B5FA82 /* TimeIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F454E731CE6C16059552FE175153E /* TimeIntervalExtension.swift */; };
@@ -527,6 +529,8 @@
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
 		70B6BA212ADB76FA0094076C /* AsyncSequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSequenceExtension.swift; sourceTree = "<group>"; };
+		70B6BA292AE0CA480094076C /* ARViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewState.swift; sourceTree = "<group>"; };
+		70B6BA2D2AE0CBD60094076C /* ARViewStatePresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewStatePresentable.swift; sourceTree = "<group>"; };
 		70DA6E612AD8CE8F00356E24 /* SLReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLReportViewModel.swift; sourceTree = "<group>"; };
 		70DA6E632AD8CE9700356E24 /* SLReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLReportController.swift; sourceTree = "<group>"; };
 		710B54CEB0D4BD815A60EC43440333E9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
@@ -1211,8 +1215,8 @@
 		678746F5B5D16F7DB29C079352D5AC5E /* Presentaion */ = {
 			isa = PBXGroup;
 			children = (
+				70B6BA2B2AE0CBAA0094076C /* Utils */,
 				FA16EF5D315490D83314250798117BC5 /* Common */,
-				BA86EEAB7ABDD5F81B6CD1678D65F9FD /* Extensions */,
 				6C25D45A633A913BE623655591943846 /* Progress */,
 				FA05B36FB9D3126C43A6E0FD9A18268B /* Summary */,
 				3D89EBF7CC9AC51637450F7E07F7759F /* WeeklyReport */,
@@ -1262,6 +1266,46 @@
 				70B6BA212ADB76FA0094076C /* AsyncSequenceExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		70B6BA272AE0CA340094076C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				70B6BA292AE0CA480094076C /* ARViewState.swift */,
+				B36E090C1A2EBDAD83090BC53672F96F /* ARProgress.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		70B6BA282AE0CA380094076C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D042D2B677EF0FE19BD2C663518679C7 /* ARAppView.swift */,
+				6077F08490ECF7429D873B5591EDA25E /* ARDashedView.swift */,
+				40BA157BB7E07A2B2D57B65CF6713103 /* ARLegendView.swift */,
+				0891658E2BD2706F253A7A1F4B9347FD /* ARPageControlView.swift */,
+				D2F3A0736837E659A420CA4E53DCAE2E /* ARPartitionsView.swift */,
+				16AF3788BAD433BAA22207E5A4AE6794 /* ARSectionView.swift */,
+				46570E565BEC4AFD6D78DBACCB77F74C /* ARView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		70B6BA2B2AE0CBAA0094076C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				70B6BA2C2AE0CBB30094076C /* Protocols */,
+				BA86EEAB7ABDD5F81B6CD1678D65F9FD /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		70B6BA2C2AE0CBB30094076C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				70B6BA2D2AE0CBD60094076C /* ARViewStatePresentable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		75753413DC1FE60522EC957C35B47895 /* REST */ = {
@@ -1812,14 +1856,8 @@
 		FA16EF5D315490D83314250798117BC5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				D042D2B677EF0FE19BD2C663518679C7 /* ARAppView.swift */,
-				6077F08490ECF7429D873B5591EDA25E /* ARDashedView.swift */,
-				40BA157BB7E07A2B2D57B65CF6713103 /* ARLegendView.swift */,
-				0891658E2BD2706F253A7A1F4B9347FD /* ARPageControlView.swift */,
-				D2F3A0736837E659A420CA4E53DCAE2E /* ARPartitionsView.swift */,
-				B36E090C1A2EBDAD83090BC53672F96F /* ARProgress.swift */,
-				16AF3788BAD433BAA22207E5A4AE6794 /* ARSectionView.swift */,
-				46570E565BEC4AFD6D78DBACCB77F74C /* ARView.swift */,
+				70B6BA282AE0CA380094076C /* Views */,
+				70B6BA272AE0CA340094076C /* Models */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2469,6 +2507,7 @@
 				35B5B73B13FB7ACAB18693AD4D85F8BF /* DateExtension.swift in Sources */,
 				C4BA7B8EC7278665654EB3D885F63519 /* DateIntervalExtension.swift in Sources */,
 				605CDB660B3B00750FA1166AB9FD43DA /* DependencyFactory.swift in Sources */,
+				70B6BA2E2AE0CBD60094076C /* ARViewStatePresentable.swift in Sources */,
 				8529AB027B23ACFFFFE1802BEBEAEC14 /* DeviceActivityEvent.swift in Sources */,
 				51CF8528222BBFEB428E93898D45F12D /* DeviceActivityName.swift in Sources */,
 				4A244F82802D2109D0D9F7634734310C /* DomainComponentsFactory.swift in Sources */,
@@ -2538,6 +2577,7 @@
 				522966F798B20CFD883D458C22D05E5A /* SummaryOtherAppsTableViewController.swift in Sources */,
 				6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */,
 				33ED243FC5036348A208E2288515F1A8 /* SummaryScene.swift in Sources */,
+				70B6BA2A2AE0CA480094076C /* ARViewState.swift in Sources */,
 				BDFC56885A3649800D5716CD3A36DA4E /* SummarySelectedAppsCollectionCell.swift in Sources */,
 				41F0A47B4CF3B81339E4BA6F1E3735B3 /* SummarySelectedAppsCollectionView.swift in Sources */,
 				CEDCAD3CB7D5505C84CE6EA81126E090 /* SummarySelectedAppsCollectionViewController.swift in Sources */,
