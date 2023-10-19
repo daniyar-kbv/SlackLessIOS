@@ -63,10 +63,15 @@ final class SummaryController: UIViewController {
     }
 
     private func bindViewModel() {
+        viewModel.output.state
+            .subscribe(onNext: { [weak self] in
+                self?.update(state: $0)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.time.subscribe(onNext: { [weak self] in
             self?.contentView.summarySelectedAppsDashboardView.set(time: $0)
             self?.contentView.otherAppsDashboardView.set(time: $0)
-            self?.showLoader($0 == nil)
         })
         .disposed(by: disposeBag)
 
@@ -85,10 +90,5 @@ final class SummaryController: UIViewController {
                 otherAppsTableViewViewModel.input.update(apps: $0)
             })
             .disposed(by: disposeBag)
-    }
-
-    private func showLoader(_ show: Bool) {
-        contentView.isHidden = show
-        show ? showLoader() : hideLoader()
     }
 }

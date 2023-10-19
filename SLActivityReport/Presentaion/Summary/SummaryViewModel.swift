@@ -17,6 +17,7 @@ protocol SummaryViewModelOutput {
     var time: BehaviorRelay<ARTime?> { get }
     var selectedApps: BehaviorRelay<[ARApp]> { get }
     var otherApps: BehaviorRelay<[ARApp]> { get }
+    var state: BehaviorRelay<ARViewState> { get }
 }
 
 protocol SummaryViewModel: AnyObject {
@@ -31,7 +32,16 @@ final class SummaryViewModelImpl: SummaryViewModel,
     var input: SummaryViewModelInput { self }
     var output: SummaryViewModelOutput { self }
 
-    private var day: ARDay?
+    private var day: ARDay? {
+        didSet {
+            let setLoading = day == nil
+            if setLoading && state.value != .loading {
+                state.accept(.loading)
+            } else if !setLoading && state.value != .loaded {
+                state.accept(.loaded)
+            }
+        }
+    }
 
     init(day: ARDay?) {
         self.day = day
@@ -41,6 +51,7 @@ final class SummaryViewModelImpl: SummaryViewModel,
     lazy var time: BehaviorRelay<ARTime?> = .init(value: day?.time)
     lazy var selectedApps: BehaviorRelay<[ARApp]> = .init(value: day?.selectedApps ?? [])
     lazy var otherApps: BehaviorRelay<[ARApp]> = .init(value: day?.otherApps ?? [])
+    let state: BehaviorRelay<ARViewState> = .init(value: .loading)
 
     //    Input
 
