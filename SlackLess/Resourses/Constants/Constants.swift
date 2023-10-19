@@ -18,10 +18,26 @@ struct Constants {
         static let appMode: AppMode = .debug
         static let shortUnlockTime: TimeInterval = 1 * 60
         static let unlockTime: TimeInterval = 15 * 60
+        
+        static let environmentType: EnvironmentType = {
+            #if targetEnvironment(simulator)
+            return .simulator
+            #elseif DEBUG
+            return .device
+            #else
+            return .release
+            #endif
+        }()
 
         enum AppMode {
             case normal
             case debug
+        }
+        
+        enum EnvironmentType {
+            case simulator
+            case device
+            case release
         }
     }
 
