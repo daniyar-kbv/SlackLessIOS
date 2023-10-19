@@ -48,6 +48,10 @@ final class ProgressController: UIViewController {
         configureView()
         bindViewModel()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
 
     private func configureView() {
         let currentWeekChartController = ARChartController(viewModel: currentWeekChartViewModel)
@@ -60,14 +64,13 @@ final class ProgressController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.output.lastWeeks
+        viewModel.output.state
             .subscribe(onNext: { [weak self] in
-                self?.showLoader($0.isEmpty)
+                self?.update(state: $0)
             })
             .disposed(by: disposeBag)
 
         viewModel.output.time.subscribe(onNext: { [weak self] in
-            let test = $0
             self?.contentView.dashboardView.firstContainer.set(time: $0.currentWeekTime?.slacked,
                                                                previousTime: $0.previousWeekTime?.slacked)
             self?.contentView.dashboardView.secondContainer.set(time: $0.currentWeekTime?.total,
@@ -84,10 +87,5 @@ final class ProgressController: UIViewController {
         viewModel.output.lastWeeks
             .subscribe(onNext: lastWeeksChartViewModel.input.set(items:))
             .disposed(by: disposeBag)
-    }
-
-    private func showLoader(_ show: Bool) {
-        contentView.isHidden = show
-        show ? showLoader() : hideLoader()
     }
 }
