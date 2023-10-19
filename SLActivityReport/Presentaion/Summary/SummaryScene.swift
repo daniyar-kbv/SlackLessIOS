@@ -20,7 +20,8 @@ struct SummaryScene: DeviceActivityReportScene {
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> ARDay? {
         guard let activitySegment = await data
             .flatMap({ $0.activitySegments })
-            .first(where: { _ in true })
+            .first(where: { _ in true }),
+              activitySegment.totalActivityDuration > 0
         else { return nil }
 
         let date = activitySegment.dateInterval.start
