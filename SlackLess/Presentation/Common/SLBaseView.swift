@@ -62,7 +62,7 @@ class SLBaseView: UIView {
         }
 
         contentView.snp.makeConstraints {
-            $0.top.equalTo(stackView.snp.bottom).offset(16)
+            $0.top.equalTo(stackView.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
         }
     }

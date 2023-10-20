@@ -27,7 +27,6 @@ final class SLSettingsController: UIViewController {
         view.delegate = self
         view.backgroundColor = SLColors.background1.getColor()
         view.separatorStyle = .none
-        view.bounces = false
         view.delaysContentTouches = false
         return view
     }()
@@ -91,7 +90,8 @@ final class SLSettingsController: UIViewController {
         navigationController?.title = SLTexts.Customize.title.localized()
 
         switch viewModel.output.getType() {
-        case .full: break
+        case .full:
+            tableView.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
         case .setUp, .display:
             tableView.snp.makeConstraints {
                 $0.height.equalTo(1)

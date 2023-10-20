@@ -29,7 +29,7 @@ final class SummaryView: SLBaseView {
         [dateSwitcherView, reportView].forEach(addSubview(_:))
 
         dateSwitcherView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(16)
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(28)
         }
