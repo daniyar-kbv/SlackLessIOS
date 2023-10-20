@@ -53,6 +53,8 @@ extension UIViewController: ARStatePresentable {
     private func hideLoading() {
         guard let overlayView = overlayView else { return }
         
+        hideLoader()
+        
         UIView.animate(
             withDuration: 0.1,
             animations: {
