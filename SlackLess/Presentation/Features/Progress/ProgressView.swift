@@ -44,7 +44,8 @@ final class ProgressView: SLBaseView {
         [stackView, button].forEach(addSubview(_:))
         
         stackView.snp.makeConstraints({
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview().offset(16)
+            $0.horizontalEdges.bottom.equalToSuperview()
         })
 
         dateSwitcherView.snp.makeConstraints {
