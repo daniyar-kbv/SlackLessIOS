@@ -15,22 +15,11 @@ import DeviceActivity
 
 final class SLReportController: UIViewController {
     private let viewModel: SLReportViewModel
-    private var hostingController: UIHostingController<DeviceActivityReport>
+    private var hostingController: SLHostingController
     
     private let disposeBag = DisposeBag()
-    
-    private(set) lazy var testButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("Test", for: .normal)
-        view.backgroundColor = .systemBlue
-        view.rx.tap
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                print(hostingController.view.getAllSubviewNames())
-            })
-            .disposed(by: disposeBag)
-        return view
-    }()
+    private var timer: Timer?
+    private var state: State = .normal
     
     private(set) lazy var contentView = UIView()
     
@@ -53,36 +42,36 @@ final class SLReportController: UIViewController {
         layoutUI()
         bindViewModel()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.reloadIfNeeded()
-            
-        }
-    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.reloadIfNeeded()
-        }
+        reloadIfNeeded()
+        
+        setTimer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        timer?.invalidate()
+    }
+    
+    private func setTimer() {
+        timer = .scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func reload() {
+        reloadIfNeeded()
     }
     
     private func layoutUI(){
         view.backgroundColor = SLColors.background1.getColor()
         
-        [testButton, contentView].forEach({ view.addSubview($0) })
-        testButton.snp.makeConstraints({
-            $0.top.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(60)
-        })
+        [contentView].forEach({ view.addSubview($0) })
         
         contentView.snp.makeConstraints({
-            $0.top.equalTo(testButton.snp.bottom)
-            $0.horizontalEdges.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         })
         
         reloadIfNeeded(force: true)
@@ -98,19 +87,53 @@ final class SLReportController: UIViewController {
     }
     
     private func reloadIfNeeded(force: Bool = false) {
-        guard hostingController.view.containsView(of: "EXPlaceholderView")
-        || force else { return }
-        remove(controller: hostingController)
-        hostingController = makeHostingController(with: viewModel.output.getFilter())
-        hostingController.view.backgroundColor = SLColors.background1.getColor()
-        add(controller: hostingController, to: contentView)
+        if getIsBlank(force: force) && state != .blank {
+            state = .blank
+            showLoader()
+            
+            remove(controller: hostingController)
+            
+            hostingController = makeHostingController(with: viewModel.output.getFilter())
+            hostingController.view.backgroundColor = SLColors.background1.getColor()
+            hostingController.didLayoutSubviews
+                .subscribe(onNext: { [weak self] in
+                    self?.reloadIfNeeded()
+                })
+                .disposed(by: disposeBag)
+            
+            add(controller: hostingController, to: contentView)
+        } else if !getIsBlank(force: force) && state != .normal {
+            state = .normal
+            hideLoader(animated: false)
+        }
+    }
+    
+    private func getIsBlank(force: Bool) -> Bool {
+        return hostingController.view.containsView(of: "EXPlaceholderView") || force
     }
     
     private func makeReport(with filter: DeviceActivityFilter) -> DeviceActivityReport {
         .init(viewModel.output.getType().getContext(), filter: filter)
     }
     
-    private func makeHostingController(with filter: DeviceActivityFilter) -> UIHostingController<DeviceActivityReport> {
+    private func makeHostingController(with filter: DeviceActivityFilter) -> SLHostingController {
         .init(rootView: makeReport(with: filter))
+    }
+}
+
+extension SLReportController {
+    enum State {
+        case normal
+        case blank
+    }
+}
+ 
+final class SLHostingController: UIHostingController<DeviceActivityReport> {
+    let didLayoutSubviews = PublishRelay<Void>()
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        didLayoutSubviews.accept(())
     }
 }
