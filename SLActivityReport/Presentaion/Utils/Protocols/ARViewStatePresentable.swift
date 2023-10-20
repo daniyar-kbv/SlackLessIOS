@@ -47,7 +47,7 @@ extension UIViewController: ARStatePresentable {
             $0.edges.equalToSuperview()
         })
         
-        showLoader(on: overlayView)
+        showLoader(on: overlayView, animated: false )
     }
     
     private func hideLoading() {
