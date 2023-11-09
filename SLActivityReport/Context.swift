@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 extension DeviceActivityReport.Context {
-    static let summary = Self(SLDeviceActivityReportType.summary.contextName)
-    static let progress = Self(SLDeviceActivityReportType.progress.contextName)
-    static let weeklyReport = Self(SLDeviceActivityReportType.weeklyReport.contextName)
+    static let summary = Self(SLReportType.summary.contextName)
+    static let progress = Self(SLReportType.progress.contextName)
+    static let weeklyReport = Self(SLReportType.weeklyReport.contextName)
 }

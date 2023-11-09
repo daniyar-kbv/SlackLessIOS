@@ -14,11 +14,11 @@ struct ProgressRepresentable: UIViewControllerRepresentable {
 
     private let appSettingsService: AppSettingsService
     private let type: SLProgressType
-    private let weeks: [ARWeek]
+    private let weeks: [ARWeek]?
 
     init(appSettingsService: AppSettingsService,
          type: SLProgressType,
-         weeks: [ARWeek])
+         weeks: [ARWeek]?)
     {
         self.appSettingsService = appSettingsService
         self.type = type

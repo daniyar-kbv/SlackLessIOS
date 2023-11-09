@@ -13,6 +13,15 @@ final class ProgressView: SLBaseView {
     private(set) lazy var dateSwitcherView = SLDateSwitcherView()
 
     private(set) lazy var reportView = UIView()
+    
+    private(set) lazy var stackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [dateSwitcherView, reportView])
+        view.axis = .vertical
+        view.distribution = .fill
+        view.alignment = .center
+        view.spacing = 8
+        return view
+    }()
 
     private(set) lazy var button: SLButton = {
         let view = SLButton(style: .filled, size: .large)
@@ -32,18 +41,21 @@ final class ProgressView: SLBaseView {
     }
 
     private func layoutUI() {
-        [dateSwitcherView, reportView, button].forEach(addSubview(_:))
+        [stackView, button].forEach(addSubview(_:))
+        
+        stackView.snp.makeConstraints({
+            $0.top.equalToSuperview().offset(16)
+            $0.horizontalEdges.bottom.equalToSuperview()
+        })
 
         dateSwitcherView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.width.equalToSuperview().inset(16)
             $0.height.equalTo(28)
         }
-
-        reportView.snp.makeConstraints {
-            $0.top.equalTo(dateSwitcherView.snp.bottom).offset(8)
-            $0.horizontalEdges.bottom.equalToSuperview()
-        }
+        
+        reportView.snp.makeConstraints({
+            $0.width.equalToSuperview()
+        })
 
         button.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)
