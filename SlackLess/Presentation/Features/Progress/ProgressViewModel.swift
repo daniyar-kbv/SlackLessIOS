@@ -25,9 +25,10 @@ protocol ProgressViewModelOutput {
     var isFinished: PublishRelay<Void> { get }
 
     func getType() -> SLProgressType
+    func getReportViewModel() -> SLReportViewModel
 }
 
-protocol ProgressViewModel: SLReportsViewModel {
+protocol ProgressViewModel: AnyObject {
     var input: ProgressViewModelInput { get }
     var output: ProgressViewModelOutput { get }
 }
@@ -41,6 +42,8 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
 
     private let disposeBag = DisposeBag()
     private lazy var currentDate = Date().getFirstDayOfWeek()
+    private lazy var reportViewModel = SLReportViewModelImpl(type: type.reportType,
+                                                             filter: type.reportType.getFilter())
 
     init(type: SLProgressType,
          appSettingsService: AppSettingsService)
@@ -53,9 +56,6 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
     }
 
     //    Output
-    lazy var filters: [SLDeviceActivityReportFilter] = [
-        .init(reportType: type.reportType, filter: type.reportType.getFilter()),
-    ]
     lazy var date: BehaviorRelay<String?> = .init(value: makeCurrentDateString())
     lazy var isntFirstDate: BehaviorRelay<Bool> = .init(value: isntFirstWeek())
     lazy var isntLastDate: BehaviorRelay<Bool> = .init(value: isntLastWeek())
@@ -65,6 +65,10 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
 
     func getType() -> SLProgressType {
         type
+    }
+    
+    func getReportViewModel() -> SLReportViewModel {
+        reportViewModel
     }
 
     //    Input

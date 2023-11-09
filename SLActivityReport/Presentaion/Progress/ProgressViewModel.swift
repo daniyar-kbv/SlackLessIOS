@@ -10,13 +10,14 @@ import RxCocoa
 import RxSwift
 
 protocol ProgressViewModelInput {
-    func update(weeks: [ARWeek])
+    func update(weeks: [ARWeek]?)
 }
 
 protocol ProgressViewModelOutput {
     var time: BehaviorRelay<(currentWeekTime: ARTime?, previousWeekTime: ARTime?)> { get }
     var days: BehaviorRelay<[ARWeek.Day]> { get }
     var lastWeeks: BehaviorRelay<[ARWeek]> { get }
+    var state: BehaviorRelay<ARViewState> { get }
 
     func getType() -> SLProgressType
 }
@@ -36,12 +37,22 @@ final class ProgressViewModelImpl: ProgressViewModel,
     private let disposeBag = DisposeBag()
     private let appSettingsService: AppSettingsService
     private let type: SLProgressType
-    private var weeks: [ARWeek]
     private var currentWeekIndex = 4
+    
+    private var weeks: [ARWeek]? {
+        didSet {
+            let setLoading = weeks?.isEmpty ?? true
+            if setLoading && state.value != .loading {
+                state.accept(.loading)
+            } else if !setLoading && state.value != .loaded {
+                state.accept(.loaded)
+            }
+        }
+    }
 
     init(appSettingsService: AppSettingsService,
          type: SLProgressType,
-         weeks: [ARWeek])
+         weeks: [ARWeek]?)
     {
         self.appSettingsService = appSettingsService
         self.type = type
@@ -55,14 +66,15 @@ final class ProgressViewModelImpl: ProgressViewModel,
     lazy var time: BehaviorRelay<(currentWeekTime: ARTime?, previousWeekTime: ARTime?)> = .init(value: (currentWeekTime: getCurrentWeek()?.getTime(),
                                                                                                         previousWeekTime: getPreviousWeek()?.getTime()))
     lazy var days: BehaviorRelay<[ARWeek.Day]> = .init(value: getCurrentWeek()?.days ?? [])
-    lazy var lastWeeks: BehaviorRelay<[ARWeek]> = .init(value: weeks)
+    lazy var lastWeeks: BehaviorRelay<[ARWeek]> = .init(value: weeks ?? [])
+    let state: BehaviorRelay<ARViewState> = .init(value: .loading)
 
     func getType() -> SLProgressType {
         type
     }
 
     //    Input
-    func update(weeks: [ARWeek]) {
+    func update(weeks: [ARWeek]?) {
         self.weeks = weeks
         reload()
     }
@@ -85,13 +97,13 @@ extension ProgressViewModelImpl {
         case .normal:
             processProgressDate(appSettingsService.output.getProgressDate())
         case .weeklyReport:
-            guard weeks.count > 1 else { return }
-            currentWeekIndex = weeks.endIndex - 1
+            guard (weeks?.count ?? 0) > 1 else { return }
+            currentWeekIndex = (weeks?.endIndex ?? 1) - 1
         }
     }
 
     private func processProgressDate(_ date: Date?) {
-        guard let index = weeks.firstIndex(where: { $0.startDate == date }) else { return }
+        guard let index = weeks?.firstIndex(where: { $0.startDate == date }) else { return }
         currentWeekIndex = index
         reload()
     }
@@ -100,16 +112,16 @@ extension ProgressViewModelImpl {
         time.accept((currentWeekTime: getCurrentWeek()?.getTime(),
                      previousWeekTime: getPreviousWeek()?.getTime()))
         days.accept(getCurrentWeek()?.days ?? [])
-        lastWeeks.accept(weeks)
+        lastWeeks.accept(weeks ?? [])
     }
 
     private func getCurrentWeek() -> ARWeek? {
-        guard !weeks.isEmpty else { return nil }
-        return weeks[currentWeekIndex]
+        guard !(weeks?.isEmpty ?? true) else { return nil }
+        return weeks?[currentWeekIndex]
     }
 
     private func getPreviousWeek() -> ARWeek? {
-        guard currentWeekIndex > 0, weeks.count > 1 else { return nil }
-        return weeks[currentWeekIndex - 1]
+        guard currentWeekIndex > 0, (weeks?.count ?? 0) > 1 else { return nil }
+        return weeks?[currentWeekIndex - 1]
     }
 }

@@ -93,7 +93,8 @@ final class ARChartViewModelImpl: ARChartViewModel, ARChartViewModelInput, ARCha
     }
 
     func getIsCurrent(at index: Int) -> Bool {
-        items[index].getIsCurrent()
+        guard index >= 0 && index < items.count else { return false }
+        return items[index].getIsCurrent()
     }
 
     //    Input

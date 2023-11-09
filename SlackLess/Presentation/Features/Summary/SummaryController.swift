@@ -13,16 +13,18 @@ import SnapKit
 import SwiftUI
 import UIKit
 
-final class SummaryController: SLReportsController {
-    private let contentView = SummaryView()
+final class SummaryController: UIViewController {
     private let viewModel: SummaryViewModel
+    private let reportController: SLReportController
+    
+    private let disposeBag = DisposeBag()
+    private let contentView = SummaryView()
 
     init(viewModel: SummaryViewModel) {
         self.viewModel = viewModel
-
-        super.init(reports: [.init(reportType: .summary,
-                                   view: contentView.reportView)],
-                   viewModel: viewModel)
+        self.reportController = .init(viewModel: viewModel.output.getReportViewModel())
+        
+        super.init(nibName: .none, bundle: .none)
     }
 
     @available(*, unavailable)
@@ -46,6 +48,8 @@ final class SummaryController: SLReportsController {
 
     private func configView() {
         contentView.set(title: SLTexts.Summary.title.localized())
+        
+        add(controller: reportController, to: contentView.reportView)
     }
 
     private func bindView() {

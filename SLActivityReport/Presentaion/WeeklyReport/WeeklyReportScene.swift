@@ -12,9 +12,9 @@ struct WeeklyReportScene: DeviceActivityReportScene {
     let appSettingsService: AppSettingsService
 
     let context: DeviceActivityReport.Context = .weeklyReport
-    let content: ([ARWeek]) -> ProgressRepresentable
+    let content: ([ARWeek]?) -> ProgressRepresentable
 
-    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [ARWeek] {
+    func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> [ARWeek]? {
         await ARProgress.makeConfiguration(representing: data, with: appSettingsService)
     }
 }

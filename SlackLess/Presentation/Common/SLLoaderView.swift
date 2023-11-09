@@ -48,7 +48,7 @@ final class SLLoaderView: UIView {
         }
     }
 
-    func showLoader(on view: UIView) {
+    func showLoader(on view: UIView, animated: Bool = true) {
         indicatorView.startAnimating()
 
         view.addSubview(self)
@@ -61,28 +61,40 @@ final class SLLoaderView: UIView {
         container.snp.updateConstraints {
             $0.size.equalTo(70)
         }
-
-        UIView.animate(withDuration: 0.1,
-                       animations: { [weak self] in
-                           self?.container.alpha = 1
-                           self?.layoutIfNeeded()
-                       })
+        
+        if animated {
+            UIView.animate(withDuration: 0.1,
+                           animations: { [weak self] in
+                self?.container.alpha = 1
+                self?.layoutIfNeeded()
+            })
+        } else {
+            container.alpha = 1
+        }
     }
 
-    func hideLoader() {
+    func hideLoader(animated: Bool = true) {
         container.snp.updateConstraints {
             $0.size.equalTo(40)
         }
-
-        UIView.animate(withDuration: 0.1,
-                       animations: { [weak self] in
-                           self?.container.alpha = 0
-                           self?.layoutIfNeeded()
-                       },
-                       completion: { [weak self] didFinish in
-                           guard didFinish else { return }
-                           self?.removeFromSuperview()
-                           self?.indicatorView.stopAnimating()
-                       })
+        
+        if animated {
+            UIView.animate(withDuration: 0.1,
+                           animations: { [weak self] in
+                self?.container.alpha = 0
+                self?.layoutIfNeeded()
+            },
+                           completion: { [weak self] didFinish in
+                guard didFinish else { return }
+                self?.remove()
+            })
+        } else {
+            remove()
+        }
+    }
+    
+    private func remove() {
+        removeFromSuperview()
+        indicatorView.stopAnimating()
     }
 }

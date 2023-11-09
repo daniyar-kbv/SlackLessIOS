@@ -57,6 +57,13 @@ final class SummarySelectedAppsDashboardView: UIView {
         view.textColor = SLColors.white.getColor()
         return view
     }()
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        circleLayer.strokeColor = SLColors.background1.getColor()?.cgColor
+        progressLayer.strokeColor = SLColors.accent2.getColor()?.cgColor
+    }
 
     override init(frame _: CGRect) {
         super.init(frame: .zero)
