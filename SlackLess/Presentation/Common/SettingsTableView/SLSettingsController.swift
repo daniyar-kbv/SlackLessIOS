@@ -145,6 +145,7 @@ final class SLSettingsController: UIViewController {
     private func reload() {
         switch viewModel.output.getType() {
         case .full:
+//            FIXME: Fix loader
             if !didAppear {
                 showLoader()
             }
@@ -213,7 +214,9 @@ extension SLSettingsController: UITableViewDataSource {
                 }
             }
 
-            cell.isEnabled = viewModel.output.canChangeSettings || !viewModel.output.isSettings(section: indexPath.section)
+            cell.isEnabled = viewModel.output.canChangeSettings
+            || !viewModel.output.isSettings(section: indexPath.section)
+            || Constants.Settings.appMode == .debug
 
             return cell
         }
