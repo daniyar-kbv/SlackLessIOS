@@ -53,7 +53,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     private let disposeBag = DisposeBag()
     private let appSettingsRepository: AppSettingsRepository
     private let eventManager: EventManager
-    private let authorizationCenter = AuthorizationCenter.shared
     private let calendar = Calendar.current
 
     init(appSettingsRepository: AppSettingsRepository,
@@ -150,7 +149,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     func requestAuthorization() {
         Task {
             do {
-                try await authorizationCenter.requestAuthorization(for: FamilyControlsMember.individual)
+                try await AuthorizationCenter.shared.requestAuthorization(for: FamilyControlsMember.individual)
                 appSettingsRepository.input.set(startDate: .now.getDate())
                 DispatchQueue.main.async { [weak self] in
                     self?.authorizaionStatus.accept(.success(()))
