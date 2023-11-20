@@ -81,7 +81,7 @@ extension AppCoordinator {
 
     func showWeeklyReportIfNeeded() {
         let service = serviceFactory.makeAppSettingsService()
-        guard Constants.Settings.appMode == .debug || service.output.getShowWeeklyReport() else { return }
+        guard service.output.getShowWeeklyReport() else { return }
         let coordinator = appCoordinatorsFactory.makeWeeklyReportCoordinator()
 
         coordinator.didFinish.subscribe(onNext: { [weak self, weak service] in
