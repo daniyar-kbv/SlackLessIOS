@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 protocol LoaderPresentable {
-    func showLoader(on view: UIView?, animated: Bool)
+    func showLoader(on view: UIView?, animated: Bool, overlayColor: UIColor?)
     func hideLoader(animated: Bool)
 }
 
@@ -28,9 +28,9 @@ extension UIViewController: LoaderPresentable {
             }
         }
     
-    func showLoader(on view: UIView? = nil, animated: Bool = true) {
+    func showLoader(on view: UIView? = nil, animated: Bool = true, overlayColor: UIColor? = nil) {
         guard loaderView == nil else { return }
-        let loaderView = SLLoaderView()
+        let loaderView = SLLoaderView(overlayColor: overlayColor)
         self.loaderView = loaderView
         loaderView.showLoader(on: view ?? self.view, animated: animated)
     }

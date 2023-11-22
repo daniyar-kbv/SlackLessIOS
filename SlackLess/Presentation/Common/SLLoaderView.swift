@@ -10,6 +10,14 @@ import SnapKit
 import UIKit
 
 final class SLLoaderView: UIView {
+    private let overlayColor: UIColor?
+    
+    private(set) lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = overlayColor ?? .white.withAlphaComponent(0.01)
+        return view
+    }()
+    
     private(set) lazy var container: UIView = {
         let view = UIView()
         view.backgroundColor = SLColors.gray5.getColor()?.withAlphaComponent(0.5)
@@ -24,8 +32,10 @@ final class SLLoaderView: UIView {
         return view
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(overlayColor: UIColor? = nil) {
+        self.overlayColor = overlayColor
+        
+        super.init(frame: .zero)
 
         layoutUI()
     }
@@ -36,13 +46,18 @@ final class SLLoaderView: UIView {
     }
 
     private func layoutUI() {
-        addSubview(container)
+        addSubview(backgroundView)
+        backgroundView.snp.makeConstraints({
+            $0.edges.equalToSuperview()
+        })
+        
+        backgroundView.addSubview(container)
         container.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.size.equalTo(40)
         }
 
-        addSubview(indicatorView)
+        container.addSubview(indicatorView)
         indicatorView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
