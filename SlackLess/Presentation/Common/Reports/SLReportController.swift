@@ -85,9 +85,15 @@ final class SLReportController: UIViewController {
     
     private func configure() {
         reload()
-        state = .waiting
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
-            self?.state = .broken
+        
+        switch viewModel.output.getType() {
+        case .summary:
+            state = .waiting
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+                self?.state = .broken
+            }
+        default:
+            break
         }
     }
     
