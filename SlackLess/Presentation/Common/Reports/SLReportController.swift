@@ -19,7 +19,11 @@ final class SLReportController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var timer: Timer?
-    private var state: State = .normal
+    private var state: State = .broken {
+        didSet {
+            reload()
+        }
+    }
     
     private(set) lazy var contentView = UIView()
     
@@ -41,12 +45,11 @@ final class SLReportController: UIViewController {
         
         layoutUI()
         bindViewModel()
+        configure()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        reloadIfNeeded()
         
         setTimer()
     }
@@ -58,11 +61,7 @@ final class SLReportController: UIViewController {
     }
     
     private func setTimer() {
-        timer = .scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func reload() {
-        reloadIfNeeded()
+        timer = .scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(refreshState), userInfo: nil, repeats: true)
     }
     
     private func layoutUI(){
@@ -73,8 +72,6 @@ final class SLReportController: UIViewController {
         contentView.snp.makeConstraints({
             $0.edges.equalToSuperview()
         })
-        
-        reloadIfNeeded(force: true)
     }
     
     private func bindViewModel() {
@@ -86,10 +83,18 @@ final class SLReportController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func reloadIfNeeded(force: Bool = false) {
-        if getIsBlank(force: force) && state != .blank {
-            state = .blank
-            showLoader()
+    private func configure() {
+        reload()
+        state = .waiting
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+            self?.state = .broken
+        }
+    }
+    
+    private func reload() {
+        switch state {
+        case .broken:
+            showLoader(overlayColor: SLColors.background1.getColor())
             
             remove(controller: hostingController)
             
@@ -97,19 +102,34 @@ final class SLReportController: UIViewController {
             hostingController.view.backgroundColor = SLColors.background1.getColor()
             hostingController.didLayoutSubviews
                 .subscribe(onNext: { [weak self] in
-                    self?.reloadIfNeeded()
+                    self?.refreshState()
                 })
                 .disposed(by: disposeBag)
             
             add(controller: hostingController, to: contentView)
-        } else if !getIsBlank(force: force) && state != .normal {
-            state = .normal
+        case .normal:
             hideLoader(animated: false)
+        case .waiting:
+            break
         }
     }
     
-    private func getIsBlank(force: Bool) -> Bool {
-        return hostingController.view.containsView(of: "EXPlaceholderView") || force
+    @objc private func refreshState() {
+        let isBroken = checkIfBroken()
+        switch state {
+        case .broken:
+            guard !isBroken else { break }
+            state = .normal
+        case .normal:
+            guard isBroken else { break }
+            state = .broken
+        case .waiting:
+            break
+        }
+    }
+    
+    private func checkIfBroken() -> Bool {
+        hostingController.view.containsView(of: "EXPlaceholderView")
     }
     
     private func makeReport(with filter: DeviceActivityFilter) -> DeviceActivityReport {
@@ -123,8 +143,9 @@ final class SLReportController: UIViewController {
 
 extension SLReportController {
     enum State {
+        case broken
         case normal
-        case blank
+        case waiting
     }
 }
  
