@@ -81,13 +81,21 @@ final class ARAppView: UIStackView {
             $0.centerY.equalTo(timeBarView)
         }
     }
+    
+    private func makeTimeText(from time: TimeInterval, with style: DateComponentsFormatter.UnitsStyle) -> String? {
+        if time < 60 {
+            return "<\(60.formatted(with: style) ?? "1 min")"
+        } else {
+            return time.formatted(with: style)
+        }
+    }
 }
 
 extension ARAppView {
     func set(app: ARApp, type: Type) {
         layoutUI()
 
-        let timeText = app.time.formatted(with: type.timeStyle)
+        let timeText = makeTimeText(from: app.time, with: type.timeStyle)
 
         appIconView.image = SLImages.getIcon(for: app.name) ?? SLImages.Common.appIconPlaceholder.getImage()
         appNameLabel.text = app.name
