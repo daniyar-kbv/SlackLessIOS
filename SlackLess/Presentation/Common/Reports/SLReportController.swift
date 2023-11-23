@@ -86,7 +86,7 @@ final class SLReportController: UIViewController {
         switch viewModel.output.getType() {
         case .summary:
             state = .waiting
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
                 self?.state = .broken
             }
         default:
