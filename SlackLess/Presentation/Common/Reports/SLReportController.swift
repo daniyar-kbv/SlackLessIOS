@@ -15,7 +15,7 @@ import DeviceActivity
 
 final class SLReportController: UIViewController {
     private let viewModel: SLReportViewModel
-    private var hostingController: SLHostingController
+    private var hostingController: SLHostingController?
     
     private let disposeBag = DisposeBag()
     private var timer: Timer?
@@ -29,9 +29,6 @@ final class SLReportController: UIViewController {
     
     init(viewModel: SLReportViewModel) {
         self.viewModel = viewModel
-        
-        let reportView = DeviceActivityReport(viewModel.output.getType().getContext())
-        hostingController = .init(rootView: reportView)
         
         super.init(nibName: .none, bundle: .none)
     }
@@ -78,7 +75,7 @@ final class SLReportController: UIViewController {
         viewModel.output.reload
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                hostingController.rootView = makeReport(with: viewModel.output.getFilter())
+                getHostingController().rootView = makeReport(with: viewModel.output.getFilter())
             })
             .disposed(by: disposeBag)
     }
@@ -98,19 +95,14 @@ final class SLReportController: UIViewController {
     }
     
     private func reload() {
+        print("Report \"\(viewModel.output.getType())\": \(state) state")
         switch state {
         case .broken:
             showLoader(overlayColor: SLColors.background1.getColor())
             
-            remove(controller: hostingController)
+            remove(controller: getHostingController())
             
-            hostingController = makeHostingController(with: viewModel.output.getFilter())
-            hostingController.view.backgroundColor = SLColors.background1.getColor()
-            hostingController.didLayoutSubviews
-                .subscribe(onNext: { [weak self] in
-                    self?.refreshState()
-                })
-                .disposed(by: disposeBag)
+            let hostingController = getHostingController(new: true)
             
             add(controller: hostingController, to: contentView)
         case .normal:
@@ -125,6 +117,7 @@ final class SLReportController: UIViewController {
         switch state {
         case .broken:
             guard !isBroken else { break }
+            
             state = .normal
         case .normal:
             guard isBroken else { break }
@@ -135,15 +128,24 @@ final class SLReportController: UIViewController {
     }
     
     private func checkIfBroken() -> Bool {
-        hostingController.view.containsView(of: "EXPlaceholderView")
+        getHostingController().view.containsView(of: "EXPlaceholderView")
     }
     
     private func makeReport(with filter: DeviceActivityFilter) -> DeviceActivityReport {
         .init(viewModel.output.getType().getContext(), filter: filter)
     }
     
-    private func makeHostingController(with filter: DeviceActivityFilter) -> SLHostingController {
-        .init(rootView: makeReport(with: filter))
+    private func getHostingController(new: Bool = false) -> SLHostingController {
+        if hostingController == nil || new {
+            hostingController = .init(rootView: makeReport(with: viewModel.output.getFilter()))
+            hostingController?.view.backgroundColor = SLColors.background1.getColor()
+            hostingController?.didLayoutSubviews
+                .subscribe(onNext: { [weak self] in
+                    self?.refreshState()
+                })
+                .disposed(by: disposeBag)
+        }
+        return hostingController!
     }
 }
 
