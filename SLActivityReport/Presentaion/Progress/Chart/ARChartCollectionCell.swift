@@ -142,7 +142,7 @@ final class ARChartCollectionBarCell: UICollectionViewCell {
             barStackView.axis = .horizontal
 
             lineView.snp.makeConstraints {
-                $0.height.equalTo(0.4)
+                $0.height.equalTo(0.5)
             }
         case .vertical:
             addDashedLine(on: .left)
