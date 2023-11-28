@@ -84,9 +84,10 @@ struct SummaryScene: DeviceActivityReportScene {
         return apps
             .map({
                 let appTimeRelative = $0.totalActivityDuration - minTime
+                let timeDifference = maxTime - minTime
                 return .init(name: $0.application.localizedDisplayName ?? "",
                              time: $0.totalActivityDuration,
-                             ratio: appTimeRelative != 0 ? appTimeRelative / (maxTime - minTime) : 0)
+                             ratio: appTimeRelative != 0 ? appTimeRelative / (timeDifference != 0 ? timeDifference : 1) : 0)
             })
             .sorted(by: { $0.time > $1.time })
     }
