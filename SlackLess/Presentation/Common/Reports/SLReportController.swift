@@ -18,7 +18,8 @@ final class SLReportController: UIViewController {
     private var hostingController: SLHostingController?
     
     private let disposeBag = DisposeBag()
-    private var timer: Timer?
+    private var refreshStateTimer: Timer?
+    private var resetReportTimer: Timer?
     private var state: State = .broken {
         didSet {
             reload()
@@ -48,17 +49,26 @@ final class SLReportController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        setTimer()
+        startTimers()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        timer?.invalidate()
+        stopTimers()
     }
     
-    private func setTimer() {
-        timer = .scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(refreshState), userInfo: nil, repeats: true)
+    private func startTimers() {
+        refreshStateTimer = .scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(refreshState), userInfo: nil, repeats: true)
+        resetReportTimer = .scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            hostingController?.rootView = makeReport(with: viewModel.output.getFilter())
+        }
+    }
+    
+    private func stopTimers() {
+        refreshStateTimer?.invalidate()
+        resetReportTimer?.invalidate()
     }
     
     private func layoutUI(){
@@ -117,7 +127,6 @@ final class SLReportController: UIViewController {
         switch state {
         case .broken:
             guard !isBroken else { break }
-            
             state = .normal
         case .normal:
             guard isBroken else { break }
