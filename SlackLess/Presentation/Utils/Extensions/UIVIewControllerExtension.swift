@@ -64,15 +64,21 @@ extension UIViewController {
     func add(controller: UIViewController, to view: UIView? = nil, with constraints: ((ConstraintMaker) -> Void)? = nil) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
 
+        var embeddingView: UIView!
+        
         if let view = view {
-            view.addSubview(controller.view)
+            embeddingView = view
+        } else {
+            embeddingView = self.view
+        }
+        
+        embeddingView.addSubview(controller.view)
 
-            if let constraints = constraints {
-                controller.view.snp.makeConstraints(constraints)
-            } else {
-                controller.view.snp.makeConstraints {
-                    $0.edges.equalToSuperview()
-                }
+        if let constraints = constraints {
+            controller.view.snp.makeConstraints(constraints)
+        } else {
+            controller.view.snp.makeConstraints {
+                $0.edges.equalToSuperview()
             }
         }
 
