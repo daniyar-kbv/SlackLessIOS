@@ -61,18 +61,16 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func add(controller: UIViewController, to view: UIView? = nil, with constraints: ((ConstraintMaker) -> Void)? = nil) {
+    func add(controller: UIViewController) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
-
-        var embeddingView: UIView!
+        addChild(controller)
+        controller.didMove(toParent: self)
+    }
+    
+    func add(controller: UIViewController, to view: UIView, with constraints: ((ConstraintMaker) -> Void)? = nil) {
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
         
-        if let view = view {
-            embeddingView = view
-        } else {
-            embeddingView = self.view
-        }
-        
-        embeddingView.addSubview(controller.view)
+        view.addSubview(controller.view)
 
         if let constraints = constraints {
             controller.view.snp.makeConstraints(constraints)
