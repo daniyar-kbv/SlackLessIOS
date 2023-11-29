@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
 
-        //        TODO: remove
+//      TODO: remove
         window?.overrideUserInterfaceStyle = .light
     }
 
