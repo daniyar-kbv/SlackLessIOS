@@ -12,8 +12,6 @@ import RxSwift
 import SwiftUI
 import UIKit
 
-// TODO: add loader
-
 final class SummaryController: UIViewController {
     private let disposeBag = DisposeBag()
     private let contentView = SummaryView()

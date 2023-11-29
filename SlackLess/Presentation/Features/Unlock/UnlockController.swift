@@ -61,7 +61,7 @@ final class UnlockController: UIViewController {
             contentView.subtitleLabel.text = SLTexts.Unlock.subtitle.localized(String(Int(unlockPrice)), String(settingsValues.unlockTime.get(component: .minutes)))
         }
         
-//        FIXME: Change localize "Pay"
+//        FIXME: Localize "Pay"
         setUpTerms(label: &contentView.termsLabel,
                    accentColor: SLColors.accent1.getColor(),
                    clickElementName: "Pay",

@@ -18,11 +18,6 @@ struct SummaryScene: DeviceActivityReportScene {
     let content: (ARDay?) -> SummaryRepresentable
     
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> ARDay? {
-//        FIXME: Cover the case when no screentime shows loader infinitely
-        let totalActivityDurations: [TimeInterval] = await data
-            .flatMap({ $0.activitySegments })
-            .map({ $0.totalActivityDuration })
-            .unwrap()
         guard let activitySegment = await data
             .flatMap({ $0.activitySegments })
             .first(where: { _ in true }),
