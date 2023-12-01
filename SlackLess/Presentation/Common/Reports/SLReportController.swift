@@ -20,6 +20,8 @@ final class SLReportController: UIViewController {
     private let disposeBag = DisposeBag()
     private var refreshStateTimer: Timer?
     private var resetReportTimer: Timer?
+    private var isFirstLoad = true
+    private var isBackground = true
     private var state: State = .broken {
         didSet {
             reload()
@@ -43,19 +45,23 @@ final class SLReportController: UIViewController {
         
         layoutUI()
         bindViewModel()
-        configure()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        startTimers()
+        isBackground = false
+        
+        if isFirstLoad {
+            isFirstLoad = false
+            configure()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        stopTimers()
+        isBackground = true
     }
     
     private func startTimers() {
@@ -92,6 +98,7 @@ final class SLReportController: UIViewController {
     
     private func configure() {
         reload()
+        startTimers()
         
         switch viewModel.output.getType() {
         case .summary:
@@ -123,6 +130,8 @@ final class SLReportController: UIViewController {
     }
     
     @objc private func refreshState() {
+        guard !isBackground else { return }
+        
         let isBroken = checkIfBroken()
         switch state {
         case .broken:

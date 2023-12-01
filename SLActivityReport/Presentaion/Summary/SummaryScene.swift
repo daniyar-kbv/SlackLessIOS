@@ -17,11 +17,17 @@ struct SummaryScene: DeviceActivityReportScene {
     let context: DeviceActivityReport.Context = .summary
     let content: (ARDay?) -> SummaryRepresentable
     
+    private static var loadData = false
+    
     func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>) async -> ARDay? {
+        guard Self.loadData else {
+            Self.loadData = true
+            return nil
+        }
+        
         guard let activitySegment = await data
             .flatMap({ $0.activitySegments })
-            .first(where: { _ in true }),
-              activitySegment.totalActivityDuration > 0
+            .first(where: { _ in true })
         else { return nil }
 
         let date = activitySegment.dateInterval.start
