@@ -7,10 +7,6 @@
 
 import KeychainAccess
 
-protocol StorageKey {
-    var value: String { get }
-}
-
 protocol SecureStorageProvider: AnyObject {
     func getData(for key: StorageKey) -> Data?
     func set(_ data: Data, for key: StorageKey)

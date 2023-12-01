@@ -12,9 +12,8 @@ import RxSwift
 import RxCocoa
 
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
-//    TODO: Refactor DI
-    let disposeBag = DisposeBag()
-    let keyValueStorage = KeyValueStorageImpl()
+    private let dataComponentsFactory: DataComponentsFactory = DataComponentsFactoryImpl()
+    private lazy var repository: Repository = dataComponentsFactory.makeRepository()
     
     override func configuration(shielding application: Application) -> ShieldConfiguration {
         makeShieldConfiguration()
@@ -33,7 +32,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     private func makeShieldConfiguration() -> ShieldConfiguration {
-        let state = keyValueStorage.shieldState
+        let state = repository.getShieldState()
         return .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
                      backgroundColor: SLColors.accent1.getColor(),
                      icon: SLImages.Common.logo.getImage(),

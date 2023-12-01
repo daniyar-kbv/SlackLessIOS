@@ -26,7 +26,6 @@ protocol AppSettingsServiceOutput {
     var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
     var isLocked: PublishRelay<Bool> { get }
-    var progressDateObservable: PublishRelay<Date?> { get }
 
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
@@ -71,7 +70,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     let timeLimitSaved: PublishRelay<Void> = .init()
     let appsSelectionSaved: PublishRelay<Void> = .init()
     let isLocked: PublishRelay<Bool> = .init()
-    let progressDateObservable: PublishRelay<Date?> = .init()
 
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
@@ -198,12 +196,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
 extension AppSettingsServiceImpl {
     private func bindRepository() {
-        appSettingsRepository
-            .output
-            .progressDateObservable
-            .bind(to: progressDateObservable)
-            .disposed(by: disposeBag)
-
         appSettingsRepository.output.isLockedObservable
             .bind(to: isLocked)
             .disposed(by: disposeBag)
