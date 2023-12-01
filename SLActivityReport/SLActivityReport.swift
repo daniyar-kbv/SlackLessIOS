@@ -10,23 +10,21 @@ import SwiftUI
 
 @main
 struct SLActivityReport: DeviceActivityReportExtension {
-    private let appComponentsFactory = AppComponentsFactoryImpl()
+    private let dataComponentsFactory: DataComponentsFactory = DataComponentsFactoryImpl()
 
     var body: some DeviceActivityReportScene {
-        SummaryScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
+        SummaryScene(repository: dataComponentsFactory.makeRepository()) {
             .init(day: $0)
         }
-        ProgressScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
-            .init(appSettingsService: getServiceFactory().makeAppSettingsService(), type: .normal, weeks: $0)
+        ProgressScene(repository: dataComponentsFactory.makeRepository()) {
+            .init(repository: dataComponentsFactory.makeRepository(),
+                  type: .normal,
+                  weeks: $0)
         }
-        WeeklyReportScene(appSettingsService: getServiceFactory().makeAppSettingsService()) {
-            .init(appSettingsService: getServiceFactory().makeAppSettingsService(), type: .weeklyReport, weeks: $0)
+        WeeklyReportScene(repository: dataComponentsFactory.makeRepository()) {
+            .init(repository: dataComponentsFactory.makeRepository(),
+                  type: .weeklyReport,
+                  weeks: $0)
         }
-    }
-
-    private func getServiceFactory() -> ServiceFactory {
-        appComponentsFactory
-            .makeDomainComponentsFactory()
-            .makeServiceFactory()
     }
 }
