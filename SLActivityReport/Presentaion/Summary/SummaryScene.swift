@@ -27,8 +27,7 @@ struct SummaryScene: DeviceActivityReportScene {
         
         guard let activitySegment = await data
             .flatMap({ $0.activitySegments })
-            .first(where: { _ in true }),
-              activitySegment.totalActivityDuration > 0
+            .first(where: { _ in true })
         else { return nil }
 
         let date = activitySegment.dateInterval.start
