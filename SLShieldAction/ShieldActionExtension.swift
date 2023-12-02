@@ -12,16 +12,17 @@ import WebKit
 // The system provides a default response for any functions that your subclass doesn't override.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class ShieldActionExtension: ShieldActionDelegate {
-    let keyValueStorage = KeyValueStorageImpl()
+    private let dataComponentsFactory: DataComponentsFactory = DataComponentsFactoryImpl()
+    private lazy var repository: Repository = dataComponentsFactory.makeRepository()
     
     override func handle(action: ShieldAction, for _: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         switch action {
         case .primaryButtonPressed:
             completionHandler(.close)
         case .secondaryButtonPressed:
-            switch keyValueStorage.shieldState {
+            switch repository.getShieldState() {
             case .normal:
-                keyValueStorage.persist(shieldState: .unlock)
+                repository.set(shieldState: .unlock)
             case .unlock: break
             }
             completionHandler(.defer)

@@ -8,6 +8,7 @@
 import Foundation
 
 extension Date {
+//    TODO: Refactor
     func getDate() -> Date {
         Calendar.current.dateInterval(of: .day, for: self)!.start
     }

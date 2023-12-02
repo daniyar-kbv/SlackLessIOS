@@ -17,7 +17,6 @@ protocol AppSettingsRepositoryInput {
     func set(selectedApps: FamilyActivitySelection, for date: Date)
     func set(unlockedTime: TimeInterval, for date: Date)
     func set(unlockPrice: Double)
-    func set(isLocked: Bool)
     func set(startDate: Date)
     func set(progressDate: Date)
     func set(currentWeek: Date)
@@ -140,10 +139,6 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
 
     func set(unlockPrice: Double) {
         keyValueStorage.persist(unlockPrice: unlockPrice)
-    }
-
-    func set(isLocked: Bool) {
-        keyValueStorage.persist(isLocked: isLocked)
     }
 
     func set(startDate: Date) {
