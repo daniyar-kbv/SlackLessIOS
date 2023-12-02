@@ -35,7 +35,7 @@ final class ProgressViewModelImpl: ProgressViewModel,
     var output: ProgressViewModelOutput { self }
 
     private let disposeBag = DisposeBag()
-    private let appSettingsService: AppSettingsService
+    private let repository: Repository
     private let type: SLProgressType
     private var currentWeekIndex = 4
     
@@ -50,11 +50,11 @@ final class ProgressViewModelImpl: ProgressViewModel,
         }
     }
 
-    init(appSettingsService: AppSettingsService,
+    init(repository: Repository,
          type: SLProgressType,
          weeks: [ARWeek]?)
     {
-        self.appSettingsService = appSettingsService
+        self.repository = repository
         self.type = type
         self.weeks = weeks
 
@@ -84,7 +84,7 @@ extension ProgressViewModelImpl {
     private func bindService() {
         switch type {
         case .normal:
-            appSettingsService.output.progressDateObservable
+            repository.progressDate
                 .subscribe(onNext: processProgressDate(_:))
                 .disposed(by: disposeBag)
         case .weeklyReport:
@@ -95,7 +95,7 @@ extension ProgressViewModelImpl {
     private func configureDate() {
         switch type {
         case .normal:
-            processProgressDate(appSettingsService.output.getProgressDate())
+            processProgressDate(repository.progressDate.value)
         case .weeklyReport:
             guard (weeks?.count ?? 0) > 1 else { return }
             currentWeekIndex = (weeks?.endIndex ?? 1) - 1

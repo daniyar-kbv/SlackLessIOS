@@ -15,7 +15,7 @@ struct ARProgress {
     private static var loadData = false
     
     static func makeConfiguration(representing data: DeviceActivityResults<DeviceActivityData>,
-                                  with appSettingsService: AppSettingsService) async -> [ARWeek]? {
+                                  with repository: Repository) async -> [ARWeek]? {
         guard loadData else {
             loadData = true
             return nil
@@ -24,7 +24,7 @@ struct ARProgress {
         let days: [ARWeek.Day] = await data
             .flatMap({ $0.activitySegments })
             .compactMap({ await makeDay(activitySegment: $0,
-                                        appSettingsService: appSettingsService) })
+                                        repository: repository) })
             .unwrap()
         
         guard days.count > 1 else { return nil }
@@ -47,10 +47,11 @@ struct ARProgress {
         return weeks.sorted(by: { $0.startDate < $1.startDate })
     }
 
-    private static func makeDay(activitySegment: ActivitySegment, appSettingsService: AppSettingsService) async -> ARWeek.Day {
+    private static func makeDay(activitySegment: ActivitySegment,
+                                repository: Repository) async -> ARWeek.Day {
         let date = activitySegment.dateInterval.start
         var slackedTime = 0.0
-        if let appSelection = appSettingsService.output.getSelectedApps(for: date) {
+        if let appSelection = repository.getSelectedApps(for: date) {
             slackedTime = await activitySegment
                 .categories
                 .flatMap { $0.applications }

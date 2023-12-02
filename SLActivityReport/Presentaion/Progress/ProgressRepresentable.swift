@@ -12,21 +12,21 @@ import SwiftUI
 struct ProgressRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = ProgressController
 
-    private let appSettingsService: AppSettingsService
+    private let repository: Repository
     private let type: SLProgressType
     private let weeks: [ARWeek]?
 
-    init(appSettingsService: AppSettingsService,
+    init(repository: Repository,
          type: SLProgressType,
          weeks: [ARWeek]?)
     {
-        self.appSettingsService = appSettingsService
+        self.repository = repository
         self.type = type
         self.weeks = weeks
     }
 
     func makeUIViewController(context _: Context) -> UIViewControllerType {
-        .init(viewModel: ProgressViewModelImpl(appSettingsService: appSettingsService, type: type, weeks: weeks))
+        .init(viewModel: ProgressViewModelImpl(repository: repository, type: type, weeks: weeks))
     }
 
     func updateUIViewController(_ uiViewController: UIViewControllerType, context _: Context) {

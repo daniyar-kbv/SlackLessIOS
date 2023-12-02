@@ -12,7 +12,7 @@ import FamilyControls
 typealias ApplicationActivity = DeviceActivityData.ApplicationActivity
 
 struct SummaryScene: DeviceActivityReportScene {
-    let appSettingsService: AppSettingsService
+    let repository: Repository
     
     let context: DeviceActivityReport.Context = .summary
     let content: (ARDay?) -> SummaryRepresentable
@@ -32,10 +32,10 @@ struct SummaryScene: DeviceActivityReportScene {
 
         let date = activitySegment.dateInterval.start
 
-        guard let appSelection = appSettingsService.output.getSelectedApps(for: date)
+        guard let appSelection = repository.getSelectedApps(for: date)
         else { return nil }
 
-        let timeLimit = appSettingsService.output.getTimeLimit(for: date)
+        let timeLimit = repository.getTimeLimit(for: date)
 
         let allApps: [ApplicationActivity] = await activitySegment
             .categories

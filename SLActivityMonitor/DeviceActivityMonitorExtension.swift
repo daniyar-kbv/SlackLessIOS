@@ -10,17 +10,13 @@ import Foundation
 import ManagedSettings
 
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
-//    FIXME: Refactor DI
-    private let keyValueStorage = KeyValueStorageImpl()
-    private let dataComponentsFactory: DataComponentsFactory = DataComponenetsFactoryImpl()
-    private lazy var appSettingsRepository = dataComponentsFactory
-        .makeRepositoryFactory()
-        .makeAppSettingsRepository()
+    private let dataComponentsFactory: DataComponentsFactory = DataComponentsFactoryImpl()
+    private lazy var repository: Repository = dataComponentsFactory.makeRepository()
     private let store = ManagedSettingsStore()
 
     override func intervalDidStart(for _: DeviceActivityName) {
-        appSettingsRepository.input.set(isLocked: false)
-        keyValueStorage.persist(shieldState: .normal)
+        repository.set(isLocked: false)
+        repository.set(shieldState: .normal)
     }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
@@ -32,10 +28,10 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
 
-        guard let selection = appSettingsRepository.output.getSelectedApps(for: Date().getDate())
+        guard let selection = repository.getSelectedApps(for: Date().getDate())
         else { return }
 
         store.shield.applications = selection.applicationTokens
-        appSettingsRepository.input.set(isLocked: true)
+        repository.set(isLocked: true)
     }
 }
