@@ -11,6 +11,7 @@ import RxSwift
 
 protocol CustomizeViewModelInput: AnyObject {
     func unlock()
+    func showSetUp()
 }
 
 protocol CustomizeViewModelOutput: AnyObject {
@@ -18,6 +19,7 @@ protocol CustomizeViewModelOutput: AnyObject {
     var showUnlockButton: BehaviorRelay<Bool> { get }
     var startUnlock: PublishRelay<Void> { get }
     var startFeedback: PublishRelay<Void> { get }
+    var startSetUp: PublishRelay<Void> { get }
 }
 
 protocol CustomizeViewModel: AnyObject {
@@ -50,10 +52,15 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
     lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
     let startUnlock: PublishRelay<Void> = .init()
     let startFeedback: PublishRelay<Void> = .init()
+    let startSetUp: PublishRelay<Void> = .init()
 
 //    Input
     func unlock() {
         startUnlock.accept(())
+    }
+    
+    func showSetUp() {
+        startSetUp.accept(())
     }
 }
 

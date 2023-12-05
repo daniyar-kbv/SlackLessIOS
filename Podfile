@@ -8,8 +8,13 @@ def shared_pods
   
   # UI
   pod 'SnapKit'
+end
+
+target 'SlackLess' do
+  shared_pods
   
   # Cache and Storage
+  pod 'Kingfisher'
   pod 'Cache'
   pod 'KeychainAccess'
   
@@ -23,13 +28,6 @@ def shared_pods
   pod 'Firebase/Crashlytics'
   pod 'FirebaseAppCheck'
   pod 'FirebaseFirestore'
-end
-
-target 'SlackLess' do
-  shared_pods
-  
-  # Cache and Storage
-  pod 'Kingfisher'
   
   # Helpers
   pod 'SwiftFormat'

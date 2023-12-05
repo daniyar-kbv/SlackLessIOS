@@ -34,10 +34,11 @@ final class SummaryViewModelImpl: SummaryViewModel,
 
     private var day: ARDay? {
         didSet {
-            let setLoading = day == nil
-            if setLoading && state.value != .loading {
+            if day == nil && state.value != .loading {
                 state.accept(.loading)
-            } else if !setLoading && state.value != .loaded {
+            } else if day != nil && day?.time.total == 0 {
+                state.accept(.noData)
+            } else if day != nil && state.value != .loaded {
                 state.accept(.loaded)
             }
         }

@@ -26,7 +26,6 @@ protocol AppSettingsServiceOutput {
     var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
     var isLocked: PublishRelay<Bool> { get }
-    var progressDateObservable: PublishRelay<Date?> { get }
 
     func getTimeLimit(for date: Date) -> TimeInterval?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
@@ -45,6 +44,7 @@ protocol AppSettingsService: AnyObject {
 }
 
 //  TODO: Add validation
+//  TODO: Split into several services
 
 final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput, AppSettingsServiceOutput {
     var input: AppSettingsServiceInput { self }
@@ -54,6 +54,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     private let appSettingsRepository: AppSettingsRepository
     private let eventManager: EventManager
     private let calendar = Calendar.current
+    private var authorizationTimer: Timer?
 
     init(appSettingsRepository: AppSettingsRepository,
          eventManager: EventManager)
@@ -71,7 +72,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     let timeLimitSaved: PublishRelay<Void> = .init()
     let appsSelectionSaved: PublishRelay<Void> = .init()
     let isLocked: PublishRelay<Bool> = .init()
-    let progressDateObservable: PublishRelay<Date?> = .init()
 
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
@@ -147,16 +147,19 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     //    Input
 
     func requestAuthorization() {
+        authorizationTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [weak self] _ in
+            self?.processAuthorizaztion(result: .success(()))
+        }
         Task {
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: FamilyControlsMember.individual)
-                appSettingsRepository.input.set(startDate: .now.getDate())
                 DispatchQueue.main.async { [weak self] in
-                    self?.authorizaionStatus.accept(.success(()))
+                    self?.authorizationTimer?.invalidate()
+                    self?.processAuthorizaztion(result: .success(()))
                 }
             } catch {
                 DispatchQueue.main.async { [weak self] in
-                    self?.authorizaionStatus.accept(.failure(error))
+                    self?.processAuthorizaztion(result: .failure(error))
                 }
             }
         }
@@ -198,12 +201,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
 extension AppSettingsServiceImpl {
     private func bindRepository() {
-        appSettingsRepository
-            .output
-            .progressDateObservable
-            .bind(to: progressDateObservable)
-            .disposed(by: disposeBag)
-
         appSettingsRepository.output.isLockedObservable
             .bind(to: isLocked)
             .disposed(by: disposeBag)
@@ -218,6 +215,14 @@ extension AppSettingsServiceImpl {
 }
 
 extension AppSettingsServiceImpl {
+    private func processAuthorizaztion(result: Result<Void, Error>) {
+        switch result {
+        case .success: appSettingsRepository.input.set(startDate: .now.getDate())
+        case .failure: break
+        }
+        authorizaionStatus.accept(result)
+    }
+    
     private func iterateThroughDays(startDate: Date, action: (Date) -> Bool) {
         var daysDifference = 0
         while daysDifference <= 100 {
