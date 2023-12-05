@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SnapKit
 
+//  TODO: Refactor state management
+
 protocol ARStatePresentable: UIViewController {
     func update(state: ARViewState, view: UIView?)
 }
@@ -30,9 +32,14 @@ extension UIViewController: ARStatePresentable {
     func update(state: ARViewState, view: UIView? = nil) {
         switch state {
         case .loading:
+            (view ?? self.view).hideNoDataView()
             showLoading(on: view ?? self.view)
         case .loaded:
+            (view ?? self.view).hideNoDataView()
             hideLoading()
+        case .noData:
+            hideLoading()
+            (view ?? self.view).showNoDataView()
         }
     }
     

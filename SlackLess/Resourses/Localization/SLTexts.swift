@@ -15,6 +15,10 @@ enum SLTexts {
             case text3 = "Common.TermsAndPrivacy.text3"
             case text4 = "Common.TermsAndPrivacy.text4"
         }
+        
+        enum NoData: String, Localizable {
+            case title = "Common.NoData.title"
+        }
     }
     
     enum Error {

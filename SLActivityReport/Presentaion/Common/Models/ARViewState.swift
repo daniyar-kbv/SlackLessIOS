@@ -10,4 +10,5 @@ import Foundation
 enum ARViewState {
     case loading
     case loaded
+    case noData
 }

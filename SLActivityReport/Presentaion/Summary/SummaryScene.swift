@@ -28,12 +28,11 @@ struct SummaryScene: DeviceActivityReportScene {
         guard let activitySegment = await data
             .flatMap({ $0.activitySegments })
             .first(where: { _ in true })
-        else { return nil }
-
+        else { return makeEmtyDay() }
         let date = activitySegment.dateInterval.start
 
         guard let appSelection = repository.getSelectedApps(for: date)
-        else { return nil }
+        else { return makeEmtyDay() }
 
         let timeLimit = repository.getTimeLimit(for: date)
 
@@ -59,7 +58,7 @@ struct SummaryScene: DeviceActivityReportScene {
                      otherApps: otherAppsTransformed)
     }
     
-    func splitApps(_ apps: [ApplicationActivity], selection: FamilyActivitySelection) -> (selected: [ApplicationActivity], other: [ApplicationActivity]) {
+    private func splitApps(_ apps: [ApplicationActivity], selection: FamilyActivitySelection) -> (selected: [ApplicationActivity], other: [ApplicationActivity]) {
         var selectedApps = [ApplicationActivity]()
         var otherApps = [ApplicationActivity]()
         
@@ -75,11 +74,11 @@ struct SummaryScene: DeviceActivityReportScene {
         return (selectedApps, otherApps)
     }
     
-    func getTotalTime(of apps: [ApplicationActivity]) -> TimeInterval {
+    private func getTotalTime(of apps: [ApplicationActivity]) -> TimeInterval {
         apps.reduce(0) { $0 + $1.totalActivityDuration }
     }
 
-    func transform(apps: [ApplicationActivity]) -> [ARApp] {
+    private func transform(apps: [ApplicationActivity]) -> [ARApp] {
         let times = apps.map { $0.totalActivityDuration }
         let (minTime, maxTime) = (times.min() ?? .zero, times.max() ?? .infinity)
         return apps
@@ -91,5 +90,15 @@ struct SummaryScene: DeviceActivityReportScene {
                              ratio: appTimeRelative != 0 ? appTimeRelative / (timeDifference != 0 ? timeDifference : 1) : 0)
             })
             .sorted(by: { $0.time > $1.time })
+    }
+    
+    private func makeEmtyDay() -> ARDay {
+        return .init(date: Date(),
+                     time: .init(slacked: 0,
+                                 total: 0,
+                                 limit: nil,
+                                 average: nil),
+                     selectedApps: [],
+                     otherApps: [])
     }
 }
