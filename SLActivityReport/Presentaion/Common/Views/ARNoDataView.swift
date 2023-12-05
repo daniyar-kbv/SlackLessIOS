@@ -12,8 +12,8 @@ import SnapKit
 final class ARNoDataView: UIView {
     private(set) lazy var label: UILabel = {
         let view = UILabel()
-        view.textColor = SLColors.label1.getColor()
-        view.font = SLFonts.primary.getFont(ofSize: 13, weight: .regular)
+        view.textColor = SLColors.gray3.getColor()
+        view.font = SLFonts.primary.getFont(ofSize: 17, weight: .regular)
         view.text = SLTexts.Common.NoData.title.localized()
         return view
     }()

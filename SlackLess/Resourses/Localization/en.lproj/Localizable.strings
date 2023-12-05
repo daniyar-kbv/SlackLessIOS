@@ -11,7 +11,7 @@
 "Common.TermsAndPrivacy.text2" = "Terms";
 "Common.TermsAndPrivacy.text3" = "and";
 "Common.TermsAndPrivacy.text4" = "Privacy Policy";
-"Common.NoData.title" = "No data to display";
+"Common.NoData.title" = "No data available";
 
 //  MARK: - Error
 "Error.Data.badmapping" = "Coudn't read the response";
