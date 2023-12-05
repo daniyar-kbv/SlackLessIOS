@@ -136,6 +136,8 @@
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
 		70D4A6D82B1EC64100AFB0AE /* ARNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4A6D72B1EC64100AFB0AE /* ARNoDataView.swift */; };
+		70D4A6DC2B1ED1E400AFB0AE /* CustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4A6DB2B1ED1E400AFB0AE /* CustomizeView.swift */; };
+		70D4A6DE2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4A6DD2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift */; };
 		7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A05FFAA72C7FDD6ECCA80D045BF9F7 /* Repository.swift */; };
 		72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689654DC270379F8EEBBFFA6640FBFC /* DataComponentsFactory.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
@@ -480,6 +482,8 @@
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
 		70D4A6D72B1EC64100AFB0AE /* ARNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNoDataView.swift; sourceTree = "<group>"; };
+		70D4A6DB2B1ED1E400AFB0AE /* CustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeView.swift; sourceTree = "<group>"; };
+		70D4A6DD2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeCoordinatorsFactory.swift; sourceTree = "<group>"; };
 		710B54CEB0D4BD815A60EC43440333E9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		72E5C4E31DD177BE44DCD1738C9E5D2F /* FormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
@@ -1358,6 +1362,7 @@
 			children = (
 				F40096F2AAB223A0D972B62365F085EA /* CustomizeController.swift */,
 				31455C23919B76C25D1A0853877845EC /* CustomizeViewModel.swift */,
+				70D4A6DB2B1ED1E400AFB0AE /* CustomizeView.swift */,
 			);
 			path = Customize;
 			sourceTree = "<group>";
@@ -1867,6 +1872,7 @@
 			children = (
 				8D7DC4666F6CF5A9FB13CD8ECA8BFF0C /* CustomizeCoordinator.swift */,
 				861C23780E42A832C80811279F16458B /* CustomizeModulesFactory.swift */,
+				70D4A6DD2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -2369,6 +2375,7 @@
 				3B4EE4E323986B97341167C5B0BE50CB /* OnboardingModulesFactory.swift in Sources */,
 				12D5ECFF417DF82D16C4FE8BACA04798 /* PaymentService.swift in Sources */,
 				F6513A3D46D1A4F64297D0414B09405E /* PresentationComponentsFactory.swift in Sources */,
+				70D4A6DC2B1ED1E400AFB0AE /* CustomizeView.swift in Sources */,
 				99C9BB816DB5AFB2A08DFDB88A3BAD98 /* PresentationError.swift in Sources */,
 				BFCEB4197F1CD5F8CD70B19F94FADFA1 /* ProgressController.swift in Sources */,
 				B62738A66B009349E8F18C7FE6CE93F8 /* ProgressCoordinator.swift in Sources */,
@@ -2391,6 +2398,7 @@
 				F42A451648B5CAC970390614ACCE8F30 /* SLButton.swift in Sources */,
 				4BF8B3E55E785E78E313F621767BA432 /* SLColors.swift in Sources */,
 				E2D79E3613BDA4F6A04B139A7EDEEEC4 /* SLContainerView.swift in Sources */,
+				70D4A6DE2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift in Sources */,
 				7E5CCA9A353AE45CA1AD45A21D5178E0 /* SLContentView.swift in Sources */,
 				6C8D1C92FE246324946C3B15445F3A94 /* SLDateSwitcherView.swift in Sources */,
 				D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */,
