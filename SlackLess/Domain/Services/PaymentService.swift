@@ -35,7 +35,7 @@ final class PaymentServiceImpl: NSObject, PaymentService, PaymentServiceInput, P
     private let merchantCapabilities: PKMerchantCapability = .capability3DS
 
 //    FIXME: Change to failure
-    var paymentStatus = PKPaymentAuthorizationStatus.success
+    var paymentStatus: PKPaymentAuthorizationStatus = .failure
 
     init(eventManager: EventManager) {
         self.eventManager = eventManager
@@ -113,7 +113,9 @@ extension PaymentServiceImpl: PKPaymentAuthorizationControllerDelegate {
 
     func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
         controller.dismiss { [weak self] in
-            guard self?.paymentStatus == .success else { return }
+            guard self?.paymentStatus == .success
+                    || Constants.Settings.appMode == .debug
+            else { return }
 
             DispatchQueue.main.async {
                 self?.eventManager.send(event: .init(type: .paymentFinished))
