@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//  MARK: - ARDashedView
+
 extension UIView {
     func addDashedLine(on side: ARDashedView.Side) {
         guard getDashedContainerView(on: side) == nil else { return }
@@ -60,5 +62,24 @@ extension UIView {
         required init?(coder _: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+    }
+}
+
+//  MARK: - NoData
+
+extension UIView {
+    func showNoDataView() {
+        let noDataView = ARNoDataView()
+        noDataView.backgroundColor = backgroundColor
+        addSubview(noDataView)
+        noDataView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func hideNoDataView() {
+        subviews
+            .filter { $0 is ARNoDataView }
+            .forEach { $0.removeFromSuperview() }
     }
 }

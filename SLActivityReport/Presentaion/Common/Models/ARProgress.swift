@@ -9,6 +9,8 @@ import DeviceActivity
 import Foundation
 import SwiftUI
 
+// TODO: Add state management
+
 typealias ActivitySegment = DeviceActivityData.ActivitySegment
 
 struct ARProgress {
