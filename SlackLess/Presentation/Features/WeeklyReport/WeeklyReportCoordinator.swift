@@ -17,7 +17,8 @@ final class WeeklyReportCoordinator: BaseCoordinator {
         self.modulesFactory = modulesFactory
     }
 
-    override func start() {
+    func start(setUpOnly: Bool = false) {
+        guard !setUpOnly else { showSetUp(); return }
         let module = modulesFactory.makeReportModule()
 
         module.viewModel.output.isFinished.subscribe(onNext: showSetUp)

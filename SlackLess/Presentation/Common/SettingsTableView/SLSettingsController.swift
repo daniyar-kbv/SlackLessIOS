@@ -216,7 +216,6 @@ extension SLSettingsController: UITableViewDataSource {
 
             cell.isEnabled = viewModel.output.canChangeSettings
             || !viewModel.output.isSettings(section: indexPath.section)
-            || Constants.Settings.appMode == .debug
 
             return cell
         }

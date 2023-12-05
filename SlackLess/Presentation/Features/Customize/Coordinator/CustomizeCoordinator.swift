@@ -12,15 +12,18 @@ import RxSwift
 final class CustomizeCoordinator: BaseCoordinator {
     private(set) var router: Router
 
+    private let coordinatorFactory: CustomizeCoordinatorsFactory
     private let modulesFactory: CustomizeModulesFactory
 
     private let disposeBag = DisposeBag()
     let startUnlock: PublishRelay<Void> = .init()
 
     init(router: Router,
+         coordinatorFactory: CustomizeCoordinatorsFactory,
          modulesFactory: CustomizeModulesFactory)
     {
         self.router = router
+        self.coordinatorFactory = coordinatorFactory
         self.modulesFactory = modulesFactory
     }
 
@@ -34,6 +37,12 @@ final class CustomizeCoordinator: BaseCoordinator {
         module.viewModel.output.startFeedback
             .subscribe(onNext: { [weak self] in
                 self?.showFeedback()
+            })
+            .disposed(by: disposeBag)
+        
+        module.viewModel.output.startSetUp
+            .subscribe(onNext: { [weak self] in
+                self?.showSetUp()
             })
             .disposed(by: disposeBag)
 
@@ -50,5 +59,11 @@ final class CustomizeCoordinator: BaseCoordinator {
             .disposed(by: disposeBag)
         
         router.push(viewController: module.controller, animated: true)
+    }
+    
+    private func showSetUp() {
+        let coordinator = coordinatorFactory.makeWeeklyReportCoordinator()
+        
+        coordinator.start(setUpOnly: true)
     }
 }

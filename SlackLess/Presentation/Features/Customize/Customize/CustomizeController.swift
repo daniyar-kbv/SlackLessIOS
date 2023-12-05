@@ -14,7 +14,7 @@ final class CustomizeController: UIViewController {
     private let viewModel: CustomizeViewModel
 
     private let disposeBag = DisposeBag()
-    private lazy var contentView = SLBaseView()
+    private lazy var contentView = CustomizeView()
     private lazy var settingsController = SLSettingsController(viewModel: viewModel.output.settingViewModel)
 
     init(viewModel: CustomizeViewModel) {
@@ -44,12 +44,16 @@ final class CustomizeController: UIViewController {
 
     private func configureView() {
         contentView.set(title: SLTexts.Customize.title.localized())
-        add(controller: settingsController, to: contentView)
+        add(controller: settingsController, to: contentView.settingsView)
     }
 
     private func bindView() {
         contentView.unlockButtonTap
             .subscribe(onNext: viewModel.input.unlock)
+            .disposed(by: disposeBag)
+        
+        contentView.debugButton.rx.tap
+            .subscribe(onNext: viewModel.input.showSetUp)
             .disposed(by: disposeBag)
     }
 

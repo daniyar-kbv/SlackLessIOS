@@ -47,6 +47,7 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
 
     func makeCustomizeCoordinator() -> CustomizeCoordinator {
         return scoped(CustomizeCoordinator(router: routersFactory.makeMainRouter(),
+                                           coordinatorFactory: CustomizeCoordinatorsFactoryImpl(serviceFactory: serviceFactory),
                                            modulesFactory: CustomizeModulesFactoryImpl(serviceFactory: serviceFactory)))
     }
 
