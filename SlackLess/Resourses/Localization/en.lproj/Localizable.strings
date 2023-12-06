@@ -105,9 +105,11 @@
 //  MARK: - Unlock
 "Unlock.buttonTitle" = "Unlock Limit";
 "Unlock.title" = "Pay for slacking";
-"Unlock.subtitle" = "Based on your chosen payment fee for additional time, you can pay $%@ to unlock your distracting apps for %@ minutes.";
+"Unlock.subtitle" = "Based on your chosen payment fee for additional time, you can pay $%@ fee to unlock your distracting apps for %@ minutes.";
 "Unlock.bottomButtonTitle" = "Unlock for %@ min for free";
-"Unlock.Payment.itemLabel" = "Slacking";
+"Unlock.Payment.itemLabel" = "Unlock fee (Unlock apps for 15 minutes)";
+"Unlock.Payment.taxLabel" = "Taxes";
+"Unlock.Payment.finalLabel" = "SlackLess";
 "Unlock.Alert.Success.title" = "Success";
 "Unlock.Alert.Success.message" = "Unlocked for %@ minutes";
 
