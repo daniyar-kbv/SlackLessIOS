@@ -67,7 +67,11 @@ final class PaymentServiceImpl: NSObject, PaymentService, PaymentServiceInput, P
         request.merchantCapabilities = merchantCapabilities
         request.countryCode = "US"
         request.currencyCode = "USD"
-        request.paymentSummaryItems = [.init(label: SLTexts.Unlock.Payment.itemLabel.localized(), amount: 1)]
+        request.paymentSummaryItems = [
+            .init(label: SLTexts.Unlock.Payment.itemLabel.localized(), amount: 1),
+            .init(label: SLTexts.Unlock.Payment.taxLabel.localized(), amount: 1, type: .pending),
+            .init(label: SLTexts.Unlock.Payment.totalLabel.localized(), amount: 1, type: .final)
+        ]
 
         let applePayController = PKPaymentAuthorizationController(paymentRequest: request)
         applePayController.delegate = self

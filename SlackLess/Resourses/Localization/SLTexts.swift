@@ -189,6 +189,8 @@ enum SLTexts {
 
         enum Payment: String, Localizable {
             case itemLabel = "Unlock.Payment.itemLabel"
+            case taxLabel = "Unlock.Payment.taxLabel"
+            case totalLabel = "Unlock.Payment.finalLabel"
         }
 
         enum Alert {
