@@ -177,6 +177,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         timeLimitSaved.accept(())
     }
 
+//    FIXME: Fix the bug when no selected apps for date
     func set(selectedApps: FamilyActivitySelection) {
         getWeek().forEach {
             appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)

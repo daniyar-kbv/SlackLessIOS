@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+//  TODO: Update settings values when after set up
+
 protocol CustomizeViewModelInput: AnyObject {
     func unlock()
     func showSetUp()
