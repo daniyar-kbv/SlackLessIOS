@@ -65,7 +65,10 @@ enum SLImages: String, ImageGetable {
 }
 
 extension SLImages {
-    static func getIcon(for appName: String) -> UIImage? {
-        return .init(named: "Apps.\(appName.lowercased())")
+    static func getIcon(for bundleID: String) -> UIImage? {
+        if let path = Bundle.main.path(forResource: bundleID, ofType: "png", inDirectory: "AppIcons") {
+            return UIImage(contentsOfFile: path)
+        }
+        return nil
     }
 }
