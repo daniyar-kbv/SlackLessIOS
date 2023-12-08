@@ -85,7 +85,8 @@ struct SummaryScene: DeviceActivityReportScene {
             .map({
                 let appTimeRelative = $0.totalActivityDuration - minTime
                 let timeDifference = maxTime - minTime
-                return .init(name: $0.application.localizedDisplayName ?? "",
+                return .init(name: $0.application.localizedDisplayName,
+                             bundleId: $0.application.bundleIdentifier,
                              time: $0.totalActivityDuration,
                              ratio: appTimeRelative != 0 ? appTimeRelative / (timeDifference != 0 ? timeDifference : 1) : 0)
             })
