@@ -135,9 +135,11 @@
 		6F278D3D7ADBA7DB733BFE424397E38C /* ProgressModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365310E2DD1546206DB29B41A2822C /* ProgressModulesFactory.swift */; };
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
+		7037BCC72B23BC3B00AF40A4 /* AppIcons in Resources */ = {isa = PBXBuildFile; fileRef = 7037BCC62B23BC3B00AF40A4 /* AppIcons */; };
 		70D4A6D82B1EC64100AFB0AE /* ARNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4A6D72B1EC64100AFB0AE /* ARNoDataView.swift */; };
 		70D4A6DC2B1ED1E400AFB0AE /* CustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4A6DB2B1ED1E400AFB0AE /* CustomizeView.swift */; };
 		70D4A6DE2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4A6DD2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift */; };
+		70D6BB812B23BE76008E289B /* AppIcons in Resources */ = {isa = PBXBuildFile; fileRef = 7037BCC62B23BC3B00AF40A4 /* AppIcons */; };
 		7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A05FFAA72C7FDD6ECCA80D045BF9F7 /* Repository.swift */; };
 		72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689654DC270379F8EEBBFFA6640FBFC /* DataComponentsFactory.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
@@ -481,6 +483,7 @@
 		6BF7838DEA4C37DC9DABEBDAC482FD56 /* AlertDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDisplayable.swift; sourceTree = "<group>"; };
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
+		7037BCC62B23BC3B00AF40A4 /* AppIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcons; sourceTree = "<group>"; };
 		70D4A6D72B1EC64100AFB0AE /* ARNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNoDataView.swift; sourceTree = "<group>"; };
 		70D4A6DB2B1ED1E400AFB0AE /* CustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeView.swift; sourceTree = "<group>"; };
 		70D4A6DD2B1ED43A00AFB0AE /* CustomizeCoordinatorsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeCoordinatorsFactory.swift; sourceTree = "<group>"; };
@@ -1303,6 +1306,7 @@
 		82268A671A6DCD0B673673094466E34E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7037BCC62B23BC3B00AF40A4 /* AppIcons */,
 				9BD0AB815CAF5740C54B81CF17FC98C9 /* Assets.xcassets */,
 				E3F3FC2CA177B46BE187D2BC5CED9694 /* ImageGetable.swift */,
 				40B56A751ABD7BC04DEFBF64343FB213 /* SLImages.swift */,
@@ -2054,6 +2058,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7264FEF948A60B160C3E68833E8D07A /* Assets.xcassets in Resources */,
+				70D6BB812B23BE76008E289B /* AppIcons in Resources */,
 				E744D45D3E67442D3F92578DF02F8AEA /* Colors.xcassets in Resources */,
 				C1BA132EDF6B07BB4F09681574AA58FC /* Localizable.strings in Resources */,
 			);
@@ -2077,6 +2082,7 @@
 				E0C2E67EAB8DF37E67EF580B0CC2E8DB /* Colors.xcassets in Resources */,
 				6B6D12C56B8617D6BC5B294933B5420B /* GoogleService-Info.plist in Resources */,
 				DD234A3A1221491D921EB554D6CA239C /* LaunchScreen.storyboard in Resources */,
+				7037BCC72B23BC3B00AF40A4 /* AppIcons in Resources */,
 				88D7ED7D3A829A85E521CD01DADAF897 /* Localizable.strings in Resources */,
 				8EC19ACC4B135499DF1E81D325267258 /* SLInfo.plist in Resources */,
 			);
