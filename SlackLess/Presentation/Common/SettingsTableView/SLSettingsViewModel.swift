@@ -51,8 +51,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     private let pushNotificationsService: PushNotificationsService?
 
     private let disposeBag = DisposeBag()
-    private lazy var appsSelection = appSettingsService.output.getSelectedApps(for: Date().getDate())
-    private lazy var timeLimit = appSettingsService.output.getTimeLimit(for: Date().getDate())
+    private lazy var appsSelection = appSettingsService.output.getCurrentSelectedApps()
+    private lazy var timeLimit = appSettingsService.output.getCurrentTimeLimit()
     private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
     private var pushNotificationsEnabled = false
 
