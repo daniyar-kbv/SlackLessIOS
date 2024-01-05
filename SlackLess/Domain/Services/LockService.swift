@@ -46,12 +46,12 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
     func updateLock(type: SLLockUpdateType) {
         let date = Date().getDate()
 
-        guard let selection = appSettingsRepository.output.getSelectedApps(for: date),
-              let limit = appSettingsRepository.output.getTimeLimit(for: date)
+        guard let selection = appSettingsRepository.output.getSelectedApps(for: date)
         else {
             eventManager.send(event: .init(type: .updateLockFailed, value: DomainError.updateLockFailed))
             return
         }
+        let limit = appSettingsRepository.output.getTimeLimit(for: date)
         let unlockedTime = appSettingsRepository.output.getUnlockedTime(for: date)
         let unlockTime = unlockedTime + type.unlockTime
         let newLimit = limit + unlockTime

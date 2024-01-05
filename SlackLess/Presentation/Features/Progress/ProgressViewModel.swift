@@ -53,6 +53,7 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
 
         configure()
         bindService()
+        appSettingsService.input.checkData(forWeekOf: currentDate)
     }
 
     //    Output
@@ -77,6 +78,7 @@ final class ProgressViewModelImpl: ProgressViewModel, ProgressViewModelInput, Pr
         guard (forward && isntLastWeek()) || (!forward && isntFirstWeek()) else { return }
         currentDate = currentDate.add(.weekOfYear, value: forward ? 1 : -1)
         appSettingsService.input.set(progressDate: currentDate)
+        appSettingsService.input.checkData(forWeekOf: currentDate)
         reload()
     }
 

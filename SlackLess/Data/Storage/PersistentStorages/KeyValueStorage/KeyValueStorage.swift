@@ -14,8 +14,10 @@ import RxSwift
 
 enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case onbardingShown
-    case selectedApps
-    case timeLimit
+    case currentSelectedApps
+    case selectedAppsForDate
+    case currentTimeLimit
+    case timeLimitForDate
     case unlockedTime
     case unlockPrice
     case isLocked
@@ -39,12 +41,16 @@ protocol KeyValueStorage {
     var currentWeek: Date? { get }
     var shieldState: SLShieldState { get }
     var pushNotificationsEnabled: Bool { get }
+    func getCurrentSelectedApps() -> FamilyActivitySelection?
     func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getCurrentTimeLimit() -> TimeInterval
     func getTimeLimit(for date: Date) -> TimeInterval
     func getUnlockedTime(for date: Date) -> TimeInterval
 
     func persist(onbardingShown: Bool)
+    func persist(currentSelectedApps: FamilyActivitySelection)
     func persist(selectedApps: FamilyActivitySelection, for date: Date)
+    func persist(currentTimeLimit: TimeInterval)
     func persist(timeLimit: TimeInterval, for date: Date)
     func persist(unlockedTime: TimeInterval, for date: Date)
     func persist(unlockPrice: Double)
@@ -121,9 +127,9 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
 
     //  TODO: Refactor with DB
-
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        guard let data = storageProvider.data(forKey: KeyValueStorageKey.selectedApps.value + makeString(from: date))
+    
+    func getCurrentSelectedApps() -> FamilyActivitySelection? {
+        guard let data = storageProvider.data(forKey: KeyValueStorageKey.currentSelectedApps.value)
         else { return nil }
 
         let object = try? decoder.decode(
@@ -134,8 +140,24 @@ final class KeyValueStorageImpl: KeyValueStorage {
         return object
     }
 
+    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
+        guard let data = storageProvider.data(forKey: KeyValueStorageKey.selectedAppsForDate.value + makeString(from: date))
+        else { return nil }
+        
+        let object = try? decoder.decode(
+            FamilyActivitySelection.self,
+            from: data
+        )
+        
+        return object
+    }
+    
+    func getCurrentTimeLimit() -> TimeInterval {
+        storageProvider.double(forKey: KeyValueStorageKey.currentTimeLimit.value)
+    }
+
     func getTimeLimit(for date: Date) -> TimeInterval {
-        storageProvider.double(forKey: KeyValueStorageKey.timeLimit.value + makeString(from: date))
+        storageProvider.double(forKey: KeyValueStorageKey.timeLimitForDate.value + makeString(from: date))
     }
 
     func getUnlockedTime(for date: Date) -> TimeInterval {
@@ -145,18 +167,31 @@ final class KeyValueStorageImpl: KeyValueStorage {
     func persist(onbardingShown: Bool) {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
+    
+    func persist(currentSelectedApps: FamilyActivitySelection) {
+        let encoder = PropertyListEncoder()
+
+        storageProvider.set(
+            try? encoder.encode(currentSelectedApps),
+            forKey: KeyValueStorageKey.currentSelectedApps.value
+        )
+    }
 
     func persist(selectedApps: FamilyActivitySelection, for date: Date) {
         let encoder = PropertyListEncoder()
 
         storageProvider.set(
             try? encoder.encode(selectedApps),
-            forKey: KeyValueStorageKey.selectedApps.value + makeString(from: date)
+            forKey: KeyValueStorageKey.selectedAppsForDate.value + makeString(from: date)
         )
+    }
+    
+    func persist(currentTimeLimit: TimeInterval) {
+        storageProvider.set(currentTimeLimit, forKey: KeyValueStorageKey.currentTimeLimit.value)
     }
 
     func persist(timeLimit: TimeInterval, for date: Date) {
-        storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimit.value + makeString(from: date))
+        storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimitForDate.value + makeString(from: date))
     }
 
     func persist(unlockedTime: TimeInterval, for date: Date) {
