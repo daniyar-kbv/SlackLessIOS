@@ -137,6 +137,9 @@
 		6F278D3D7ADBA7DB733BFE424397E38C /* ProgressModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365310E2DD1546206DB29B41A2822C /* ProgressModulesFactory.swift */; };
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
+		70942E832B48DFD900584E90 /* SlackLess.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */; };
+		70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70942E842B48E20D00584E90 /* CoreData.framework */; };
+		70942E872B48E2A700584E90 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70942E862B48E2A700584E90 /* CoreDataTest.swift */; };
 		7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A05FFAA72C7FDD6ECCA80D045BF9F7 /* Repository.swift */; };
 		72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689654DC270379F8EEBBFFA6640FBFC /* DataComponentsFactory.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
@@ -485,6 +488,9 @@
 		6BF7838DEA4C37DC9DABEBDAC482FD56 /* AlertDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDisplayable.swift; sourceTree = "<group>"; };
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
+		70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SlackLess.xcdatamodel; sourceTree = "<group>"; };
+		70942E842B48E20D00584E90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		70942E862B48E2A700584E90 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		710B54CEB0D4BD815A60EC43440333E9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		72E5C4E31DD177BE44DCD1738C9E5D2F /* FormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
@@ -653,6 +659,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75ECC8077F757C3BE90E96F9C0D950AB /* Pods_SlackLess.framework in Frameworks */,
+				70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +715,7 @@
 		073887B9F49A696F055E846959A666A8 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				70942E802B48DFB500584E90 /* Data */,
 				900317A0BB73B749F4CEE03F32AE4491 /* Assets */,
 				53ECF5906870F83B6A8E0C295136E996 /* Constants */,
 				F2B28D673C0D272D55E71668DC5254AA /* Localization */,
@@ -800,6 +808,7 @@
 				20E26102BF0F2C6ED5789F348473E7B2 /* Factories */,
 				42064981FD71498759E3B74CCB216106 /* Routing */,
 				CEFC613E7285B734EAF32D316F895C05 /* AppDelegate.swift */,
+				70942E862B48E2A700584E90 /* CoreDataTest.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1029,6 +1038,7 @@
 		3FAF91CB576208CE033B546077ACF016 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				70942E842B48E20D00584E90 /* CoreData.framework */,
 				A42302CBE7EC5725D0A816FCD5676DAD /* DeviceActivity.framework */,
 				505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */,
 				7B21C6EB2E88392C8C78F6A6B0219D70 /* ManagedSettingsUI.framework */,
@@ -1287,6 +1297,14 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		70942E802B48DFB500584E90 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		75753413DC1FE60522EC957C35B47895 /* REST */ = {
@@ -2445,6 +2463,7 @@
 				8BE8E45F026783F80FE07CE2E8D9FEC8 /* SLView.swift in Sources */,
 				5F62E74734AE2552EFEFE0FA574A98E7 /* SecureStorage.swift in Sources */,
 				65754F30D21A7048D1119866C978D2C8 /* SecureStorageProvider.swift in Sources */,
+				70942E872B48E2A700584E90 /* CoreDataTest.swift in Sources */,
 				C4A7B69B2BBD69F710F44C757BC9F60A /* SendFeedbackRequestDTO.swift in Sources */,
 				9F1232582BCFA8BD9B06EB3A69DED9A8 /* ServiceFactory.swift in Sources */,
 				4C926B38748898057963F71F5AF2991A /* SetUpController.swift in Sources */,
@@ -2456,6 +2475,7 @@
 				64B6DA7270823EA8990EFCC4D9EA209A /* SummaryCoordinator.swift in Sources */,
 				046FA52ED15AB38FF5AD7694C8EB76C0 /* SummaryModulesFactory.swift in Sources */,
 				AA524278F34E6E3B0F05D9E0DEBA9978 /* SummaryView.swift in Sources */,
+				70942E832B48DFD900584E90 /* SlackLess.xcdatamodeld in Sources */,
 				5DE3EED9BE60E89B4C09F903EDD11BA7 /* SummaryViewModel.swift in Sources */,
 				878B2C11867618C883A4BC8D5BB89B25 /* TermsDisplayable.swift in Sources */,
 				26078CA5E08D89459AA1E08537E2D67A /* TimeIntervalExtension.swift in Sources */,
@@ -3103,6 +3123,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */,
+			);
+			currentVersion = 70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */;
+			path = SlackLess.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 20E430AB61D6170B4C40A2D2B9B2FA05 /* Project object */;
 }
