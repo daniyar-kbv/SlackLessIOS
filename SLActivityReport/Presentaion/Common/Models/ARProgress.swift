@@ -29,10 +29,7 @@ struct ARProgress {
                                         repository: repository) })
             .unwrap()
         
-        guard days.count > 1
-        else {
-            return nil
-        }
+        guard !days.isEmpty else { return nil }
 
         var weeks = [ARWeek]()
         var currentDate = Date().getFirstDayOfWeek().add(.weekOfYear, value: -4)
