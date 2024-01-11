@@ -65,14 +65,9 @@ struct Constants {
     }
 
 //    Shared constants
-    enum UserDefaults {
-        enum SuiteName {
-            static let main = "group.kz.slackless"
-        }
-
-        enum Key {
-            static let appsSelection = "AppsSelection"
-        }
+    enum SharedStorage {
+        static let appGroup = "group.kz.slackless"
+        static let databaseName = "SlackLess"
     }
 }
 

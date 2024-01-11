@@ -8,6 +8,7 @@
 import Cache
 import Foundation
 
+// TODO: Refactor to store data as cache
 final class BaseCacheStorage {
     private enum Keys: String {
         case disk

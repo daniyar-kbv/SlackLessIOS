@@ -44,19 +44,21 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
 
     //    Input
     func updateLock(type: SLLockUpdateType) {
+//        TODO: Refactor to use getDate only in Data Layer
         let date = Date().getDate()
 
-        guard let selection = appSettingsRepository.output.getSelectedApps(for: date)
+//        TODO: Refactor to optimize fetching DayData
+        let dayData = appSettingsRepository.output.getDayData(for: date)
+        
+        guard let selection = dayData?.selectedApps
         else {
             eventManager.send(event: .init(type: .updateLockFailed, value: DomainError.updateLockFailed))
             return
         }
-        let limit = appSettingsRepository.output.getTimeLimit(for: date)
+        let limit = dayData?.timeLimit ?? 0
         let unlockedTime = appSettingsRepository.output.getUnlockedTime(for: date)
         let unlockTime = unlockedTime + type.unlockTime
         let newLimit = limit + unlockTime
-
-        deviceActivityCenter.stopMonitoring()
 
         let event = DeviceActivityEvent(
             applications: selection.applicationTokens,
@@ -66,6 +68,8 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
         )
 
         do {
+            deviceActivityCenter.stopMonitoring()
+
             try deviceActivityCenter.startMonitoring(
                 .daily,
                 during: Constants.DeviceActivity.schedule,
@@ -73,7 +77,7 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
                     .limitReached: event,
                 ]
             )
-
+            
             appSettingsRepository.input.set(unlockedTime: unlockTime, for: date)
             eventManager.send(event: .init(type: .updateLockSucceed, value: type))
             didUpdateLock.accept(type)

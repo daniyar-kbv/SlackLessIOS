@@ -14,10 +14,8 @@ import RxSwift
 
 enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case onbardingShown
-    case currentSelectedApps
-    case selectedAppsForDate
-    case currentTimeLimit
-    case timeLimitForDate
+    case dayData
+//    TODO: Move to DayData
     case unlockedTime
     case unlockPrice
     case isLocked
@@ -41,17 +39,11 @@ protocol KeyValueStorage {
     var currentWeek: Date? { get }
     var shieldState: SLShieldState { get }
     var pushNotificationsEnabled: Bool { get }
-    func getCurrentSelectedApps() -> FamilyActivitySelection?
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
-    func getCurrentTimeLimit() -> TimeInterval
-    func getTimeLimit(for date: Date) -> TimeInterval
+    func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
 
     func persist(onbardingShown: Bool)
-    func persist(currentSelectedApps: FamilyActivitySelection)
-    func persist(selectedApps: FamilyActivitySelection, for date: Date)
-    func persist(currentTimeLimit: TimeInterval)
-    func persist(timeLimit: TimeInterval, for date: Date)
+    func persist(dayData: DayData)
     func persist(unlockedTime: TimeInterval, for date: Date)
     func persist(unlockPrice: Double)
     func persist(isLocked: Bool)
@@ -67,7 +59,8 @@ protocol KeyValueStorage {
 
 final class KeyValueStorageImpl: KeyValueStorage {
     private let disposeBag = DisposeBag()
-    private let storageProvider: UserDefaults = .init(suiteName: Constants.UserDefaults.SuiteName.main) ?? .standard
+    private let storageProvider: UserDefaults = .init(suiteName: Constants.SharedStorage.appGroup) ?? .standard
+    private let encoder = PropertyListEncoder()
     private let decoder = PropertyListDecoder()
 
     public init() {
@@ -97,7 +90,7 @@ final class KeyValueStorageImpl: KeyValueStorage {
     var unlockPrice: Double {
         storageProvider.double(forKey: KeyValueStorageKey.unlockPrice.value)
     }
-
+    
     var isLocked: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.isLocked.value)
     }
@@ -125,39 +118,18 @@ final class KeyValueStorageImpl: KeyValueStorage {
     var pushNotificationsEnabled: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.pushNotificationsEnabled.value)
     }
-
-    //  TODO: Refactor with DB
     
-    func getCurrentSelectedApps() -> FamilyActivitySelection? {
-        guard let data = storageProvider.data(forKey: KeyValueStorageKey.currentSelectedApps.value)
+//    TODO: Move to repository
+    func getDayData(for date: Date) -> DayData? {
+        guard let data = storageProvider.data(forKey: KeyValueStorageKey.dayData.value)
         else { return nil }
 
-        let object = try? decoder.decode(
-            FamilyActivitySelection.self,
-            from: data
-        )
-
-        return object
-    }
-
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        guard let data = storageProvider.data(forKey: KeyValueStorageKey.selectedAppsForDate.value + makeString(from: date))
-        else { return nil }
-        
-        let object = try? decoder.decode(
-            FamilyActivitySelection.self,
+        let objects = try? decoder.decode(
+            [DayData].self,
             from: data
         )
         
-        return object
-    }
-    
-    func getCurrentTimeLimit() -> TimeInterval {
-        storageProvider.double(forKey: KeyValueStorageKey.currentTimeLimit.value)
-    }
-
-    func getTimeLimit(for date: Date) -> TimeInterval {
-        storageProvider.double(forKey: KeyValueStorageKey.timeLimitForDate.value + makeString(from: date))
+        return objects?.filter({ $0.date <= date.getDate() }).sorted(by: { $0.date > $1.date }).first
     }
 
     func getUnlockedTime(for date: Date) -> TimeInterval {
@@ -167,35 +139,34 @@ final class KeyValueStorageImpl: KeyValueStorage {
     func persist(onbardingShown: Bool) {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
-    
-    func persist(currentSelectedApps: FamilyActivitySelection) {
-        let encoder = PropertyListEncoder()
-
-        storageProvider.set(
-            try? encoder.encode(currentSelectedApps),
-            forKey: KeyValueStorageKey.currentSelectedApps.value
-        )
-    }
-
-    func persist(selectedApps: FamilyActivitySelection, for date: Date) {
-        let encoder = PropertyListEncoder()
-
-        storageProvider.set(
-            try? encoder.encode(selectedApps),
-            forKey: KeyValueStorageKey.selectedAppsForDate.value + makeString(from: date)
-        )
-    }
-    
-    func persist(currentTimeLimit: TimeInterval) {
-        storageProvider.set(currentTimeLimit, forKey: KeyValueStorageKey.currentTimeLimit.value)
-    }
-
-    func persist(timeLimit: TimeInterval, for date: Date) {
-        storageProvider.set(timeLimit, forKey: KeyValueStorageKey.timeLimitForDate.value + makeString(from: date))
-    }
 
     func persist(unlockedTime: TimeInterval, for date: Date) {
         storageProvider.set(unlockedTime, forKey: KeyValueStorageKey.unlockedTime.value + makeString(from: date))
+    }
+    
+//    TODO: Move to repository
+    func persist(dayData: DayData) {
+        var dayData = dayData
+        dayData.date = dayData.date.getDate()
+        
+        var objects = [DayData]()
+        
+        if let data = storageProvider.data(forKey: KeyValueStorageKey.dayData.value) {
+            objects = (try? decoder.decode([DayData].self, from: data)) ?? []
+        }
+        
+        if let index = objects.firstIndex(where: { $0.date == dayData.date }) {
+            objects.remove(at: index)
+            objects.insert(dayData, at: index)
+        } else {
+            objects.append(dayData)
+            objects.sort(by: { $0.date > $1.date })
+        }
+        
+        storageProvider.set(
+            try? encoder.encode(objects),
+            forKey: KeyValueStorageKey.dayData.value
+        )
     }
 
     func persist(unlockPrice: Double) {
@@ -231,7 +202,7 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     func cleanUp() {
-        storageProvider.removePersistentDomain(forName: Constants.UserDefaults.SuiteName.main)
+        storageProvider.removePersistentDomain(forName: Constants.SharedStorage.appGroup)
         storageProvider.synchronize()
     }
 }
