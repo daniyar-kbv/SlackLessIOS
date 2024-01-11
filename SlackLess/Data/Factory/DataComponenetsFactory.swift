@@ -12,6 +12,7 @@ protocol DataComponentsFactory: AnyObject {
     func makeSecureStorage() -> SecureStorage
     func makeKeyValueStorage() -> KeyValueStorage
     func makeCacheStorage() -> BaseCacheStorage
+    func makeCoreDataStorage() -> CoreDataStorage
     func makeRepositoryFactory() -> RepositoryFactory
 }
 
@@ -42,5 +43,9 @@ final class DataComponenetsFactoryImpl: DependencyFactory, DataComponentsFactory
 
     func makeCacheStorage() -> BaseCacheStorage {
         return shared(BaseCacheStorage())
+    }
+    
+    func makeCoreDataStorage() -> CoreDataStorage {
+        return shared(CoreDataStorage())
     }
 }
