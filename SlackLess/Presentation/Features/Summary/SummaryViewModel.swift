@@ -45,7 +45,6 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
         self.appSettingsService = appSettingsService
 
         bindService()
-        appSettingsService.input.checkData(for: currentDate)
     }
 
     //    Output
@@ -65,7 +64,6 @@ final class SummaryViewModelImpl: SummaryViewModel, SummaryViewModelInput, Summa
     func changeDate(forward: Bool) {
         guard (forward && isntLastDay()) || (!forward && isntFirstDay()) else { return }
         currentDate = currentDate.add(.day, value: forward ? 1 : -1)
-        appSettingsService.input.checkData(for: currentDate)
         reload()
     }
 

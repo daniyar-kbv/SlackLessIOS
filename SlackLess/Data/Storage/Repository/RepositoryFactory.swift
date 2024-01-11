@@ -16,7 +16,9 @@ final class RepositoryFactoryImpl: DependencyFactory, RepositoryFactory {
     private let keyValueStorage: KeyValueStorage
     private let secureStorage: SecureStorage
     
-    init(cacheStorage: BaseCacheStorage, keyValueStorage: KeyValueStorage, secureStorage: SecureStorage) {
+    init(cacheStorage: BaseCacheStorage,
+         keyValueStorage: KeyValueStorage,
+         secureStorage: SecureStorage) {
         self.cacheStorage = cacheStorage
         self.keyValueStorage = keyValueStorage
         self.secureStorage = secureStorage

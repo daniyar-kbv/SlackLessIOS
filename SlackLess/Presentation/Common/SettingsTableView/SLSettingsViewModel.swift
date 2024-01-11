@@ -158,8 +158,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
               let unlockPrice = unlockPrice
         else { return }
         
-        appSettingsService.input.set(selectedApps: appsSelection)
-        appSettingsService.input.set(timeLimit: timeLimit)
+        appSettingsService.input.set(selectedApps: appsSelection,
+                                     timeLimit: timeLimit)
         appSettingsService.input.set(unlockPrice: unlockPrice)
         
         didSave.accept(())

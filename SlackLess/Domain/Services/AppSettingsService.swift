@@ -14,20 +14,16 @@ import RxSwift
 
 protocol AppSettingsServiceInput {
     func requestAuthorization()
-    func set(timeLimit: TimeInterval)
     func set(onboardingShown: Bool)
-    func set(selectedApps: FamilyActivitySelection)
+    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval)
     func set(unlockPrice: Double)
     func set(progressDate: Date)
     func setWeeklyReportShown()
-    func checkData(for date: Date)
-    func checkData(forWeekOf date: Date)
 }
 
 protocol AppSettingsServiceOutput {
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
-    var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
     var isLocked: PublishRelay<Bool> { get }
 
@@ -73,7 +69,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     //    Output
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
-    let timeLimitSaved: PublishRelay<Void> = .init()
     let appsSelectionSaved: PublishRelay<Void> = .init()
     let isLocked: PublishRelay<Bool> = .init()
 
@@ -81,12 +76,14 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.output.getOnboardingShown()
     }
 
+//    TODO: Refactor to optimize fetching DayData
+    
     func getCurrentTimeLimit() -> Double? {
-        appSettingsRepository.output.getCurrentTimeLimit()
+        appSettingsRepository.output.getDayData(for: Date())?.timeLimit
     }
 
     func getCurrentSelectedApps() -> FamilyActivitySelection? {
-        appSettingsRepository.output.getCurrentSelectedApps()
+        appSettingsRepository.output.getDayData(for: Date())?.selectedApps
     }
 
     func getUnlockPrice() -> Double? {
@@ -143,14 +140,9 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.input.set(currentWeek: Date().getFirstDayOfWeek())
     }
 
-    func set(selectedApps: FamilyActivitySelection) {
-        appSettingsRepository.input.set(currentSelectedApps: selectedApps)
-        appSettingsRepository.input.set(selectedApps: selectedApps, for: Date())
-    }
-    
-    func set(timeLimit: TimeInterval) {
-        appSettingsRepository.input.set(currentTimeLimit: timeLimit)
-        appSettingsRepository.input.set(timeLimit: timeLimit, for: Date())
+    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval) {
+        appSettingsRepository.input.set(selectedApps: selectedApps, timeLimit: timeLimit, for: Date())
+        eventManager.send(event: .init(type: .appLimitSettingsChanged))
     }
 
     func set(unlockPrice: Double) {
@@ -164,20 +156,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     func set(progressDate: Date) {
         appSettingsRepository.input.set(progressDate: progressDate)
-    }
-    
-    func checkData(for date: Date) {
-        guard appSettingsRepository.output.getSelectedApps(for: date) == nil,
-              let currentSelectedApps = appSettingsRepository.output.getCurrentSelectedApps()
-        else { return }
-        
-        appSettingsRepository.input.set(selectedApps: currentSelectedApps, for: date)
-    }
-    
-    func checkData(forWeekOf date: Date) {
-        for i in 0..<7 {
-            checkData(for: date.getFirstDayOfWeek().add(.day, value: i))
-        }
     }
 }
 
