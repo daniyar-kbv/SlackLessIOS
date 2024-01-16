@@ -25,7 +25,7 @@ struct Constants {
             #elseif DEBUG
             return .device
             #else
-            return .release
+            Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt" ? .testFlight : .production
             #endif
         }()
 
@@ -37,7 +37,8 @@ struct Constants {
         enum EnvironmentType {
             case simulator
             case device
-            case release
+            case testFlight
+            case production
         }
     }
 
@@ -62,6 +63,12 @@ struct Constants {
 
     enum Payment {
         static let applePayMerchantId = "merchant.kz.slackless"
+    }
+    
+    enum IAP {
+        enum Products: String {
+            case oneCredit = "kz.slackless.one.credit"
+        }
     }
 
 //    Shared constants
