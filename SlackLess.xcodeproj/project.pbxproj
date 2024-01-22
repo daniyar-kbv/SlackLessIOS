@@ -137,6 +137,20 @@
 		6F278D3D7ADBA7DB733BFE424397E38C /* ProgressModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365310E2DD1546206DB29B41A2822C /* ProgressModulesFactory.swift */; };
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
+		702E733F2B4F96E700328830 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
+		702E73402B4F96E700328830 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
+		702E73412B4F9D7E00328830 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D28A72AE4CC349BF27DD1A1D2EA1F /* DateExtension.swift */; };
+		702E73422B4F9D7E00328830 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D28A72AE4CC349BF27DD1A1D2EA1F /* DateExtension.swift */; };
+		70942E832B48DFD900584E90 /* SlackLess.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */; };
+		70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70942E842B48E20D00584E90 /* CoreData.framework */; };
+		70942E8B2B48E6AA00584E90 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */; };
+		70942E8E2B48EBED00584E90 /* SlackLess.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */; };
+		70BA49E52B4B9AE0004CB598 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
+		70BA49EA2B4CF393004CB598 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */; };
+		70BA49EC2B4CF45F004CB598 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
+		70BA49ED2B4CF5F2004CB598 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
+		70BA49EF2B4CF5F7004CB598 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */; };
+		70BA49F02B4CF629004CB598 /* SlackLess.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */; };
 		7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A05FFAA72C7FDD6ECCA80D045BF9F7 /* Repository.swift */; };
 		72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689654DC270379F8EEBBFFA6640FBFC /* DataComponentsFactory.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
@@ -485,6 +499,10 @@
 		6BF7838DEA4C37DC9DABEBDAC482FD56 /* AlertDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDisplayable.swift; sourceTree = "<group>"; };
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
+		70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SlackLess.xcdatamodel; sourceTree = "<group>"; };
+		70942E842B48E20D00584E90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		70BA49E42B4B9AE0004CB598 /* DayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayData.swift; sourceTree = "<group>"; };
 		710B54CEB0D4BD815A60EC43440333E9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		72E5C4E31DD177BE44DCD1738C9E5D2F /* FormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
@@ -653,6 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75ECC8077F757C3BE90E96F9C0D950AB /* Pods_SlackLess.framework in Frameworks */,
+				70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1048,7 @@
 		3FAF91CB576208CE033B546077ACF016 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				70942E842B48E20D00584E90 /* CoreData.framework */,
 				A42302CBE7EC5725D0A816FCD5676DAD /* DeviceActivity.framework */,
 				505598B9D29A45FF723467F25A5EE58C /* ManagedSettings.framework */,
 				7B21C6EB2E88392C8C78F6A6B0219D70 /* ManagedSettingsUI.framework */,
@@ -1156,15 +1176,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		58F6A8CA1FEAB1FB9D3E802C202C86B1 /* PersistentStorages */ = {
+		58F6A8CA1FEAB1FB9D3E802C202C86B1 /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
-				32B6B7AF2C737B2D040E13AB7E590226 /* CacheStorage */,
+				70942E882B48E63A00584E90 /* CoreData */,
 				12B0A2AE37473D595899436077714130 /* KeyValueStorage */,
 				40CDDB772DFA2355F171FB45BD1BEC73 /* SecureStorage */,
 				99A2EB64500F17C0C2366F8B5FA6733C /* StorageKey.swift */,
 			);
-			path = PersistentStorages;
+			path = PersistentStorage;
 			sourceTree = "<group>";
 		};
 		5C9915367195021BC75264D872A27C28 /* Unlock */ = {
@@ -1193,6 +1213,7 @@
 			isa = PBXGroup;
 			children = (
 				0229A4EA36DE11ED1DCAF88FE20197DB /* Shield */,
+				70BA49E42B4B9AE0004CB598 /* DayData.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1287,6 +1308,15 @@
 				80209A4133E02A1741F85C561D78D0BE /* SLTabBarViewModel.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		70942E882B48E63A00584E90 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */,
+				70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		75753413DC1FE60522EC957C35B47895 /* REST */ = {
@@ -1457,7 +1487,8 @@
 		A9C514A6AEA9DA9A65EE40512B719C17 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				58F6A8CA1FEAB1FB9D3E802C202C86B1 /* PersistentStorages */,
+				32B6B7AF2C737B2D040E13AB7E590226 /* CacheStorage */,
+				58F6A8CA1FEAB1FB9D3E802C202C86B1 /* PersistentStorage */,
 				8950379F829B36019005BDF3C35C8C97 /* Repository */,
 			);
 			path = Storage;
@@ -2257,6 +2288,7 @@
 				72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */,
 				747D5C3A461CF9D3803A8DD3C2E00F1B /* DependencyFactory.swift in Sources */,
 				1BE7C7780B51F9AE2E3524CE4CC7FE33 /* FontGetable.swift in Sources */,
+				702E73412B4F9D7E00328830 /* DateExtension.swift in Sources */,
 				A789F4B80522F6FE3F095E73DE5574BC /* ImageGetable.swift in Sources */,
 				9704B16E6515E225632C21A3941A3BBA /* KeyValueStorage.swift in Sources */,
 				30A452DDCA0936D015E0774206BBEA96 /* Localizable.swift in Sources */,
@@ -2264,6 +2296,7 @@
 				7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */,
 				4191BBE03043579A38F749B04FA2178E /* SLColors.swift in Sources */,
 				F961FB650D967FAEFEAE50FF7E580B9B /* SLFonts.swift in Sources */,
+				702E733F2B4F96E700328830 /* DayData.swift in Sources */,
 				0228F9ECBF16C3489564EBCDC3B92170 /* SLImages.swift in Sources */,
 				EEF59AFBAAD4D121A8DBB63AE42142F1 /* SLShieldState.swift in Sources */,
 				CD28A9CB121E1D107C8DDFB73EEFD82D /* SLTexts.swift in Sources */,
@@ -2281,6 +2314,7 @@
 				B5B156CF3C5B3E6CA513BAE2CFDAAF49 /* DataComponentsFactory.swift in Sources */,
 				9C39B238277DE4FB5065566DB3C46A7C /* DependencyFactory.swift in Sources */,
 				D7C19E0AD5F07D23956D44627436EA96 /* FontGetable.swift in Sources */,
+				702E73422B4F9D7E00328830 /* DateExtension.swift in Sources */,
 				D5689A46062459C523B626253967B715 /* ImageGetable.swift in Sources */,
 				93004B5F77518827CB9CE9D7802E68D3 /* KeyValueStorage.swift in Sources */,
 				A09B823046E5AE43E0BF91A91A9107A3 /* Localizable.swift in Sources */,
@@ -2288,6 +2322,7 @@
 				9D076F311C60318632E6BD5EE3C412CE /* Repository.swift in Sources */,
 				22734BB7A9F9BF879ED186402098D8AC /* SLColors.swift in Sources */,
 				4686F2E4FFB23CECF89A4D2EEB8C1AA6 /* SLFonts.swift in Sources */,
+				702E73402B4F96E700328830 /* DayData.swift in Sources */,
 				35F21A72E0F42B4F0B8BB2CC4C8761A4 /* SLImages.swift in Sources */,
 				33BEB1CEC57BEC7E36B9917D276CA03C /* SLShieldState.swift in Sources */,
 				BE57151E271F1769C1869DD8AB8BABAC /* SLTexts.swift in Sources */,
@@ -2304,12 +2339,15 @@
 				98CE6DBDD45B2DB32874C973D2AD69B1 /* Constants.swift in Sources */,
 				BD73BB388615F32C46CB73147271CE3A /* DataComponentsFactory.swift in Sources */,
 				E6BCAA96046EB90F0863EB9DFD2D999C /* DateExtension.swift in Sources */,
+				70BA49ED2B4CF5F2004CB598 /* DayData.swift in Sources */,
 				82CBE2A8DE3EC630A891A5B4167E54A5 /* DependencyFactory.swift in Sources */,
 				E5BF1A6792907C22FB714E1F5D4E3E91 /* DeviceActivityMonitorExtension.swift in Sources */,
 				66E292334041F8DC37E8F6C57EEFB5EA /* FontGetable.swift in Sources */,
 				BEC2DEC8B4BF95C53B158CAD3FBCE00C /* ImageGetable.swift in Sources */,
 				1CC49743CCCBD308BEFF41022CF5DF32 /* KeyValueStorage.swift in Sources */,
+				70BA49F02B4CF629004CB598 /* SlackLess.xcdatamodeld in Sources */,
 				BA651A05BB108DB7031B2410146699AA /* Localizable.swift in Sources */,
+				70BA49EF2B4CF5F7004CB598 /* CoreDataStorage.swift in Sources */,
 				E87FDC3032BCAB7BF37D29C599E9F47B /* Localization.swift in Sources */,
 				D4DC648AEA4EB1DEA85175748276E309 /* Repository.swift in Sources */,
 				24FE3FA62D23E4559196F9D6C21507CD /* SLColors.swift in Sources */,
@@ -2365,6 +2403,7 @@
 				678F0E4180DF6EEFAD287F626ECEFABA /* FeedbackEndpoint.swift in Sources */,
 				F3E9288F23EAD956C2C4D91786457068 /* FeedbackService.swift in Sources */,
 				AC64CE11A01FC67F32279587B22AD6E4 /* FeedbackView.swift in Sources */,
+				70942E8B2B48E6AA00584E90 /* CoreDataStorage.swift in Sources */,
 				2CA4BAAF3B2E1E01977A5232A80ED52F /* FeedbackViewModel.swift in Sources */,
 				5AE3570BF615515580CF6FBFB46457CF /* FirestoreClient.swift in Sources */,
 				E5BA58EBD64C43E9AA983683DE40DE71 /* FirestoreCodable.swift in Sources */,
@@ -2456,9 +2495,11 @@
 				64B6DA7270823EA8990EFCC4D9EA209A /* SummaryCoordinator.swift in Sources */,
 				046FA52ED15AB38FF5AD7694C8EB76C0 /* SummaryModulesFactory.swift in Sources */,
 				AA524278F34E6E3B0F05D9E0DEBA9978 /* SummaryView.swift in Sources */,
+				70942E832B48DFD900584E90 /* SlackLess.xcdatamodeld in Sources */,
 				5DE3EED9BE60E89B4C09F903EDD11BA7 /* SummaryViewModel.swift in Sources */,
 				878B2C11867618C883A4BC8D5BB89B25 /* TermsDisplayable.swift in Sources */,
 				26078CA5E08D89459AA1E08537E2D67A /* TimeIntervalExtension.swift in Sources */,
+				70BA49E52B4B9AE0004CB598 /* DayData.swift in Sources */,
 				8ADF592AD876F300B1D34447B0A1447A /* UIApplicationExtension.swift in Sources */,
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
 				C059AE25A3793362AEB6D89E0BDC423E /* UIButtonExtension.swift in Sources */,
@@ -2523,6 +2564,7 @@
 				4FC0E03DB45CDD08FDE82430CAB70B33 /* ProgressDasboardView.swift in Sources */,
 				D7F43963B19E7DFC4C300748F46018C9 /* ProgressDashboardChangeView.swift in Sources */,
 				5BB4CE65C2A7AD80291A3885FDEFA305 /* ProgressRepresentable.swift in Sources */,
+				70BA49EA2B4CF393004CB598 /* CoreDataStorage.swift in Sources */,
 				30CD072E1C124508B319973B7EC425D6 /* ProgressScene.swift in Sources */,
 				7CF185E2A90CFD79A1C2DAFE491B2A6C /* ProgressView.swift in Sources */,
 				183E150BB2EE39F315DEA30D665859F3 /* ProgressViewModel.swift in Sources */,
@@ -2538,9 +2580,11 @@
 				909F466D1F649A14F0EE70B1E3FF818A /* SLProgressType.swift in Sources */,
 				F350A82D4355E446497EAECD58FDAAEC /* SLReportType.swift in Sources */,
 				5D25EE3FF8FE5E3A547455B73CBEE68B /* SLShieldState.swift in Sources */,
+				70942E8E2B48EBED00584E90 /* SlackLess.xcdatamodeld in Sources */,
 				67A403ED9A206625DCAA440D322DC451 /* SLTexts.swift in Sources */,
 				D5CF1222878CAD23929E0D18C00FD9AB /* StorageKey.swift in Sources */,
 				77107B9227394DC466BEE6A8F6A3CEDC /* StringExtension.swift in Sources */,
+				70BA49EC2B4CF45F004CB598 /* DayData.swift in Sources */,
 				5D2E4DD7E6CCF9802E32D3A4EA51B436 /* SummaryAppsCollectionViewModel.swift in Sources */,
 				08A0F4E77353250227E091DD08F28A1B /* SummaryController.swift in Sources */,
 				6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */,
@@ -3103,6 +3147,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */,
+			);
+			currentVersion = 70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */;
+			path = SlackLess.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 20E430AB61D6170B4C40A2D2B9B2FA05 /* Project object */;
 }
