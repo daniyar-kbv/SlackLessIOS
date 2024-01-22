@@ -57,6 +57,8 @@ enum SLImages {
         case apps = "Settings.Apps"
         case time = "Settings.Time"
         case price = "Settings.Price"
+        case unlockTokens = "Settings.UnlockTokens"
+        case restorePurchases = "Settings.RestorePurchases"
         case notifications = "Settings.Notifications"
         case emails = "Settings.Emails"
         case feedback = "Settings.Feedback"

@@ -9,6 +9,7 @@ import Foundation
 
 protocol RepositoryFactory: AnyObject {
     func makeAppSettingsRepository() -> AppSettingsRepository
+    func makeTokensRepository() -> TokensRepository
 }
 
 final class RepositoryFactoryImpl: DependencyFactory, RepositoryFactory {
@@ -26,5 +27,9 @@ final class RepositoryFactoryImpl: DependencyFactory, RepositoryFactory {
     
     func makeAppSettingsRepository() -> AppSettingsRepository {
         shared(AppSettingsRepositoryImpl(keyValueStorage: keyValueStorage))
+    }
+    
+    func makeTokensRepository() -> TokensRepository {
+        shared(TokensRepositoryImpl(keyValueStorage: keyValueStorage))
     }
 }

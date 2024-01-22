@@ -24,6 +24,8 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case currentWeek
     case shieldState
     case pushNotificationsEnabled
+    case purchasedTokens
+    case usedTokens
 
     public var value: String { return rawValue }
 }
@@ -39,6 +41,8 @@ protocol KeyValueStorage {
     var currentWeek: Date? { get }
     var shieldState: SLShieldState { get }
     var pushNotificationsEnabled: Bool { get }
+    var purchasedTokens: Int { get }
+    var usedTokens: Int { get }
     func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
 
@@ -52,6 +56,8 @@ protocol KeyValueStorage {
     func persist(currentWeek: Date)
     func persist(shieldState: SLShieldState)
     func persist(pushNotificationsEnabled: Bool)
+    func persist(purchasedTokens: Int)
+    func persist(usedTokens: Int)
 
     func cleanUp(key: KeyValueStorageKey)
     func cleanUp()
@@ -117,6 +123,14 @@ final class KeyValueStorageImpl: KeyValueStorage {
     
     var pushNotificationsEnabled: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.pushNotificationsEnabled.value)
+    }
+    
+    var purchasedTokens: Int {
+        storageProvider.integer(forKey: KeyValueStorageKey.purchasedTokens.value)
+    }
+    
+    var usedTokens: Int {
+        storageProvider.integer(forKey: KeyValueStorageKey.usedTokens.value)
     }
     
 //    TODO: Move to repository
@@ -195,6 +209,14 @@ final class KeyValueStorageImpl: KeyValueStorage {
     
     func persist(pushNotificationsEnabled: Bool) {
         storageProvider.set(pushNotificationsEnabled, forKey: KeyValueStorageKey.pushNotificationsEnabled.value)
+    }
+    
+    func persist(purchasedTokens: Int) {
+        storageProvider.set(purchasedTokens, forKey: KeyValueStorageKey.purchasedTokens.value)
+    }
+    
+    func persist(usedTokens: Int) {
+        storageProvider.set(usedTokens, forKey: KeyValueStorageKey.usedTokens.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {

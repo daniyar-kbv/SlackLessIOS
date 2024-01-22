@@ -15,9 +15,12 @@ protocol OnboardingModulesFactory: AnyObject {
 
 final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
     private let serviceFactory: ServiceFactory
+    private let helpersFactory: HelpersFactory
 
-    init(serviceFactory: ServiceFactory) {
+    init(serviceFactory: ServiceFactory,
+         helpersFactory: HelpersFactory) {
         self.serviceFactory = serviceFactory
+        self.helpersFactory = helpersFactory
     }
 
     func makeWelcomeScreenModule() -> (viewModel: WelcomeScreenViewModel, controller: WelcomeScreenController) {
@@ -31,7 +34,8 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
     }
 
     func makeSetUpModule() -> (viewModel: SetUpViewModel, controller: SetUpController) {
-        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService())
+        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+                                           tokensService: serviceFactory.makeTokensService())
         return (viewModel, .init(viewModel: viewModel))
     }
 }

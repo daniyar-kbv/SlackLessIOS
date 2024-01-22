@@ -139,13 +139,19 @@
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
 		7006F2932B561082005437BD /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7006F2922B561082005437BD /* libcrypto.a */; };
 		7006F2952B561085005437BD /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7006F2942B561085005437BD /* libssl.a */; };
-		7006F30B2B5612E3005437BD /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7006F3092B5612E3005437BD /* libcrypto.a */; };
-		7006F30C2B5612E3005437BD /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7006F30A2B5612E3005437BD /* libssl.a */; };
+		701F76632B5783FA003361F5 /* TokensService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F76622B5783FA003361F5 /* TokensService.swift */; };
+		701F76652B58A84F003361F5 /* TokensRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F76642B58A84F003361F5 /* TokensRepository.swift */; };
+		701F76682B58C9FC003361F5 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 701F76672B58C9FC003361F5 /* StoreKitTestCertificate.cer */; };
 		702E733F2B4F96E700328830 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
 		702E73402B4F96E700328830 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA49E42B4B9AE0004CB598 /* DayData.swift */; };
 		702E73412B4F9D7E00328830 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D28A72AE4CC349BF27DD1A1D2EA1F /* DateExtension.swift */; };
 		702E73422B4F9D7E00328830 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D28A72AE4CC349BF27DD1A1D2EA1F /* DateExtension.swift */; };
 		702E73442B50D78B00328830 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 702E73432B50D78B00328830 /* StoreKit.framework */; };
+		704F36412B5619A900739BCE /* SLTitleChevronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36402B5619A900739BCE /* SLTitleChevronView.swift */; };
+		704F36442B561D2A00739BCE /* TokensViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36432B561D2A00739BCE /* TokensViewModel.swift */; };
+		704F36462B561F0B00739BCE /* TokensController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36452B561F0B00739BCE /* TokensController.swift */; };
+		704F36482B561F1400739BCE /* TokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36472B561F1400739BCE /* TokensView.swift */; };
+		706D7A172B5DED58002C0209 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 706D7A162B5DED58002C0209 /* MKiCloudSync.m */; };
 		70942E832B48DFD900584E90 /* SlackLess.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */; };
 		70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70942E842B48E20D00584E90 /* CoreData.framework */; };
 		70942E8B2B48E6AA00584E90 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */; };
@@ -513,7 +519,6 @@
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
 		7006F2922B561082005437BD /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "SlackLess/Helpers/IAP/openssl/openssl-lib/libcrypto.a"; sourceTree = "<group>"; };
 		7006F2942B561085005437BD /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "SlackLess/Helpers/IAP/openssl/openssl-lib/libssl.a"; sourceTree = "<group>"; };
-		7006F2972B561276005437BD /* SlackLess-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SlackLess-Bridging-Header.h"; sourceTree = "<group>"; };
 		7006F29E2B5612E3005437BD /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
 		7006F29F2B5612E3005437BD /* kdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kdf.h; sourceTree = "<group>"; };
 		7006F2A02B5612E3005437BD /* pem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem.h; sourceTree = "<group>"; };
@@ -622,7 +627,18 @@
 		7006F3072B5612E3005437BD /* asn1err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1err.h; sourceTree = "<group>"; };
 		7006F3092B5612E3005437BD /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		7006F30A2B5612E3005437BD /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		701F76622B5783FA003361F5 /* TokensService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensService.swift; sourceTree = "<group>"; };
+		701F76642B58A84F003361F5 /* TokensRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensRepository.swift; sourceTree = "<group>"; };
+		701F76662B58C73F003361F5 /* IAPTest.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = IAPTest.storekit; sourceTree = "<group>"; };
+		701F76672B58C9FC003361F5 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		702E73432B50D78B00328830 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		704F36402B5619A900739BCE /* SLTitleChevronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTitleChevronView.swift; sourceTree = "<group>"; };
+		704F36432B561D2A00739BCE /* TokensViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewModel.swift; sourceTree = "<group>"; };
+		704F36452B561F0B00739BCE /* TokensController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensController.swift; sourceTree = "<group>"; };
+		704F36472B561F1400739BCE /* TokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensView.swift; sourceTree = "<group>"; };
+		706D7A152B5DED58002C0209 /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKiCloudSync.h; sourceTree = "<group>"; };
+		706D7A162B5DED58002C0209 /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKiCloudSync.m; sourceTree = "<group>"; };
+		706D7A1B2B5DF0E5002C0209 /* SlackLess-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SlackLess-Bridging-Header.h"; sourceTree = "<group>"; };
 		70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SlackLess.xcdatamodel; sourceTree = "<group>"; };
 		70942E842B48E20D00584E90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
@@ -803,8 +819,6 @@
 			files = (
 				7006F2932B561082005437BD /* libcrypto.a in Frameworks */,
 				7006F2952B561085005437BD /* libssl.a in Frameworks */,
-				7006F30C2B5612E3005437BD /* libssl.a in Frameworks */,
-				7006F30B2B5612E3005437BD /* libcrypto.a in Frameworks */,
 				702E73442B50D78B00328830 /* StoreKit.framework in Frameworks */,
 				75ECC8077F757C3BE90E96F9C0D950AB /* Pods_SlackLess.framework in Frameworks */,
 				70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */,
@@ -1017,6 +1031,7 @@
 				F57C376568F9395E9D235729B00B5328 /* SLNavigationController.swift */,
 				5FAF38FB74C263DBD247B15D882AD589 /* SLTableInput.swift */,
 				AF641A34F7C91616F98BC9F8B2250B49 /* SLView.swift */,
+				704F36402B5619A900739BCE /* SLTitleChevronView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1218,6 +1233,7 @@
 				2A8B78182ECF2999E27D2899F4CB9E48 /* PaymentService.swift */,
 				E5F1C930D7E2143FE255AFA894CB3567 /* PushNotificationsService.swift */,
 				A78EAC9A7EC243CB884D14721ECF2548 /* ServiceFactory.swift */,
+				701F76622B5783FA003361F5 /* TokensService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1296,6 +1312,9 @@
 		53ECF5906870F83B6A8E0C295136E996 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				706D7A1B2B5DF0E5002C0209 /* SlackLess-Bridging-Header.h */,
+				701F76662B58C73F003361F5 /* IAPTest.storekit */,
+				701F76672B58C9FC003361F5 /* StoreKitTestCertificate.cer */,
 				B7F73DFD874584CA256A0AD6E5507A42 /* Constants.swift */,
 				0489F2388B6E46E3FCB7FB2DDF99AD93 /* GoogleService-Info.plist */,
 				318AB5ED631A588B1812DA3FC95D8109 /* SLInfo.plist */,
@@ -1307,6 +1326,7 @@
 		543C2D7FF6197349816C416E2140DCD8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				706D7A142B5DED39002C0209 /* CloudSync */,
 				70DBEAAF2B521509004B102A /* IAP */,
 				51E6434D523D073DA0CC8031E771F81D /* Events */,
 				91C65A51206D0A4752764B607D8FCA32 /* Extensions */,
@@ -1581,6 +1601,25 @@
 			path = "openssl-lib";
 			sourceTree = "<group>";
 		};
+		704F36422B561CD400739BCE /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				704F36432B561D2A00739BCE /* TokensViewModel.swift */,
+				704F36452B561F0B00739BCE /* TokensController.swift */,
+				704F36472B561F1400739BCE /* TokensView.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		706D7A142B5DED39002C0209 /* CloudSync */ = {
+			isa = PBXGroup;
+			children = (
+				706D7A152B5DED58002C0209 /* MKiCloudSync.h */,
+				706D7A162B5DED58002C0209 /* MKiCloudSync.m */,
+			);
+			path = CloudSync;
+			sourceTree = "<group>";
+		};
 		70942E882B48E63A00584E90 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1601,7 +1640,6 @@
 				70DBEAB32B52152E004B102A /* IAPReceipt.swift */,
 				70DBEAB02B52152D004B102A /* IAPReceiptProductInfo.swift */,
 				70DBEABE2B521639004B102A /* IAPManagerAlertType.swift */,
-				7006F2972B561276005437BD /* SlackLess-Bridging-Header.h */,
 			);
 			path = IAP;
 			sourceTree = "<group>";
@@ -1659,6 +1697,7 @@
 			children = (
 				DCD740B924A5434B1161B77D5D0E2421 /* AppSettingsRepository.swift */,
 				CADACFC8FD33F14E24E39A40009A78E6 /* RepositoryFactory.swift */,
+				701F76642B58A84F003361F5 /* TokensRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1737,6 +1776,7 @@
 		9EF1FF778BEE147A1BD78062AC058EAE /* Customize */ = {
 			isa = PBXGroup;
 			children = (
+				704F36422B561CD400739BCE /* Tokens */,
 				FA61AC19C5DE39F209FEE204AEEE4FD4 /* Coordinator */,
 				90120C30A15AB7FA4904D953467CBCFD /* Customize */,
 				0A9D590FAE8A3B09CB935A969404B3C8 /* Feedback */,
@@ -2404,6 +2444,7 @@
 				B819F63D7AC881623FAE45C5B1E78EA0 /* AppIcons in Resources */,
 				B73FEC4665E415D499600128B0F5E1B6 /* Assets.xcassets in Resources */,
 				E0C2E67EAB8DF37E67EF580B0CC2E8DB /* Colors.xcassets in Resources */,
+				701F76682B58C9FC003361F5 /* StoreKitTestCertificate.cer in Resources */,
 				6B6D12C56B8617D6BC5B294933B5420B /* GoogleService-Info.plist in Resources */,
 				DD234A3A1221491D921EB554D6CA239C /* LaunchScreen.storyboard in Resources */,
 				88D7ED7D3A829A85E521CD01DADAF897 /* Localizable.strings in Resources */,
@@ -2670,8 +2711,10 @@
 				ED9C40959DDA385450CB35ED337DBC3E /* CustomizeCoordinatorsFactory.swift in Sources */,
 				CE72A2480DED67B381CCA9E033FBDF20 /* CustomizeModulesFactory.swift in Sources */,
 				0EFAFF1E6E3850AADF0B6C5AAD1E11C5 /* CustomizeView.swift in Sources */,
+				701F76632B5783FA003361F5 /* TokensService.swift in Sources */,
 				BECB091B68D7A1F0490B21A7E625028A /* CustomizeViewModel.swift in Sources */,
 				92A8E78512C1FDB026CB3D6D1CDC1A2E /* DataComponenetsFactory.swift in Sources */,
+				704F36462B561F0B00739BCE /* TokensController.swift in Sources */,
 				9D0C6058906F12E00C7145A5AFB4803F /* DateExtension.swift in Sources */,
 				5F0EBB80E79AA9F0C83394F295268043 /* DateIntervalExtension.swift in Sources */,
 				7317D23BFDF32CCEA43C3DB1AD04E262 /* DependencyFactory.swift in Sources */,
@@ -2697,6 +2740,7 @@
 				E5BA58EBD64C43E9AA983683DE40DE71 /* FirestoreCodable.swift in Sources */,
 				A1FBE6691578427E6CBAC816A4E77FC2 /* FirestoreEndpoint.swift in Sources */,
 				873827112E9597BE6D4B18CFAA3EBE04 /* FirestoreEndpointMethod.swift in Sources */,
+				704F36442B561D2A00739BCE /* TokensViewModel.swift in Sources */,
 				937B7C0F71D0BE325AF02669B063B00C /* FontGetable.swift in Sources */,
 				A05DB272256B0D6F7800DAC60989CBCA /* FormatterExtension.swift in Sources */,
 				51E7D2D295A7BB92485320E1D9E1E5FD /* HelpersFactory.swift in Sources */,
@@ -2707,6 +2751,7 @@
 				E6888123E1EDF35C79A4B5F5075AB4EC /* LoaderPresentable.swift in Sources */,
 				BD5C447FFBA6858E77FF12E0887C30A1 /* Localizable.swift in Sources */,
 				54D632CAAFE6BF183C8EC62276B2DA5B /* Localization.swift in Sources */,
+				701F76652B58A84F003361F5 /* TokensRepository.swift in Sources */,
 				A9E65B6BD737D6A1B92D93CF40426439 /* LockService.swift in Sources */,
 				64A39129D0B6EA9180BDA9102495280F /* NetworkError.swift in Sources */,
 				DCB5DAD20C499A5F7D4DAF3C5F46A2C1 /* NumericExtension.swift in Sources */,
@@ -2755,6 +2800,7 @@
 				CC075F493C37104F4DA49B87B53BB926 /* SLReportController.swift in Sources */,
 				9DFC91250518868A024DC7F5E4A08819 /* SLReportType.swift in Sources */,
 				1866C52DF6E3276CDE82B1CD8EEBEBD1 /* SLReportViewModel.swift in Sources */,
+				704F36412B5619A900739BCE /* SLTitleChevronView.swift in Sources */,
 				70DBEAB82B52152E004B102A /* IAPConstants.swift in Sources */,
 				D357E422965A9E44B1A1A3CFE48D48BC /* SLSettingsCell.swift in Sources */,
 				2585568CBFDD2F975A331C37CBFCD118 /* SLSettingsController.swift in Sources */,
@@ -2764,6 +2810,7 @@
 				EDC3EF59CB6CE5E9E1F651FEF9BE5B27 /* SLSettingsSpacerCell.swift in Sources */,
 				2B52D5482B00F1AE689A758A22730CA4 /* SLSettingsType.swift in Sources */,
 				253A1A8B9A8E0FE8AF20EC198D2E5139 /* SLSettingsViewModel.swift in Sources */,
+				706D7A172B5DED58002C0209 /* MKiCloudSync.m in Sources */,
 				D2C4F8FFC2F03AC0CFB5A907AD186CF2 /* SLShieldState.swift in Sources */,
 				70DBEABF2B521639004B102A /* IAPManagerAlertType.swift in Sources */,
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
@@ -2794,6 +2841,7 @@
 				5DE3EED9BE60E89B4C09F903EDD11BA7 /* SummaryViewModel.swift in Sources */,
 				878B2C11867618C883A4BC8D5BB89B25 /* TermsDisplayable.swift in Sources */,
 				26078CA5E08D89459AA1E08537E2D67A /* TimeIntervalExtension.swift in Sources */,
+				704F36482B561F1400739BCE /* TokensView.swift in Sources */,
 				70BA49E52B4B9AE0004CB598 /* DayData.swift in Sources */,
 				8ADF592AD876F300B1D34447B0A1447A /* UIApplicationExtension.swift in Sources */,
 				26E1F0C8A4899699521E60C2B87E16DE /* UIBarButtonConfigurable.swift in Sources */,
@@ -3136,7 +3184,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SlackLess/Helpers/IAP/SlackLess-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SlackLess/Resourses/Constants/SlackLess-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3328,7 +3376,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SlackLess/Helpers/IAP/SlackLess-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SlackLess/Resourses/Constants/SlackLess-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

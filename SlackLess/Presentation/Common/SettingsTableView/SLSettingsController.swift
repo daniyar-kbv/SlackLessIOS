@@ -104,7 +104,7 @@ final class SLSettingsController: UIViewController {
     private func bindViewModel() {
         viewModel.output.reload
             .subscribe(onNext: { [weak self] in
-                self?.hideLoader()
+                self?.parent?.hideLoader()
                 self?.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -140,14 +140,23 @@ final class SLSettingsController: UIViewController {
                                 ])
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.iapAlert
+            .subscribe(onNext: { [weak self] in
+                self?.showAlert(title: $0.message(), message: nil, submitTitle: "Ok") {
+                    self?.parent?.hideLoader()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func reload() {
+        tableView.reloadData()
         switch viewModel.output.getType() {
         case .full:
 //            FIXME: Fix loader
             if !didAppear {
-                showLoader()
+                parent?.showLoader()
             }
             viewModel.input.load()
         case .setUp, .display: break
@@ -165,12 +174,15 @@ extension SLSettingsController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        TODO: Refactor
         switch (viewModel.output.getType(), indexPath.row) {
-        case (.full, 0):
+        case (.full, 0),
+            (.display, 0):
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsHeaderCell.self), for: indexPath) as! SLSettingsHeaderCell
             cell.titleLabel.text = viewModel.output.getTitle(for: indexPath.section)
             return cell
-        case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1):
+        case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1),
+            (.display, tableView.numberOfRows(inSection: indexPath.section) - 1):
             return tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsSpacerCell.self), for: indexPath)
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsCell.self), for: indexPath) as! SLSettingsCell
@@ -178,22 +190,23 @@ extension SLSettingsController: UITableViewDataSource {
 
             var position: SLSettingsCell.Position = .middle
             switch (viewModel.output.getType(), indexPath.row) {
-            case (.full, 1):
+            case (.full, 1),
+                (.display, 1):
                 switch tableView.numberOfRows(inSection: indexPath.section) {
                 case 3: position = .single
                 default: position = .top
                 }
                 guard tableView.numberOfRows(inSection: indexPath.section) > 3 else { break }
                 position = .top
-            case (.full, tableView.numberOfRows(inSection: indexPath.section) - 2):
+            case (.full, tableView.numberOfRows(inSection: indexPath.section) - 2),
+                (.display, tableView.numberOfRows(inSection: indexPath.section) - 2):
                 position = .bottom
-            case (.setUp, 0), (.display, 0):
+            case (.setUp, 0):
                 switch tableView.numberOfRows(inSection: indexPath.section) {
                 case 1: position = .single
                 default: position = .top
                 }
-            case (.setUp, tableView.numberOfRows(inSection: indexPath.section) - 1),
-                (.display, tableView.numberOfRows(inSection: indexPath.section) - 1):
+            case (.setUp, tableView.numberOfRows(inSection: indexPath.section) - 1):
                 position = .bottom
             default:
                 break
@@ -201,16 +214,15 @@ extension SLSettingsController: UITableViewDataSource {
 
             cell.set(type: viewModel.output.getItemType(for: indexPath), position: position) { [weak self] in
                 switch $0 {
-                case let .appsSelection(selection):
-                    self?.viewModel.input.set(appSelection: selection)
-                case let .time(limit):
-                    self?.viewModel.input.set(timeLimit: limit)
-                case let .price(price):
-                    self?.viewModel.input.set(unlockPrice: price)
-                case let .pushNotifications(enabled):
-                    self?.viewModel.input.set(pushNotificationsEnabled: enabled)
-                case .feedback:
-                    self?.viewModel.input.selectFeedback()
+                case let .appsSelection(selection): self?.viewModel.input.set(appSelection: selection)
+                case let .time(limit): self?.viewModel.input.set(timeLimit: limit)
+                case let .price(price): self?.viewModel.input.set(unlockPrice: price)
+                case .unlockTokens: self?.viewModel.input.selectUnlockTokens()
+                case .restorePurchases:
+                    self?.parent?.showLoader()
+                    self?.viewModel.input.selectRestorePurchases()
+                case let .pushNotifications(enabled): self?.viewModel.input.set(pushNotificationsEnabled: enabled)
+                case .feedback: self?.viewModel.input.selectFeedback()
                 }
             }
 
@@ -225,8 +237,11 @@ extension SLSettingsController: UITableViewDataSource {
 extension SLSettingsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (viewModel.output.getType(), indexPath.row) {
-        case (.full, 0): return 20
-        case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1): return 16
+        case (.full, 0),
+            (.display, 0): return 20
+        case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1),
+            (.display, tableView.numberOfRows(inSection: indexPath.section) - 1):
+            return 16
         default: return 40
         }
     }

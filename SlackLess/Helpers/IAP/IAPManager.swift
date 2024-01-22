@@ -18,11 +18,13 @@ class IAPManager: NSObject {
     fileprivate var pendingFetchProduct: String!
     var fetchAvailableProductsBlock : (([SKProduct]) -> Void)? = nil
     var purchaseStatusBlock: ((IAPManagerAlertType) -> Void)?
-    private var receipt: IAPReceipt!
+    var receipt: IAPReceipt?
     
     public var purchasedProductIdentifiers = Set<ProductId>()
     
-    func initialize() {
+    override init() {
+        super.init()
+        
         fetchAvailableProducts()
     }
     
@@ -30,7 +32,7 @@ class IAPManager: NSObject {
     private func fetchAvailableProducts(){
         productsRequest.cancel()
 
-        let productIdentifiers = NSSet(objects: Constants.IAP.Products.oneCredit)
+        let productIdentifiers = NSSet(objects: Constants.IAP.Products.oneCredit.rawValue)
         
         productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers as! Set<String>)
         productsRequest.delegate = self
@@ -40,7 +42,7 @@ class IAPManager: NSObject {
     // MARK: - MAKE PURCHASE OF A PRODUCT
     func canMakePurchases() -> Bool { return SKPaymentQueue.canMakePayments() }
     
-    func purchaseMyProduct(productIdentifier: String) {
+    func purchaseMyProduct(productIdentifier: String, quantity: Int = 1) {
         if iapProducts.isEmpty {
             pendingFetchProduct = productIdentifier
             fetchAvailableProducts()
@@ -50,7 +52,8 @@ class IAPManager: NSObject {
         if canMakePurchases() {
             for product in iapProducts {
                 if product.productIdentifier == productIdentifier {
-                    let payment = SKPayment(product: product)
+                    let payment = SKMutablePayment(product: product)
+                    payment.quantity = quantity
                     SKPaymentQueue.default().add(self)
                     SKPaymentQueue.default().add(payment)
                 }
@@ -70,6 +73,8 @@ class IAPManager: NSObject {
 extension IAPManager: SKProductsRequestDelegate {
     // MARK: - REQUEST IAP PRODUCTS
     func productsRequest (_ request:SKProductsRequest, didReceive response:SKProductsResponse) {
+        print("Loaded list of products...", response.products)
+        print("Loaded list of invalid products...", response.invalidProductIdentifiers)
         if response.products.count > 0 {
             iapProducts = response.products
             fetchAvailableProductsBlock?(response.products)
@@ -88,15 +93,18 @@ extension IAPManager: SKProductsRequestDelegate {
 extension IAPManager: SKPaymentTransactionObserver {
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        print("Restore finished")
         purchaseStatusBlock?(.restored)
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        print("Restore failed with error: \(error)")
         purchaseStatusBlock?(.failed)
     }
     
     // MARK: - IAP PAYMENT QUEUE
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        print("Updated transactions: \(transactions)")
         for transaction: AnyObject in transactions {
             if let trans = transaction as? SKPaymentTransaction {
                 switch trans.transactionState {
@@ -144,7 +152,8 @@ extension IAPManager {
         
         receipt = IAPReceipt()
         
-        guard receipt.isReachable,
+        guard let receipt = receipt,
+              receipt.isReachable,
               receipt.load(),
               receipt.validateSigning(),
               receipt.read(),

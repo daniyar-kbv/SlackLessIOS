@@ -34,6 +34,12 @@ final class CustomizeCoordinator: BaseCoordinator {
             .bind(to: startUnlock)
             .disposed(by: disposeBag)
         
+        module.viewModel.output.startTokens
+            .subscribe(onNext: { [weak self] in
+                self?.showTokens()
+            })
+            .disposed(by: disposeBag)
+        
         module.viewModel.output.startFeedback
             .subscribe(onNext: { [weak self] in
                 self?.showFeedback()
@@ -47,6 +53,18 @@ final class CustomizeCoordinator: BaseCoordinator {
             .disposed(by: disposeBag)
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
+    }
+    
+    private func showTokens() {
+        let module = modulesFactory.makeTokensModule()
+        
+        module.viewModel.output.isFinished
+            .subscribe(onNext: { [weak self] in
+                self?.router.pop(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: module.controller, animated: true)
     }
     
     private func showFeedback() {

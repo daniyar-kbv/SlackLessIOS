@@ -9,10 +9,12 @@ import Foundation
 
 enum PresentationError: ErrorPresentable {
     case cantOpenTermsAndPrivacy
+    case error(String)
     
     var presentationDescription: String {
         switch self {
         case .cantOpenTermsAndPrivacy: return SLTexts.Error.Presentation.cantOpenTermsAndPrivacy.localized()
+        case let .error(message): return message
         }
     }
 }

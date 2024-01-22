@@ -27,7 +27,7 @@ public class IAPReceipt {
     }
     
     public var isValid = false
-    private var inAppReceipts: [IAPReceiptProductInfo] = []
+    var inAppReceipts: [IAPReceiptProductInfo] = []
     private var receiptData: UnsafeMutablePointer<PKCS7>?
     private var bundleIdString: String?
     private var bundleVersionString: String?

@@ -1,0 +1,35 @@
+{
+  "identifier" : "4CB36052",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6475325766",
+      "localizations" : [
+        {
+          "description" : "1 Credit that can be used to disable limit",
+          "displayName" : "1 Credit",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "kz.slackless.one.credit",
+      "referenceName" : "1 Credit",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6450131188",
+    "_developerTeamID" : "7842GYQN2J",
+    "_lastSynchronizedDate" : 727238466.70792699
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

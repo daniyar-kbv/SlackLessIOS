@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startReachabilityManager()
         initializeServices()
         configureAppCoordinator()
+//        Syncing UserDefaults with iCloud
+        MKiCloudSync.start(withPrefix: "sync")
         
         return true
     }

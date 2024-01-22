@@ -66,6 +66,8 @@ struct Constants {
     }
     
     enum IAP {
+        static let isStoreKitConfigurationFileUsed = true
+        
         enum Products: String {
             case oneCredit = "kz.slackless.one.credit"
         }

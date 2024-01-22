@@ -49,6 +49,9 @@
             ReferencedContainer = "container:SlackLess.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../SlackLess/Resourses/Constants/IAPTest.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

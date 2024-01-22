@@ -38,6 +38,11 @@ final class UnlockView: SLBaseView {
     
     private(set) lazy var applePayButtonContainer = UIView()
     
+    private(set) lazy var paymentButton: SLButton = {
+        let view = SLButton(style: .filled, size: .large)
+        return view
+    }()
+    
     private(set) lazy var bottomButton: SLButton = {
         let view = SLButton(style: .gray, size: .medium)
         view.setTitle(SLTexts.Unlock.bottomButtonTitle.localized(String(Int(Constants.Settings.shortUnlockTime.get(component: .minutes)))), for: .normal)
@@ -58,7 +63,7 @@ final class UnlockView: SLBaseView {
     }
 
     private func layoutUI() {
-        [subtitleLabel, settingsView, stretchableView, termsLabel, applePayButtonContainer, bottomButton].forEach({ addSubview($0) })
+        [subtitleLabel, settingsView, stretchableView, paymentButton, bottomButton].forEach({ addSubview($0) })
         
         subtitleLabel.snp.makeConstraints({
             $0.top.equalToSuperview()
@@ -74,18 +79,23 @@ final class UnlockView: SLBaseView {
             $0.top.equalTo(settingsView.snp.bottom).offset(32)
         })
         
-        termsLabel.snp.makeConstraints({
-            $0.top.equalTo(stretchableView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview().inset(16)
-        })
+//        termsLabel.snp.makeConstraints({
+//            $0.top.equalTo(stretchableView.snp.bottom)
+//            $0.horizontalEdges.equalToSuperview().inset(16)
+//        })
+//
+//        applePayButtonContainer.snp.makeConstraints({
+//            $0.top.equalTo(termsLabel.snp.bottom).offset(8)
+//            $0.horizontalEdges.equalToSuperview().inset(16)
+//        })
         
-        applePayButtonContainer.snp.makeConstraints({
-            $0.top.equalTo(termsLabel.snp.bottom).offset(8)
+        paymentButton.snp.makeConstraints({
+            $0.top.equalTo(stretchableView.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview().inset(16)
         })
         
         bottomButton.snp.makeConstraints({
-            $0.top.equalTo(applePayButtonContainer.snp.bottom).offset(16)
+            $0.top.equalTo(paymentButton.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         })

@@ -2,6 +2,8 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+//  MARK: - IAPHelper
+
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT double IAPHelperVersionNumber;
@@ -114,3 +116,7 @@ FOUNDATION_EXPORT const unsigned char IAPHelperVersionString[];
 #import "x509err.h"
 #import "x509v3.h"
 #import "x509v3err.h"
+
+//  MARK: - CloudSync
+
+#import "MKiCloudSync.h"

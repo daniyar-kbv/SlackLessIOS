@@ -21,9 +21,12 @@ protocol UnlockViewModelOutput: AnyObject {
     var unlockSucceed: PublishRelay<SLLockUpdateType> { get }
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var didFinish: PublishRelay<Void> { get }
+    var startTokens: PublishRelay<Void> { get }
     
     func getSettingsViewModel() -> SLSettingsViewModel
     func getSettingsValues() -> (unlockPrice: Double?, unlockTime: Double)
+    func getUnlockTime() -> Int
+    func getUnlockPrice() -> Int
 }
 
 protocol UnlockViewModel: AnyObject {
@@ -38,27 +41,37 @@ final class UnlockViewModelImpl: UnlockViewModel, UnlockViewModelInput, UnlockVi
     private let appSettingsService: AppSettingsService
     private let paymentService: PaymentService
     private let lockService: LockService
+    private let tokensService: TokensService
 
     private let disposeBag = DisposeBag()
     private lazy var settingsViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .display,
                                                                                       appSettingsService: appSettingsService,
-                                                                                      pushNotificationsService: nil)
+                                                                                      pushNotificationsService: nil,
+                                                                                      tokensService: tokensService)
 
     init(appSettingsService: AppSettingsService,
          paymentService: PaymentService,
-         lockService: LockService) {
+         lockService: LockService,
+         tokensService: TokensService) {
         self.appSettingsService = appSettingsService
         self.paymentService = paymentService
         self.lockService = lockService
+        self.tokensService = tokensService
 
         bindServices()
+        
+        settingsViewModel.output.unlockTokensSelected
+            .bind(to: startTokens)
+            .disposed(by: disposeBag)
     }
 
     //    Output
     lazy var applePayStatus: BehaviorRelay<SLApplePayState> = .init(value: makeApplePayStatus(from: paymentService.output.applePayStatus.value))
+    
     let unlockSucceed: PublishRelay<SLLockUpdateType> = .init()
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     let didFinish: PublishRelay<Void> = .init()
+    let startTokens: PublishRelay<Void> = .init()
     
     func getSettingsViewModel() -> SLSettingsViewModel {
         settingsViewModel
@@ -67,10 +80,27 @@ final class UnlockViewModelImpl: UnlockViewModel, UnlockViewModelInput, UnlockVi
     func getSettingsValues() -> (unlockPrice: Double?, unlockTime: Double) {
         return (appSettingsService.output.getUnlockPrice(), Constants.Settings.unlockTime)
     }
+    
+    func getUnlockPrice() -> Int {
+        Int(appSettingsService.output.getUnlockPrice() ?? 1)
+    }
+    
+    func getUnlockTime() -> Int {
+        Int(Constants.Settings.unlockTime/60)
+    }
 
     //    Input
     func startPayment() {
-        paymentService.input.startPayment()
+        let unlockPrice = Int(appSettingsService.output.getUnlockPrice() ?? 1)
+        
+        guard tokensService.output.getTokens() >= unlockPrice else {
+            errorOccured.accept(PresentationError.error("Not enough tokens"))
+            return
+        }
+        
+        tokensService.input.use(tokens: unlockPrice)
+        
+        lockService.input.updateLock(type: .longUnlock)
     }
     
     func shortUnlock() {
