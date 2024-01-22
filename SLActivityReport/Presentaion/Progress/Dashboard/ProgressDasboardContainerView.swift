@@ -98,7 +98,7 @@ extension ProgressDasboardContainerView {
         
         var textColor: UIColor? {
             switch self {
-            case .first: return SLColors.label2.getColor()
+            case .first: return SLColors.white.getColor()
             case .second, .third: return SLColors.label1.getColor()
             }
         }
