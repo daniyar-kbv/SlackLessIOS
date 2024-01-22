@@ -43,9 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func makeWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-
-//      TODO: remove
-        window?.overrideUserInterfaceStyle = .light
     }
 
     private func configureAppCoordinator() {
