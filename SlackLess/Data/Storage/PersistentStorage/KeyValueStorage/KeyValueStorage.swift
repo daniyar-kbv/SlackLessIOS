@@ -15,7 +15,6 @@ import RxSwift
 enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case onbardingShown
     case dayData
-//    TODO: Move to DayData
     case unlockedTime
     case unlockPrice
     case isLocked
@@ -24,8 +23,8 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case currentWeek
     case shieldState
     case pushNotificationsEnabled
-    case purchasedTokens
-    case usedTokens
+    case syncPurchasedTokens
+    case syncUsedTokens
 
     public var value: String { return rawValue }
 }
@@ -126,11 +125,11 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     var purchasedTokens: Int {
-        storageProvider.integer(forKey: KeyValueStorageKey.purchasedTokens.value)
+        storageProvider.integer(forKey: KeyValueStorageKey.syncPurchasedTokens.value)
     }
     
     var usedTokens: Int {
-        storageProvider.integer(forKey: KeyValueStorageKey.usedTokens.value)
+        storageProvider.integer(forKey: KeyValueStorageKey.syncUsedTokens.value)
     }
     
 //    TODO: Move to repository
@@ -212,11 +211,11 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     func persist(purchasedTokens: Int) {
-        storageProvider.set(purchasedTokens, forKey: KeyValueStorageKey.purchasedTokens.value)
+        storageProvider.set(purchasedTokens, forKey: KeyValueStorageKey.syncPurchasedTokens.value)
     }
     
     func persist(usedTokens: Int) {
-        storageProvider.set(usedTokens, forKey: KeyValueStorageKey.usedTokens.value)
+        storageProvider.set(usedTokens, forKey: KeyValueStorageKey.syncUsedTokens.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {
