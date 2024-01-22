@@ -30,12 +30,11 @@ final class SummarySelectedAppsCollectionCell: UICollectionViewCell {
     }
 
     private func layoutUI() {
+        backgroundColor = .clear
+        
         appTimeView?.removeFromSuperview()
-
         appTimeView = .init()
-
         contentView.addSubview(appTimeView!)
-
         appTimeView?.snp.makeConstraints {
             $0.top.equalToSuperview().offset(4.5)
             $0.horizontalEdges.equalToSuperview()

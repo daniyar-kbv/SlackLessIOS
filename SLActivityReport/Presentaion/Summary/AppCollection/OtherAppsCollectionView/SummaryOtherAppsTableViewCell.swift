@@ -32,10 +32,10 @@ final class SummaryOtherAppsTableViewCell: UITableViewCell {
     }
 
     private func layoutUI() {
+        backgroundColor = .clear
+        
         appTimeView?.removeFromSuperview()
-
         appTimeView = .init()
-
         addSubview(appTimeView!)
         appTimeView?.snp.makeConstraints {
             $0.centerY.horizontalEdges.equalToSuperview()
