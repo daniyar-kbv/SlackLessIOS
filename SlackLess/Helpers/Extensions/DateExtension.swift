@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-//    TODO: Refactor
+//    TODO: Refactor so that only data layer uses beginning of the day
     func getDate() -> Date {
         Calendar.current.dateInterval(of: .day, for: self)!.start
     }

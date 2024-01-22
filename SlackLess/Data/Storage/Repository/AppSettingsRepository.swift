@@ -13,8 +13,7 @@ import RxSwift
 
 protocol AppSettingsRepositoryInput {
     func set(onboardingShown: Bool)
-    func set(timeLimit: TimeInterval, for date: Date)
-    func set(selectedApps: FamilyActivitySelection, for date: Date)
+    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval, for date: Date)
     func set(unlockedTime: TimeInterval, for date: Date)
     func set(unlockPrice: Double)
     func set(startDate: Date)
@@ -25,8 +24,7 @@ protocol AppSettingsRepositoryInput {
 
 protocol AppSettingsRepositoryOutput {
     func getOnboardingShown() -> Bool
-    func getTimeLimit(for date: Date) -> TimeInterval?
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
     func getUnlockPrice() -> Double?
     func getIsLocked() -> Bool
@@ -78,15 +76,9 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
     func getOnboardingShown() -> Bool {
         keyValueStorage.onbardingShown
     }
-
-    func getTimeLimit(for date: Date) -> TimeInterval? {
-        let timeLimit = keyValueStorage.getTimeLimit(for: date)
-        guard timeLimit > 0 else { return nil }
-        return timeLimit
-    }
-
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        keyValueStorage.getSelectedApps(for: date)
+    
+    func getDayData(for date: Date) -> DayData? {
+        keyValueStorage.getDayData(for: date)
     }
 
     func getUnlockedTime(for date: Date) -> TimeInterval {
@@ -125,12 +117,11 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.persist(onbardingShown: onboardingShown)
     }
 
-    func set(timeLimit: TimeInterval, for date: Date) {
-        keyValueStorage.persist(timeLimit: timeLimit, for: date)
-    }
-
-    func set(selectedApps: FamilyActivitySelection, for date: Date) {
-        keyValueStorage.persist(selectedApps: selectedApps, for: date)
+    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval, for date: Date) {
+        let dayData = DayData(date: date,
+                              selectedApps: selectedApps,
+                              timeLimit: timeLimit)
+        keyValueStorage.persist(dayData: dayData)
     }
 
     func set(unlockedTime: TimeInterval, for date: Date) {

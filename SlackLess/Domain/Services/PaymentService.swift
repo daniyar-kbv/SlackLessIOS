@@ -34,7 +34,6 @@ final class PaymentServiceImpl: NSObject, PaymentService, PaymentServiceInput, P
     private let supportedNetworks: [PKPaymentNetwork] = [.visa, .masterCard, .JCB, .amex, .cartesBancaires, .chinaUnionPay, .discover, .eftpos, .electron, .idCredit, .interac, .maestro, .privateLabel, .quicPay, .suica, .vPay]
     private let merchantCapabilities: PKMerchantCapability = .capability3DS
 
-//    FIXME: Change to failure
     var paymentStatus: PKPaymentAuthorizationStatus = .failure
 
     init(eventManager: EventManager) {

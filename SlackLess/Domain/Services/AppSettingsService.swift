@@ -10,11 +10,12 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+//  TODO: Split into two services
+
 protocol AppSettingsServiceInput {
     func requestAuthorization()
-    func set(timeLimit: TimeInterval)
     func set(onboardingShown: Bool)
-    func set(selectedApps: FamilyActivitySelection)
+    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval)
     func set(unlockPrice: Double)
     func set(progressDate: Date)
     func setWeeklyReportShown()
@@ -23,12 +24,11 @@ protocol AppSettingsServiceInput {
 protocol AppSettingsServiceOutput {
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
-    var timeLimitSaved: PublishRelay<Void> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
     var isLocked: PublishRelay<Bool> { get }
 
-    func getTimeLimit(for date: Date) -> TimeInterval?
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getCurrentTimeLimit() -> TimeInterval?
+    func getCurrentSelectedApps() -> FamilyActivitySelection?
     func getUnlockPrice() -> Double?
     func getIsLocked() -> Bool
     func getOnboardingShown() -> Bool
@@ -69,7 +69,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     //    Output
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
-    let timeLimitSaved: PublishRelay<Void> = .init()
     let appsSelectionSaved: PublishRelay<Void> = .init()
     let isLocked: PublishRelay<Bool> = .init()
 
@@ -77,42 +76,14 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.output.getOnboardingShown()
     }
 
-    func getTimeLimit(for date: Date) -> Double? {
-        if let timeLimit = appSettingsRepository.output.getTimeLimit(for: date) {
-            return timeLimit
-        }
-
-        var timeLimit: TimeInterval?
-        iterateThroughDays(startDate: date) { [weak self] in
-            guard
-                let self = self,
-                let foundTimeLimit = appSettingsRepository.output.getTimeLimit(for: $0)
-            else { return false }
-            appSettingsRepository.input.set(timeLimit: foundTimeLimit, for: date)
-            timeLimit = foundTimeLimit
-            return true
-        }
-
-        return timeLimit
+//    TODO: Refactor to optimize fetching DayData
+    
+    func getCurrentTimeLimit() -> Double? {
+        appSettingsRepository.output.getDayData(for: Date())?.timeLimit
     }
 
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        if let appsSelection = appSettingsRepository.output.getSelectedApps(for: date) {
-            return appsSelection
-        }
-
-        var appsSelection: FamilyActivitySelection?
-        iterateThroughDays(startDate: date) { [weak self] in
-            guard
-                let self = self,
-                let foundAppsSelection = appSettingsRepository.output.getSelectedApps(for: $0)
-            else { return false }
-            appSettingsRepository.input.set(selectedApps: foundAppsSelection, for: date)
-            appsSelection = foundAppsSelection
-            return true
-        }
-
-        return appsSelection
+    func getCurrentSelectedApps() -> FamilyActivitySelection? {
+        appSettingsRepository.output.getDayData(for: Date())?.selectedApps
     }
 
     func getUnlockPrice() -> Double? {
@@ -169,21 +140,9 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.input.set(currentWeek: Date().getFirstDayOfWeek())
     }
 
-    func set(timeLimit: TimeInterval) {
-        getWeek().forEach {
-            appSettingsRepository.input.set(timeLimit: timeLimit, for: $0)
-        }
+    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval) {
+        appSettingsRepository.input.set(selectedApps: selectedApps, timeLimit: timeLimit, for: Date())
         eventManager.send(event: .init(type: .appLimitSettingsChanged))
-        timeLimitSaved.accept(())
-    }
-
-//    FIXME: Fix the bug when no selected apps for date
-    func set(selectedApps: FamilyActivitySelection) {
-        getWeek().forEach {
-            appSettingsRepository.input.set(selectedApps: selectedApps, for: $0)
-        }
-        eventManager.send(event: .init(type: .appLimitSettingsChanged))
-        appsSelectionSaved.accept(())
     }
 
     func set(unlockPrice: Double) {
@@ -222,25 +181,5 @@ extension AppSettingsServiceImpl {
         case .failure: break
         }
         authorizaionStatus.accept(result)
-    }
-    
-    private func iterateThroughDays(startDate: Date, action: (Date) -> Bool) {
-        var daysDifference = 0
-        while daysDifference <= 100 {
-            if action(startDate.add(.day, value: -daysDifference)) {
-                break
-            }
-            daysDifference += 1
-        }
-    }
-
-    private func getWeek() -> [Date] {
-        var currentDate = Date().getDate()
-        var days = [Date]()
-        while currentDate <= Date().getLastDayOfWeek() {
-            days.append(currentDate)
-            currentDate = currentDate.add(.day, value: 1)
-        }
-        return days
     }
 }

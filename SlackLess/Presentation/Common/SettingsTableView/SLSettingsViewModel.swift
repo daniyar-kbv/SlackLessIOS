@@ -51,8 +51,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     private let pushNotificationsService: PushNotificationsService?
 
     private let disposeBag = DisposeBag()
-    private lazy var appsSelection = appSettingsService.output.getSelectedApps(for: Date().getDate())
-    private lazy var timeLimit = appSettingsService.output.getTimeLimit(for: Date().getDate())
+    private lazy var appsSelection = appSettingsService.output.getCurrentSelectedApps()
+    private lazy var timeLimit = appSettingsService.output.getCurrentTimeLimit()
     private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
     private var pushNotificationsEnabled = false
 
@@ -158,8 +158,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
               let unlockPrice = unlockPrice
         else { return }
         
-        appSettingsService.input.set(selectedApps: appsSelection)
-        appSettingsService.input.set(timeLimit: timeLimit)
+        appSettingsService.input.set(selectedApps: appsSelection,
+                                     timeLimit: timeLimit)
         appSettingsService.input.set(unlockPrice: unlockPrice)
         
         didSave.accept(())

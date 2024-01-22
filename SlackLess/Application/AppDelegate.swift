@@ -9,6 +9,7 @@ import DeviceActivity
 import IQKeyboardManagerSwift
 import UIKit
 import FirebaseCore
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startReachabilityManager()
         initializeServices()
         configureAppCoordinator()
+        
         return true
     }
 
