@@ -9,6 +9,7 @@ import DeviceActivity
 import SwiftUI
 import FamilyControls
 
+typealias CategoryActivity = DeviceActivityData.CategoryActivity
 typealias ApplicationActivity = DeviceActivityData.ApplicationActivity
 
 struct SummaryScene: DeviceActivityReportScene {
@@ -36,12 +37,11 @@ struct SummaryScene: DeviceActivityReportScene {
 
         let timeLimit = repository.getTimeLimit(for: date)
 
-        let allApps: [ApplicationActivity] = await activitySegment
+        let categories: [CategoryActivity] = await activitySegment
             .categories
-            .flatMap { $0.applications }
             .unwrap()
 
-        let (selectedApps, otherApps) = splitApps(allApps, selection: appSelection)
+        let (selectedApps, otherApps) = await splitApps(in: categories, with: appSelection)
         
         let totalTime = activitySegment.totalActivityDuration
         let slackedTime = getTotalTime(of: selectedApps)
@@ -58,16 +58,24 @@ struct SummaryScene: DeviceActivityReportScene {
                      otherApps: otherAppsTransformed)
     }
     
-    private func splitApps(_ apps: [ApplicationActivity], selection: FamilyActivitySelection) -> (selected: [ApplicationActivity], other: [ApplicationActivity]) {
+    private func splitApps(in categories: [CategoryActivity], with selection: FamilyActivitySelection) async -> (selected: [ApplicationActivity], other: [ApplicationActivity]) {
         var selectedApps = [ApplicationActivity]()
         var otherApps = [ApplicationActivity]()
         
-        for app in apps {
-            guard let token = app.application.token else { continue }
-            if selection.applicationTokens.contains(token) {
-                selectedApps.append(app)
+        for category in categories {
+            guard let categoryToken = category.category.token else { continue }
+            if selection.categoryTokens.contains(categoryToken) {
+                selectedApps.append(contentsOf: await category.applications.unwrap())
             } else {
-                otherApps.append(app)
+                let applications: [ApplicationActivity] = await category.applications.unwrap()
+                for app in applications {
+                    guard let token = app.application.token else { continue }
+                    if selection.applicationTokens.contains(token) {
+                        selectedApps.append(app)
+                    } else {
+                        otherApps.append(app)
+                    }
+                }
             }
         }
         
