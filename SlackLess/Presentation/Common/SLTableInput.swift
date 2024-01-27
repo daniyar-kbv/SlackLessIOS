@@ -126,7 +126,7 @@ extension SLTableInput: UITextFieldDelegate {
     
     private func updateCursor(for textFiel: UITextField) {
         guard let newPosition = textField.position(from: textField.endOfDocument,
-                                                   offset: -(textField.text?.components(separatedBy: "/").last?.count ?? 0) - 1)
+                                                   offset: -(textField.text?.components(separatedBy: "/").last?.count ?? 0) - 3)
         else { return }
         textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
     }
