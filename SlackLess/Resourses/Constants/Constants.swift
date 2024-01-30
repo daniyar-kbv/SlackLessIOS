@@ -21,11 +21,11 @@ struct Constants {
         
         static let environmentType: EnvironmentType = {
             #if targetEnvironment(simulator)
-            return .simulator
+            .simulator
             #elseif DEBUG
-            return .device
+            .device
             #else
-            return .release
+            Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt" ? .testFlight : .production
             #endif
         }()
 
@@ -37,7 +37,8 @@ struct Constants {
         enum EnvironmentType {
             case simulator
             case device
-            case release
+            case testFlight
+            case production
         }
     }
 
