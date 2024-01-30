@@ -32,15 +32,15 @@ final class CustomizeView: SLBaseView {
     }
     
     func layoutUI() {
-        switch Constants.Settings.appMode {
-        case .normal:
+        switch Constants.Settings.environmentType {
+        case .production:
             [settingsView].forEach(addSubview(_:))
             
             settingsView.snp.makeConstraints {
                 $0.verticalEdges.equalTo(safeAreaLayoutGuide)
                 $0.horizontalEdges.equalToSuperview()
             }
-        case .debug:
+        default:
             [settingsView, debugButton].forEach(addSubview(_:))
             
             settingsView.snp.makeConstraints {
