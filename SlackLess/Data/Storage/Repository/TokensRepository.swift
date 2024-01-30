@@ -10,7 +10,7 @@ import Foundation
 protocol TokensRepositoryInput {
     func purchase(tokens: Int)
     func use(tokens: Int)
-    func reset(tokens: Int)
+    func restore()
 }
 
 protocol TokensRepositoryOutput {
@@ -46,8 +46,8 @@ final class TokensRepositoryImpl: TokensRepository, TokensRepositoryInput, Token
         keyValueStorage.persist(usedTokens: usedTokens)
     }
     
-    func reset(tokens: Int) {
-        keyValueStorage.persist(purchasedTokens: tokens)
+    func restore() {
+        keyValueStorage.restoreFromCloud()
     }
     
 //    Input

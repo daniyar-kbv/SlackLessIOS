@@ -46,9 +46,6 @@ final class TokensServiceImpl: TokensService, TokensServiceInput, TokensServiceO
             case .purchased:
                 guard let tokens = self?.pendingTokens else { break }
                 self?.tokensRepository.input.purchase(tokens: tokens)
-            case .restored:
-                let tokens = self?.iapManager.receipt?.inAppReceipts.map({ $0.quantity ?? 0 }).reduce(0, +) ?? 0
-                self?.tokensRepository.input.reset(tokens: tokens)
             default: break
             }
             self?.output.alert.accept(alertType)
@@ -58,11 +55,7 @@ final class TokensServiceImpl: TokensService, TokensServiceInput, TokensServiceO
     
 //    Output
     func getTokens() -> Int {
-        if Constants.IAP.isStoreKitConfigurationFileUsed {
-            return tokensRepository.output.getPurchasedTokens() - tokensRepository.output.getUsedTokens()
-        } else {
-            return (iapManager.receipt?.inAppReceipts.map({ $0.quantity ?? 0 }).reduce(0, +) ?? 0) - tokensRepository.output.getUsedTokens()
-        }
+        return tokensRepository.output.getPurchasedTokens() - tokensRepository.output.getUsedTokens()
     }
     
 //    Input
@@ -77,6 +70,7 @@ final class TokensServiceImpl: TokensService, TokensServiceInput, TokensServiceO
     }
     
     func restore() {
-        iapManager.restorePurchase()
+        tokensRepository.input.restore()
+        output.alert.accept(.restored)
     }
 }

@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 
 //  TODO: Make all observable
-
 enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case onbardingShown
     case dayData
@@ -23,10 +22,17 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case currentWeek
     case shieldState
     case pushNotificationsEnabled
-    case syncPurchasedTokens
-    case syncUsedTokens
+    case purchasedTokens
+    case usedTokens
 
-    public var value: String { return rawValue }
+    var value: String { return rawValue }
+    
+    var isCloudSynced: Bool {
+        switch self {
+        case .purchasedTokens, .usedTokens: return true
+        default: return false
+        }
+    }
 }
 
 protocol KeyValueStorage {
@@ -60,6 +66,8 @@ protocol KeyValueStorage {
 
     func cleanUp(key: KeyValueStorageKey)
     func cleanUp()
+    
+    func restoreFromCloud()
 }
 
 final class KeyValueStorageImpl: KeyValueStorage {
@@ -70,6 +78,12 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     public init() {
         bind()
+        startObservingCloud()
+        updateFromCloud()
+    }
+    
+    deinit {
+        stopObservingCloud()
     }
 
     private func bind() {
@@ -125,11 +139,11 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     var purchasedTokens: Int {
-        storageProvider.integer(forKey: KeyValueStorageKey.syncPurchasedTokens.value)
+        storageProvider.integer(forKey: KeyValueStorageKey.purchasedTokens.value)
     }
     
     var usedTokens: Int {
-        storageProvider.integer(forKey: KeyValueStorageKey.syncUsedTokens.value)
+        storageProvider.integer(forKey: KeyValueStorageKey.usedTokens.value)
     }
     
 //    TODO: Move to repository
@@ -211,11 +225,11 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     func persist(purchasedTokens: Int) {
-        storageProvider.set(purchasedTokens, forKey: KeyValueStorageKey.syncPurchasedTokens.value)
+        storageProvider.set(purchasedTokens, forKey: KeyValueStorageKey.purchasedTokens.value)
     }
     
     func persist(usedTokens: Int) {
-        storageProvider.set(usedTokens, forKey: KeyValueStorageKey.syncUsedTokens.value)
+        storageProvider.set(usedTokens, forKey: KeyValueStorageKey.usedTokens.value)
     }
 
     func cleanUp(key: KeyValueStorageKey) {
@@ -225,6 +239,70 @@ final class KeyValueStorageImpl: KeyValueStorage {
     func cleanUp() {
         storageProvider.removePersistentDomain(forName: Constants.SharedStorage.appGroup)
         storageProvider.synchronize()
+    }
+    
+    func restoreFromCloud() {
+        updateFromCloud()
+    }
+}
+
+extension KeyValueStorageImpl {
+    private func startObservingCloud() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFromCloud(_:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToCloud), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    private func stopObservingCloud() {
+        NotificationCenter.default.removeObserver(self, name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
+    }
+
+    @objc func updateFromCloud(_ notificationObject: Notification) {
+        updateFromCloud()
+    }
+    
+    private func updateFromCloud() {
+        let syncedKeyValues: [(key: KeyValueStorageKey, value: Any?)] = NSUbiquitousKeyValueStore
+            .default
+            .dictionaryRepresentation
+            .compactMap({
+                guard let key = KeyValueStorageKey(rawValue: $0.key),
+                      key.isCloudSynced
+                else { return nil }
+                return (key: key, value: $0.value)
+            })
+        print("Update from cloud: \(syncedKeyValues)")
+
+        NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
+
+        syncedKeyValues.forEach({
+            storageProvider.set($0.value, forKey: $0.key.rawValue)
+            
+        })
+
+        storageProvider.synchronize()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToCloud), name: UserDefaults.didChangeNotification, object: nil)
+        
+//        NotificationCenter.default.post(name: NSNotification.Name("CloudSyncNotification"), object: nil)
+    }
+    
+    @objc func updateToCloud(_ notificationObject: Notification) {
+        let syncedKeyValues: [(key: KeyValueStorageKey, value: Any?)] = storageProvider
+            .dictionaryRepresentation()
+            .compactMap({
+                guard let key = KeyValueStorageKey(rawValue: $0.key),
+                      key.isCloudSynced
+                else { return nil }
+                return (key: key, value: $0.value)
+            })
+        print("Update to cloud: \(syncedKeyValues)")
+
+        syncedKeyValues.forEach({
+            NSUbiquitousKeyValueStore.default.set($0.value, forKey: $0.key.rawValue)
+        })
+
+        NSUbiquitousKeyValueStore.default.synchronize()
     }
 }
 

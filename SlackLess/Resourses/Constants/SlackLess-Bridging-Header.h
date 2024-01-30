@@ -116,7 +116,3 @@ FOUNDATION_EXPORT const unsigned char IAPHelperVersionString[];
 #import "x509err.h"
 #import "x509v3.h"
 #import "x509v3err.h"
-
-//  MARK: - CloudSync
-
-#import "MKiCloudSync.h"

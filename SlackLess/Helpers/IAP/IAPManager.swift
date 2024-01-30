@@ -26,6 +26,7 @@ class IAPManager: NSObject {
         super.init()
         
         fetchAvailableProducts()
+        processReceipt()
     }
     
     // MARK: - FETCH AVAILABLE IAP PRODUCTS
@@ -73,8 +74,9 @@ class IAPManager: NSObject {
 extension IAPManager: SKProductsRequestDelegate {
     // MARK: - REQUEST IAP PRODUCTS
     func productsRequest (_ request:SKProductsRequest, didReceive response:SKProductsResponse) {
-        print("Loaded list of products...", response.products)
-        print("Loaded list of invalid products...", response.invalidProductIdentifiers)
+//        TODO: Add proper logging
+        print("Loaded list of products:", response.products.map({ $0.productIdentifier }))
+        print("Loaded list of invalid products:", response.invalidProductIdentifiers)
         if response.products.count > 0 {
             iapProducts = response.products
             fetchAvailableProductsBlock?(response.products)
@@ -114,7 +116,7 @@ extension IAPManager: SKPaymentTransactionObserver {
                         SKPaymentQueue.default().finishTransaction(transaction)
                         
                         if IAPConstants.isLocalValidateReceipt {
-                            let _ = processReceipt()
+                            processReceipt()
                         } else {
                             receiptAppStoreValidation()
                         }
@@ -147,7 +149,7 @@ extension IAPManager: SKPaymentTransactionObserver {
 
 extension IAPManager {
     
-    public func processReceipt() -> Bool {
+    public func processReceipt() {
         print("receiptValidationStarted")
         
         receipt = IAPReceipt()
@@ -155,17 +157,18 @@ extension IAPManager {
         guard let receipt = receipt,
               receipt.isReachable,
               receipt.load(),
-              receipt.validateSigning(),
+//              FIXME: Fix receipt signing validation
+//              receipt.validateSigning(),
               receipt.read(),
               receipt.validate() else {
             
             print("receiptProcessingFailure")
-            return false
+            return
         }
         
         createValidatedPurchasedProductIds(receipt: receipt)
         print("receiptProcessingSuccess")
-        return true
+        return
     }
     
     

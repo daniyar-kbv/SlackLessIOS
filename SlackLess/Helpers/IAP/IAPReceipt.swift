@@ -73,13 +73,13 @@ extension IAPReceipt {
     public func validateSigning() -> Bool {
 
         guard receiptData != nil else {
-            print("receiptValidateSigningFailure")
+            print("receiptValidateSigningFailure: receiptData is nil")
             return false
         }
         
         guard let rootCertUrl = Bundle.main.url(forResource: IAPConstants.Certificate(), withExtension: IAPConstants.CertificateExt()),
               let rootCertData = try? Data(contentsOf: rootCertUrl) else {
-            print("receiptValidateSigningFailure")
+            print("receiptValidateSigningFailure: no rootCertUrl or rootCertData")
             return false
         }
         
@@ -97,14 +97,15 @@ extension IAPReceipt {
         // If PKCS7_NOCHAIN is set the signer's certificates are not chain verified.
         // This is required when using the local testing StoreKitTestCertificate.cer certificate.
         // See https://developer.apple.com/videos/play/wwdc2020/10659/ at the 16:30 mark.
-        #if DEBUG
-        let verificationResult = PKCS7_verify(receiptData, nil, store, nil, nil, PKCS7_NOCHAIN)
-        #else
-        let verificationResult = PKCS7_verify(receiptData, nil, store, nil, nil, nil)
-        #endif
+        var verificationResult: Int32 = 0
+        if Constants.IAP.isStoreKitConfigurationFileUsed {
+            verificationResult = PKCS7_verify(receiptData, nil, store, nil, nil, PKCS7_NOCHAIN)
+        } else {
+            verificationResult = PKCS7_verify(receiptData, nil, store, nil, nil, 0)
+        }
         
         guard verificationResult == 1  else {
-            print("receiptValidateSigningFailure")
+            print("receiptValidateSigningFailure: verificationResult != 1")
             return false
         }
         

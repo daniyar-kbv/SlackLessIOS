@@ -151,7 +151,6 @@
 		704F36442B561D2A00739BCE /* TokensViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36432B561D2A00739BCE /* TokensViewModel.swift */; };
 		704F36462B561F0B00739BCE /* TokensController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36452B561F0B00739BCE /* TokensController.swift */; };
 		704F36482B561F1400739BCE /* TokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F36472B561F1400739BCE /* TokensView.swift */; };
-		706D7A172B5DED58002C0209 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 706D7A162B5DED58002C0209 /* MKiCloudSync.m */; };
 		70942E832B48DFD900584E90 /* SlackLess.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70942E812B48DFD900584E90 /* SlackLess.xcdatamodeld */; };
 		70942E852B48E20D00584E90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70942E842B48E20D00584E90 /* CoreData.framework */; };
 		70942E8B2B48E6AA00584E90 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70942E8A2B48E6AA00584E90 /* CoreDataStorage.swift */; };
@@ -636,8 +635,6 @@
 		704F36432B561D2A00739BCE /* TokensViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewModel.swift; sourceTree = "<group>"; };
 		704F36452B561F0B00739BCE /* TokensController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensController.swift; sourceTree = "<group>"; };
 		704F36472B561F1400739BCE /* TokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensView.swift; sourceTree = "<group>"; };
-		706D7A152B5DED58002C0209 /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKiCloudSync.h; sourceTree = "<group>"; };
-		706D7A162B5DED58002C0209 /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKiCloudSync.m; sourceTree = "<group>"; };
 		706D7A1B2B5DF0E5002C0209 /* SlackLess-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SlackLess-Bridging-Header.h"; sourceTree = "<group>"; };
 		70942E822B48DFD900584E90 /* SlackLess.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SlackLess.xcdatamodel; sourceTree = "<group>"; };
 		70942E842B48E20D00584E90 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1326,7 +1323,6 @@
 		543C2D7FF6197349816C416E2140DCD8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				706D7A142B5DED39002C0209 /* CloudSync */,
 				70DBEAAF2B521509004B102A /* IAP */,
 				51E6434D523D073DA0CC8031E771F81D /* Events */,
 				91C65A51206D0A4752764B607D8FCA32 /* Extensions */,
@@ -1609,15 +1605,6 @@
 				704F36472B561F1400739BCE /* TokensView.swift */,
 			);
 			path = Tokens;
-			sourceTree = "<group>";
-		};
-		706D7A142B5DED39002C0209 /* CloudSync */ = {
-			isa = PBXGroup;
-			children = (
-				706D7A152B5DED58002C0209 /* MKiCloudSync.h */,
-				706D7A162B5DED58002C0209 /* MKiCloudSync.m */,
-			);
-			path = CloudSync;
 			sourceTree = "<group>";
 		};
 		70942E882B48E63A00584E90 /* CoreData */ = {
@@ -2810,7 +2797,6 @@
 				EDC3EF59CB6CE5E9E1F651FEF9BE5B27 /* SLSettingsSpacerCell.swift in Sources */,
 				2B52D5482B00F1AE689A758A22730CA4 /* SLSettingsType.swift in Sources */,
 				253A1A8B9A8E0FE8AF20EC198D2E5139 /* SLSettingsViewModel.swift in Sources */,
-				706D7A172B5DED58002C0209 /* MKiCloudSync.m in Sources */,
 				D2C4F8FFC2F03AC0CFB5A907AD186CF2 /* SLShieldState.swift in Sources */,
 				70DBEABF2B521639004B102A /* IAPManagerAlertType.swift in Sources */,
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
