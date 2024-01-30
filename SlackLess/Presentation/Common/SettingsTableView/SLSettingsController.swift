@@ -104,7 +104,7 @@ final class SLSettingsController: UIViewController {
     private func bindViewModel() {
         viewModel.output.reload
             .subscribe(onNext: { [weak self] in
-                self?.hideLoader()
+                self?.parent?.hideLoader()
                 self?.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -145,9 +145,9 @@ final class SLSettingsController: UIViewController {
     private func reload() {
         switch viewModel.output.getType() {
         case .full:
-//            FIXME: Fix loader
             if !didAppear {
-                showLoader()
+//                TODO: Do something better than using parent
+                parent?.showLoader()
             }
             viewModel.input.load()
         case .setUp, .display: break
