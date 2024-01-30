@@ -10,9 +10,7 @@ import UIKit
 //  TODO: Refactor image names to match Enum names and remove raw values
 //  TODO: Refactor SF Symbols to use UIImage(systemName: )
 
-enum SLImages: String, ImageGetable {
-    case appIcon = "AppIcon"
-
+enum SLImages {
     enum NavBar: String, ImageGetable {
         case back = "NavBar.back"
     }
@@ -35,6 +33,7 @@ enum SLImages: String, ImageGetable {
     }
 
     enum Common: String, ImageGetable {
+        case appIcon = "Comon.AppIcon"
         case logo = "Common.Logo"
         case appIconPlaceholder = "Common.AppIcon.Placeholder"
 
@@ -58,6 +57,8 @@ enum SLImages: String, ImageGetable {
         case apps = "Settings.Apps"
         case time = "Settings.Time"
         case price = "Settings.Price"
+        case unlockTokens = "Settings.UnlockTokens"
+        case restorePurchases = "Settings.RestorePurchases"
         case notifications = "Settings.Notifications"
         case emails = "Settings.Emails"
         case feedback = "Settings.Feedback"
@@ -65,7 +66,13 @@ enum SLImages: String, ImageGetable {
 }
 
 extension SLImages {
-    static func getIcon(for appName: String) -> UIImage? {
-        return .init(named: "Apps.\(appName.lowercased())")
+    static func getIcon(for bundleID: String) -> UIImage? {
+        if Bundle.main.bundleIdentifier?.contains(bundleID) ?? false {
+            return Common.appIcon.getImage()
+        }
+        if let path = Bundle.main.path(forResource: bundleID, ofType: "png", inDirectory: "AppIcons") {
+            return UIImage(contentsOfFile: path)
+        }
+        return nil
     }
 }

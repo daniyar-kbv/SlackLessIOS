@@ -15,7 +15,7 @@ struct Constants {
     static let screenSize: CGRect = UIScreen.main.bounds
 
     enum Settings {
-        static let appMode: AppMode = .normal
+        static let appMode: AppMode = .debug
         static let shortUnlockTime: TimeInterval = 1 * 60
         static let unlockTime: TimeInterval = 15 * 60
         
@@ -25,7 +25,7 @@ struct Constants {
             #elseif DEBUG
             return .device
             #else
-            return .release
+            Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt" ? .testFlight : .production
             #endif
         }()
 
@@ -37,7 +37,8 @@ struct Constants {
         enum EnvironmentType {
             case simulator
             case device
-            case release
+            case testFlight
+            case production
         }
     }
 
@@ -63,16 +64,19 @@ struct Constants {
     enum Payment {
         static let applePayMerchantId = "merchant.kz.slackless"
     }
+    
+    enum IAP {
+        static let isStoreKitConfigurationFileUsed = false
+        
+        enum Products: String {
+            case oneCredit = "kz.slackless.one.credit"
+        }
+    }
 
 //    Shared constants
-    enum UserDefaults {
-        enum SuiteName {
-            static let main = "group.kz.slackless"
-        }
-
-        enum Key {
-            static let appsSelection = "AppsSelection"
-        }
+    enum SharedStorage {
+        static let appGroup = "group.kz.slackless"
+        static let databaseName = "SlackLess"
     }
 }
 

@@ -33,13 +33,17 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
 
     private let appSettingsService: AppSettingsService
     private let settingsViewModel: SLSettingsViewModel
+    private let tokensService: TokensService
 
-    init(appSettingsService: AppSettingsService) {
+    init(appSettingsService: AppSettingsService,
+         tokensService: TokensService) {
         self.appSettingsService = appSettingsService
+        self.tokensService = tokensService
         
         settingsViewModel = SLSettingsViewModelImpl(type: .setUp,
                                                     appSettingsService: appSettingsService,
-                                                    pushNotificationsService: nil)
+                                                    pushNotificationsService: nil,
+                                                    tokensService: tokensService)
         didSave = settingsViewModel.output.didSave
         isComplete = settingsViewModel.output.isComplete
     }

@@ -10,6 +10,8 @@ import FamilyControls
 import RxSwift
 import RxCocoa
 
+//  TODO: Refactor using DayData
+
 protocol Repository: AnyObject {
     var progressDate: BehaviorRelay<Date?> { get }
     
@@ -34,10 +36,10 @@ final class RepositoryImpl: Repository {
     var progressDate: BehaviorRelay<Date?>
     
     func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        keyValueStorage.getSelectedApps(for: date)
+        keyValueStorage.getDayData(for: date)?.selectedApps
     }
     
     func getTimeLimit(for date: Date) -> TimeInterval? {
-        keyValueStorage.getTimeLimit(for: date)
+        keyValueStorage.getDayData(for: date)?.timeLimit
     }
 }

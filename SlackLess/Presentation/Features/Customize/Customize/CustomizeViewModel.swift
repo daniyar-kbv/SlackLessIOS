@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+//  TODO: Update settings values when after set up
+
 protocol CustomizeViewModelInput: AnyObject {
     func unlock()
     func showSetUp()
@@ -18,6 +20,8 @@ protocol CustomizeViewModelOutput: AnyObject {
     var settingViewModel: SLSettingsViewModel { get }
     var showUnlockButton: BehaviorRelay<Bool> { get }
     var startUnlock: PublishRelay<Void> { get }
+    var startTokens: PublishRelay<Void> { get }
+    var startRestorePurchases: PublishRelay<Void> { get }
     var startFeedback: PublishRelay<Void> { get }
     var startSetUp: PublishRelay<Void> { get }
 }
@@ -33,13 +37,16 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
 
     private let appSettingsService: AppSettingsService
     private let pushNotificationsService: PushNotificationsService
+    private let tokensService: TokensService
 
     private let disposeBag = DisposeBag()
 
     init(appSettingsService: AppSettingsService,
-         pushNotificationsService: PushNotificationsService) {
+         pushNotificationsService: PushNotificationsService,
+         tokensService: TokensService) {
         self.appSettingsService = appSettingsService
         self.pushNotificationsService = pushNotificationsService
+        self.tokensService = tokensService
 
         bindService()
         bindSettingsViewModel()
@@ -48,9 +55,12 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
 //    Output
     lazy var settingViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .full,
                                                                              appSettingsService: appSettingsService,
-                                                                             pushNotificationsService: pushNotificationsService)
+                                                                             pushNotificationsService: pushNotificationsService,
+                                                                             tokensService: tokensService)
     lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
     let startUnlock: PublishRelay<Void> = .init()
+    let startTokens: PublishRelay<Void> = .init()
+    let startRestorePurchases: PublishRelay<Void> = .init()
     let startFeedback: PublishRelay<Void> = .init()
     let startSetUp: PublishRelay<Void> = .init()
 
@@ -74,6 +84,10 @@ extension CustomizeViewModelImpl {
     private func bindSettingsViewModel() {
         settingViewModel.output.feedbackSelected
             .bind(to: startFeedback)
+            .disposed(by: disposeBag)
+        
+        settingViewModel.output.unlockTokensSelected
+            .bind(to: startTokens)
             .disposed(by: disposeBag)
     }
 }

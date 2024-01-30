@@ -61,6 +61,8 @@ final class UnlockController: UIViewController {
             contentView.subtitleLabel.text = SLTexts.Unlock.subtitle.localized(String(Int(unlockPrice)), String(settingsValues.unlockTime.get(component: .minutes)))
         }
         
+        contentView.paymentButton.setTitle("Unlock for \(viewModel.output.getUnlockTime()) min for \(viewModel.output.getUnlockPrice()) token(s)", for: .normal)
+        
 //        FIXME: Localize "Pay"
         setUpTerms(label: &contentView.termsLabel,
                    accentColor: SLColors.accent1.getColor(),
@@ -72,18 +74,26 @@ final class UnlockController: UIViewController {
         contentView.bottomButton.rx.tap
             .subscribe(onNext: viewModel.input.shortUnlock)
             .disposed(by: disposeBag)
+        
+        contentView.paymentButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.showLoader()
+                self?.viewModel.input.startPayment()
+            })
+            .disposed(by: disposeBag)
+        
     }
 
     private func bindViewModel() {
-        viewModel.output.applePayStatus
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                contentView.setUpApplePayButton(for: $0)?
-                    .rx.tap
-                    .subscribe(onNext: handleApplePayButtonTap)
-                    .disposed(by: disposeBag)
-            })
-            .disposed(by: disposeBag)
+//        viewModel.output.applePayStatus
+//            .subscribe(onNext: { [weak self] in
+//                guard let self = self else { return }
+//                contentView.setUpApplePayButton(for: $0)?
+//                    .rx.tap
+//                    .subscribe(onNext: handleApplePayButtonTap)
+//                    .disposed(by: disposeBag)
+//            })
+//            .disposed(by: disposeBag)
 
         viewModel.output.unlockSucceed
             .subscribe(onNext: { [weak self] in
@@ -97,6 +107,7 @@ final class UnlockController: UIViewController {
 
         viewModel.output.errorOccured
             .subscribe(onNext: { [weak self] in
+                self?.hideLoader()
                 self?.showError($0)
             })
             .disposed(by: disposeBag)

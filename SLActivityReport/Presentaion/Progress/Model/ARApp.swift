@@ -10,7 +10,8 @@ import ManagedSettings
 import UIKit
 
 struct ARApp {
-    let name: String
+    let name: String?
+    let bundleId: String?
     let time: TimeInterval
     let ratio: Double
 }

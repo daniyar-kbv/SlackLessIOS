@@ -11,6 +11,8 @@ enum SLSettingsItem {
     case selectedApps
     case timeLimit
     case unlockPrice
+    case unlockTokens
+    case restorePurchases
     case pushNotifications
     case emails
     case leaveFeedback

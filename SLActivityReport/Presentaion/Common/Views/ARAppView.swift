@@ -11,13 +11,7 @@ import SwiftUI
 import UIKit
 
 final class ARAppView: UIStackView {
-    private(set) lazy var appIconView: UIImageView = {
-        let view = UIImageView()
-        view.clipsToBounds = true
-        view.layer.borderWidth = 0.25
-        view.layer.borderColor = SLColors.gray2.getColor()?.cgColor
-        return view
-    }()
+    private(set) lazy var appIconView = SLAppIconView()
 
     private(set) lazy var appNameLabel: UILabel = {
         let view = UILabel()
@@ -94,10 +88,14 @@ final class ARAppView: UIStackView {
 extension ARAppView {
     func set(app: ARApp, type: Type) {
         layoutUI()
+        
+        if let bundleId = app.bundleId,
+           let appName = app.name {
+            appIconView.update(with: bundleId, appName: appName)
+        }
 
         let timeText = makeTimeText(from: app.time, with: type.timeStyle)
-
-        appIconView.image = SLImages.getIcon(for: app.name) ?? SLImages.Common.appIconPlaceholder.getImage()
+        
         appNameLabel.text = app.name
         appNameLabel.sizeToFit()
         timeLabel.text = timeText

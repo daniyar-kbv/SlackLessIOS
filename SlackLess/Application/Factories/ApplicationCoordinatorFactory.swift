@@ -32,7 +32,8 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
 
     func makeOnboardingCoordinator() -> OnboardingCoordinator {
         return scoped(OnboardingCoordinator(router: routersFactory.makeMainRouter(),
-                                            modulesFactory: OnboardingModulesFactoryImpl(serviceFactory: serviceFactory)))
+                                            modulesFactory: OnboardingModulesFactoryImpl(serviceFactory: serviceFactory,
+                                                                                         helpersFactory: helpersFactory)))
     }
 
     func makeSummaryCoordinator() -> SummaryCoordinator {
@@ -47,15 +48,19 @@ final class ApplicationCoordinatorFactoryImpl: DependencyFactory, ApplicationCoo
 
     func makeCustomizeCoordinator() -> CustomizeCoordinator {
         return scoped(CustomizeCoordinator(router: routersFactory.makeMainRouter(),
-                                           coordinatorFactory: CustomizeCoordinatorsFactoryImpl(serviceFactory: serviceFactory),
-                                           modulesFactory: CustomizeModulesFactoryImpl(serviceFactory: serviceFactory)))
+                                           coordinatorFactory: CustomizeCoordinatorsFactoryImpl(serviceFactory: serviceFactory,
+                                                                                                helpersFactory: helpersFactory),
+                                           modulesFactory: CustomizeModulesFactoryImpl(serviceFactory: serviceFactory,
+                                                                                       helpersFactory: helpersFactory)))
     }
 
     func makeUnlockCoordinator() -> UnlockCoordinator {
-        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(serviceFactory: serviceFactory)))
+        return scoped(UnlockCoordinator(modulesFactory: UnlockModulesFactoryImpl(serviceFactory: serviceFactory,
+                                                                                 helpersFactory: helpersFactory)))
     }
 
     func makeWeeklyReportCoordinator() -> WeeklyReportCoordinator {
-        return scoped(WeeklyReportCoordinator(modulesFactory: WeeklyReportModulesFactoryImpl(serviceFactory: serviceFactory)))
+        return scoped(WeeklyReportCoordinator(modulesFactory: WeeklyReportModulesFactoryImpl(serviceFactory: serviceFactory,
+                                                                                             helpersFactory: helpersFactory)))
     }
 }

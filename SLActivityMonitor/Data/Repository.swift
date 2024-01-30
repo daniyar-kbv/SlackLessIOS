@@ -22,7 +22,7 @@ final class RepositoryImpl: Repository {
     }
     
     func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        keyValueStorage.getSelectedApps(for: date)
+        keyValueStorage.getDayData(for: date)?.selectedApps
     }
     
     func set(isLocked: Bool) {

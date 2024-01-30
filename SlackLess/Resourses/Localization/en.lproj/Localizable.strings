@@ -94,7 +94,7 @@
 "Settings.Settings.TimeLimitLabel.setUp" = "Set the Time Limit";
 "Settings.Settings.UnlockPriceLabel.normal" = "Unlock Fee";
 "Settings.Settings.UnlockPriceLabel.setUp" = "Set the Unlock Fee";
-"Settigns.Settings.UnlockPrice.placeholder" = "$%@/%@min";
+"Settigns.Settings.UnlockPrice.placeholder" = "%@tk/%@min";
 "Settings.Notifications.title" = "NOTIFICATIONS";
 "Settings.Notifications.pushNotifications" = "Push-notifications";
 "Settings.Notifications.emails" = "Emails";

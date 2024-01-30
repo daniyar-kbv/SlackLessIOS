@@ -13,12 +13,16 @@ protocol CustomizeCoordinatorsFactory: AnyObject {
 
 final class CustomizeCoordinatorsFactoryImpl: DependencyFactory, CustomizeCoordinatorsFactory {
     private let serviceFactory: ServiceFactory
+    private let helpersFactory: HelpersFactory
 
-    init(serviceFactory: ServiceFactory) {
+    init(serviceFactory: ServiceFactory,
+         helpersFactory: HelpersFactory) {
         self.serviceFactory = serviceFactory
+        self.helpersFactory = helpersFactory
     }
     
     func makeWeeklyReportCoordinator() -> WeeklyReportCoordinator {
-        return WeeklyReportCoordinator(modulesFactory: WeeklyReportModulesFactoryImpl(serviceFactory: serviceFactory))
+        return WeeklyReportCoordinator(modulesFactory: WeeklyReportModulesFactoryImpl(serviceFactory: serviceFactory,
+                                                                                      helpersFactory: helpersFactory))
     }
 }

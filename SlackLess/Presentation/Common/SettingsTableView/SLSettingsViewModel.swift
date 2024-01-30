@@ -15,9 +15,11 @@ protocol SLSettingsViewModelInput {
     func set(appSelection: FamilyActivitySelection)
     func set(timeLimit: TimeInterval?)
     func set(unlockPrice: Double?)
+    func selectUnlockTokens()
+    func selectRestorePurchases()
     func set(pushNotificationsEnabled: Bool)
-    func save()
     func selectFeedback()
+    func save()
 }
 
 protocol SLSettingsViewModelOutput {
@@ -27,7 +29,9 @@ protocol SLSettingsViewModelOutput {
     var isComplete: BehaviorRelay<Bool> { get }
     var canChangeSettings: Bool { get }
     var pushNotificationsUnauthorized: PublishRelay<Void> { get }
+    var unlockTokensSelected: PublishRelay<Void> { get }
     var feedbackSelected: PublishRelay<Void> { get }
+    var iapAlert: PublishRelay<IAPManagerAlertType> { get }
 
     func getType() -> SLSettingsType
     func getNumberOfSections() -> Int
@@ -49,23 +53,33 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     private let type: SLSettingsType
     private let appSettingsService: AppSettingsService
     private let pushNotificationsService: PushNotificationsService?
+    private let tokensService: TokensService
 
     private let disposeBag = DisposeBag()
-    private lazy var appsSelection = appSettingsService.output.getSelectedApps(for: Date().getDate())
-    private lazy var timeLimit = appSettingsService.output.getTimeLimit(for: Date().getDate())
+    private lazy var appsSelection = appSettingsService.output.getCurrentSelectedApps()
+    private lazy var timeLimit = appSettingsService.output.getCurrentTimeLimit()
     private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
     private var pushNotificationsEnabled = false
 
     init(type: SLSettingsType,
          appSettingsService: AppSettingsService,
-         pushNotificationsService: PushNotificationsService?)
+         pushNotificationsService: PushNotificationsService?,
+         tokensService: TokensService)
     {
         self.type = type
         self.appSettingsService = appSettingsService
         self.pushNotificationsService = pushNotificationsService
+        self.tokensService = tokensService
 
         bindAppSettingsService()
         bindPushNotificationsService()
+        
+        tokensService.output.alert
+            .subscribe(onNext: { [weak self] in
+                self?.iapAlert.accept($0)
+                self?.reload.accept(())
+            })
+            .disposed(by: disposeBag)
     }
 
     //    Output
@@ -74,7 +88,9 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     lazy var isComplete: BehaviorRelay<Bool> = .init(value: getIsComplete())
     let pushNotificationsUnauthorized: PublishRelay<Void> = .init()
+    let unlockTokensSelected: PublishRelay<Void> = .init()
     let feedbackSelected: PublishRelay<Void> = .init()
+    let iapAlert: PublishRelay<IAPManagerAlertType> = .init()
 
     var canChangeSettings: Bool {
         switch type {
@@ -93,8 +109,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
     func getNumberOfItems(in section: Int) -> Int {
         switch type {
-        case .full: return type.sections[section].items.count + 2
-        case .setUp, .display: return type.sections[section].items.count
+        case .full, .display: return type.sections[section].items.count + 2
+        case .setUp: return type.sections[section].items.count
         }
     }
 
@@ -106,14 +122,16 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         var index: Int?
 
         switch type {
-        case .full: index = indexPath.item - 1
-        case .setUp, .display: index = indexPath.item
+        case .full, .display: index = indexPath.item - 1
+        case .setUp: index = indexPath.item
         }
         
         switch type.sections[indexPath.section].items[index ?? 0] {
         case .selectedApps: return .selectedApps(type, appsSelection ?? .init())
         case .timeLimit: return .timeLimit(type, timeLimit)
         case .unlockPrice: return .unlockPrice(type, unlockPrice)
+        case .unlockTokens: return .unlockTokens(tokensService.output.getTokens())
+        case .restorePurchases: return .restorePurchases
         case .pushNotifications: return .pushNotifications(pushNotificationsEnabled)
         case .emails: return .emails
         case .leaveFeedback: return .leaveFeedback
@@ -147,6 +165,14 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         isComplete.accept(getIsComplete())
     }
     
+    func selectUnlockTokens() {
+        unlockTokensSelected.accept(())
+    }
+    
+    func selectRestorePurchases() {
+        tokensService.input.restore()
+    }
+    
     func set(pushNotificationsEnabled: Bool) {
         pushNotificationsService?.input.set(pushNotificationsEnabled: pushNotificationsEnabled)
     }
@@ -158,8 +184,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
               let unlockPrice = unlockPrice
         else { return }
         
-        appSettingsService.input.set(selectedApps: appsSelection)
-        appSettingsService.input.set(timeLimit: timeLimit)
+        appSettingsService.input.set(selectedApps: appsSelection,
+                                     timeLimit: timeLimit)
         appSettingsService.input.set(unlockPrice: unlockPrice)
         
         didSave.accept(())

@@ -10,6 +10,7 @@ import Foundation
 protocol HelpersFactory: AnyObject {
     func makeReachabilityManager() -> ReachabilityManager
     func makeEventManager() -> EventManager
+    func makeIAPManager() -> IAPManager
 }
 
 final class HelpersFactoryImpl: DependencyFactory, HelpersFactory {
@@ -19,5 +20,9 @@ final class HelpersFactoryImpl: DependencyFactory, HelpersFactory {
 
     func makeEventManager() -> EventManager {
         return shared(EventManagerImpl())
+    }
+    
+    func makeIAPManager() -> IAPManager {
+        return shared(IAPManager())
     }
 }

@@ -96,7 +96,7 @@ final class SLSettingsCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
 
         switch type {
-        case .selectedApps, .leaveFeedback:
+        case .selectedApps, .leaveFeedback, .unlockTokens, .restorePurchases:
             UIView.animate(withDuration: 0.1) { [weak self] in
                 self?.containerView.backgroundColor = highlighted ? SLColors.gray5.getColor() : SLColors.backgroundElevated.getColor()
             }
@@ -110,6 +110,8 @@ final class SLSettingsCell: UITableViewCell {
         if selected {
             switch type {
             case .leaveFeedback: output?(.feedback)
+            case .unlockTokens: output?(.unlockTokens)
+            case .restorePurchases: output?(.restorePurchases)
             default: break
             }
         }
@@ -155,7 +157,7 @@ final class SLSettingsCell: UITableViewCell {
 
         switch type {
         case let .selectedApps(_, selection):
-            inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
+            inputView = SLTitleChevronView()
 
             appsSelectionHostingController = .init(rootView: .init(
                 selection: selection,
@@ -173,6 +175,10 @@ final class SLSettingsCell: UITableViewCell {
             inputView = SLTableInput(type: .price, value: price) { [weak self] in
                 self?.output?(.price($0))
             }
+        case let .unlockTokens(tokens):
+            inputView = SLTitleChevronView(title: "\(tokens) tk")
+        case .restorePurchases:
+            inputView = SLTitleChevronView()
         case let .pushNotifications(enabled):
             let switch_ = UISwitch()
             switch_.isOn = enabled
@@ -187,18 +193,13 @@ final class SLSettingsCell: UITableViewCell {
             let switch_ = UISwitch()
             inputView = switch_
         case .leaveFeedback:
-            inputView = UIImageView(image: SLImages.Common.Arrows.Chevron.right.getImage())
+            inputView = SLTitleChevronView()
         }
 
         if let inputView = inputView {
             rightItemView.addSubview(inputView)
             inputView.snp.makeConstraints {
                 $0.edges.equalToSuperview()
-                switch type {
-                case .selectedApps, .leaveFeedback:
-                    $0.size.equalTo(16)
-                default: break
-                }
             }
         }
 
@@ -222,6 +223,8 @@ extension SLSettingsCell {
         case selectedApps(SLSettingsType, FamilyActivitySelection)
         case timeLimit(SLSettingsType, TimeInterval?)
         case unlockPrice(SLSettingsType, Double?)
+        case unlockTokens(Int)
+        case restorePurchases
         case pushNotifications(Bool)
         case emails
         case leaveFeedback
@@ -231,6 +234,8 @@ extension SLSettingsCell {
             case .selectedApps: return SLImages.Settings.apps.getImage()
             case .timeLimit: return SLImages.Settings.time.getImage()
             case .unlockPrice: return SLImages.Settings.price.getImage()
+            case .unlockTokens: return SLImages.Settings.unlockTokens.getImage()
+            case .restorePurchases: return SLImages.Settings.restorePurchases.getImage()
             case .pushNotifications: return SLImages.Settings.notifications.getImage()
             case .emails: return SLImages.Settings.emails.getImage()
             case .leaveFeedback: return SLImages.Settings.feedback.getImage()
@@ -254,6 +259,8 @@ extension SLSettingsCell {
                 case .display, .full: return SLTexts.Settings.Settings.UnlockPrice.Label.normal.localized()
                 case .setUp: return SLTexts.Settings.Settings.UnlockPrice.Label.setUp.localized()
                 }
+            case .unlockTokens: return "Unlock Tokens"
+            case .restorePurchases: return "Restore Purchases"
             case .pushNotifications: return SLTexts.Settings.Notifications.pushNotifications.localized()
             case .emails: return SLTexts.Settings.Notifications.email.localized()
             case .leaveFeedback: return SLTexts.Settings.Feedback.leaveFeedback.localized()
@@ -265,6 +272,8 @@ extension SLSettingsCell {
             case (.selectedApps, .selectedApps): return true
             case (.timeLimit, .timeLimit): return true
             case (.unlockPrice, .unlockPrice): return true
+            case (.unlockTokens, .unlockTokens): return true
+            case (.restorePurchases, .restorePurchases): return true
             case (.pushNotifications, .pushNotifications): return true
             case (.emails, .emails): return true
             case (.leaveFeedback, .leaveFeedback): return true
@@ -277,6 +286,8 @@ extension SLSettingsCell {
         case appsSelection(FamilyActivitySelection)
         case time(TimeInterval?)
         case price(Double?)
+        case unlockTokens
+        case restorePurchases
         case pushNotifications(Bool)
         case feedback
     }
