@@ -162,6 +162,7 @@
 		70963CF72B8D7CD200D3306F /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CF62B8D7CD200D3306F /* CGFloatExtension.swift */; };
 		70963CF82B8D7D0800D3306F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509094601DCB2D7EE029431F2062B7E /* UIColorExtension.swift */; };
 		70963CF92B8D800000D3306F /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CF62B8D7CD200D3306F /* CGFloatExtension.swift */; };
+		70963D7F2B8D83E700D3306F /* Emoji in Resources */ = {isa = PBXBuildFile; fileRef = 70963D7E2B8D83E700D3306F /* Emoji */; };
 		7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A05FFAA72C7FDD6ECCA80D045BF9F7 /* Repository.swift */; };
 		72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689654DC270379F8EEBBFFA6640FBFC /* DataComponentsFactory.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
@@ -517,6 +518,7 @@
 		706154482B7DADBE00493829 /* SLLocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLLocker.swift; sourceTree = "<group>"; };
 		70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStringObject.swift; sourceTree = "<group>"; };
 		70963CF62B8D7CD200D3306F /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		70963D7E2B8D83E700D3306F /* Emoji */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Emoji; sourceTree = "<group>"; };
 		710B54CEB0D4BD815A60EC43440333E9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		718974B360518CD77A7315467AD84121 /* SetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpController.swift; sourceTree = "<group>"; };
 		72E5C4E31DD177BE44DCD1738C9E5D2F /* FormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
@@ -1329,6 +1331,7 @@
 		82268A671A6DCD0B673673094466E34E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				70963D7E2B8D83E700D3306F /* Emoji */,
 				9C8E5E89EED0F83D6E24379A6608D53C /* AppIcons */,
 				9BD0AB815CAF5740C54B81CF17FC98C9 /* Assets.xcassets */,
 				E3F3FC2CA177B46BE187D2BC5CED9694 /* ImageGetable.swift */,
@@ -2116,6 +2119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B819F63D7AC881623FAE45C5B1E78EA0 /* AppIcons in Resources */,
+				70963D7F2B8D83E700D3306F /* Emoji in Resources */,
 				B73FEC4665E415D499600128B0F5E1B6 /* Assets.xcassets in Resources */,
 				E0C2E67EAB8DF37E67EF580B0CC2E8DB /* Colors.xcassets in Resources */,
 				6B6D12C56B8617D6BC5B294933B5420B /* GoogleService-Info.plist in Resources */,
