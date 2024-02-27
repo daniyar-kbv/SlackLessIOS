@@ -37,7 +37,7 @@ protocol KeyValueStorage {
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
     var currentWeek: Date? { get }
-    var shieldState: SLShieldState { get }
+    var shieldState: SLShieldState? { get }
     var pushNotificationsEnabled: Bool { get }
     func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
@@ -111,8 +111,8 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.object(forKey: KeyValueStorageKey.currentWeek.value) as? Date
     }
     
-    var shieldState: SLShieldState {
-        .init(rawValue: storageProvider.object(forKey: KeyValueStorageKey.shieldState.value) as? Int)
+    var shieldState: SLShieldState? {
+        .init(rawValue: storageProvider.integer(forKey: KeyValueStorageKey.shieldState.value))
     }
     
     var pushNotificationsEnabled: Bool {

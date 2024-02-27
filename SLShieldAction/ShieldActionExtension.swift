@@ -14,6 +14,7 @@ import WebKit
 class ShieldActionExtension: ShieldActionDelegate {
     private let dataComponentsFactory: DataComponentsFactory = DataComponentsFactoryImpl()
     private lazy var repository: Repository = dataComponentsFactory.makeRepository()
+    private let store = ManagedSettingsStore()
     
     override func handle(action: ShieldAction, for _: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         switch action {
@@ -22,8 +23,17 @@ class ShieldActionExtension: ShieldActionDelegate {
         case .secondaryButtonPressed:
             switch repository.getShieldState() {
             case .normal:
-                repository.set(shieldState: .unlock)
-            case .unlock: break
+                store.shield.applications = nil
+            case .unlock:
+                store.shield.applications = nil
+                
+                let date = Date().getDate()
+                guard let dayData = repository.getDayData(for: date) else { break }
+                let unlockedTime = repository.getUnlockedTime(for: date) + SLLocker.shared.unlockTime
+                
+                repository.set(unlockedTime: unlockedTime, for: date)
+                _ = SLLocker.shared.updateLock(dayData: dayData, delay: unlockedTime)
+            default: break
             }
             completionHandler(.defer)
         @unknown default:

@@ -11,7 +11,7 @@ import FamilyControls
 protocol Repository: AnyObject {
     func set(isLocked: Bool)
     func set(shieldState: SLShieldState)
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection?
+    func getDayData(for date: Date) -> DayData?
 }
 
 final class RepositoryImpl: Repository {
@@ -21,8 +21,8 @@ final class RepositoryImpl: Repository {
         self.keyValueStorage = keyValueStorage
     }
     
-    func getSelectedApps(for date: Date) -> FamilyActivitySelection? {
-        keyValueStorage.getDayData(for: date)?.selectedApps
+    func getDayData(for date: Date) -> DayData? {
+        keyValueStorage.getDayData(for: date)
     }
     
     func set(isLocked: Bool) {

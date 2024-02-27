@@ -88,8 +88,8 @@ final class PaymentServiceImpl: NSObject, PaymentService, PaymentServiceInput, P
 extension PaymentServiceImpl {
     private func bindEventManager() {
         eventManager.subscribe(to: .updateLockSucceed, disposeBag: disposeBag) { [weak self] type in
-            switch type.value as? SLLockUpdateType {
-            case .longUnlock: self?.unlockSucceed.accept(())
+            switch type.value as? SLDeviceActivityEventType {
+            case .lock: self?.unlockSucceed.accept(())
             default: break
             }
         }

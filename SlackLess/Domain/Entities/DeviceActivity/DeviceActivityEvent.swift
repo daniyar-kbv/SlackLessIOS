@@ -8,6 +8,19 @@
 import DeviceActivity
 import Foundation
 
+//  TODO: Move to Helper
+
 extension DeviceActivityEvent.Name {
-    static let limitReached = Self("Limit Reached")
+    static func encode(type: SLDeviceActivityEventType, threshold: TimeInterval) -> Self {
+        Self("\(type.name)_\(threshold)")
+    }
+    
+    func decode() -> (type: SLDeviceActivityEventType, threshold: TimeInterval)? {
+        let components = rawValue.components(separatedBy: "_")
+        guard components.count == 2,
+              let type = SLDeviceActivityEventType(rawValue: components[0]),
+              let threshold = TimeInterval(components[1])
+        else { return nil }
+        return (type: type, threshold: threshold)
+    }
 }

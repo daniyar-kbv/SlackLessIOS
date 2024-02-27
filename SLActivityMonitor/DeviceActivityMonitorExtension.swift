@@ -14,10 +14,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     private lazy var repository: Repository = dataComponentsFactory.makeRepository()
     private let store = ManagedSettingsStore()
 
-    override func intervalDidStart(for _: DeviceActivityName) {
-        repository.set(isLocked: false)
-        repository.set(shieldState: .normal)
-    }
+    override func intervalDidStart(for _: DeviceActivityName) { }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
@@ -27,11 +24,16 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
 
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
-
-        guard let selection = repository.getSelectedApps(for: Date().getDate())
+        
+        guard let (type, _) = event.decode(),
+              let dayData = repository.getDayData(for: Date().getDate())
         else { return }
-
-        store.shield.applications = selection.applicationTokens
-        repository.set(isLocked: true)
+        
+        switch type {
+        case .annoy: repository.set(shieldState: .normal)
+        case .lock: repository.set(shieldState: .unlock)
+        }
+        
+        store.shield.applications = dayData.selectedApps.applicationTokens
     }
 }
