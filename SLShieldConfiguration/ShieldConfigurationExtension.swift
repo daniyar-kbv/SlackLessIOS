@@ -32,17 +32,21 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     private func makeShieldConfiguration() -> ShieldConfiguration {
-        let shield = repository.getShield()
+        guard let dayData = repository.getDayData(),
+              let shield = repository.getShield()
+        else { return .init() }
+        
+        let timeValue = abs(dayData.timeLimit-shield.threshold)
         return .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
-                     backgroundColor: SLColors.accent1.getColor(),
+                     backgroundColor: UIColor.random(),
                      icon: SLImages.Common.logo.getImage(),
                      title: .init(text: SLTexts.Shield.title.localized(),
                                   color: SLColors.white.getColor() ?? .white),
-                     subtitle: .init(text: shield?.state.subtitle ?? "",
+                     subtitle: .init(text: shield.state.getSubtitle(with: timeValue),
                                      color: SLColors.white.getColor() ?? .white),
                      primaryButtonLabel: .init(text: SLTexts.Shield.primaryButtonTitle.localized(),
                                                color: SLColors.black.getColor() ?? .black),
                      primaryButtonBackgroundColor: SLColors.white.getColor(),
-                     secondaryButtonLabel: shield?.state.secondaryButtonLabel)
+                     secondaryButtonLabel: shield.state.getSecondaryButtonLabel(with: Constants.Settings.unlockTime))
     }
 }

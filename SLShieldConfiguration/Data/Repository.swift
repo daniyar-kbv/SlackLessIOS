@@ -10,6 +10,7 @@ import FamilyControls
 
 protocol Repository: AnyObject {
     func getShield() -> SLShield?
+    func getDayData() -> DayData?
 }
 
 final class RepositoryImpl: Repository {
@@ -21,6 +22,10 @@ final class RepositoryImpl: Repository {
     
     func getShield() -> SLShield? {
         keyValueStorage.shield
+    }
+    
+    func getDayData() -> DayData? {
+        keyValueStorage.getDayData(for: Date().getDate())
     }
 }
 

@@ -40,20 +40,18 @@ extension SLShield {
             rawValue
         }
         
-        var subtitle: String {
-            switch self {
-            case .remind: return SLTexts.Shield.Subtitle.normal.localized()
-            case .lock: return SLTexts.Shield.Subtitle.unlock.localized()
-            }
+        func getSubtitle(with timeValue: TimeInterval) -> String {
+            SLTexts.Shield.Subtitle.get(for: self).localized(timeValue.formatted(with: .full) ?? "")
         }
         
-        var secondaryButtonLabel: ShieldConfiguration.Label? {
+        func getSecondaryButtonLabel(with timeValue: TimeInterval) -> ShieldConfiguration.Label {
+            var text = String()
             switch self {
-            case .remind: return .init(text: "Annoying",
-                                       color: SLColors.white.getColor() ?? .white)
-            case .lock: return .init(text: "Locked",
-                                       color: SLColors.white.getColor()?.withAlphaComponent(0.5) ?? .white)
+            case .remind: text = SLTexts.Shield.SecondaryButtonTitle.remind.localized()
+            case .lock: text = SLTexts.Shield.SecondaryButtonTitle.lock.localized(timeValue.formatted(with: .full) ?? "")
             }
+            return .init(text: text,
+                         color: SLColors.white.getColor() ?? .white)
         }
     }
 }
