@@ -39,7 +39,6 @@ final class CustomizeController: UIViewController {
 
         configureView()
         bindView()
-        bindViewModel()
     }
 
     private func configureView() {
@@ -48,20 +47,8 @@ final class CustomizeController: UIViewController {
     }
 
     private func bindView() {
-        contentView.unlockButtonTap
-            .subscribe(onNext: viewModel.input.unlock)
-            .disposed(by: disposeBag)
-        
         contentView.debugButton.rx.tap
             .subscribe(onNext: viewModel.input.showSetUp)
-            .disposed(by: disposeBag)
-    }
-
-    private func bindViewModel() {
-        viewModel.output.showUnlockButton
-            .subscribe(onNext: { [weak self] in
-                self?.contentView.unlockButton.isHidden = !$0
-            })
             .disposed(by: disposeBag)
     }
 }

@@ -16,7 +16,6 @@ final class CustomizeCoordinator: BaseCoordinator {
     private let modulesFactory: CustomizeModulesFactory
 
     private let disposeBag = DisposeBag()
-    let startUnlock: PublishRelay<Void> = .init()
 
     init(router: Router,
          coordinatorFactory: CustomizeCoordinatorsFactory,
@@ -30,10 +29,6 @@ final class CustomizeCoordinator: BaseCoordinator {
     override func start() {
         let module = modulesFactory.makeCustomizeModule()
 
-        module.viewModel.output.startUnlock
-            .bind(to: startUnlock)
-            .disposed(by: disposeBag)
-        
         module.viewModel.output.startFeedback
             .subscribe(onNext: { [weak self] in
                 self?.showFeedback()

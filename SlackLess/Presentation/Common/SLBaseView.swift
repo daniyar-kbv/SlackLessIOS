@@ -20,15 +20,8 @@ class SLBaseView: UIView {
         return view
     }()
 
-    private(set) lazy var unlockButton: SLButton = {
-        let view = SLButton(style: .filled, size: .small)
-        view.setTitle(SLTexts.Unlock.buttonTitle.localized(), for: .normal)
-        view.isHidden = true
-        return view
-    }()
-
     fileprivate lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [titleLabel, unlockButton])
+        let view = UIStackView(arrangedSubviews: [titleLabel])
         view.axis = .horizontal
         view.distribution = .equalSpacing
         view.alignment = .fill
@@ -37,13 +30,11 @@ class SLBaseView: UIView {
 
     fileprivate lazy var contentView = UIView()
     fileprivate let diposeBag = DisposeBag()
-    let unlockButtonTap: PublishRelay<Void> = .init()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         layoutUI()
-        bindView()
     }
 
     @available(*, unavailable)
@@ -65,12 +56,6 @@ class SLBaseView: UIView {
             $0.top.equalTo(stackView.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
         }
-    }
-
-    private func bindView() {
-        unlockButton.rx.tap
-            .bind(to: unlockButtonTap)
-            .disposed(by: diposeBag)
     }
 
     override func addSubview(_ view: UIView) {

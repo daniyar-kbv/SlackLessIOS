@@ -25,12 +25,10 @@ protocol AppSettingsServiceOutput {
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
-    var isLocked: PublishRelay<Bool> { get }
 
     func getCurrentTimeLimit() -> TimeInterval?
     func getCurrentSelectedApps() -> FamilyActivitySelection?
     func getUnlockPrice() -> Double?
-    func getIsLocked() -> Bool
     func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
     func getIsLastWeek(_ date: Date) -> Bool
@@ -62,7 +60,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         self.appSettingsRepository = appSettingsRepository
         self.eventManager = eventManager
 
-        bindRepository()
         bindEventManager()
     }
 
@@ -70,7 +67,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
     let appsSelectionSaved: PublishRelay<Void> = .init()
-    let isLocked: PublishRelay<Bool> = .init()
 
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
@@ -88,10 +84,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     func getUnlockPrice() -> Double? {
         appSettingsRepository.output.getUnlockPrice()
-    }
-
-    func getIsLocked() -> Bool {
-        appSettingsRepository.output.getIsLocked()
     }
 
     func getIsLastDate(_ date: Date) -> Bool {
@@ -160,12 +152,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 }
 
 extension AppSettingsServiceImpl {
-    private func bindRepository() {
-        appSettingsRepository.output.isLockedObservable
-            .bind(to: isLocked)
-            .disposed(by: disposeBag)
-    }
-
     private func bindEventManager() {
         eventManager.subscribe(to: .updateLockFailed, disposeBag: disposeBag) { [weak self] in
             guard let error = $0 as? ErrorPresentable else { return }

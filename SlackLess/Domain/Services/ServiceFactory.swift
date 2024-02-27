@@ -10,7 +10,6 @@ import Foundation
 protocol ServiceFactory: AnyObject {
     func makeAppSettingsService() -> AppSettingsService
     func makeLockService() -> LockService
-    func makePaymentService() -> PaymentService
     func makePushNotificationsService() -> PushNotificationsService
     func makeFeedbackService() -> FeedbackService
 }
@@ -37,10 +36,6 @@ final class ServiceFactoryImpl: DependencyFactory, ServiceFactory {
     func makeLockService() -> LockService {
         shared(LockServiceImpl(appSettingsRepository: repositoryFactory.makeAppSettingsRepository(),
                                eventManager: helpersFactory.makeEventManager()))
-    }
-
-    func makePaymentService() -> PaymentService {
-        shared(PaymentServiceImpl(eventManager: helpersFactory.makeEventManager()))
     }
     
     func makePushNotificationsService() -> PushNotificationsService {

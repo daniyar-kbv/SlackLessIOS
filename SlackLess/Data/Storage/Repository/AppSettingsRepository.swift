@@ -27,14 +27,12 @@ protocol AppSettingsRepositoryOutput {
     func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
     func getUnlockPrice() -> Double?
-    func getIsLocked() -> Bool
     func getStartDate() -> Date?
     func getProgressDate() -> Date?
     func getCurrentWeek() -> Date?
     func getPushNotificationsEnabled() -> Bool
 
     var progressDateObservable: PublishRelay<Date?> { get }
-    var isLockedObservable: PublishRelay<Bool> { get }
 }
 
 protocol AppSettingsRepository: AnyObject {
@@ -62,16 +60,10 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
             .progressDateObservable
             .bind(to: progressDateObservable)
             .disposed(by: disposeBag)
-
-        keyValueStorage
-            .isLockedObservable
-            .bind(to: isLockedObservable)
-            .disposed(by: disposeBag)
     }
 
     //    Output
     let progressDateObservable: PublishRelay<Date?> = .init()
-    let isLockedObservable: PublishRelay<Bool> = .init()
 
     func getOnboardingShown() -> Bool {
         keyValueStorage.onbardingShown
@@ -89,10 +81,6 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         let unlockPrice = keyValueStorage.unlockPrice
         guard unlockPrice > 0 else { return nil }
         return unlockPrice
-    }
-
-    func getIsLocked() -> Bool {
-        keyValueStorage.isLocked
     }
 
     func getStartDate() -> Date? {

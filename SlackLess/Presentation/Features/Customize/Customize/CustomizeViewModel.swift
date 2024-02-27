@@ -12,14 +12,11 @@ import RxSwift
 //  TODO: Update settings values when after set up
 
 protocol CustomizeViewModelInput: AnyObject {
-    func unlock()
     func showSetUp()
 }
 
 protocol CustomizeViewModelOutput: AnyObject {
     var settingViewModel: SLSettingsViewModel { get }
-    var showUnlockButton: BehaviorRelay<Bool> { get }
-    var startUnlock: PublishRelay<Void> { get }
     var startFeedback: PublishRelay<Void> { get }
     var startSetUp: PublishRelay<Void> { get }
 }
@@ -43,7 +40,6 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
         self.appSettingsService = appSettingsService
         self.pushNotificationsService = pushNotificationsService
 
-        bindService()
         bindSettingsViewModel()
     }
 
@@ -51,28 +47,16 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
     lazy var settingViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .full,
                                                                              appSettingsService: appSettingsService,
                                                                              pushNotificationsService: pushNotificationsService)
-    lazy var showUnlockButton: BehaviorRelay<Bool> = .init(value: appSettingsService.output.getIsLocked())
-    let startUnlock: PublishRelay<Void> = .init()
     let startFeedback: PublishRelay<Void> = .init()
     let startSetUp: PublishRelay<Void> = .init()
 
 //    Input
-    func unlock() {
-        startUnlock.accept(())
-    }
-    
     func showSetUp() {
         startSetUp.accept(())
     }
 }
 
 extension CustomizeViewModelImpl {
-    private func bindService() {
-        appSettingsService.output.isLocked
-            .bind(to: showUnlockButton)
-            .disposed(by: disposeBag)
-    }
-    
     private func bindSettingsViewModel() {
         settingViewModel.output.feedbackSelected
             .bind(to: startFeedback)
