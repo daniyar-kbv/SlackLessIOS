@@ -25,14 +25,11 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        guard let (type, _) = event.decode(),
+        guard let shield = event.decode(),
               let dayData = repository.getDayData(for: Date().getDate())
         else { return }
         
-        switch type {
-        case .annoy: repository.set(shieldState: .normal)
-        case .lock: repository.set(shieldState: .unlock)
-        }
+        repository.set(shield: shield)
         
         store.shield.applications = dayData.selectedApps.applicationTokens
     }

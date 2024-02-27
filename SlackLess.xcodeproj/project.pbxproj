@@ -67,7 +67,6 @@
 		2FEC363F466DEB4E55C0BE85D0B738B0 /* SLActivityReport.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 4AB78B40FFE8A3FFA9D43FC4855897CC /* SLActivityReport.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30A452DDCA0936D015E0774206BBEA96 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */; };
 		30CD072E1C124508B319973B7EC425D6 /* ProgressScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D57B2096C39B1829C5C886474398D8 /* ProgressScene.swift */; };
-		33BEB1CEC57BEC7E36B9917D276CA03C /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */; };
 		33ED243FC5036348A208E2288515F1A8 /* SummaryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC043F741FB82E3788BC486D5EAFFA1F /* SummaryScene.swift */; };
 		3581D7CFCB2A0A4CD851CBD709F76315 /* SLSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC77A4C9EB7623C24FB5EEA76CFE051 /* SLSettingsItem.swift */; };
 		35B5B73B13FB7ACAB18693AD4D85F8BF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D28A72AE4CC349BF27DD1A1D2EA1F /* DateExtension.swift */; };
@@ -113,7 +112,6 @@
 		5BB4CE65C2A7AD80291A3885FDEFA305 /* ProgressRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672392F13480FE0E5A4C86A11A4FA038 /* ProgressRepresentable.swift */; };
 		5BF7923FDAFA59B80A5D749255B6050C /* ARSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05106CA45A1959BD116F65713E536854 /* ARSectionView.swift */; };
 		5BFBAE9A218393439A877CEE0E8BF1BE /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */; };
-		5D25EE3FF8FE5E3A547455B73CBEE68B /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */; };
 		5D2E4DD7E6CCF9802E32D3A4EA51B436 /* SummaryAppsCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273AEB702F16FFD9FC58689702C7F5AE /* SummaryAppsCollectionViewModel.swift */; };
 		5D524C9B30574384FA56DE8C3CCA4E96 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F73DFD874584CA256A0AD6E5507A42 /* Constants.swift */; };
 		5DE3EED9BE60E89B4C09F903EDD11BA7 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA081B80D840C211C7BE890DBF3C4A /* SummaryViewModel.swift */; };
@@ -145,12 +143,14 @@
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
 		706154492B7DADBE00493829 /* SLLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706154482B7DADBE00493829 /* SLLocker.swift */; };
-		7061544A2B7DAE8B00493829 /* SLDeviceActivityEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLDeviceActivityEventType.swift */; };
+		7061544A2B7DAE8B00493829 /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
 		7061544D2B7DB00C00493829 /* SLLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706154482B7DADBE00493829 /* SLLocker.swift */; };
-		7061544E2B7DB01D00493829 /* SLDeviceActivityEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLDeviceActivityEventType.swift */; };
+		7061544E2B7DB01D00493829 /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
 		7061544F2B7DB0F600493829 /* DeviceActivityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFBCABD195196B7EF116E1B13F73EC3 /* DeviceActivityEvent.swift */; };
 		706154502B7DB11C00493829 /* DeviceActivityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFBCABD195196B7EF116E1B13F73EC3 /* DeviceActivityEvent.swift */; };
 		706154512B7DB14F00493829 /* DeviceActivityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7857A7DD8882244E355F2B0152DDEA4 /* DeviceActivityName.swift */; };
+		70963CD32B8D727D00D3306F /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
+		70963CD42B8D733600D3306F /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
 		7142D5C66BA4079B6EFA73065DD61F7A /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A05FFAA72C7FDD6ECCA80D045BF9F7 /* Repository.swift */; };
 		72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689654DC270379F8EEBBFFA6640FBFC /* DataComponentsFactory.swift */; };
 		72FC17B3262AC24DDD135DE895EB4582 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */; };
@@ -207,7 +207,7 @@
 		A09B823046E5AE43E0BF91A91A9107A3 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */; };
 		A1FBE6691578427E6CBAC816A4E77FC2 /* FirestoreEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC91AAA1B6B2605D4B48FDDC5ACCBC6 /* FirestoreEndpoint.swift */; };
 		A2530C192883E3779D31916482C72F58 /* DeviceActivityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFBCABD195196B7EF116E1B13F73EC3 /* DeviceActivityEvent.swift */; };
-		A4389FBB6C9EBF664265B09360A5D9FE /* SLDeviceActivityEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLDeviceActivityEventType.swift */; };
+		A4389FBB6C9EBF664265B09360A5D9FE /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
 		A4BB0F01CB2855DA8F68AA439AE50761 /* KeyValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F59E032CA62C74E7E3C2DF7005B10AC /* KeyValueStorage.swift */; };
 		A522C1CCE9722C6BD6459DC2A0D90800 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42302CBE7EC5725D0A816FCD5676DAD /* DeviceActivity.framework */; };
 		A61A84A4BA935BB6D9EA21F2C291C67E /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571BE13F206DB403CD095A46684524E /* EventType.swift */; };
@@ -270,7 +270,6 @@
 		CEDCAD3CB7D5505C84CE6EA81126E090 /* SummarySelectedAppsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD71A054A89494ECD9ACDC70CDF2B52 /* SummarySelectedAppsCollectionViewController.swift */; };
 		D1FF81F1C9D1A2025DFF7B2E5C2B76A2 /* SLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD90A149FDF47C9F859F1B8F247DAE8 /* SLContainerView.swift */; };
 		D2855E31E55F3F22FAA6AD149A8039AC /* SLFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58094CEDCCAEEB25446AB31245271EFB /* SLFonts.swift */; };
-		D2C4F8FFC2F03AC0CFB5A907AD186CF2 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */; };
 		D2D0DD10ED2BD8409007A9F0649F5D53 /* AppSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B367DB2CECFEDAB6869670885894CF6E /* AppSettingsService.swift */; };
 		D338A7CF637DEB0233DDAE547634539F /* EventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C512DC920FA08D596C4D5D4AC75C614A /* EventObserver.swift */; };
 		D357E422965A9E44B1A1A3CFE48D48BC /* SLSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30A1779D544F9C50C0469553F4B7D4 /* SLSettingsCell.swift */; };
@@ -300,7 +299,6 @@
 		E28FA7F8A6601DCBA9DB0E7354E35A1F /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5B0DE215ABEE12761FA503F2B055F1 /* DomainError.swift */; };
 		E2D79E3613BDA4F6A04B139A7EDEEEC4 /* SLContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD90A149FDF47C9F859F1B8F247DAE8 /* SLContainerView.swift */; };
 		E34871BBCF34FE6EF18653977BAB7F91 /* ColorGetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */; };
-		E355B68EC3332E5A68DA2F48D309C768 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */; };
 		E35CD6E8DE3EE6B7308F26CB343BD6D1 /* WeeklyReportScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939879E628AF69B0ADA636BF22D68AAF /* WeeklyReportScene.swift */; };
 		E41C29403F2F79B41294B9DEADE97F2E /* SetUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E51DB457829AB60606224F7509179CD /* SetUpViewModel.swift */; };
 		E51DBFF637468739B716DE2380183FC9 /* AppComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B57EC41FA972B27B99A3234345E33C7 /* AppComponentsFactory.swift */; };
@@ -318,7 +316,6 @@
 		ED9C40959DDA385450CB35ED337DBC3E /* CustomizeCoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C693988DA8070D56E3288C8D1BC18ECE /* CustomizeCoordinatorsFactory.swift */; };
 		EDC3EF59CB6CE5E9E1F651FEF9BE5B27 /* SLSettingsSpacerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7D13AD0E27178767C6C097D6E87045 /* SLSettingsSpacerCell.swift */; };
 		EED1D685EB2E2E77ACA72543AEDBCEAB /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB1C82CDF24AA47D233B9544B9D8010 /* Reloadable.swift */; };
-		EEF59AFBAAD4D121A8DBB63AE42142F1 /* SLShieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */; };
 		F08E6710D2FE2BA9CEC746C0638B2500 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7992175DA18EA0E468D114518B0A9105 /* Localization.swift */; };
 		F193FBB19E6ECD062F8C8A033DE4126E /* ImageGetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F3FC2CA177B46BE187D2BC5CED9694 /* ImageGetable.swift */; };
 		F2B29B763F655A1D0026F12DC90A42EF /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685399B42A2DE43F7482D0524336AC33 /* CoreDataStorage.swift */; };
@@ -419,7 +416,6 @@
 		1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorGetable.swift; sourceTree = "<group>"; };
 		17365310E2DD1546206DB29B41A2822C /* ProgressModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressModulesFactory.swift; sourceTree = "<group>"; };
 		17EED551189419E10DEF4E82443E1DCA /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
-		1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLShieldState.swift; sourceTree = "<group>"; };
 		19543EFF38585C66A51B6E35F7ECA7BB /* ProgressDasboardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDasboardContainerView.swift; sourceTree = "<group>"; };
 		19A2B1D7E43B8F5D6E3E284EEB81A912 /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		1AC91AAA1B6B2605D4B48FDDC5ACCBC6 /* FirestoreEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreEndpoint.swift; sourceTree = "<group>"; };
@@ -490,7 +486,7 @@
 		5DDA81D7D97ED41273FE8586451AEAF1 /* Pods_SLShieldAction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLShieldAction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F1E8665B6ABA435CF8D8607E8C48D6D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5FAF38FB74C263DBD247B15D882AD589 /* SLTableInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLTableInput.swift; sourceTree = "<group>"; };
-		5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLDeviceActivityEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLDeviceActivityEventType.swift; sourceTree = "<group>"; };
+		5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLShield.swift; sourceTree = "<group>"; };
 		5FD247E11B81CE0D3BA756DFB87FB5E6 /* Pods-SLShieldAction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLShieldAction.debug.xcconfig"; path = "Target Support Files/Pods-SLShieldAction/Pods-SLShieldAction.debug.xcconfig"; sourceTree = "<group>"; };
 		5FEC7B68618992F357B295B8CF5BA4AD /* SLPushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPushNotification.swift; sourceTree = "<group>"; };
 		6256D2766399DB659605C991882453ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -711,14 +707,6 @@
 				FA86497A8AE5FDF47678034915A34CA3 /* Repository.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		0229A4EA36DE11ED1DCAF88FE20197DB /* Shield */ = {
-			isa = PBXGroup;
-			children = (
-				1938CE415C5E7A1B75F0E9CB1CBE9AA5 /* SLShieldState.swift */,
-			);
-			path = Shield;
 			sourceTree = "<group>";
 		};
 		04BAB7174746A10E86C1D6E4EB0CEE4D /* Cells */ = {
@@ -1193,8 +1181,8 @@
 		5DBCAD0F1DAA0701EBE761357BE1DEBC /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				0229A4EA36DE11ED1DCAF88FE20197DB /* Shield */,
 				C72A9B036DE71FF6A8A95C7316330FD1 /* DayData.swift */,
+				5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -1509,7 +1497,6 @@
 			children = (
 				BBFBCABD195196B7EF116E1B13F73EC3 /* DeviceActivityEvent.swift */,
 				C7857A7DD8882244E355F2B0152DDEA4 /* DeviceActivityName.swift */,
-				5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLDeviceActivityEventType.swift */,
 				706154482B7DADBE00493829 /* SLLocker.swift */,
 			);
 			path = DeviceActivity;
@@ -2296,6 +2283,7 @@
 				72BFA99A6B717ECED684F31167DF0358 /* DataComponentsFactory.swift in Sources */,
 				1DAC1ACB0A24ED99D866548010E161AA /* DateExtension.swift in Sources */,
 				5AF73133BD9BA642F844D8C9DB994E55 /* DayData.swift in Sources */,
+				70963CD32B8D727D00D3306F /* SLShield.swift in Sources */,
 				747D5C3A461CF9D3803A8DD3C2E00F1B /* DependencyFactory.swift in Sources */,
 				1BE7C7780B51F9AE2E3524CE4CC7FE33 /* FontGetable.swift in Sources */,
 				A789F4B80522F6FE3F095E73DE5574BC /* ImageGetable.swift in Sources */,
@@ -2306,7 +2294,6 @@
 				4191BBE03043579A38F749B04FA2178E /* SLColors.swift in Sources */,
 				F961FB650D967FAEFEAE50FF7E580B9B /* SLFonts.swift in Sources */,
 				0228F9ECBF16C3489564EBCDC3B92170 /* SLImages.swift in Sources */,
-				EEF59AFBAAD4D121A8DBB63AE42142F1 /* SLShieldState.swift in Sources */,
 				CD28A9CB121E1D107C8DDFB73EEFD82D /* SLTexts.swift in Sources */,
 				561EFF30C709658DAA95B6C2DA088423 /* ShieldConfigurationExtension.swift in Sources */,
 				0AC1D363998C7A30C52FFB39128D4A66 /* StorageKey.swift in Sources */,
@@ -2335,9 +2322,8 @@
 				22734BB7A9F9BF879ED186402098D8AC /* SLColors.swift in Sources */,
 				4686F2E4FFB23CECF89A4D2EEB8C1AA6 /* SLFonts.swift in Sources */,
 				35F21A72E0F42B4F0B8BB2CC4C8761A4 /* SLImages.swift in Sources */,
-				33BEB1CEC57BEC7E36B9917D276CA03C /* SLShieldState.swift in Sources */,
 				BE57151E271F1769C1869DD8AB8BABAC /* SLTexts.swift in Sources */,
-				7061544E2B7DB01D00493829 /* SLDeviceActivityEventType.swift in Sources */,
+				7061544E2B7DB01D00493829 /* SLShield.swift in Sources */,
 				C580870BEAFE887D07C39A972A06E7FC /* ShieldActionExtension.swift in Sources */,
 				0626DE0945B563448B00DEA7CFD884F5 /* StorageKey.swift in Sources */,
 			);
@@ -2362,11 +2348,10 @@
 				BA651A05BB108DB7031B2410146699AA /* Localizable.swift in Sources */,
 				E87FDC3032BCAB7BF37D29C599E9F47B /* Localization.swift in Sources */,
 				D4DC648AEA4EB1DEA85175748276E309 /* Repository.swift in Sources */,
-				7061544A2B7DAE8B00493829 /* SLDeviceActivityEventType.swift in Sources */,
+				7061544A2B7DAE8B00493829 /* SLShield.swift in Sources */,
 				24FE3FA62D23E4559196F9D6C21507CD /* SLColors.swift in Sources */,
 				37A058E77E98948ED68738F5C8108C64 /* SLFonts.swift in Sources */,
 				922BD7A04A21FDE9EBCCA47EBA8420A4 /* SLImages.swift in Sources */,
-				E355B68EC3332E5A68DA2F48D309C768 /* SLShieldState.swift in Sources */,
 				13F53CCD6D99475D3E29F56EFBC7B3F6 /* SLTexts.swift in Sources */,
 				1FF97189640842980A50A7FF642DEE90 /* SlackLess.xcdatamodeld in Sources */,
 				626BB581965BBE9CA21B56535A545C5C /* StorageKey.swift in Sources */,
@@ -2485,7 +2470,6 @@
 				EDC3EF59CB6CE5E9E1F651FEF9BE5B27 /* SLSettingsSpacerCell.swift in Sources */,
 				2B52D5482B00F1AE689A758A22730CA4 /* SLSettingsType.swift in Sources */,
 				253A1A8B9A8E0FE8AF20EC198D2E5139 /* SLSettingsViewModel.swift in Sources */,
-				D2C4F8FFC2F03AC0CFB5A907AD186CF2 /* SLShieldState.swift in Sources */,
 				0A121CA3A6EA0FF6C6FA8701455F3565 /* SLTabBarController.swift in Sources */,
 				A9F73ED042F6C4339D992D08815595E6 /* SLTabBarType.swift in Sources */,
 				436B2147B0393B575289D3FC2A8C783D /* SLTabBarViewModel.swift in Sources */,
@@ -2495,7 +2479,7 @@
 				1A01C07943979E0B67BDF19E800CCD1E /* SLTextViewContainer.swift in Sources */,
 				06A1045FC19BC248AF2C40AE855D8113 /* SLTexts.swift in Sources */,
 				DE1EBB2C61CFDCAB205D5E49DFF65A16 /* SLUIBarButtonItem.swift in Sources */,
-				A4389FBB6C9EBF664265B09360A5D9FE /* SLDeviceActivityEventType.swift in Sources */,
+				A4389FBB6C9EBF664265B09360A5D9FE /* SLShield.swift in Sources */,
 				8BE8E45F026783F80FE07CE2E8D9FEC8 /* SLView.swift in Sources */,
 				47A93EE2B63506B0E97AAF457B96AB2C /* SecureStorage.swift in Sources */,
 				6901B3C4BC70F2E58D7D3C02C91D22C1 /* SecureStorageProvider.swift in Sources */,
@@ -2581,6 +2565,7 @@
 				D7F43963B19E7DFC4C300748F46018C9 /* ProgressDashboardChangeView.swift in Sources */,
 				5BB4CE65C2A7AD80291A3885FDEFA305 /* ProgressRepresentable.swift in Sources */,
 				30CD072E1C124508B319973B7EC425D6 /* ProgressScene.swift in Sources */,
+				70963CD42B8D733600D3306F /* SLShield.swift in Sources */,
 				7CF185E2A90CFD79A1C2DAFE491B2A6C /* ProgressView.swift in Sources */,
 				183E150BB2EE39F315DEA30D665859F3 /* ProgressViewModel.swift in Sources */,
 				D7949C0EBCCF6269251CD8B71BB3D22D /* Repository.swift in Sources */,
@@ -2594,7 +2579,6 @@
 				A94AB94BAC52B26453A43A729910E545 /* SLLoaderView.swift in Sources */,
 				909F466D1F649A14F0EE70B1E3FF818A /* SLProgressType.swift in Sources */,
 				F350A82D4355E446497EAECD58FDAAEC /* SLReportType.swift in Sources */,
-				5D25EE3FF8FE5E3A547455B73CBEE68B /* SLShieldState.swift in Sources */,
 				67A403ED9A206625DCAA440D322DC451 /* SLTexts.swift in Sources */,
 				F3A925D010F982674885FB2B1286467E /* SlackLess.xcdatamodeld in Sources */,
 				6E7FC50B0481A1477472435CAC0A7577 /* StorageKey.swift in Sources */,

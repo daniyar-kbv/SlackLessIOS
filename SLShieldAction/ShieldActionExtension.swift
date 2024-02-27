@@ -21,10 +21,10 @@ class ShieldActionExtension: ShieldActionDelegate {
         case .primaryButtonPressed:
             completionHandler(.close)
         case .secondaryButtonPressed:
-            switch repository.getShieldState() {
-            case .normal:
+            switch repository.getShield()?.state {
+            case .remind:
                 store.shield.applications = nil
-            case .unlock:
+            case .lock:
                 store.shield.applications = nil
                 
                 let date = Date().getDate()

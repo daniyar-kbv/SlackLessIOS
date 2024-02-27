@@ -21,7 +21,7 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case startDate
     case progressDate
     case currentWeek
-    case shieldState
+    case shield
     case pushNotificationsEnabled
 
     public var value: String { return rawValue }
@@ -34,7 +34,7 @@ protocol KeyValueStorage {
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
     var currentWeek: Date? { get }
-    var shieldState: SLShieldState? { get }
+    var shield: SLShield? { get }
     var pushNotificationsEnabled: Bool { get }
     func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
@@ -46,7 +46,7 @@ protocol KeyValueStorage {
     func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
-    func persist(shieldState: SLShieldState)
+    func persist(shield: SLShield)
     func persist(pushNotificationsEnabled: Bool)
 
     func cleanUp(key: KeyValueStorageKey)
@@ -93,8 +93,14 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.object(forKey: KeyValueStorageKey.currentWeek.value) as? Date
     }
     
-    var shieldState: SLShieldState? {
-        .init(rawValue: storageProvider.integer(forKey: KeyValueStorageKey.shieldState.value))
+    var shield: SLShield? {
+        guard let data = storageProvider.data(forKey: KeyValueStorageKey.shield.value)
+        else { return nil }
+
+        return try? decoder.decode(
+            SLShield.self,
+            from: data
+        )
     }
     
     var pushNotificationsEnabled: Bool {
@@ -167,8 +173,8 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.set(currentWeek, forKey: KeyValueStorageKey.currentWeek.value)
     }
     
-    func persist(shieldState: SLShieldState) {
-        storageProvider.set(shieldState.rawValue, forKey: KeyValueStorageKey.shieldState.value)
+    func persist(shield: SLShield) {
+        storageProvider.set(shield, forKey: KeyValueStorageKey.shield.value)
     }
     
     func persist(pushNotificationsEnabled: Bool) {
