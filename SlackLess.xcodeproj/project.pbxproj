@@ -150,11 +150,6 @@
 		706154512B7DB14F00493829 /* DeviceActivityName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7857A7DD8882244E355F2B0152DDEA4 /* DeviceActivityName.swift */; };
 		70963CD32B8D727D00D3306F /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
 		70963CD42B8D733600D3306F /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
-		70963CD62B8D78A800D3306F /* LocalizableStringObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */; };
-		70963CD72B8D791F00D3306F /* LocalizableStringObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */; };
-		70963CD82B8D792000D3306F /* LocalizableStringObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */; };
-		70963CD92B8D792000D3306F /* LocalizableStringObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */; };
-		70963CDA2B8D792100D3306F /* LocalizableStringObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */; };
 		70963CDB2B8D7A1C00D3306F /* TimeIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F454E731CE6C16059552FE175153E /* TimeIntervalExtension.swift */; };
 		70963CDC2B8D7A1D00D3306F /* TimeIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F454E731CE6C16059552FE175153E /* TimeIntervalExtension.swift */; };
 		70963CDD2B8D7A1D00D3306F /* TimeIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F454E731CE6C16059552FE175153E /* TimeIntervalExtension.swift */; };
@@ -516,7 +511,6 @@
 		6C415FAE56858861B52047359BE418A1 /* DataComponenetsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComponenetsFactory.swift; sourceTree = "<group>"; };
 		6F3FDE9B585DF7D9CBC912572378B9DB /* UnlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockViewModel.swift; sourceTree = "<group>"; };
 		706154482B7DADBE00493829 /* SLLocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLLocker.swift; sourceTree = "<group>"; };
-		70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStringObject.swift; sourceTree = "<group>"; };
 		70963CF62B8D7CD200D3306F /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		70963D7E2B8D83E700D3306F /* Emoji */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Emoji; sourceTree = "<group>"; };
 		710B54CEB0D4BD815A60EC43440333E9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
@@ -1841,7 +1835,6 @@
 				2A38445FDC2DC1AAE2E4F91BB9024BD9 /* Localizable.strings */,
 				BB38CE3071979AF735CE257E457B6AFA /* Localizable.swift */,
 				7992175DA18EA0E468D114518B0A9105 /* Localization.swift */,
-				70963CD52B8D78A800D3306F /* LocalizableStringObject.swift */,
 				369C002598E2548664D756D9B499EE8E /* SLTexts.swift */,
 			);
 			path = Localization;
@@ -2298,7 +2291,6 @@
 				747D5C3A461CF9D3803A8DD3C2E00F1B /* DependencyFactory.swift in Sources */,
 				70963CDC2B8D7A1D00D3306F /* TimeIntervalExtension.swift in Sources */,
 				1BE7C7780B51F9AE2E3524CE4CC7FE33 /* FontGetable.swift in Sources */,
-				70963CD92B8D792000D3306F /* LocalizableStringObject.swift in Sources */,
 				A789F4B80522F6FE3F095E73DE5574BC /* ImageGetable.swift in Sources */,
 				FA07F7B480B8B8E1617DB4CEA34613E3 /* KeyValueStorage.swift in Sources */,
 				30A452DDCA0936D015E0774206BBEA96 /* Localizable.swift in Sources */,
@@ -2329,7 +2321,6 @@
 				70963CDD2B8D7A1D00D3306F /* TimeIntervalExtension.swift in Sources */,
 				9C39B238277DE4FB5065566DB3C46A7C /* DependencyFactory.swift in Sources */,
 				D7C19E0AD5F07D23956D44627436EA96 /* FontGetable.swift in Sources */,
-				70963CDA2B8D792100D3306F /* LocalizableStringObject.swift in Sources */,
 				D5689A46062459C523B626253967B715 /* ImageGetable.swift in Sources */,
 				B9B5B02A8BF0C83D2DE56B8539B1D720 /* KeyValueStorage.swift in Sources */,
 				A09B823046E5AE43E0BF91A91A9107A3 /* Localizable.swift in Sources */,
@@ -2360,7 +2351,6 @@
 				70963CDB2B8D7A1C00D3306F /* TimeIntervalExtension.swift in Sources */,
 				E5BF1A6792907C22FB714E1F5D4E3E91 /* DeviceActivityMonitorExtension.swift in Sources */,
 				66E292334041F8DC37E8F6C57EEFB5EA /* FontGetable.swift in Sources */,
-				70963CD82B8D792000D3306F /* LocalizableStringObject.swift in Sources */,
 				706154502B7DB11C00493829 /* DeviceActivityEvent.swift in Sources */,
 				BEC2DEC8B4BF95C53B158CAD3FBCE00C /* ImageGetable.swift in Sources */,
 				91713C2740119D46E41FE261884A5442 /* KeyValueStorage.swift in Sources */,
@@ -2485,7 +2475,6 @@
 				1866C52DF6E3276CDE82B1CD8EEBEBD1 /* SLReportViewModel.swift in Sources */,
 				D357E422965A9E44B1A1A3CFE48D48BC /* SLSettingsCell.swift in Sources */,
 				2585568CBFDD2F975A331C37CBFCD118 /* SLSettingsController.swift in Sources */,
-				70963CD62B8D78A800D3306F /* LocalizableStringObject.swift in Sources */,
 				4A5DB8C5FE7BE028884A4271F4202EA1 /* SLSettingsHeaderCell.swift in Sources */,
 				3581D7CFCB2A0A4CD851CBD709F76315 /* SLSettingsItem.swift in Sources */,
 				FC655A429B530D5BB5C7FE07699654C6 /* SLSettingsSection.swift in Sources */,
@@ -2553,7 +2542,6 @@
 				3C95E8323550BDD1BABD8EC49556E179 /* ARChartViewModel.swift in Sources */,
 				AE326D61C56A029C438FA72FF6B3560E /* ARDashedView.swift in Sources */,
 				F64FE4AB5B7FBC9B12089AEA175E0ACD /* ARDay.swift in Sources */,
-				70963CD72B8D791F00D3306F /* LocalizableStringObject.swift in Sources */,
 				AED5918DBFD097CE953678639D4773B6 /* ARLegendView.swift in Sources */,
 				8174BAEC387DC59581564936AC2A0610 /* ARNoDataView.swift in Sources */,
 				0680E5572C63E0022F2A0CB7121BD030 /* ARPageControlView.swift in Sources */,

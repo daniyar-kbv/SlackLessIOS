@@ -74,17 +74,60 @@ enum SLTexts {
 
     enum Shield: String, Localizable {
         case title = "Shield.title"
-        case primaryButtonTitle = "Shield.primaryButtonTitle"
-        case secondaryButtonTitle = "Shield.secondaryButtonTitle"
         
-        struct Subtitle {
-            static func get(for shieldState: SLShield.State) -> Localizable {
-                let randomId = Int.random(in: 1...20)
-                switch shieldState {
-                case .remind: return LocalizableStringObject(rawValue: "Shield.Subtitle.remind\(randomId)")
-                case .lock: return LocalizableStringObject(rawValue: "Shield.Subtitle.lock\(randomId)")
-                }
+        enum Subtitle {
+            enum Remind: String, CaseIterable, Localizable {
+                case defaultText = "Shield.Subtitle.Remind.defaultText"
+                case text1 = "Shield.Subtitle.Remind.text1"
+                case text2 = "Shield.Subtitle.Remind.text2"
+                case text3 = "Shield.Subtitle.Remind.text3"
+                case text4 = "Shield.Subtitle.Remind.text4"
+                case text5 = "Shield.Subtitle.Remind.text5"
+                case text6 = "Shield.Subtitle.Remind.text6"
+                case text7 = "Shield.Subtitle.Remind.text7"
+                case text8 = "Shield.Subtitle.Remind.text8"
+                case text9 = "Shield.Subtitle.Remind.text9"
+                case text10 = "Shield.Subtitle.Remind.text10"
+                case text11 = "Shield.Subtitle.Remind.text11"
+                case text12 = "Shield.Subtitle.Remind.text12"
+                case text13 = "Shield.Subtitle.Remind.text13"
+                case text14 = "Shield.Subtitle.Remind.text14"
+                case text15 = "Shield.Subtitle.Remind.text15"
+                case text16 = "Shield.Subtitle.Remind.text16"
+                case text17 = "Shield.Subtitle.Remind.text17"
+                case text18 = "Shield.Subtitle.Remind.text18"
+                case text19 = "Shield.Subtitle.Remind.text19"
+                case text20 = "Shield.Subtitle.Remind.text20"
             }
+            
+            enum Lock: String, CaseIterable, Localizable {
+                case defaultText = "Shield.Subtitle.Lock.defaultText"
+                case text1 = "Shield.Subtitle.Lock.text1"
+                case text2 = "Shield.Subtitle.Lock.text2"
+                case text3 = "Shield.Subtitle.Lock.text3"
+                case text4 = "Shield.Subtitle.Lock.text4"
+                case text5 = "Shield.Subtitle.Lock.text5"
+                case text6 = "Shield.Subtitle.Lock.text6"
+                case text7 = "Shield.Subtitle.Lock.text7"
+                case text8 = "Shield.Subtitle.Lock.text8"
+                case text9 = "Shield.Subtitle.Lock.text9"
+                case text10 = "Shield.Subtitle.Lock.text10"
+                case text11 = "Shield.Subtitle.Lock.text11"
+                case text12 = "Shield.Subtitle.Lock.text12"
+                case text13 = "Shield.Subtitle.Lock.text13"
+                case text14 = "Shield.Subtitle.Lock.text14"
+                case text15 = "Shield.Subtitle.Lock.text15"
+                case text16 = "Shield.Subtitle.Lock.text16"
+                case text17 = "Shield.Subtitle.Lock.text17"
+                case text18 = "Shield.Subtitle.Lock.text18"
+                case text19 = "Shield.Subtitle.Lock.text19"
+                case text20 = "Shield.Subtitle.Lock.text20"
+            }
+        }
+        
+        enum PrimaryButtonTitle: String, Localizable {
+            case remind = "Shield.PrimaryButtonTitle.remind"
+            case lock = "Shield.PrimaryButtonTitle.lock"
         }
         
         enum SecondaryButtonTitle: String, Localizable {
@@ -188,26 +231,6 @@ enum SLTexts {
         
         enum Error: String, Localizable {
             case pushNotificationsUnauthorized = "Settings.Error.pushNotificationsUnauthorized"
-        }
-    }
-
-    enum Unlock: String, Localizable {
-        case buttonTitle = "Unlock.buttonTitle"
-        case title = "Unlock.title"
-        case subtitle = "Unlock.subtitle"
-        case bottomButtonTitle = "Unlock.bottomButtonTitle"
-
-        enum Payment: String, Localizable {
-            case itemLabel = "Unlock.Payment.itemLabel"
-            case taxLabel = "Unlock.Payment.taxLabel"
-            case totalLabel = "Unlock.Payment.finalLabel"
-        }
-
-        enum Alert {
-            enum Success: String, Localizable {
-                case title = "Unlock.Alert.Success.title"
-                case message = "Unlock.Alert.Success.message"
-            }
         }
     }
     

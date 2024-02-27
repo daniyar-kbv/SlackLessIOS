@@ -40,18 +40,32 @@ extension SLShield {
             rawValue
         }
         
-        func getSubtitle(with timeValue: TimeInterval) -> String {
-            SLTexts.Shield.Subtitle.get(for: self).localized(timeValue.formatted(with: .full) ?? "")
+        func getSubtitle(with timeValue: TimeInterval? = nil) -> String {
+            guard let timeValue = timeValue?.formatted(with: .full) else {
+                switch self {
+                case .remind: return SLTexts.Shield.Subtitle.Remind.defaultText.localized()
+                case .lock: return SLTexts.Shield.Subtitle.Lock.defaultText.localized()
+                }
+            }
+            
+            switch self {
+            case .remind: return SLTexts.Shield.Subtitle.Remind.allCases.randomElement()!.localized(timeValue)
+            case .lock: return SLTexts.Shield.Subtitle.Lock.allCases.randomElement()!.localized(timeValue)
+            }
         }
         
-        func getSecondaryButtonLabel(with timeValue: TimeInterval) -> ShieldConfiguration.Label {
-            var text = String()
+        func getPrimaryButtonTitle() -> String {
             switch self {
-            case .remind: text = SLTexts.Shield.SecondaryButtonTitle.remind.localized()
-            case .lock: text = SLTexts.Shield.SecondaryButtonTitle.lock.localized(timeValue.formatted(with: .full) ?? "")
+            case .remind: return SLTexts.Shield.PrimaryButtonTitle.remind.localized()
+            case .lock: return SLTexts.Shield.PrimaryButtonTitle.lock.localized()
             }
-            return .init(text: text,
-                         color: SLColors.white.getColor() ?? .white)
+        }
+        
+        func getSecondaryButtonTitle(with timeValue: TimeInterval) -> String {
+            switch self {
+            case .remind: return SLTexts.Shield.SecondaryButtonTitle.remind.localized()
+            case .lock: return SLTexts.Shield.SecondaryButtonTitle.lock.localized(timeValue.formatted(with: .full) ?? "")
+            }
         }
     }
 }

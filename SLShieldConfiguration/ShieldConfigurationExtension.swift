@@ -36,7 +36,9 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
               let shield = repository.getShield()
         else { return .init() }
         
-        let timeValue = abs(dayData.timeLimit-shield.threshold)
+        var timeValue: TimeInterval? = abs(dayData.timeLimit-shield.threshold)
+        timeValue = timeValue == 0 ? nil : timeValue
+        
         return .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
                      backgroundColor: UIColor.random(),
                      icon: SLImages.getEmoji(.allCases.randomElement()!),
@@ -44,9 +46,10 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
                                   color: SLColors.white.getColor() ?? .white),
                      subtitle: .init(text: shield.state.getSubtitle(with: timeValue),
                                      color: SLColors.white.getColor() ?? .white),
-                     primaryButtonLabel: .init(text: SLTexts.Shield.primaryButtonTitle.localized(),
+                     primaryButtonLabel: .init(text: shield.state.getPrimaryButtonTitle(),
                                                color: SLColors.black.getColor() ?? .black),
                      primaryButtonBackgroundColor: SLColors.white.getColor(),
-                     secondaryButtonLabel: shield.state.getSecondaryButtonLabel(with: Constants.Settings.unlockTime))
+                     secondaryButtonLabel: .init(text: shield.state.getSecondaryButtonTitle(with: Constants.Settings.unlockTime),
+                                                 color: SLColors.white.getColor() ?? .white))
     }
 }
