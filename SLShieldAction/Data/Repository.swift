@@ -9,8 +9,7 @@ import Foundation
 import FamilyControls
 
 protocol Repository: AnyObject {
-    func getShieldState() -> SLShieldState?
-    func set(shieldState: SLShieldState)
+    func getShield() -> SLShield?
     func getUnlockedTime(for date: Date) -> TimeInterval
     func set(unlockedTime: TimeInterval, for date: Date)
     func getDayData(for date: Date) -> DayData?
@@ -23,12 +22,8 @@ final class RepositoryImpl: Repository {
         self.keyValueStorage = keyValueStorage
     }
     
-    func getShieldState() -> SLShieldState? {
-        keyValueStorage.shieldState
-    }
-    
-    func set(shieldState: SLShieldState) {
-        keyValueStorage.persist(shieldState: shieldState)
+    func getShield() -> SLShield? {
+        keyValueStorage.shield
     }
     
     func getUnlockedTime(for date: Date) -> TimeInterval {

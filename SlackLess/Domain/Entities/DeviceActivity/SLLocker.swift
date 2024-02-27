@@ -24,11 +24,11 @@ struct SLLocker {
 
             var events: [(type: DeviceActivityEvent.Name, event: DeviceActivityEvent)] = calculateThresholds(for: timeLimit)
                 .map({(
-                    type: .encode(type: .annoy, threshold: $0),
+                    type: .encode(from: .init(type: .remind, threshold: $0)),
                     event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int($0)))
                 )})
             events.append((
-                type: .encode(type: .lock, threshold: timeLimit+(delay ?? 0)),
+                type: .encode(from: .init(type: .lock, threshold: timeLimit+(delay ?? 0))),
                 event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(timeLimit)))
             ))
             let eventsDict = Dictionary(uniqueKeysWithValues: events.map({ ($0.type, $0.event) }))

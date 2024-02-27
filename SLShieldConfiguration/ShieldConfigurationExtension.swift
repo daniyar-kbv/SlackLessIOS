@@ -32,17 +32,17 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     private func makeShieldConfiguration() -> ShieldConfiguration {
-        let state = repository.getShieldState()
+        let shield = repository.getShield()
         return .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
                      backgroundColor: SLColors.accent1.getColor(),
                      icon: SLImages.Common.logo.getImage(),
                      title: .init(text: SLTexts.Shield.title.localized(),
                                   color: SLColors.white.getColor() ?? .white),
-                     subtitle: .init(text: state?.subtitle ?? "",
+                     subtitle: .init(text: shield?.state.subtitle ?? "",
                                      color: SLColors.white.getColor() ?? .white),
                      primaryButtonLabel: .init(text: SLTexts.Shield.primaryButtonTitle.localized(),
                                                color: SLColors.black.getColor() ?? .black),
                      primaryButtonBackgroundColor: SLColors.white.getColor(),
-                     secondaryButtonLabel: state?.secondaryButtonLabel)
+                     secondaryButtonLabel: shield?.state.secondaryButtonLabel)
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import FamilyControls
 
 protocol Repository: AnyObject {
-    func getShieldState() -> SLShieldState?
+    func getShield() -> SLShield?
 }
 
 final class RepositoryImpl: Repository {
@@ -19,8 +19,8 @@ final class RepositoryImpl: Repository {
         self.keyValueStorage = keyValueStorage
     }
     
-    func getShieldState() -> SLShieldState? {
-        keyValueStorage.shieldState
+    func getShield() -> SLShield? {
+        keyValueStorage.shield
     }
 }
 
