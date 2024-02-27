@@ -17,13 +17,17 @@ class ShieldActionExtension: ShieldActionDelegate {
     private let store = ManagedSettingsStore()
     
     override func handle(action: ShieldAction, for _: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        guard let shield = repository.getShield() else { return }
         switch action {
         case .primaryButtonPressed:
-            completionHandler(.close)
+            switch shield.state {
+            case .remind: store.shield.applications = nil
+            case .lock: completionHandler(.close)
+            }
         case .secondaryButtonPressed:
-            switch repository.getShield()?.state {
+            switch shield.state {
             case .remind:
-                store.shield.applications = nil
+                completionHandler(.defer)
             case .lock:
                 store.shield.applications = nil
                 
@@ -33,7 +37,6 @@ class ShieldActionExtension: ShieldActionDelegate {
                 
                 repository.set(unlockedTime: unlockedTime, for: date)
                 _ = SLLocker.shared.updateLock(dayData: dayData, delay: unlockedTime)
-            default: break
             }
             completionHandler(.defer)
         @unknown default:
