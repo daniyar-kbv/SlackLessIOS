@@ -77,9 +77,19 @@ enum SLTexts {
         case primaryButtonTitle = "Shield.primaryButtonTitle"
         case secondaryButtonTitle = "Shield.secondaryButtonTitle"
         
-        enum Subtitle: String, Localizable {
-            case normal = "Shield.Subtitle.normal"
-            case unlock = "Shield.Subtitle.unlock"
+        struct Subtitle {
+            static func get(for shieldState: SLShield.State) -> Localizable {
+                let randomId = Int.random(in: 1...20)
+                switch shieldState {
+                case .remind: return LocalizableStringObject(rawValue: "Shield.Subtitle.remind\(randomId)")
+                case .lock: return LocalizableStringObject(rawValue: "Shield.Subtitle.lock\(randomId)")
+                }
+            }
+        }
+        
+        enum SecondaryButtonTitle: String, Localizable {
+            case remind = "Shield.SecondaryButtonTitle.remind"
+            case lock = "Shield.SecondaryButtonTitle.lock"
         }
     }
 

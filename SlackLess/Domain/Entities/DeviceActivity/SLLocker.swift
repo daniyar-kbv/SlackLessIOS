@@ -27,10 +27,13 @@ struct SLLocker {
                     type: .encode(from: .init(type: .remind, threshold: $0)),
                     event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int($0)))
                 )})
+        
+            let delayedLockThreshold = timeLimit+(delay ?? 0)
             events.append((
-                type: .encode(from: .init(type: .lock, threshold: timeLimit+(delay ?? 0))),
-                event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(timeLimit)))
+                type: .encode(from: .init(type: .lock, threshold: delayedLockThreshold)),
+                event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(delayedLockThreshold)))
             ))
+        
             let eventsDict = Dictionary(uniqueKeysWithValues: events.map({ ($0.type, $0.event) }))
 
             do {

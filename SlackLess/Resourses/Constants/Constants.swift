@@ -16,8 +16,7 @@ struct Constants {
 
     enum Settings {
         static let appMode: AppMode = .debug
-        static let shortUnlockTime: TimeInterval = 1 * 60
-        static let unlockTime: TimeInterval = 15 * 60
+        static let unlockTime: TimeInterval = 10 * 60
         
         static let environmentType: EnvironmentType = {
             #if targetEnvironment(simulator)
