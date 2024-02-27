@@ -70,10 +70,6 @@ final class ProgressController: UIViewController {
             self?.viewModel.input.finish()
         })
         .disposed(by: disposeBag)
-
-        contentView.unlockButtonTap
-            .subscribe(onNext: viewModel.input.unlock)
-            .disposed(by: disposeBag)
     }
 
     private func bindViewModel() {
@@ -85,13 +81,6 @@ final class ProgressController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        viewModel.output.showUnlockButton
-            .subscribe(onNext: { [weak self] in
-                guard self?.viewModel.output.getType() == .normal else { return }
-                self?.contentView.unlockButton.isHidden = !$0
-            })
             .disposed(by: disposeBag)
     }
 }

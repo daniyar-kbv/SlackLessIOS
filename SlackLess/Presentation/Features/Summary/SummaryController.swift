@@ -62,10 +62,6 @@ final class SummaryController: UIViewController {
             self?.viewModel.input.changeDate(forward: true)
         }
         .disposed(by: disposeBag)
-
-        contentView.unlockButtonTap
-            .subscribe(onNext: viewModel.input.unlock)
-            .disposed(by: disposeBag)
     }
 
     private func bindViewModel() {
@@ -77,12 +73,6 @@ final class SummaryController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.output.isntLastDate.bind(to: contentView.dateSwitcherView.rightButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        viewModel.output.showUnlockButton
-            .subscribe(onNext: { [weak self] in
-                self?.contentView.unlockButton.isHidden = !$0
-            })
             .disposed(by: disposeBag)
     }
 }

@@ -18,7 +18,6 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
 //    TODO: Move to DayData
     case unlockedTime
     case unlockPrice
-    case isLocked
     case startDate
     case progressDate
     case currentWeek
@@ -31,8 +30,6 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
 protocol KeyValueStorage {
     var onbardingShown: Bool { get }
     var unlockPrice: Double { get }
-    var isLocked: Bool { get }
-    var isLockedObservable: PublishRelay<Bool> { get }
     var startDate: Date? { get }
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
@@ -46,7 +43,6 @@ protocol KeyValueStorage {
     func persist(dayData: DayData)
     func persist(unlockedTime: TimeInterval, for date: Date)
     func persist(unlockPrice: Double)
-    func persist(isLocked: Bool)
     func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
@@ -73,14 +69,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
             .debounce(.milliseconds(1), scheduler: MainScheduler.asyncInstance)
             .bind(to: progressDateObservable)
             .disposed(by: disposeBag)
-
-        storageProvider.rx
-            .observe(Bool.self, KeyValueStorageKey.isLocked.value)
-            .debounce(.milliseconds(1), scheduler: MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] in
-                self?.isLockedObservable.accept($0 ?? false)
-            })
-            .disposed(by: disposeBag)
     }
 
     var onbardingShown: Bool {
@@ -90,12 +78,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
     var unlockPrice: Double {
         storageProvider.double(forKey: KeyValueStorageKey.unlockPrice.value)
     }
-    
-    var isLocked: Bool {
-        storageProvider.bool(forKey: KeyValueStorageKey.isLocked.value)
-    }
-
-    lazy var isLockedObservable: PublishRelay<Bool> = .init()
 
     var startDate: Date? {
         storageProvider.object(forKey: KeyValueStorageKey.startDate.value) as? Date
@@ -171,10 +153,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     func persist(unlockPrice: Double) {
         storageProvider.set(unlockPrice, forKey: KeyValueStorageKey.unlockPrice.value)
-    }
-
-    func persist(isLocked: Bool) {
-        storageProvider.set(isLocked, forKey: KeyValueStorageKey.isLocked.value)
     }
 
     func persist(startDate: Date) {

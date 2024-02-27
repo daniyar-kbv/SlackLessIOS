@@ -9,7 +9,6 @@ import Foundation
 import FamilyControls
 
 protocol Repository: AnyObject {
-    func set(isLocked: Bool)
     func set(shieldState: SLShieldState)
     func getDayData(for date: Date) -> DayData?
 }
@@ -23,10 +22,6 @@ final class RepositoryImpl: Repository {
     
     func getDayData(for date: Date) -> DayData? {
         keyValueStorage.getDayData(for: date)
-    }
-    
-    func set(isLocked: Bool) {
-        keyValueStorage.persist(isLocked: isLocked)
     }
     
     func set(shieldState: SLShieldState) {
