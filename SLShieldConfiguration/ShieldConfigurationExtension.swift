@@ -39,7 +39,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         let timeValue = abs(dayData.timeLimit-shield.threshold)
         return .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
                      backgroundColor: UIColor.random(),
-                     icon: SLImages.Common.logo.getImage(),
+                     icon: SLImages.getEmoji(.allCases.randomElement()!),
                      title: .init(text: SLTexts.Shield.title.localized(),
                                   color: SLColors.white.getColor() ?? .white),
                      subtitle: .init(text: shield.state.getSubtitle(with: timeValue),

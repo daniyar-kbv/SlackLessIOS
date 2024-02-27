@@ -74,3 +74,35 @@ extension SLImages {
         return nil
     }
 }
+
+extension SLImages {
+    enum EmojiType: String, CaseIterable {
+        case alien
+        case crying
+        case emojiWithoutMouth
+        case explodingFace
+        case eye
+        case eyes
+        case ghost
+        case highFive
+        case poop
+        case raisedHand
+        case robot
+        case selfie
+        case skull
+        case skullCross
+        case snoring
+        case surprised
+        case surprised2
+        case thinking
+        case thinking2
+        case upsideDownSmiling
+    }
+    
+    static func getEmoji(_ type: EmojiType) -> UIImage? {
+        guard let path = Bundle.main.path(forResource: type.rawValue, ofType: "png", inDirectory: "Emoji")
+        else { return Common.appIcon.getImage() }
+        
+        return UIImage(contentsOfFile: path)
+    }
+}
