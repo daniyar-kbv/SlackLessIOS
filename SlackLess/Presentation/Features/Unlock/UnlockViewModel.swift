@@ -18,7 +18,7 @@ protocol UnlockViewModelInput: AnyObject {
 
 protocol UnlockViewModelOutput: AnyObject {
     var applePayStatus: BehaviorRelay<SLApplePayState> { get }
-    var unlockSucceed: PublishRelay<SLLockUpdateType> { get }
+    var unlockSucceed: PublishRelay<SLDeviceActivityEventType> { get }
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var didFinish: PublishRelay<Void> { get }
     
@@ -56,7 +56,7 @@ final class UnlockViewModelImpl: UnlockViewModel, UnlockViewModelInput, UnlockVi
 
     //    Output
     lazy var applePayStatus: BehaviorRelay<SLApplePayState> = .init(value: makeApplePayStatus(from: paymentService.output.applePayStatus.value))
-    let unlockSucceed: PublishRelay<SLLockUpdateType> = .init()
+    let unlockSucceed: PublishRelay<SLDeviceActivityEventType> = .init()
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
     let didFinish: PublishRelay<Void> = .init()
     
@@ -74,7 +74,7 @@ final class UnlockViewModelImpl: UnlockViewModel, UnlockViewModelInput, UnlockVi
     }
     
     func shortUnlock() {
-        lockService.input.updateLock(type: .shortUnlock)
+//        lockService.input.updateLock(type: .shortUnlock)
     }
 
     func finish() {
@@ -93,7 +93,7 @@ extension UnlockViewModelImpl {
 
         paymentService.output.unlockSucceed
             .subscribe(onNext: { [weak self] in
-                self?.unlockSucceed.accept(.longUnlock)
+//                self?.unlockSucceed.accept(.longUnlock)
             })
             .disposed(by: disposeBag)
 
@@ -103,14 +103,14 @@ extension UnlockViewModelImpl {
             })
             .disposed(by: disposeBag)
         
-        lockService.output.didUpdateLock
-            .subscribe(onNext: { [weak self] in
-                switch $0 {
-                case .shortUnlock: self?.unlockSucceed.accept($0)
-                default: break
-                }
-            })
-            .disposed(by: disposeBag)
+//        lockService.output.didUpdateLock
+//            .subscribe(onNext: { [weak self] in
+//                switch $0 {
+//                case .shortUnlock: self?.unlockSucceed.accept($0)
+//                default: break
+//                }
+//            })
+//            .disposed(by: disposeBag)
     }
 
     private func makeApplePayStatus(from status: (canMakePayments: Bool, canSetupCards: Bool)) -> SLApplePayState {

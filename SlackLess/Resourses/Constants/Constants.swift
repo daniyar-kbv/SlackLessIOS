@@ -52,15 +52,7 @@ struct Constants {
         static let success = 200
         static let unauthorized = 401
     }
-
-    enum DeviceActivity {
-        static let schedule = DeviceActivitySchedule(
-            intervalStart: DateComponents(hour: 0, minute: 0, second: 0),
-            intervalEnd: DateComponents(hour: 23, minute: 59, second: 59),
-            repeats: true
-        )
-    }
-
+    
     enum Payment {
         static let applePayMerchantId = "merchant.kz.slackless"
     }

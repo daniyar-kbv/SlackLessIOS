@@ -38,11 +38,11 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
                      icon: SLImages.Common.logo.getImage(),
                      title: .init(text: SLTexts.Shield.title.localized(),
                                   color: SLColors.white.getColor() ?? .white),
-                     subtitle: .init(text: state.subtitle,
+                     subtitle: .init(text: state?.subtitle ?? "",
                                      color: SLColors.white.getColor() ?? .white),
                      primaryButtonLabel: .init(text: SLTexts.Shield.primaryButtonTitle.localized(),
                                                color: SLColors.black.getColor() ?? .black),
                      primaryButtonBackgroundColor: SLColors.white.getColor(),
-                     secondaryButtonLabel: state.secondaryButtonLabel)
+                     secondaryButtonLabel: state?.secondaryButtonLabel)
     }
 }

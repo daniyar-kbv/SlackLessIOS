@@ -86,9 +86,9 @@ final class UnlockController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.output.unlockSucceed
-            .subscribe(onNext: { [weak self] in
+            .subscribe(onNext: { [weak self] _ in
                 self?.showAlert(title: SLTexts.Unlock.Alert.Success.title.localized(),
-                                message: SLTexts.Unlock.Alert.Success.message.localized(String($0.unlockTime.get(component: .minutes))),
+                                message: SLTexts.Unlock.Alert.Success.message.localized(String(SLLocker.shared.unlockTime.get(component: .minutes))),
                                 submitTitle: SLTexts.Alert.Action.defaultTitle.localized()) {
                     self?.dismiss(animated: true)
                 }
