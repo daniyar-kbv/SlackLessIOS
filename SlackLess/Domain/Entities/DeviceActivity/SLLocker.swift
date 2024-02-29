@@ -14,11 +14,9 @@ struct SLLocker {
     
     private let deviceActivityCenter = DeviceActivityCenter()
     
-    let unlockTime: TimeInterval = 600 // 10 minutes
-    
     private init() {}
     
-    func updateLock(dayData: DayData, delay: TimeInterval? = nil) -> LockingResult {
+    func updateLock(dayData: DayData, unlockedTime: TimeInterval) -> LockingResult {
             let familyActivitySelection = dayData.selectedApps
             let timeLimit = dayData.timeLimit
 
@@ -28,7 +26,8 @@ struct SLLocker {
                     event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int($0)))
                 )})
         
-            let delayedLockThreshold = timeLimit+(delay ?? 0)
+            let delayedLockThreshold = timeLimit + unlockedTime
+        
             events.append((
                 type: .encode(from: .init(type: .lock, threshold: delayedLockThreshold)),
                 event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(delayedLockThreshold)))
@@ -57,24 +56,16 @@ struct SLLocker {
     }
     
     private func calculateThresholds(for timeLimit: TimeInterval) -> [TimeInterval] {
-        let fixedCheckpoints: [TimeInterval] = [1, 2].map({ $0 * 60 })
-        var thresholds = [TimeInterval]()
+        let fixedCheckpoints: [TimeInterval] = [5, 10, 15, 30, 45].map({ $0 * 60 })
+        var thresholds = fixedCheckpoints
+            .filter({ timeLimit > $0 })
+            .map({ timeLimit - $0 })
         
-        for (index, fixedCheckpoint) in fixedCheckpoints.enumerated() {
-            guard timeLimit > fixedCheckpoint else { break }
-            
-            let totalCheckpoints = fixedCheckpoints.enumerated().filter({ $0.offset <= index }).reduce(0, { $0 + $1.element })
-            
-            if index < fixedCheckpoints.count - 1 {
-                thresholds.append(timeLimit-totalCheckpoints)
-            } else {
-                var totalTime = totalCheckpoints
-                
-                while totalTime < timeLimit {
-                    thresholds.append(timeLimit-totalTime)
-                    totalTime += 3600 // 1 hour
-                }
-            }
+        var hourlyCheckpoint: TimeInterval = 3600
+        
+        while timeLimit > hourlyCheckpoint {
+            thresholds.append(timeLimit-hourlyCheckpoint)
+            hourlyCheckpoint += 3600 // + 1 hour
         }
         
         return thresholds

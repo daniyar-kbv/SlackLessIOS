@@ -88,7 +88,7 @@
 "Shield.Subtitle.Lock.text18" = "Over limit: You've used an additional %@ on distracting apps.";
 "Shield.Subtitle.Lock.text19" = "You've surpassed your limit by %@. Please stop using this app now.";
 "Shield.Subtitle.Lock.text20" = "Used %@ past your limit. Time to put distracting apps away and focus on other activities.";
-"Shield.PrimaryButtonTitle.remind" = "Continue using app";
+"Shield.PrimaryButtonTitle.remind" = "Continue";
 "Shield.PrimaryButtonTitle.lock" = "Close app";
 "Shield.SecondaryButtonTitle.remind" = "";
 "Shield.SecondaryButtonTitle.lock" = "Unlock for %@";

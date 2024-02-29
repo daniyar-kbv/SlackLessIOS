@@ -32,24 +32,29 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     private func makeShieldConfiguration() -> ShieldConfiguration {
-        guard let dayData = repository.getDayData(),
-              let shield = repository.getShield()
-        else { return .init() }
+        guard let shield = repository.getShield()
+        else { return makeShieldConfiguration(state: .lock) }
+        guard let dayData = repository.getDayData()
+        else { return makeShieldConfiguration(state: shield.state) }
         
         var timeValue: TimeInterval? = abs(dayData.timeLimit-shield.threshold)
         timeValue = timeValue == 0 ? nil : timeValue
         
-        return .init(backgroundBlurStyle: .systemUltraThinMaterialLight,
+        return makeShieldConfiguration(state: shield.state, timeValue: timeValue)
+    }
+    
+    private func makeShieldConfiguration(state: SLShield.State, timeValue: TimeInterval? = nil) -> ShieldConfiguration {
+        .init(backgroundBlurStyle: .regular,
                      backgroundColor: UIColor.random(),
                      icon: SLImages.getEmoji(.allCases.randomElement()!),
                      title: .init(text: SLTexts.Shield.title.localized(),
                                   color: SLColors.white.getColor() ?? .white),
-                     subtitle: .init(text: shield.state.getSubtitle(with: timeValue),
+                     subtitle: .init(text: state.getSubtitle(with: timeValue),
                                      color: SLColors.white.getColor() ?? .white),
-                     primaryButtonLabel: .init(text: shield.state.getPrimaryButtonTitle(),
+                     primaryButtonLabel: .init(text: state.getPrimaryButtonTitle(),
                                                color: SLColors.black.getColor() ?? .black),
                      primaryButtonBackgroundColor: SLColors.white.getColor(),
-                     secondaryButtonLabel: .init(text: shield.state.getSecondaryButtonTitle(with: Constants.Settings.unlockTime),
+                     secondaryButtonLabel: .init(text: state.getSecondaryButtonTitle(with: Constants.Settings.unlockTime),
                                                  color: SLColors.white.getColor() ?? .white))
     }
 }

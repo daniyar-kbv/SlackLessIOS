@@ -141,6 +141,7 @@
 		6F278D3D7ADBA7DB733BFE424397E38C /* ProgressModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365310E2DD1546206DB29B41A2822C /* ProgressModulesFactory.swift */; };
 		6FA9AB5D81AFDEC1D9EBDF8B4631B52A /* SummaryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69EB468DEB17BA90B7DBDD64149A8C /* SummaryRepresentable.swift */; };
 		6FFB7ADEA2D1E8DDDA1EB920D6C1FB45 /* SummaryOtherAppsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D736AA43B419A153682811359C403F /* SummaryOtherAppsDashboardView.swift */; };
+		703A81032B9018ED00A9DDF9 /* Emoji in Resources */ = {isa = PBXBuildFile; fileRef = 70963D7E2B8D83E700D3306F /* Emoji */; };
 		706154492B7DADBE00493829 /* SLLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706154482B7DADBE00493829 /* SLLocker.swift */; };
 		7061544A2B7DAE8B00493829 /* SLShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA99EFBFFBCC43791B28E6DAC0C6CE /* SLShield.swift */; };
 		7061544D2B7DB00C00493829 /* SLLocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706154482B7DADBE00493829 /* SLLocker.swift */; };
@@ -2071,6 +2072,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9348BF85EB4971FB6FBFC8D6216CB64C /* Assets.xcassets in Resources */,
+				703A81032B9018ED00A9DDF9 /* Emoji in Resources */,
 				C339BD69806C5981978C20E920F10636 /* Colors.xcassets in Resources */,
 				40C10F2ED46433DADD4339C327D0DA26 /* Localizable.strings in Resources */,
 			);
