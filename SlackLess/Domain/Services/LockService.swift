@@ -54,7 +54,9 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
             return
         }
         
-        switch SLLocker.shared.updateLock(dayData: dayData) {
+        appSettingsRepository.input.set(unlockedTime: 0, for: date)
+        
+        switch SLLocker.shared.updateLock(dayData: dayData, unlockedTime: 0) {
         case .success: break
         case let .failed(error): eventManager.send(event: .init(type: .updateLockFailed, value: error))
         }

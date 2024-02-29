@@ -21,8 +21,11 @@ class ShieldActionExtension: ShieldActionDelegate {
         switch action {
         case .primaryButtonPressed:
             switch shield.state {
-            case .remind: store.shield.applications = nil
-            case .lock: completionHandler(.close)
+            case .remind:
+                store.shield.applications = nil
+                completionHandler(.defer)
+            case .lock:
+                completionHandler(.close)
             }
         case .secondaryButtonPressed:
             switch shield.state {
@@ -33,12 +36,12 @@ class ShieldActionExtension: ShieldActionDelegate {
                 
                 let date = Date().getDate()
                 guard let dayData = repository.getDayData(for: date) else { break }
-                let unlockedTime = repository.getUnlockedTime(for: date) + SLLocker.shared.unlockTime
+                let unlockedTime = repository.getUnlockedTime(for: date) + Constants.Settings.unlockTime
                 
                 repository.set(unlockedTime: unlockedTime, for: date)
-                _ = SLLocker.shared.updateLock(dayData: dayData, delay: unlockedTime)
+                _ = SLLocker.shared.updateLock(dayData: dayData, unlockedTime: unlockedTime)
+                completionHandler(.defer)
             }
-            completionHandler(.defer)
         @unknown default:
             fatalError()
         }

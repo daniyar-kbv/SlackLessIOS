@@ -152,7 +152,7 @@ final class KeyValueStorageImpl: KeyValueStorage {
         }
         
         storageProvider.set(
-            try? encoder.encode(objects),
+            try? encoder.encode(objects),  
             forKey: KeyValueStorageKey.dayData.value
         )
     }
@@ -174,7 +174,10 @@ final class KeyValueStorageImpl: KeyValueStorage {
     }
     
     func persist(shield: SLShield) {
-        storageProvider.set(shield, forKey: KeyValueStorageKey.shield.value)
+        storageProvider.set(
+            try? encoder.encode(shield),
+            forKey: KeyValueStorageKey.shield.value
+        )
     }
     
     func persist(pushNotificationsEnabled: Bool) {
