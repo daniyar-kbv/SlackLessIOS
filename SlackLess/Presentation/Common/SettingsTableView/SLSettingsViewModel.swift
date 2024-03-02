@@ -113,7 +113,6 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         switch type.sections[indexPath.section].items[index ?? 0] {
         case .selectedApps: return .selectedApps(type, appsSelection ?? .init())
         case .timeLimit: return .timeLimit(type, timeLimit)
-        case .unlockPrice: return .unlockPrice(type, unlockPrice)
         case .pushNotifications: return .pushNotifications(pushNotificationsEnabled)
         case .emails: return .emails
         case .leaveFeedback: return .leaveFeedback

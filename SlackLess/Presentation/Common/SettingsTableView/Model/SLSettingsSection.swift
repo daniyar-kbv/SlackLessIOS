@@ -24,8 +24,8 @@ enum SLSettingsSection: Equatable {
         switch self {
         case let .settings(type):
             switch type {
-            case .full, .setUp: return [.selectedApps, .timeLimit, .unlockPrice]
-            case .display: return [.timeLimit, .unlockPrice]
+            case .full, .setUp: return [.selectedApps, .timeLimit]
+            case .display: return [.timeLimit]
             }
         case .notifications: return [.pushNotifications]
         case .feedback: return [.leaveFeedback]

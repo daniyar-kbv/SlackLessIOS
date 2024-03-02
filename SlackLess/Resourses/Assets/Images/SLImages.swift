@@ -56,7 +56,6 @@ enum SLImages {
     enum Settings: String, ImageGetable {
         case apps = "Settings.Apps"
         case time = "Settings.Time"
-        case price = "Settings.Price"
         case notifications = "Settings.Notifications"
         case emails = "Settings.Emails"
         case feedback = "Settings.Feedback"
