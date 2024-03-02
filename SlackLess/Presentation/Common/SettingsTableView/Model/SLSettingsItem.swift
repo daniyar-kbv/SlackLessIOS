@@ -10,7 +10,6 @@ import Foundation
 enum SLSettingsItem {
     case selectedApps
     case timeLimit
-    case unlockPrice
     case pushNotifications
     case emails
     case leaveFeedback

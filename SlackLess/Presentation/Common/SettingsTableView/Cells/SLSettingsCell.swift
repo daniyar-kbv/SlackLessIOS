@@ -169,10 +169,6 @@ final class SLSettingsCell: UITableViewCell {
             inputView = SLTableInput(type: .time, value: limit) { [weak self] in
                 self?.output?(.time($0))
             }
-        case let .unlockPrice(_, price):
-            inputView = SLTableInput(type: .price, value: price) { [weak self] in
-                self?.output?(.price($0))
-            }
         case let .pushNotifications(enabled):
             let switch_ = UISwitch()
             switch_.isOn = enabled
@@ -221,7 +217,6 @@ extension SLSettingsCell {
     enum CellType: Equatable {
         case selectedApps(SLSettingsType, FamilyActivitySelection)
         case timeLimit(SLSettingsType, TimeInterval?)
-        case unlockPrice(SLSettingsType, Double?)
         case pushNotifications(Bool)
         case emails
         case leaveFeedback
@@ -230,7 +225,6 @@ extension SLSettingsCell {
             switch self {
             case .selectedApps: return SLImages.Settings.apps.getImage()
             case .timeLimit: return SLImages.Settings.time.getImage()
-            case .unlockPrice: return SLImages.Settings.price.getImage()
             case .pushNotifications: return SLImages.Settings.notifications.getImage()
             case .emails: return SLImages.Settings.emails.getImage()
             case .leaveFeedback: return SLImages.Settings.feedback.getImage()
@@ -249,11 +243,6 @@ extension SLSettingsCell {
                 case .display, .full: return SLTexts.Settings.Settings.TimeLimitLabel.normal.localized()
                 case .setUp: return SLTexts.Settings.Settings.TimeLimitLabel.setUp.localized()
                 }
-            case let .unlockPrice(settingsType, _):
-                switch settingsType {
-                case .display, .full: return SLTexts.Settings.Settings.UnlockPrice.Label.normal.localized()
-                case .setUp: return SLTexts.Settings.Settings.UnlockPrice.Label.setUp.localized()
-                }
             case .pushNotifications: return SLTexts.Settings.Notifications.pushNotifications.localized()
             case .emails: return SLTexts.Settings.Notifications.email.localized()
             case .leaveFeedback: return SLTexts.Settings.Feedback.leaveFeedback.localized()
@@ -264,7 +253,6 @@ extension SLSettingsCell {
             switch (lhs, rhs) {
             case (.selectedApps, .selectedApps): return true
             case (.timeLimit, .timeLimit): return true
-            case (.unlockPrice, .unlockPrice): return true
             case (.pushNotifications, .pushNotifications): return true
             case (.emails, .emails): return true
             case (.leaveFeedback, .leaveFeedback): return true
