@@ -49,7 +49,7 @@ extension TimeInterval {
         case hours
         case minutes
     }
-
+    
     func get(component: Component) -> Int {
         switch component {
         case .hours:
@@ -58,13 +58,18 @@ extension TimeInterval {
             return (Int(self) - (get(component: .hours) * 3600)) / 60
         }
     }
+    
+    func dateComponents() -> DateComponents {
+        DateComponents(hour: get(component: .hours),
+                       minute: get(component: .minutes))
+    }
 
-    static func makeFrom(hours: Int? = nil, minutes: Int? = nil) -> Self {
+    static func makeFrom(_ dateComponents: DateComponents?) -> Self {
         var total: Double = 0
-        if let hours = hours {
+        if let hours = dateComponents?.hour {
             total += Double(hours) * 3600
         }
-        if let minutes = minutes {
+        if let minutes = dateComponents?.minute {
             total += Double(minutes) * 60
         }
         return total

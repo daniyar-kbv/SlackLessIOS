@@ -14,7 +14,6 @@ protocol SLSettingsViewModelInput {
     func load()
     func set(appSelection: FamilyActivitySelection)
     func set(timeLimit: TimeInterval?)
-    func set(unlockPrice: Double?)
     func set(pushNotificationsEnabled: Bool)
     func save()
     func selectFeedback()
@@ -25,7 +24,6 @@ protocol SLSettingsViewModelOutput {
     var errorOccured: PublishRelay<ErrorPresentable> { get }
     var didSave: PublishRelay<Void> { get }
     var isComplete: BehaviorRelay<Bool> { get }
-    var canChangeSettings: Bool { get }
     var pushNotificationsUnauthorized: PublishRelay<Void> { get }
     var feedbackSelected: PublishRelay<Void> { get }
 
@@ -53,7 +51,6 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     private let disposeBag = DisposeBag()
     private lazy var appsSelection = appSettingsService.output.getCurrentSelectedApps()
     private lazy var timeLimit = appSettingsService.output.getCurrentTimeLimit()
-    private lazy var unlockPrice = appSettingsService.output.getUnlockPrice()
     private var pushNotificationsEnabled = false
 
     init(type: SLSettingsType,
@@ -76,13 +73,6 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     let pushNotificationsUnauthorized: PublishRelay<Void> = .init()
     let feedbackSelected: PublishRelay<Void> = .init()
 
-    var canChangeSettings: Bool {
-        switch type {
-        case .full, .display: return false
-        case .setUp: return true
-        }
-    }
-
     func getType() -> SLSettingsType {
         type
     }
@@ -94,7 +84,7 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     func getNumberOfItems(in section: Int) -> Int {
         switch type {
         case .full: return type.sections[section].items.count + 2
-        case .setUp, .display: return type.sections[section].items.count
+        case .setUp: return type.sections[section].items.count
         }
     }
 
@@ -107,7 +97,7 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
         switch type {
         case .full: index = indexPath.item - 1
-        case .setUp, .display: index = indexPath.item
+        case .setUp: index = indexPath.item
         }
         
         switch type.sections[indexPath.section].items[index ?? 0] {
@@ -140,11 +130,6 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         self.timeLimit = timeLimit
         isComplete.accept(getIsComplete())
     }
-
-    func set(unlockPrice: Double?) {
-        self.unlockPrice = unlockPrice
-        isComplete.accept(getIsComplete())
-    }
     
     func set(pushNotificationsEnabled: Bool) {
         pushNotificationsService?.input.set(pushNotificationsEnabled: pushNotificationsEnabled)
@@ -153,13 +138,11 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     func save() {
         guard getIsComplete(),
               let appsSelection = appsSelection,
-              let timeLimit = timeLimit,
-              let unlockPrice = unlockPrice
+              let timeLimit = timeLimit
         else { return }
         
         appSettingsService.input.set(selectedApps: appsSelection,
                                      timeLimit: timeLimit)
-        appSettingsService.input.set(unlockPrice: unlockPrice)
         
         didSave.accept(())
     }
@@ -198,10 +181,8 @@ extension SLSettingsViewModelImpl {
             Constants.Settings.environmentType == .simulator
             || (
                 !(appsSelection?.applications.isEmpty ?? true)
-                || !(appsSelection?.categories.isEmpty ?? true)
-                || !(appsSelection?.webDomains.isEmpty ?? true))
+                || !(appsSelection?.categories.isEmpty ?? true))
             )
             && !(timeLimit?.isZero ?? true)
-            && !(unlockPrice?.isZero ?? true)
     }
 }

@@ -16,7 +16,6 @@ protocol AppSettingsServiceInput {
     func requestAuthorization()
     func set(onboardingShown: Bool)
     func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval)
-    func set(unlockPrice: Double)
     func set(progressDate: Date)
     func setWeeklyReportShown()
 }
@@ -28,7 +27,6 @@ protocol AppSettingsServiceOutput {
 
     func getCurrentTimeLimit() -> TimeInterval?
     func getCurrentSelectedApps() -> FamilyActivitySelection?
-    func getUnlockPrice() -> Double?
     func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
     func getIsLastWeek(_ date: Date) -> Bool
@@ -82,10 +80,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.output.getDayData(for: Date())?.selectedApps
     }
 
-    func getUnlockPrice() -> Double? {
-        appSettingsRepository.output.getUnlockPrice()
-    }
-
     func getIsLastDate(_ date: Date) -> Bool {
         guard let startDate = appSettingsRepository.output.getStartDate()
         else { return true }
@@ -135,11 +129,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval) {
         appSettingsRepository.input.set(selectedApps: selectedApps, timeLimit: timeLimit, for: Date())
         eventManager.send(event: .init(type: .appLimitSettingsChanged))
-    }
-
-    func set(unlockPrice: Double) {
-        guard unlockPrice > 0 else { return }
-        appSettingsRepository.input.set(unlockPrice: unlockPrice)
     }
 
     func set(onboardingShown: Bool) {

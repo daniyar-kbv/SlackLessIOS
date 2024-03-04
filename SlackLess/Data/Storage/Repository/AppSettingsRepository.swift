@@ -15,7 +15,6 @@ protocol AppSettingsRepositoryInput {
     func set(onboardingShown: Bool)
     func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval, for date: Date)
     func set(unlockedTime: TimeInterval, for date: Date)
-    func set(unlockPrice: Double)
     func set(startDate: Date)
     func set(progressDate: Date)
     func set(currentWeek: Date)
@@ -26,7 +25,6 @@ protocol AppSettingsRepositoryOutput {
     func getOnboardingShown() -> Bool
     func getDayData(for date: Date) -> DayData?
     func getUnlockedTime(for date: Date) -> TimeInterval
-    func getUnlockPrice() -> Double?
     func getStartDate() -> Date?
     func getProgressDate() -> Date?
     func getCurrentWeek() -> Date?
@@ -77,12 +75,6 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.getUnlockedTime(for: date)
     }
 
-    func getUnlockPrice() -> Double? {
-        let unlockPrice = keyValueStorage.unlockPrice
-        guard unlockPrice > 0 else { return nil }
-        return unlockPrice
-    }
-
     func getStartDate() -> Date? {
         keyValueStorage.startDate
     }
@@ -114,10 +106,6 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
 
     func set(unlockedTime: TimeInterval, for date: Date) {
         keyValueStorage.persist(unlockedTime: unlockedTime, for: date)
-    }
-
-    func set(unlockPrice: Double) {
-        keyValueStorage.persist(unlockPrice: unlockPrice)
     }
 
     func set(startDate: Date) {

@@ -17,7 +17,6 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case dayData
 //    TODO: Move to DayData
     case unlockedTime
-    case unlockPrice
     case startDate
     case progressDate
     case currentWeek
@@ -29,7 +28,6 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
 
 protocol KeyValueStorage {
     var onbardingShown: Bool { get }
-    var unlockPrice: Double { get }
     var startDate: Date? { get }
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
@@ -42,7 +40,6 @@ protocol KeyValueStorage {
     func persist(onbardingShown: Bool)
     func persist(dayData: DayData)
     func persist(unlockedTime: TimeInterval, for date: Date)
-    func persist(unlockPrice: Double)
     func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
@@ -73,10 +70,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
 
     var onbardingShown: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
-    }
-
-    var unlockPrice: Double {
-        storageProvider.double(forKey: KeyValueStorageKey.unlockPrice.value)
     }
 
     var startDate: Date? {
@@ -155,10 +148,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
             try? encoder.encode(objects),  
             forKey: KeyValueStorageKey.dayData.value
         )
-    }
-
-    func persist(unlockPrice: Double) {
-        storageProvider.set(unlockPrice, forKey: KeyValueStorageKey.unlockPrice.value)
     }
 
     func persist(startDate: Date) {
