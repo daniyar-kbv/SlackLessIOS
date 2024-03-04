@@ -67,7 +67,7 @@ final class SLSettingsController: UIViewController {
 
         switch viewModel.output.getType() {
         case .full: break
-        case .setUp, .display:
+        case .setUp:
             var height = 0.0
             for section in 0 ..< viewModel.output.getNumberOfSections() {
                 for row in 0 ..< viewModel.output.getNumberOfItems(in: section) {
@@ -92,7 +92,7 @@ final class SLSettingsController: UIViewController {
         switch viewModel.output.getType() {
         case .full:
             tableView.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
-        case .setUp, .display:
+        case .setUp:
             tableView.snp.makeConstraints {
                 $0.height.equalTo(1)
             }
@@ -150,7 +150,7 @@ final class SLSettingsController: UIViewController {
                 parent?.showLoader()
             }
             viewModel.input.load()
-        case .setUp, .display: break
+        case .setUp: break
         }
     }
 }
@@ -187,13 +187,12 @@ extension SLSettingsController: UITableViewDataSource {
                 position = .top
             case (.full, tableView.numberOfRows(inSection: indexPath.section) - 2):
                 position = .bottom
-            case (.setUp, 0), (.display, 0):
+            case (.setUp, 0):
                 switch tableView.numberOfRows(inSection: indexPath.section) {
                 case 1: position = .single
                 default: position = .top
                 }
-            case (.setUp, tableView.numberOfRows(inSection: indexPath.section) - 1),
-                (.display, tableView.numberOfRows(inSection: indexPath.section) - 1):
+            case (.setUp, tableView.numberOfRows(inSection: indexPath.section) - 1):
                 position = .bottom
             default:
                 break
@@ -205,17 +204,12 @@ extension SLSettingsController: UITableViewDataSource {
                     self?.viewModel.input.set(appSelection: selection)
                 case let .time(limit):
                     self?.viewModel.input.set(timeLimit: limit)
-                case let .price(price):
-                    self?.viewModel.input.set(unlockPrice: price)
                 case let .pushNotifications(enabled):
                     self?.viewModel.input.set(pushNotificationsEnabled: enabled)
                 case .feedback:
                     self?.viewModel.input.selectFeedback()
                 }
             }
-
-            cell.isEnabled = viewModel.output.canChangeSettings
-            || !viewModel.output.isSettings(section: indexPath.section)
 
             return cell
         }

@@ -10,13 +10,11 @@ import Foundation
 enum SLSettingsType {
     case setUp
     case full
-    case display
 
     var sections: [SLSettingsSection] {
         switch self {
         case .full: return [.settings(self), .notifications, .feedback]
         case .setUp: return [.settings(self)]
-        case .display: return [.settings(self)]
         }
     }
 }

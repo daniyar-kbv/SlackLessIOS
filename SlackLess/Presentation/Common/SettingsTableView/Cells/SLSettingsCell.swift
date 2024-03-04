@@ -166,8 +166,8 @@ final class SLSettingsCell: UITableViewCell {
             parentConroller?.add(controller: appsSelectionHostingController!, to: containerView)
             appsSelectionHostingController?.view.backgroundColor = .clear
         case let .timeLimit(_, limit):
-            inputView = SLTableInput(type: .time, value: limit) { [weak self] in
-                self?.output?(.time($0))
+            inputView = SLTimeInput(dateComponents: limit?.dateComponents()){ [weak self] in
+                self?.output?(.time(TimeInterval.makeFrom($0)))
             }
         case let .pushNotifications(enabled):
             let switch_ = UISwitch()
@@ -235,12 +235,12 @@ extension SLSettingsCell {
             switch self {
             case let .selectedApps(settingsType, _):
                 switch settingsType {
-                case .display, .full: return SLTexts.Settings.Settings.SelectedAppsLabel.normal.localized()
+                case .full: return SLTexts.Settings.Settings.SelectedAppsLabel.normal.localized()
                 case .setUp: return SLTexts.Settings.Settings.SelectedAppsLabel.setUp.localized()
                 }
             case let .timeLimit(settingsType, _):
                 switch settingsType {
-                case .display, .full: return SLTexts.Settings.Settings.TimeLimitLabel.normal.localized()
+                case .full: return SLTexts.Settings.Settings.TimeLimitLabel.normal.localized()
                 case .setUp: return SLTexts.Settings.Settings.TimeLimitLabel.setUp.localized()
                 }
             case .pushNotifications: return SLTexts.Settings.Notifications.pushNotifications.localized()
@@ -263,8 +263,7 @@ extension SLSettingsCell {
 
     enum Output {
         case appsSelection(FamilyActivitySelection)
-        case time(TimeInterval?)
-        case price(Double?)
+        case time(TimeInterval)
         case pushNotifications(Bool)
         case feedback
     }

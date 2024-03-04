@@ -1,23 +1,28 @@
 //
-//  SLTableInput.swift
+//  SLTimeInput.swift
 //  SlackLess
 //
-//  Created by Daniyar Kurmanbayev on 2023-07-30.
+//  Created by Daniyar Kurmanbayev on 2024-03-03.
 //
 
 import Foundation
-import SnapKit
 import UIKit
+import SnapKit
 
-final class SLTableInput: UIView {
-    private let type: InputType
-    private var value: Double?
-    private let output: (Double?) -> Void
+final class SLTimeInput: UIView {
+    private var dateComponents: DateComponents?
+    private let onChange: (DateComponents) -> Void
 
     private(set) lazy var timePicker: UIPickerView = {
-        let view = UIPickerView()
+        let view = UIPickerView(frame: .init(x: 0, y: 0, width: Constants.screenSize.width, height: 400))
+        
         view.dataSource = self
         view.delegate = self
+        
+        if let dateComponents = dateComponents {
+            view.selectRow(dateComponents.hour ?? 0, inComponent: 0, animated: false)
+            view.selectRow(dateComponents.minute ?? 0, inComponent: 3, animated: false)
+        }
         return view
     }()
 
@@ -27,37 +32,24 @@ final class SLTableInput: UIView {
         view.textColor = SLColors.label1.getColor()
         view.delegate = self
         view.keyboardType = .numberPad
-        view.inputAccessoryView = nil
+        view.inputView = timePicker
+        view.placeholder = TimeInterval.makeFrom(DateComponents(hour: 0, minute: 0)).toString()
+        view.text = TimeInterval.makeFrom(dateComponents).toString()
         return view
     }()
 
-    init(type: InputType, value: Double?, output: @escaping (Double?) -> Void) {
-        self.type = type
-        self.value = value
-        self.output = output
+    init(dateComponents: DateComponents?, onChange: @escaping (DateComponents) -> Void) {
+        self.dateComponents = dateComponents
+        self.onChange = onChange
 
         super.init(frame: .zero)
 
-        configure()
         layoutUI()
     }
 
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func configure() {
-        switch type {
-        case .time:
-            textField.inputView = timePicker
-            if let value = value {
-                timePicker.selectRow(value.get(component: .hours), inComponent: 0, animated: false)
-                timePicker.selectRow(value.get(component: .minutes), inComponent: 3, animated: false)
-            }
-        case .price:
-            break
-        }
     }
 
     private func layoutUI() {
@@ -69,48 +61,17 @@ final class SLTableInput: UIView {
             $0.verticalEdges.equalToSuperview().inset(4)
             $0.horizontalEdges.equalToSuperview().inset(8)
         }
-
-        switch type {
-        case .time:
-            textField.placeholder = "0:00"
-            textField.text = value?.toString()
-        case .price:
-            textField.placeholder = makePriceString(from: 1)
-            textField.text = makePriceString(from: value)
-        }
-    }
-
-    private func makePriceString(from value: Double?) -> String? {
-        guard let value = value else { return nil }
-        return SLTexts.Settings.Settings.UnlockPrice.placeholder.localized(
-            String(Int(value)),
-            String(Int(Constants.Settings.unlockTime.get(component: .minutes))))
-    }
-    
-    private func extractPriceValue(from string: String?) -> Double? {
-        let components = string?.components(separatedBy: "/") ?? []
-        switch components.count {
-        case 1...2: return components.first?.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap({ Double($0) }).first
-        default: return nil
-        }
     }
 }
 
-extension SLTableInput: UITextFieldDelegate {
+extension SLTimeInput: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         textField.invalidateIntrinsicContentSize()
         guard let text = textField.text,
               let textRange = Range(range, in: text)
         else { return false }
-        var updatedText: String? = text.replacingCharacters(in: textRange,
+        let updatedText: String? = text.replacingCharacters(in: textRange,
                                                    with: string)
-        switch type {
-        case .time:
-            break
-        case .price:
-            value = extractPriceValue(from: updatedText)
-            updatedText = makePriceString(from: value)
-        }
         
         textField.text = updatedText
         return false
@@ -132,24 +93,16 @@ extension SLTableInput: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        switch type {
-        case .time:
-            value = TimeInterval.makeFrom(hours: timePicker.selectedRow(inComponent: 0), minutes: timePicker.selectedRow(inComponent: 3))
-            if value == 0 {
-                value = nil
-            }
-            textField.text = value?.toString()
-        case .price:
-            if value == 0 {
-                value = nil
-            }
-            textField.text = makePriceString(from: value)
-        }
-        output(value)
+        let dateComponents = DateComponents(hour: timePicker.selectedRow(inComponent: 0), minute: timePicker.selectedRow(inComponent: 3))
+        self.dateComponents = dateComponents
+        
+        textField.text = TimeInterval.makeFrom(dateComponents).toString()
+        
+        onChange(dateComponents)
     }
 }
 
-extension SLTableInput: UIPickerViewDataSource {
+extension SLTimeInput: UIPickerViewDataSource {
     func numberOfComponents(in _: UIPickerView) -> Int {
         5
     }
@@ -166,7 +119,7 @@ extension SLTableInput: UIPickerViewDataSource {
     }
 }
 
-extension SLTableInput: UIPickerViewDelegate {
+extension SLTimeInput: UIPickerViewDelegate {
     func pickerView(_: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0, 3: return String(row)
@@ -178,12 +131,5 @@ extension SLTableInput: UIPickerViewDelegate {
 
     func pickerView(_: UIPickerView, widthForComponent _: Int) -> CGFloat {
         return 50
-    }
-}
-
-extension SLTableInput {
-    enum InputType {
-        case time
-        case price
     }
 }
