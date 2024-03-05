@@ -19,6 +19,24 @@ enum SLSettingsSection: Equatable {
         case .feedback: return SLTexts.Settings.Feedback.title.localized()
         }
     }
+    
+    var buttonTitle: String? {
+        switch self {
+        case .settings: return SLTexts.Settings.Settings.buttonTitle.localized()
+        default: return nil
+        }
+    }
+    
+    var hideButton: Bool {
+        switch self {
+        case let .settings(type):
+            switch type {
+            case .full: return false
+            default: return true
+            }
+        default: return true
+        }
+    }
 
     var items: [SLSettingsItem] {
         switch self {

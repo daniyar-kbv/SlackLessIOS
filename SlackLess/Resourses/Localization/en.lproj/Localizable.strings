@@ -130,6 +130,7 @@
 
 //  MARK: - Settings
 "Settings.Settings.title" = "SETTINGS";
+"Settings.Settings.buttonTitle" = "MODIFY";
 "Settings.Settings.SelectedAppsLabel.normal" = "Selected Apps";
 "Settings.Settings.SelectedAppsLabel.setUp" = "Select Apps";
 "Settings.Settings.TimeLimitLabel.normal" = "Time Limit";
@@ -143,6 +144,14 @@
 "Settings.Feedback.title" = "FEEDBACK";
 "Settings.Feedback.leaveFeedback" = "Leave Feedback";
 "Settings.Error.pushNotificationsUnauthorized" = "Push-notifications are disabled in device settings, go to app's settings and enable push-notifications";
+"Settings.Alert.ModifySettings.Title.first" = "Adjust Settings?";
+"Settings.Alert.ModifySettings.Title.second" = "Proceed?";
+"Settings.Alert.ModifySettings.Message.first" = "Are you sure you want to adjust your app limits?";
+"Settings.Alert.ModifySettings.Message.second" = "Are you sure you want to proceed?";
+"Settings.Alert.ModifySettings.Actions.First.first" = "Cancel";
+"Settings.Alert.ModifySettings.Actions.First.second" = "Modify Settings";
+"Settings.Alert.ModifySettings.Actions.Second.first" = "Cancel";
+"Settings.Alert.ModifySettings.Actions.Second.second" = "Proceed";
 
 //  MARK: - Feedback
 "Feedback.title" = "Leave your feedback";

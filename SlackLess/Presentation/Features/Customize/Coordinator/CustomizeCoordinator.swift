@@ -35,7 +35,7 @@ final class CustomizeCoordinator: BaseCoordinator {
             })
             .disposed(by: disposeBag)
         
-        module.viewModel.output.startSetUp
+        module.viewModel.output.startModifySettings
             .subscribe(onNext: { [weak self] in
                 self?.showSetUp()
             })
