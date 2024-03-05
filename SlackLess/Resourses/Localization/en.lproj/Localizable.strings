@@ -99,9 +99,15 @@
 "WelcomeScreen.ButtonText" = "Let’s get started";
 
 //  MARK: - SetUp
-"SetUp.title" = "Let’s set up!";
-"SetUp.subtitle" = "Choose apps and set the limit for the rest of the week. The limit can’t be changed until this week ends.\n\nSet a payment fee in case if you would need additional time.";
-"SetUp.bottomText" = "Assessment of your current Screen Time patterns, based on the average of 16 hours you are awake each day";
+"SetUp.Title.setUp" = "Let’s set up!";
+"SetUp.Title.modify" = "Are you sure about this?";
+"SetUp.Title.adjust" = "Weekly Adjustment Time";
+"SetUp.Subtitle.setUp" = "Select most distracting apps to limit, set daily usage goals. It's important to start with limits that align with your goals.\n\nStart your journey to a more mindful tech usage. We're here to help you get started on the right track!";
+"SetUp.Subtitle.modify" = "You're about to adjust your app limits.\n\nKeep in mind, setting higher limits might hinder your efforts to reduce screen time. It's best to set limits that align with your goals";
+"SetUp.Subtitle.adjust" = "It's a new week, time to review and adjust your app limits. Make sure your limits support your goals for the week ahead";
+"SetUp.ButtonTitle.setUp" = "Continue";
+"SetUp.ButtonTitle.modify" = "Save";
+"SetUp.ButtonTitle.adjust" = "Save";
 
 //  MARK: - Legend
 "Legend.firstTitle" = "Slacked";

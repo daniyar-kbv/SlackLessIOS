@@ -10,6 +10,7 @@ import Foundation
 protocol CustomizeModulesFactory: AnyObject {
     func makeCustomizeModule() -> (viewModel: CustomizeViewModel, controller: CustomizeController)
     func makeFeedbackModule() -> (viewModel: FeedbackViewModel, controller: FeedbackController)
+    func makeModifySettingsModule() -> (viewModel: SetUpViewModel, controller: SetUpController)
 }
 
 final class CustomizeModulesFactoryImpl: CustomizeModulesFactory {
@@ -27,6 +28,12 @@ final class CustomizeModulesFactoryImpl: CustomizeModulesFactory {
     
     func makeFeedbackModule() -> (viewModel: FeedbackViewModel, controller: FeedbackController) {
         let viewModel = FeedbackViewModelImpl(feedbackService: serviceFactory.makeFeedbackService())
+        return (viewModel: viewModel, controller: .init(viewModel: viewModel))
+    }
+    
+    func makeModifySettingsModule() -> (viewModel: SetUpViewModel, controller: SetUpController) {
+        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+                                           state: .modify)
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 }
