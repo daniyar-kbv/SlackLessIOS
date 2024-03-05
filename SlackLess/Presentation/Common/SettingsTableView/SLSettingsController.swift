@@ -149,9 +149,10 @@ final class SLSettingsController: UIViewController {
 //                TODO: Do something better than using parent
                 parent?.showLoader()
             }
-            viewModel.input.load()
         case .setUp: break
         }
+        
+        viewModel.input.load()
     }
 }
 

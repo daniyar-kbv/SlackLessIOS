@@ -173,6 +173,10 @@ extension SLSettingsViewModelImpl {
         appSettingsService.output.errorOccured
             .bind(to: errorOccured)
             .disposed(by: disposeBag)
+        
+        appSettingsService.output.appsSelectionSaved
+            .subscribe(onNext: refreshData)
+            .disposed(by: disposeBag)
     }
     
     private func bindPushNotificationsService() {
@@ -200,5 +204,11 @@ extension SLSettingsViewModelImpl {
                 || !(appsSelection?.categories.isEmpty ?? true))
             )
             && !(timeLimit?.isZero ?? true)
+    }
+    
+    private func refreshData() {
+        appsSelection = appSettingsService.output.getCurrentSelectedApps()
+        timeLimit = appSettingsService.output.getCurrentTimeLimit()
+        reload.accept(())
     }
 }

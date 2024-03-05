@@ -128,6 +128,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval) {
         appSettingsRepository.input.set(selectedApps: selectedApps, timeLimit: timeLimit, for: Date())
+        appsSelectionSaved.accept(())
         eventManager.send(event: .init(type: .appLimitSettingsChanged))
     }
 

@@ -14,7 +14,7 @@ final class SLTimeInput: UIView {
     private let onChange: (DateComponents) -> Void
 
     private(set) lazy var timePicker: UIPickerView = {
-        let view = UIPickerView(frame: .init(x: 0, y: 0, width: Constants.screenSize.width, height: 400))
+        let view = UIPickerView(frame: .init(x: 0, y: 0, width: Constants.screenSize.width, height: 300))
         
         view.dataSource = self
         view.delegate = self
