@@ -20,6 +20,7 @@ protocol SetUpViewModelOutput: AnyObject {
     var didFinish: PublishRelay<Void> { get }
 
     func getSettingsViewModel() -> SLSettingsViewModel
+    func getState() -> SetUpView.State
 }
 
 protocol SetUpViewModel: AnyObject {
@@ -33,9 +34,13 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
 
     private let appSettingsService: AppSettingsService
     private let settingsViewModel: SLSettingsViewModel
+    
+    private let state: SetUpView.State
 
-    init(appSettingsService: AppSettingsService) {
+    init(appSettingsService: AppSettingsService,
+         state: SetUpView.State) {
         self.appSettingsService = appSettingsService
+        self.state = state
         
         settingsViewModel = SLSettingsViewModelImpl(type: .setUp,
                                                     appSettingsService: appSettingsService,
@@ -51,6 +56,10 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
 
     func getSettingsViewModel() -> SLSettingsViewModel {
         settingsViewModel
+    }
+    
+    func getState() -> SetUpView.State {
+        return state
     }
 
     //    Input

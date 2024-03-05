@@ -12,17 +12,14 @@ import RxSwift
 final class CustomizeCoordinator: BaseCoordinator {
     private(set) var router: Router
 
-    private let coordinatorFactory: CustomizeCoordinatorsFactory
     private let modulesFactory: CustomizeModulesFactory
 
     private let disposeBag = DisposeBag()
 
     init(router: Router,
-         coordinatorFactory: CustomizeCoordinatorsFactory,
          modulesFactory: CustomizeModulesFactory)
     {
         self.router = router
-        self.coordinatorFactory = coordinatorFactory
         self.modulesFactory = modulesFactory
     }
 
@@ -37,7 +34,7 @@ final class CustomizeCoordinator: BaseCoordinator {
         
         module.viewModel.output.startModifySettings
             .subscribe(onNext: { [weak self] in
-                self?.showSetUp()
+                self?.showModifySettings()
             })
             .disposed(by: disposeBag)
 
@@ -56,9 +53,15 @@ final class CustomizeCoordinator: BaseCoordinator {
         router.push(viewController: module.controller, animated: true)
     }
     
-    private func showSetUp() {
-        let coordinator = coordinatorFactory.makeWeeklyReportCoordinator()
+    private func showModifySettings() {
+        let module = modulesFactory.makeModifySettingsModule()
         
-        coordinator.start(setUpOnly: true)
+        module.viewModel.output.didFinish
+            .subscribe(onNext: { [weak self] in
+                self?.router.pop(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        router.present(module.controller, animated: true, completion: nil)
     }
 }

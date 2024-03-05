@@ -142,10 +142,25 @@ enum SLTexts {
         case buttonText = "WelcomeScreen.ButtonText"
     }
 
-    enum SetUp: String, Localizable {
-        case title = "SetUp.title"
-        case subtitle = "SetUp.subtitle"
-        case bottomText = "SetUp.bottomText"
+    enum SetUp {
+        enum Title: String, Localizable {
+            case setUp = "SetUp.Title.setUp"
+            case modify = "SetUp.Title.modify"
+            case adjust = "SetUp.Title.adjust"
+        }
+        
+        enum Subtitle: String, Localizable {
+            case setUp = "SetUp.Subtitle.setUp"
+            case modify = "SetUp.Subtitle.modify"
+            case adjust = "SetUp.Subtitle.adjust"
+        }
+        
+        enum ButtonTitle: String, Localizable {
+            case setUp = "SetUp.ButtonTitle.setUp"
+            case modify = "SetUp.ButtonTitle.modify"
+            case adjust = "SetUp.ButtonTitle.adjust"
+        }
+            
     }
 
     enum Legend: String, Localizable {

@@ -26,7 +26,8 @@ final class WeeklyReportModulesFactoryImpl: WeeklyReportModulesFactory {
     }
 
     func makeSetUpModule() -> (viewModel: SetUpViewModel, controller: SetUpController) {
-        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService())
+        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+                                           state: .adjust)
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
 }

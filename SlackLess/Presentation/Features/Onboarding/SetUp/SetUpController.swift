@@ -13,7 +13,7 @@ import UIKit
 final class SetUpController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel: SetUpViewModel
-    private lazy var contentView = SetUpView()
+    private lazy var contentView = SetUpView(state: viewModel.output.getState())
     private lazy var settingsController = SLSettingsController(viewModel: viewModel.output.getSettingsViewModel())
 
     init(viewModel: SetUpViewModel) {
