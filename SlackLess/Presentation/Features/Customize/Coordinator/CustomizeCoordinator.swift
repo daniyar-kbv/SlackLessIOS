@@ -57,8 +57,8 @@ final class CustomizeCoordinator: BaseCoordinator {
         let module = modulesFactory.makeModifySettingsModule()
         
         module.viewModel.output.didFinish
-            .subscribe(onNext: { [weak self] in
-                self?.router.pop(animated: true)
+            .subscribe(onNext: {
+                module.controller.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
         
