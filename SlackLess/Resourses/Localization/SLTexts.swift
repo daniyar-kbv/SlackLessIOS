@@ -197,6 +197,7 @@ enum SLTexts {
     enum Settings {
         enum Settings: String, Localizable {
             case title = "Settings.Settings.title"
+            case buttonTitle = "Settings.Settings.buttonTitle"
             
             enum SelectedAppsLabel: String, Localizable {
                 case normal = "Settings.Settings.SelectedAppsLabel.normal"
@@ -222,6 +223,32 @@ enum SLTexts {
         
         enum Error: String, Localizable {
             case pushNotificationsUnauthorized = "Settings.Error.pushNotificationsUnauthorized"
+        }
+        
+        enum Alert {
+            enum ModifySettings {
+                enum Title: String, Localizable {
+                    case first = "Settings.Alert.ModifySettings.Title.first"
+                    case second = "Settings.Alert.ModifySettings.Title.second"
+                }
+                
+                enum Message: String, Localizable {
+                    case first = "Settings.Alert.ModifySettings.Message.first"
+                    case second = "Settings.Alert.ModifySettings.Message.second"
+                }
+                
+                enum Actions {
+                    enum First: String, Localizable {
+                        case first = "Settings.Alert.ModifySettings.Actions.First.first"
+                        case second = "Settings.Alert.ModifySettings.Actions.First.second"
+                    }
+                    
+                    enum Second: String, Localizable {
+                        case first = "Settings.Alert.ModifySettings.Actions.Second.first"
+                        case second = "Settings.Alert.ModifySettings.Actions.Second.second"
+                    }
+                }
+            }
         }
     }
     

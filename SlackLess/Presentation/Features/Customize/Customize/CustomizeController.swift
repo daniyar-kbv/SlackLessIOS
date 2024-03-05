@@ -38,17 +38,10 @@ final class CustomizeController: UIViewController {
         super.viewDidLoad()
 
         configureView()
-        bindView()
     }
 
     private func configureView() {
         contentView.set(title: SLTexts.Customize.title.localized())
         add(controller: settingsController, to: contentView.settingsView)
-    }
-
-    private func bindView() {
-        contentView.debugButton.rx.tap
-            .subscribe(onNext: viewModel.input.showSetUp)
-            .disposed(by: disposeBag)
     }
 }

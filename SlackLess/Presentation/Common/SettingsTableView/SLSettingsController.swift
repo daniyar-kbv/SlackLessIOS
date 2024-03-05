@@ -155,6 +155,47 @@ final class SLSettingsController: UIViewController {
     }
 }
 
+extension SLSettingsController {
+    private func handleButtonTap(for section: SLSettingsSection) {
+        switch section {
+        case let .settings(type):
+            switch type {
+            case .full: showModifySettingsAlerts()
+            default: break
+            }
+        default: break
+        }
+    }
+    
+    private func showModifySettingsAlerts() {
+        showAlert(title: SLTexts.Settings.Alert.ModifySettings.Title.first.localized(),
+                  message: SLTexts.Settings.Alert.ModifySettings.Message.first.localized(),
+                  actions: [
+                    .init(title: SLTexts.Settings.Alert.ModifySettings.Actions.First.first.localized(),
+                          style: .default),
+                    .init(title: SLTexts.Settings.Alert.ModifySettings.Actions.First.second.localized(),
+                          style: .destructive,
+                          handler: { [weak self] _ in
+                              self?.showModifySettingsSecondAlert()
+                          })
+                  ])
+    }
+    
+    private func showModifySettingsSecondAlert() {
+        showAlert(title: SLTexts.Settings.Alert.ModifySettings.Title.second.localized(),
+                  message: SLTexts.Settings.Alert.ModifySettings.Message.second.localized(),
+                  actions: [
+                    .init(title: SLTexts.Settings.Alert.ModifySettings.Actions.Second.first.localized(),
+                          style: .default),
+                    .init(title: SLTexts.Settings.Alert.ModifySettings.Actions.Second.second.localized(),
+                          style: .destructive,
+                          handler: { [weak self] _ in
+                              self?.viewModel.input.modifySettings()
+                          })
+                  ])
+    }
+}
+
 extension SLSettingsController: UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {
         viewModel.output.getNumberOfSections()
@@ -168,7 +209,8 @@ extension SLSettingsController: UITableViewDataSource {
         switch (viewModel.output.getType(), indexPath.row) {
         case (.full, 0):
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsHeaderCell.self), for: indexPath) as! SLSettingsHeaderCell
-            cell.titleLabel.text = viewModel.output.getTitle(for: indexPath.section)
+            cell.section = viewModel.output.getSection(for: indexPath.section)
+            cell.onTap = handleButtonTap(for:)
             return cell
         case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1):
             return tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsSpacerCell.self), for: indexPath)
@@ -210,6 +252,9 @@ extension SLSettingsController: UITableViewDataSource {
                     self?.viewModel.input.selectFeedback()
                 }
             }
+
+            cell.isEnabled = viewModel.output.canChangeSettings
+            || !viewModel.output.isSettings(section: indexPath.section)
 
             return cell
         }

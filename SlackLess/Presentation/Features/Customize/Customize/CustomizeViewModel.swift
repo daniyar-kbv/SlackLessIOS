@@ -12,13 +12,12 @@ import RxSwift
 //  TODO: Update settings values when after set up
 
 protocol CustomizeViewModelInput: AnyObject {
-    func showSetUp()
 }
 
 protocol CustomizeViewModelOutput: AnyObject {
     var settingViewModel: SLSettingsViewModel { get }
     var startFeedback: PublishRelay<Void> { get }
-    var startSetUp: PublishRelay<Void> { get }
+    var startModifySettings: PublishRelay<Void> { get }
 }
 
 protocol CustomizeViewModel: AnyObject {
@@ -48,18 +47,20 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
                                                                              appSettingsService: appSettingsService,
                                                                              pushNotificationsService: pushNotificationsService)
     let startFeedback: PublishRelay<Void> = .init()
-    let startSetUp: PublishRelay<Void> = .init()
+    let startModifySettings: PublishRelay<Void> = .init()
+    
 
 //    Input
-    func showSetUp() {
-        startSetUp.accept(())
-    }
 }
 
 extension CustomizeViewModelImpl {
     private func bindSettingsViewModel() {
         settingViewModel.output.feedbackSelected
             .bind(to: startFeedback)
+            .disposed(by: disposeBag)
+        
+        settingViewModel.output.startModifySettings
+            .bind(to: startModifySettings)
             .disposed(by: disposeBag)
     }
 }

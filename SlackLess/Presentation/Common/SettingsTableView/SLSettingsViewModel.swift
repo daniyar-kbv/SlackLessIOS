@@ -15,6 +15,7 @@ protocol SLSettingsViewModelInput {
     func set(appSelection: FamilyActivitySelection)
     func set(timeLimit: TimeInterval?)
     func set(pushNotificationsEnabled: Bool)
+    func modifySettings()
     func save()
     func selectFeedback()
 }
@@ -26,11 +27,13 @@ protocol SLSettingsViewModelOutput {
     var isComplete: BehaviorRelay<Bool> { get }
     var pushNotificationsUnauthorized: PublishRelay<Void> { get }
     var feedbackSelected: PublishRelay<Void> { get }
+    var canChangeSettings: Bool { get }
+    var startModifySettings: PublishRelay<Void> { get }
 
     func getType() -> SLSettingsType
     func getNumberOfSections() -> Int
     func getNumberOfItems(in section: Int) -> Int
-    func getTitle(for section: Int) -> String?
+    func getSection(for index: Int) -> SLSettingsSection?
     func getItemType(for indexPath: IndexPath) -> SLSettingsCell.CellType
     func isSettings(section: Int) -> Bool
 }
@@ -72,6 +75,14 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     lazy var isComplete: BehaviorRelay<Bool> = .init(value: getIsComplete())
     let pushNotificationsUnauthorized: PublishRelay<Void> = .init()
     let feedbackSelected: PublishRelay<Void> = .init()
+    let startModifySettings: PublishRelay<Void> = .init()
+    
+    var canChangeSettings: Bool {
+        switch type {
+        case .full: return false
+        case .setUp: return true
+        }
+    }
 
     func getType() -> SLSettingsType {
         type
@@ -88,8 +99,9 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
         }
     }
 
-    func getTitle(for section: Int) -> String? {
-        type.sections[section].title
+    func getSection(for index: Int) -> SLSettingsSection? {
+        guard index < type.sections.count else { return nil }
+        return type.sections[index]
     }
 
     func getItemType(for indexPath: IndexPath) -> SLSettingsCell.CellType {
@@ -133,6 +145,10 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     
     func set(pushNotificationsEnabled: Bool) {
         pushNotificationsService?.input.set(pushNotificationsEnabled: pushNotificationsEnabled)
+    }
+    
+    func modifySettings() {
+        startModifySettings.accept(())
     }
     
     func save() {
