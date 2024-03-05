@@ -97,7 +97,7 @@ extension ARChartController: UICollectionViewDelegateFlowLayout {
             if indexPath.item == 0 {
                 return .init(width: 20, height: collectionView.frame.height)
             }
-            return .init(width: (collectionView.frame.width - 20) / 5, height: collectionView.frame.height)
+            return .init(width: ((collectionView.frame.width-20)/5)-0.5, height: collectionView.frame.height)
         }
     }
 }
