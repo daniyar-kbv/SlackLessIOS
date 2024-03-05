@@ -26,17 +26,17 @@ class ARWeek {
     }
 
     func getTime() -> ARTime {
-        ARTime(slacked: days.map { $0.time.slacked }.reduce(0, +),
-               total: days.map { $0.time.total }.reduce(0, +),
+        ARTime(slacked: days.map { $0.time?.slacked ?? 0 }.reduce(0, +),
+               total: days.map { $0.time?.total ?? 0 }.reduce(0, +),
                limit: nil,
-               average: days.map { $0.time.total }.reduce(0, +) / 7)
+               average: days.map { $0.time?.total ?? 0 }.reduce(0, +) / Double(days.filter({ $0.time != nil }).count))
     }
 }
 
 extension ARWeek {
     struct Day: GraphRepresentable {
         let date: Date
-        let time: ARTime
+        let time: ARTime?
 
         func getDateText() -> String {
             let calendar = Calendar.current
@@ -45,19 +45,19 @@ extension ARWeek {
         }
 
         func getSlackedTimeFormatted() -> String? {
-            time.slacked.formatted(with: .abbreviated)
+            time?.slacked.formatted(with: .abbreviated)
         }
 
         func getTotalTime() -> TimeInterval {
-            time.total
+            time?.total ?? 0
         }
 
         func getTotalTimeFormatted() -> String? {
-            time.total.formatted(with: .abbreviated)
+            time?.total.formatted(with: .abbreviated)
         }
 
         func getPercentage() -> Double {
-            time.getSlackedTotalPercentage()
+            time?.getSlackedTotalPercentage() ?? 0
         }
 
         func getIsCurrent() -> Bool {

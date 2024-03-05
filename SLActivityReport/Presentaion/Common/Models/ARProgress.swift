@@ -37,7 +37,7 @@ struct ARProgress {
 
         while currentDate <= lastDay {
             let week = getWeek(for: currentDate, from: &weeks)
-            let day = days.first(where: { $0.date == currentDate }) ?? makeEmptyDay(from: currentDate)
+            let day = days.first(where: { $0.date == currentDate }) ?? .init(date: currentDate, time: nil)
             week.days.append(day)
             currentDate = currentDate.add(.day, value: 1)
         }
@@ -81,13 +81,5 @@ struct ARProgress {
         }
         
         return week
-    }
-
-    private static func makeEmptyDay(from date: Date) -> ARWeek.Day {
-        return .init(date: date,
-                     time: .init(slacked: 0,
-                                 total: 0,
-                                 limit: nil,
-                                 average: nil))
     }
 }
