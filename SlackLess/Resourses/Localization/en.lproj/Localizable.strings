@@ -98,6 +98,24 @@
 "WelcomeScreen.Subtitle" = "Starting today, free yourself\nfrom distractions";
 "WelcomeScreen.ButtonText" = "Let’s get started";
 
+//  MARK: - Survey
+"Survey.Title.question1" = "What’s your daily average phone screen time?";
+"Survey.Title.question2" = "How old are you?";
+"Survey.Subtitle.question1" = "We’ll only use your answers to personalize the experience. Your data is completely safe.";
+"Survey.Subtitle.question2" = "We’ll only use your answers to personalize the experience. Your data is completely safe.";
+"Survey.Answers.Question1.answer1" = "Less than 2 hours";
+"Survey.Answers.Question1.answer2" = "2 - 4 hours";
+"Survey.Answers.Question1.answer3" = "4 - 6 hours";
+"Survey.Answers.Question1.answer4" = "6 - 8 hours";
+"Survey.Answers.Question2.answer5" = "More than 8 hours";
+"Survey.Answers.Question2.answer1" = "Under 18";
+"Survey.Answers.Question2.answer2" = "18 - 25";
+"Survey.Answers.Question2.answer3" = "26 - 35";
+"Survey.Answers.Question2.answer4" = "36 - 45";
+"Survey.Answers.Question2.answer5" = "46 - 55";
+"Survey.Answers.Question2.answer6" = "Over 55";
+
+
 //  MARK: - SetUp
 "SetUp.Title.setUp" = "Let’s set up!";
 "SetUp.Title.modify" = "Are you sure about this?";
