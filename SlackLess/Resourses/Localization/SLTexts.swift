@@ -141,6 +141,37 @@ enum SLTexts {
         case subtitle = "WelcomeScreen.Subtitle"
         case buttonText = "WelcomeScreen.ButtonText"
     }
+    
+    enum Survey {
+        enum Title: String, Localizable {
+            case question1 = "Survey.Title.question1"
+            case question2 = "Survey.Title.question2"
+        }
+        
+        enum Subtitle: String, Localizable {
+            case question1 = "Survey.Subtitle.question1"
+            case question2 = "Survey.Subtitle.question2"
+        }
+        
+        enum Answers {
+            enum Question1: String, Localizable {
+                case answer1 = "Survey.Answers.Question1.answer1"
+                case answer2 = "Survey.Answers.Question1.answer2"
+                case answer3 = "Survey.Answers.Question1.answer3"
+                case answer4 = "Survey.Answers.Question1.answer4"
+                case answer5 = "Survey.Answers.Question1.answer5"
+            }
+            
+            enum Question2: String, Localizable {
+                case answer1 = "Survey.Answers.Question2.answer1"
+                case answer2 = "Survey.Answers.Question2.answer2"
+                case answer3 = "Survey.Answers.Question2.answer3"
+                case answer4 = "Survey.Answers.Question2.answer4"
+                case answer5 = "Survey.Answers.Question2.answer5"
+                case answer6 = "Survey.Answers.Question2.answer6"
+            }
+        }
+    }
 
     enum SetUp {
         enum Title: String, Localizable {
