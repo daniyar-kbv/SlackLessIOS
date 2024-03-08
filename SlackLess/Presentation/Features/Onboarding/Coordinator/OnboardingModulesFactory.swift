@@ -27,12 +27,13 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
     }
     
     func makeSurveyModule(for question: SurveyQuestion) -> (viewModel: SurveyViewModel, controller: SurveyController) {
-        let viewModel = SurveyViewModelImpl(question: question)
+        let viewModel = SurveyViewModelImpl(onboardingService: serviceFactory.makeOnboardingService(),
+                                            question: question)
         return (viewModel, .init(viewModel: viewModel))
     }
 
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController) {
-        let viewModel = RequestAuthViewModellImpl(appSettingsService: serviceFactory.makeAppSettingsService())
+        let viewModel = RequestAuthViewModellImpl(onboardingService: serviceFactory.makeOnboardingService())
         return (viewModel, .init(viewModel: viewModel))
     }
 

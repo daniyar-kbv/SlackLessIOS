@@ -13,8 +13,6 @@ import RxSwift
 //  TODO: Split into two services
 
 protocol AppSettingsServiceInput {
-    func requestAuthorization()
-    func set(onboardingShown: Bool)
     func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval)
     func set(progressDate: Date)
     func setWeeklyReportShown()
@@ -22,12 +20,10 @@ protocol AppSettingsServiceInput {
 
 protocol AppSettingsServiceOutput {
     var errorOccured: PublishRelay<ErrorPresentable> { get }
-    var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
     var appsSelectionSaved: PublishRelay<Void> { get }
 
     func getCurrentTimeLimit() -> TimeInterval?
     func getCurrentSelectedApps() -> FamilyActivitySelection?
-    func getOnboardingShown() -> Bool
     func getIsLastDate(_ date: Date) -> Bool
     func getIsLastWeek(_ date: Date) -> Bool
     func getProgressDate() -> Date?
@@ -50,7 +46,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     private let appSettingsRepository: AppSettingsRepository
     private let eventManager: EventManager
     private let calendar = Calendar.current
-    private var authorizationTimer: Timer?
 
     init(appSettingsRepository: AppSettingsRepository,
          eventManager: EventManager)
@@ -63,13 +58,7 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     //    Output
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
-    let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
     let appsSelectionSaved: PublishRelay<Void> = .init()
-
-    func getOnboardingShown() -> Bool {
-        false
-//        appSettingsRepository.output.getOnboardingShown()
-    }
 
 //    TODO: Refactor to optimize fetching DayData
     
@@ -104,25 +93,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     //    Input
 
-    func requestAuthorization() {
-        authorizationTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [weak self] _ in
-            self?.processAuthorizaztion(result: .success(()))
-        }
-        Task {
-            do {
-                try await AuthorizationCenter.shared.requestAuthorization(for: FamilyControlsMember.individual)
-                DispatchQueue.main.async { [weak self] in
-                    self?.authorizationTimer?.invalidate()
-                    self?.processAuthorizaztion(result: .success(()))
-                }
-            } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.processAuthorizaztion(result: .failure(error))
-                }
-            }
-        }
-    }
-
     func setWeeklyReportShown() {
         appSettingsRepository.input.set(currentWeek: Date().getFirstDayOfWeek())
     }
@@ -131,10 +101,6 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
         appSettingsRepository.input.set(selectedApps: selectedApps, timeLimit: timeLimit, for: Date())
         appsSelectionSaved.accept(())
         eventManager.send(event: .init(type: .appLimitSettingsChanged))
-    }
-
-    func set(onboardingShown: Bool) {
-        appSettingsRepository.input.set(onboardingShown: onboardingShown)
     }
 
     func set(progressDate: Date) {
@@ -148,15 +114,5 @@ extension AppSettingsServiceImpl {
             guard let error = $0 as? ErrorPresentable else { return }
             self?.errorOccured.accept(error)
         }
-    }
-}
-
-extension AppSettingsServiceImpl {
-    private func processAuthorizaztion(result: Result<Void, Error>) {
-        switch result {
-        case .success: appSettingsRepository.input.set(startDate: .now.getDate())
-        case .failure: break
-        }
-        authorizaionStatus.accept(result)
     }
 }

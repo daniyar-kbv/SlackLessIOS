@@ -27,9 +27,12 @@ final class SurveyViewModelImpl: SurveyViewModel, SurveyViewModelInput, SurveyVi
     var input: SurveyViewModelInput { self }
     var output: SurveyViewModelOutput { self }
     
+    private let onboardingService: OnboardingService
     private let question: SurveyQuestion
     
-    init(question: SurveyQuestion) {
+    init(onboardingService: OnboardingService,
+         question: SurveyQuestion) {
+        self.onboardingService = onboardingService
         self.question = question
     }
     
@@ -42,6 +45,7 @@ final class SurveyViewModelImpl: SurveyViewModel, SurveyViewModelInput, SurveyVi
     
     // Input
     func selectAnswer(at index: Int) {
+        onboardingService.input.answer(question: question, answer: question.answers[index])
         didFinish.accept(())
     }
 }
