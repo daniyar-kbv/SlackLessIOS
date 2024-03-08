@@ -118,6 +118,15 @@
 //  MARK: - Calculation
 "Calculation.subtitle" = "Calculating...";
 
+//  MARK: - Results
+"Results.TopTitle.spend" = "According to your answers you'll be glued to your phone for %@ this year, and that's";
+"Results.TopTitle.save" = "But hey, we can help you get back";
+"Results.BottomTitle.spend" = "over your lifetime. It’s true. You got it right";
+"Results.BottomTitle.save" = "of your life by cutting out distractions";
+"Results.subtitle" = "Based on the SlackLess program and your individual profile";
+"Results.ButtonTitle.spend" = "Oh";
+"Results.ButtonTitle.save" = "Let's start";
+
 //  MARK: - SetUp
 "SetUp.Title.setUp" = "Let’s set up!";
 "SetUp.Title.modify" = "Are you sure about this?";
