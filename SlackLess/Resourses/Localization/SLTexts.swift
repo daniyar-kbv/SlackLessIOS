@@ -176,6 +176,25 @@ enum SLTexts {
     enum Calculation: String, Localizable {
         case subtitle = "Calculation.subtitle"
     }
+    
+    enum Results: String, Localizable {
+        case subtitle = "Results.subtitle"
+        
+        enum TopTitle: String, Localizable {
+            case spend = "Results.TopTitle.spend"
+            case save = "Results.TopTitle.save"
+        }
+        
+        enum BottomTitle: String, Localizable {
+            case spend = "Results.BottomTitle.spend"
+            case save = "Results.BottomTitle.save"
+        }
+        
+        enum ButtonTitle: String, Localizable {
+            case spend = "Results.ButtonTitle.spend"
+            case save = "Results.ButtonTitle.save"
+        }
+    }
 
     enum SetUp {
         enum Title: String, Localizable {
