@@ -52,6 +52,10 @@ enum SLImages {
     enum WelcomeScreen: String, ImageGetable {
         case main = "WelcomeScreen.Main"
     }
+    
+    enum Results: String, ImageGetable {
+        case clouds = "Results.Clouds"
+    }
 
     enum Settings: String, ImageGetable {
         case apps = "Settings.Apps"
