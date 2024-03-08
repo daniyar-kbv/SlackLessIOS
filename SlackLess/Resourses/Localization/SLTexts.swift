@@ -172,6 +172,10 @@ enum SLTexts {
             }
         }
     }
+    
+    enum Calculation: String, Localizable {
+        case subtitle = "Calculation.subtitle"
+    }
 
     enum SetUp {
         enum Title: String, Localizable {
