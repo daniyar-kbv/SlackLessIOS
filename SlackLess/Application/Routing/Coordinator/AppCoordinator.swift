@@ -25,6 +25,7 @@ final class AppCoordinator: BaseCoordinator {
 //    TODO: Change lazy var to let where needed
 
     private let appSettingsService: AppSettingsService
+    private let onboardingService: OnboardingService
     private let pushNotificationsService: PushNotificationsService
 
     init(serviceFactory: ServiceFactory,
@@ -36,6 +37,7 @@ final class AppCoordinator: BaseCoordinator {
         self.modulesFactory = modulesFactory
         
         appSettingsService = serviceFactory.makeAppSettingsService()
+        onboardingService = serviceFactory.makeOnboardingService()
         pushNotificationsService = serviceFactory.makePushNotificationsService()
 
         super.init()
@@ -44,7 +46,7 @@ final class AppCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        if appSettingsService.output.getOnboardingShown() {
+        if onboardingService.output.getOnboardingShown() {
             configureCoordinators()
             showTabBarController()
             showWeeklyReportIfNeeded()
@@ -69,7 +71,7 @@ extension AppCoordinator {
         let coordinator = appCoordinatorsFactory.makeOnboardingCoordinator()
 
         coordinator.didFinish.subscribe(onNext: { [weak self] in
-            self?.appSettingsService.input.set(onboardingShown: true)
+            self?.onboardingService.input.set(onboardingShown: true)
             self?.start()
             self?.remove(coordinator)
         })

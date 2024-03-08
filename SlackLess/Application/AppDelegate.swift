@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureFirebase()
         configureKeyboardManager()
         startReachabilityManager()
-        initializeServices()
         configureAppCoordinator()
         
         return true
@@ -71,9 +70,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let helpersFactory = appComponentsFactory.makeHelpersFactory()
         let reachabilityManager = helpersFactory.makeReachabilityManager()
         reachabilityManager.input.start()
-    }
-
-    private func initializeServices() {
-        _ = domainComponentsFactory.makeServiceFactory().makeLockService()
     }
 }

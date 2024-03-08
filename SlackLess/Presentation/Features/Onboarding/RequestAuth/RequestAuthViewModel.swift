@@ -26,13 +26,13 @@ protocol RequestAuthViewModel: AnyObject {
 
 final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewModelInput, RequestAuthViewModelOutput {
     private let disposeBag = DisposeBag()
-    private let appSettingsService: AppSettingsService
+    private let onboardingService: OnboardingService
     
     var input: RequestAuthViewModelInput { self }
     var output: RequestAuthViewModelOutput { self }
     
-    init(appSettingsService: AppSettingsService) {
-        self.appSettingsService = appSettingsService
+    init(onboardingService: OnboardingService) {
+        self.onboardingService = onboardingService
         
         bindService()
     }
@@ -44,13 +44,13 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
     
     //    Input
     func requestAuthorization() {
-        appSettingsService.input.requestAuthorization()
+        onboardingService.input.requestAuthorization()
     }
 }
 
 extension RequestAuthViewModellImpl {
     private func bindService() {
-        appSettingsService.output.authorizaionStatus
+        onboardingService.output.authorizaionStatus
             .subscribe(onNext: { [weak self] in
                 self?.authorizationComplete.accept(())
                 switch $0 {
