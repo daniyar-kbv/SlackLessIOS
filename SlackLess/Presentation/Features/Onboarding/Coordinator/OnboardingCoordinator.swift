@@ -32,11 +32,26 @@ final class OnboardingCoordinator: BaseCoordinator {
 
         module.viewModel.output.didFinish
             .subscribe(onNext: { [weak self] in
-                self?.showRequestAuth()
+                self?.showSurvey(for: .question1)
             })
             .disposed(by: disposeBag)
 
         UIApplication.shared.set(rootViewController: router.getNavigationController())
+    }
+    
+    private func showSurvey(for question: SurveyQuestion) {
+        let module = modulesFactory.makeSurveyModule(for: question)
+        
+        module.viewModel.output.didFinish
+            .subscribe(onNext: { [weak self] in
+                switch question {
+                case .question1: self?.showSurvey(for: .question2)
+                case .question2: self?.showRequestAuth()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: module.controller, animated: true)
     }
 
     private func showRequestAuth() {

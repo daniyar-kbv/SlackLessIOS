@@ -9,6 +9,7 @@ import Foundation
 
 protocol OnboardingModulesFactory: AnyObject {
     func makeWelcomeScreenModule() -> (viewModel: WelcomeScreenViewModel, controller: WelcomeScreenController)
+    func makeSurveyModule(for question: SurveyQuestion) -> (viewModel: SurveyViewModel, controller: SurveyController)
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController)
     func makeSetUpModule() -> (viewModel: SetUpViewModel, controller: SetUpController)
 }
@@ -22,6 +23,11 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
 
     func makeWelcomeScreenModule() -> (viewModel: WelcomeScreenViewModel, controller: WelcomeScreenController) {
         let viewModel = WelcomeScreenViewModelImpl()
+        return (viewModel, .init(viewModel: viewModel))
+    }
+    
+    func makeSurveyModule(for question: SurveyQuestion) -> (viewModel: SurveyViewModel, controller: SurveyController) {
+        let viewModel = SurveyViewModelImpl(question: question)
         return (viewModel, .init(viewModel: viewModel))
     }
 
