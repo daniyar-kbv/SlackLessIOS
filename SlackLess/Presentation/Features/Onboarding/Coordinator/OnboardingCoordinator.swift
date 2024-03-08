@@ -46,12 +46,24 @@ final class OnboardingCoordinator: BaseCoordinator {
             .subscribe(onNext: { [weak self] in
                 switch question {
                 case .question1: self?.showSurvey(for: .question2)
-                case .question2: self?.showRequestAuth()
+                case .question2: self?.showCalculation()
                 }
             })
             .disposed(by: disposeBag)
         
         router.push(viewController: module.controller, animated: true)
+    }
+    
+    private func showCalculation() {
+        let controller = modulesFactory.makeCalculationController()
+        
+        controller.didFinish
+            .subscribe(onNext: { [weak self] in
+                self?.showRequestAuth()
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: controller, animated: true)
     }
 
     private func showRequestAuth() {
