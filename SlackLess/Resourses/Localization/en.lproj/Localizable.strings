@@ -115,6 +115,8 @@
 "Survey.Answers.Question2.answer5" = "46 - 55";
 "Survey.Answers.Question2.answer6" = "Over 55";
 
+//  MARK: - Calculation
+"Calculation.subtitle" = "Calculating...";
 
 //  MARK: - SetUp
 "SetUp.Title.setUp" = "Let’s set up!";
