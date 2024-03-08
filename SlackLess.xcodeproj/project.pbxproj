@@ -50,6 +50,7 @@
 		D7F2FBFEC84058744E574D4E0A95CAAD /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243653BD4DDFD857B4812FB0594D239F /* BaseResponse.swift */; };
 		1480684849EC3AE1268FF67F7BB4FD09 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */; };
 		A5E3188EAA09A7C9A32F71EDC377B109 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */; };
+		BB4D49AE922675F9B36718BE688B04C5 /* CalculationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E58108C7FFB90911386F2FCF055B73 /* CalculationController.swift */; };
 		27212BC75071BBE591B06D4BFB0A96B2 /* ColorGetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */; };
 		8169C6825B7D4331B3200D1F733B344D /* ColorGetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */; };
 		BFA73C50519EDBB2758432F7C2953690 /* ColorGetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */; };
@@ -447,6 +448,7 @@
 		500430D49E4EF8A65AED23DAA4853668 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		243653BD4DDFD857B4812FB0594D239F /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		D3E58108C7FFB90911386F2FCF055B73 /* CalculationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationController.swift; sourceTree = "<group>"; };
 		1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorGetable.swift; sourceTree = "<group>"; };
 		CC5EB5D4F8645A3CF8492497AFB4A3A0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B7F73DFD874584CA256A0AD6E5507A42 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -992,6 +994,18 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		342D9F8014943A0CC0D5D3A33EC0E9FB /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				F81D69AF930C7D02F1E9F668E0D57B51 /* SurveyController.swift */,
+				A0D7F71ED2B5096B217C00ADB92A77F9 /* SurveyTableViewCell.swift */,
+				83707EBB5909D30946C914F1885B5FB2 /* SurveyType.swift */,
+				667EE8D09D018A2811733A9886474E92 /* SurveyView.swift */,
+				09997EB2925E5DBF5B2F709B38DAAEAF /* SurveyViewModel.swift */,
+			);
+			path = Survey;
+			sourceTree = "<group>";
+		};
 		3745C5341E010A98CA6F9C427FC35049 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,16 +1320,12 @@
 			path = KeyValueStorage;
 			sourceTree = "<group>";
 		};
-		342D9F8014943A0CC0D5D3A33EC0E9FB /* Survey */ = {
+		65AF18DC635A15F69728114FE48002F5 /* Calculation */ = {
 			isa = PBXGroup;
 			children = (
-				F81D69AF930C7D02F1E9F668E0D57B51 /* SurveyController.swift */,
-				A0D7F71ED2B5096B217C00ADB92A77F9 /* SurveyTableViewCell.swift */,
-				83707EBB5909D30946C914F1885B5FB2 /* SurveyType.swift */,
-				667EE8D09D018A2811733A9886474E92 /* SurveyView.swift */,
-				09997EB2925E5DBF5B2F709B38DAAEAF /* SurveyViewModel.swift */,
+				D3E58108C7FFB90911386F2FCF055B73 /* CalculationController.swift */,
 			);
-			path = Survey;
+			path = Calculation;
 			sourceTree = "<group>";
 		};
 		75753413DC1FE60522EC957C35B47895 /* REST */ = {
@@ -1832,6 +1842,7 @@
 		EE362B6366A8221E5E3DBFE900066347 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				65AF18DC635A15F69728114FE48002F5 /* Calculation */,
 				8A9B2CF6C206B99A01F63D75A6E3F7DE /* Coordinator */,
 				E9CA7E9C7233B03399EE22A8D132054F /* RequestAuth */,
 				15322A8E43CB55A4D77159EAA8BC1381 /* SetUp */,
@@ -2409,6 +2420,7 @@
 				7829D5A844E8073405A981BE46FE8C4D /* BaseCoordinator.swift in Sources */,
 				D7F2FBFEC84058744E574D4E0A95CAAD /* BaseResponse.swift in Sources */,
 				A5E3188EAA09A7C9A32F71EDC377B109 /* CGFloatExtension.swift in Sources */,
+				BB4D49AE922675F9B36718BE688B04C5 /* CalculationController.swift in Sources */,
 				8169C6825B7D4331B3200D1F733B344D /* ColorGetable.swift in Sources */,
 				17D88FD337D05925AE8B5A3102D9F018 /* Constants.swift in Sources */,
 				F2B29B763F655A1D0026F12DC90A42EF /* CoreDataStorage.swift in Sources */,
