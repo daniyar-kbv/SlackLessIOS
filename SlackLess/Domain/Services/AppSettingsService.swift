@@ -67,7 +67,8 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     let appsSelectionSaved: PublishRelay<Void> = .init()
 
     func getOnboardingShown() -> Bool {
-        appSettingsRepository.output.getOnboardingShown()
+        false
+//        appSettingsRepository.output.getOnboardingShown()
     }
 
 //    TODO: Refactor to optimize fetching DayData

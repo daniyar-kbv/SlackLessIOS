@@ -107,7 +107,7 @@
 "Survey.Answers.Question1.answer2" = "2 - 4 hours";
 "Survey.Answers.Question1.answer3" = "4 - 6 hours";
 "Survey.Answers.Question1.answer4" = "6 - 8 hours";
-"Survey.Answers.Question2.answer5" = "More than 8 hours";
+"Survey.Answers.Question1.answer5" = "More than 8 hours";
 "Survey.Answers.Question2.answer1" = "Under 18";
 "Survey.Answers.Question2.answer2" = "18 - 25";
 "Survey.Answers.Question2.answer3" = "26 - 35";
