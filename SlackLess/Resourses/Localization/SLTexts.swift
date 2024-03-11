@@ -195,6 +195,12 @@ enum SLTexts {
             case save = "Results.ButtonTitle.save"
         }
     }
+    
+    enum RequestAuth: String, Localizable {
+        case title = "RequestAuth.title"
+        case subtitle = "RequestAuth.subtitle"
+        case footnote = "RequestAuth.footnote"
+    }
 
     enum SetUp {
         enum Title: String, Localizable {
