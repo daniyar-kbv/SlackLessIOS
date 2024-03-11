@@ -19,6 +19,7 @@ protocol OnboardingServiceInput: AnyObject {
 protocol OnboardingServiceOutput: AnyObject {
     var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
     func getOnboardingShown() -> Bool
+    func getResults() -> (spendYear: TimeInterval, spendLife: TimeInterval, save: TimeInterval)
 }
 
 protocol OnboardingService: AnyObject {
@@ -33,7 +34,7 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     private let disposeBag = DisposeBag()
     private let appSettingsRepository: AppSettingsRepository
     private var authorizationTimer: Timer?
-    private var answeredQuestions: [(question: SurveyQuestion, answer: SurveyQuestion.Answer)] = []
+    private var answeredQuestions: [(question: SurveyQuestion, answer: SurveyQuestion.Answer)] = [(.question1,.init(title: "", value: 2)), (.question2,.init(title: "", value: 18))]
     
     init(appSettingsRepository: AppSettingsRepository) {
         self.appSettingsRepository = appSettingsRepository
@@ -45,6 +46,17 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     func getOnboardingShown() -> Bool {
         false
 //        appSettingsRepository.output.getOnboardingShown()
+    }
+    
+    func getResults() -> (spendYear: TimeInterval, spendLife: TimeInterval, save: TimeInterval) {
+        guard let screenTime = answeredQuestions.first(where: { $0.question == .question1 })?.answer.value,
+              let age = answeredQuestions.first(where: { $0.question == .question2 })?.answer.value
+        else { return (spendYear: 0, spendLife: 0, save: 0) }
+        let spendYear = TimeInterval(screenTime*3600*365)
+        let spendLife = TimeInterval(79-age)*spendYear
+        let save = spendLife*0.3
+        print((spendYear: spendYear, spendLife: spendLife, save: save))
+        return (spendYear: spendYear, spendLife: spendLife, save: save)
     }
     
 //    Input
