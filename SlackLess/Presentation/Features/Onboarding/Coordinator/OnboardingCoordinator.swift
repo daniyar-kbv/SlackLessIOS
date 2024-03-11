@@ -26,18 +26,7 @@ final class OnboardingCoordinator: BaseCoordinator {
     }
 
     override func start() {
-//        let module = modulesFactory.makeWelcomeScreenModule()
-//
-//        router.set(navigationController: SLNavigationController(rootViewController: module.controller))
-//
-//        module.viewModel.output.didFinish
-//            .subscribe(onNext: { [weak self] in
-//                self?.showSurvey(for: .question1)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        UIApplication.shared.set(rootViewController: router.getNavigationController())
-        let module = modulesFactory.makeResultsModule()
+        let module = modulesFactory.makeWelcomeScreenModule()
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
 

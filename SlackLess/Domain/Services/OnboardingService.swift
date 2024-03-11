@@ -34,7 +34,7 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     private let disposeBag = DisposeBag()
     private let appSettingsRepository: AppSettingsRepository
     private var authorizationTimer: Timer?
-    private var answeredQuestions: [(question: SurveyQuestion, answer: SurveyQuestion.Answer)] = [(.question1,.init(title: "", value: 2)), (.question2,.init(title: "", value: 18))]
+    private var answeredQuestions: [(question: SurveyQuestion, answer: SurveyQuestion.Answer)] = []
     
     init(appSettingsRepository: AppSettingsRepository) {
         self.appSettingsRepository = appSettingsRepository
