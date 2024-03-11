@@ -26,7 +26,18 @@ final class OnboardingCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        let module = modulesFactory.makeWelcomeScreenModule()
+//        let module = modulesFactory.makeWelcomeScreenModule()
+//
+//        router.set(navigationController: SLNavigationController(rootViewController: module.controller))
+//
+//        module.viewModel.output.didFinish
+//            .subscribe(onNext: { [weak self] in
+//                self?.showSurvey(for: .question1)
+//            })
+//            .disposed(by: disposeBag)
+//
+//        UIApplication.shared.set(rootViewController: router.getNavigationController())
+        let module = modulesFactory.makeResultsModule()
 
         router.set(navigationController: SLNavigationController(rootViewController: module.controller))
 
@@ -59,11 +70,23 @@ final class OnboardingCoordinator: BaseCoordinator {
         
         controller.didFinish
             .subscribe(onNext: { [weak self] in
-                self?.showRequestAuth()
+                self?.showResults()
             })
             .disposed(by: disposeBag)
         
         router.push(viewController: controller, animated: true)
+    }
+    
+    private func showResults() {
+        let module = modulesFactory.makeResultsModule()
+        
+        module.viewModel.output.didFinish
+            .subscribe(onNext: { [weak self] in
+                self?.showRequestAuth()
+            })
+            .disposed(by: disposeBag)
+        
+        router.push(viewController: module.controller, animated: true)
     }
 
     private func showRequestAuth() {

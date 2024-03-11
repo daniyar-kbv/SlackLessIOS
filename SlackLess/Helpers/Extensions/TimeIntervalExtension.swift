@@ -46,6 +46,9 @@ extension TimeInterval {
 
 extension TimeInterval {
     enum Component {
+        case years
+        case months
+        case days
         case hours
         case minutes
     }
@@ -56,7 +59,17 @@ extension TimeInterval {
             return Int(self / 3600)
         case .minutes:
             return (Int(self) - (get(component: .hours) * 3600)) / 60
+        default: return 0
         }
+    }
+    
+    func transform(to units: NSCalendar.Unit) -> [Int] {
+        let timeString = self.formatted(with: .abbreviated, allowedUnits: units)
+        return timeString?
+            .split(separator: " ")
+            .compactMap({
+                Int($0.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression))
+            }) ?? []
     }
     
     func dateComponents() -> DateComponents {

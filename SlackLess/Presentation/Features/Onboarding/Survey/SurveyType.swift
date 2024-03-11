@@ -35,12 +35,12 @@ enum SurveyQuestion {
             .init(title: SLTexts.Survey.Answers.Question1.answer5.localized(), value: 10),
         ]
         case .question2: return [
-            .init(title: SLTexts.Survey.Answers.Question2.answer1.localized(), value: 18),
-            .init(title: SLTexts.Survey.Answers.Question2.answer2.localized(), value: 25),
-            .init(title: SLTexts.Survey.Answers.Question2.answer3.localized(), value: 35),
-            .init(title: SLTexts.Survey.Answers.Question2.answer4.localized(), value: 45),
-            .init(title: SLTexts.Survey.Answers.Question2.answer5.localized(), value: 55),
-            .init(title: SLTexts.Survey.Answers.Question2.answer6.localized(), value: 65),
+            .init(title: SLTexts.Survey.Answers.Question2.answer1.localized(), value: 16),
+            .init(title: SLTexts.Survey.Answers.Question2.answer2.localized(), value: 18),
+            .init(title: SLTexts.Survey.Answers.Question2.answer3.localized(), value: 26),
+            .init(title: SLTexts.Survey.Answers.Question2.answer4.localized(), value: 36),
+            .init(title: SLTexts.Survey.Answers.Question2.answer5.localized(), value: 46),
+            .init(title: SLTexts.Survey.Answers.Question2.answer6.localized(), value: 56),
         ]
         }
     }
