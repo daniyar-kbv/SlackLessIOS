@@ -56,6 +56,10 @@ enum SLImages {
     enum Results: String, ImageGetable {
         case clouds = "Results.Clouds"
     }
+    
+    enum RequestAuth: String, ImageGetable {
+        case alert = "RequestAuth.Alert"
+    }
 
     enum Settings: String, ImageGetable {
         case apps = "Settings.Apps"

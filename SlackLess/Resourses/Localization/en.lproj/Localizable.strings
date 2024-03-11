@@ -127,6 +127,11 @@
 "Results.ButtonTitle.spend" = "Oh";
 "Results.ButtonTitle.save" = "Let's start";
 
+//  MARK: - Request Auth
+"RequestAuth.title" = "A journey of 1000 miles starts with the first step";
+"RequestAuth.subtitle" = "To analyze your Screen Time on this Phone, we need your permission";
+"RequestAuth.footnote" = "SlackLess ensures privacy by keeping all user information 100% on the user's phone, with no collection or access to entered data, browsing history, or Screen Time data.";
+
 //  MARK: - SetUp
 "SetUp.Title.setUp" = "Let’s set up!";
 "SetUp.Title.modify" = "Are you sure about this?";
