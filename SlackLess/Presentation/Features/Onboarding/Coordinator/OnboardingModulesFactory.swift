@@ -13,6 +13,7 @@ protocol OnboardingModulesFactory: AnyObject {
     func makeCalculationController() -> CalculationController
     func makeResultsModule() -> (viewModel: ResultsViewModel, controller: ResultsController)
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController)
+    func makeIntroductionModule() -> (viewModel: IntroductionViewModel, controller: IntroductionController)
     func makeSetUpModule() -> (viewModel: SetUpViewModel, controller: SetUpController)
 }
 
@@ -45,6 +46,11 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
 
     func makeRequestAuthModule() -> (viewModel: RequestAuthViewModel, controller: RequestAuthController) {
         let viewModel = RequestAuthViewModellImpl(onboardingService: serviceFactory.makeOnboardingService())
+        return (viewModel, .init(viewModel: viewModel))
+    }
+    
+    func makeIntroductionModule() -> (viewModel: IntroductionViewModel, controller: IntroductionController) {
+        let viewModel = IntroductionViewModelImpl()
         return (viewModel, .init(viewModel: viewModel))
     }
 

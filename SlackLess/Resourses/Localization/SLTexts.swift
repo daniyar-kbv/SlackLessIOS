@@ -222,6 +222,26 @@ enum SLTexts {
         }
             
     }
+    
+    enum Introduction {
+        enum Title: String, Localizable {
+            case summary = "Introduction.Title.summary"
+            case lock = "Introduction.Title.lock"
+            case progress = "Introduction.Title.progress"
+        }
+        
+        enum Subtitle: String, Localizable {
+            case summary = "Introduction.Subtitle.summary"
+            case lock = "Introduction.Subtitle.lock"
+            case progress = "Introduction.Subtitle.progress"
+        }
+        
+        enum ButtonTitle: String, Localizable {
+            case summary = "Introduction.ButtonTitle.summary"
+            case lock = "Introduction.ButtonTitle.lock"
+            case progress = "Introduction.ButtonTitle.progress"
+        }
+    }
 
     enum Legend: String, Localizable {
         case firstTitle = "Legend.firstTitle"

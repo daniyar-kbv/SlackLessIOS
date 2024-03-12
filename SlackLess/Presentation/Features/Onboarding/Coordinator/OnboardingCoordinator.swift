@@ -83,10 +83,22 @@ final class OnboardingCoordinator: BaseCoordinator {
 
         module.viewModel.output.authorizationSuccessful
             .subscribe(onNext: { [weak self] in
-                self?.showSetUp()
+                self?.showIntroduction()
             })
             .disposed(by: disposeBag)
 
+        router.push(viewController: module.controller, animated: true)
+    }
+    
+    private func showIntroduction() {
+        let module = modulesFactory.makeIntroductionModule()
+        
+        module.viewModel.output.didFinish
+            .subscribe(onNext: { [weak self] in
+                self?.showSetUp()
+            })
+            .disposed(by: disposeBag)
+        
         router.push(viewController: module.controller, animated: true)
     }
 
