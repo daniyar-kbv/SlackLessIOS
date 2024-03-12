@@ -143,6 +143,17 @@
 "SetUp.ButtonTitle.modify" = "Save";
 "SetUp.ButtonTitle.adjust" = "Save";
 
+//  MARK: - Introduction
+"Introduction.Title.summary" = "Choose apps that distract you";
+"Introduction.Title.lock" = "Set a limit";
+"Introduction.Title.progress" = "Review your progress";
+"Introduction.Subtitle.summary" = "while working, studying or being around your loved ones";
+"Introduction.Subtitle.lock" = "for those apps and we’ll remind you when it’s time to take a break";
+"Introduction.Subtitle.progress" = "with the help of weekly reports and adjust your limit for upcoming week";
+"Introduction.ButtonTitle.summary" = "Next";
+"Introduction.ButtonTitle.lock" = "Next";
+"Introduction.ButtonTitle.progress" = "Continue";
+
 //  MARK: - Legend
 "Legend.firstTitle" = "Slacked";
 "Legend.secondTitle" = "Other apps";

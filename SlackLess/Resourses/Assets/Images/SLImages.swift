@@ -60,6 +60,12 @@ enum SLImages {
     enum RequestAuth: String, ImageGetable {
         case alert = "RequestAuth.Alert"
     }
+    
+    enum Introduction: String, ImageGetable {
+        case summary = "Introduction.Summary"
+        case lock = "Introduction.Lock"
+        case progress = "Introduction.Progress"
+    }
 
     enum Settings: String, ImageGetable {
         case apps = "Settings.Apps"
