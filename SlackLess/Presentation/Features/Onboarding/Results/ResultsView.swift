@@ -42,7 +42,7 @@ final class ResultsView: SLView {
     private(set) lazy var subtitleLabel: UILabel = {
         let view = UILabel()
         view.font = SLFonts.primary.getFont(ofSize: 11, weight: .regular)
-        view.text = SLTexts.Results.subtitle.localized()
+        view.text = SLTexts.Common.Footnote.assessment.localized()
         view.textAlignment = .center
         view.numberOfLines = 0
         return view

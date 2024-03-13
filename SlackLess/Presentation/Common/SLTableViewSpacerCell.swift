@@ -8,12 +8,14 @@
 import Foundation
 import UIKit
 
-final class SLSettingsSpacerCell: UITableViewCell {
+final class SLTableViewSpacerCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         layoutUI()
     }
+    
+    static let reuseIdentifier = String(describing: SLTableViewSpacerCell.self)
 
     @available(*, unavailable)
     required init?(coder _: NSCoder) {

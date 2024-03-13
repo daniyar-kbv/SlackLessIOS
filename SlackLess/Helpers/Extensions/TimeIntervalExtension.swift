@@ -87,4 +87,18 @@ extension TimeInterval {
         }
         return total
     }
+    
+    func getMaxTimeUnit() -> String? {
+        if (transform(to: .year).first ?? 0) > 0 {
+            return formatted(with: .full, allowedUnits: .year)
+        } else if (transform(to: .month).first ?? 0) > 0 {
+            return formatted(with: .full, allowedUnits: .month)
+        } else if (transform(to: .day).first ?? 0) > 0 {
+            return formatted(with: .full, allowedUnits: .day)
+        } else if (transform(to: .hour).first ?? 0) > 0 {
+            return formatted(with: .full, allowedUnits: .hour)
+        } else {
+            return formatted(with: .full, allowedUnits: .minute)
+        }
+    }
 }

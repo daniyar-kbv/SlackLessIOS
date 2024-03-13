@@ -36,29 +36,15 @@ final class ResultsViewModelImpl: ResultsViewModel, ResultsViewModelInput, Resul
     }
     
 //    Output
-    lazy var state: BehaviorRelay<ResultsState> = .init(value: .spend(year: getMaxTime(from: results.spendYear),
-                                                                      life: getMaxTime(from: results.spendLife)))
+    lazy var state: BehaviorRelay<ResultsState> = .init(value: .spend(year: results.spendYear.getMaxTimeUnit(),
+                                                                      life: results.spendLife.getMaxTimeUnit()))
     var didFinish: PublishRelay<Void> = .init()
     
 //    Input
     func buttonTapped() {
         switch state.value {
-        case .spend: state.accept(.save(life: getMaxTime(from: results.save)))
+        case .spend: state.accept(.save(life: results.save.getMaxTimeUnit()))
         case .save: didFinish.accept(())
-        }
-    }
-    
-    private func getMaxTime(from timeInterval: TimeInterval) -> String? {
-        if (timeInterval.transform(to: .year).first ?? 0) > 0 {
-            return timeInterval.formatted(with: .full, allowedUnits: .year)
-        } else if (timeInterval.transform(to: .month).first ?? 0) > 0 {
-            return timeInterval.formatted(with: .full, allowedUnits: .month)
-        } else if (timeInterval.transform(to: .day).first ?? 0) > 0 {
-            return timeInterval.formatted(with: .full, allowedUnits: .day)
-        } else if (timeInterval.transform(to: .hour).first ?? 0) > 0 {
-            return timeInterval.formatted(with: .full, allowedUnits: .hour)
-        } else {
-            return timeInterval.formatted(with: .full, allowedUnits: .minute)
         }
     }
 }

@@ -22,7 +22,7 @@ final class SLSettingsController: UIViewController {
         let view = UITableView()
         view.register(SLSettingsCell.self, forCellReuseIdentifier: String(describing: SLSettingsCell.self))
         view.register(SLSettingsHeaderCell.self, forCellReuseIdentifier: String(describing: SLSettingsHeaderCell.self))
-        view.register(SLSettingsSpacerCell.self, forCellReuseIdentifier: String(describing: SLSettingsSpacerCell.self))
+        view.register(SLTableViewSpacerCell.self, forCellReuseIdentifier: SLTableViewSpacerCell.reuseIdentifier)
         view.dataSource = self
         view.delegate = self
         view.backgroundColor = SLColors.background1.getColor()
@@ -93,6 +93,7 @@ final class SLSettingsController: UIViewController {
         case .full:
             tableView.contentInset = .init(top: 16, left: 0, bottom: 0, right: 0)
         case .setUp:
+            tableView.isScrollEnabled = false
             tableView.snp.makeConstraints {
                 $0.height.equalTo(1)
             }
@@ -214,7 +215,7 @@ extension SLSettingsController: UITableViewDataSource {
             cell.onTap = handleButtonTap(for:)
             return cell
         case (.full, tableView.numberOfRows(inSection: indexPath.section) - 1):
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsSpacerCell.self), for: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: SLTableViewSpacerCell.reuseIdentifier, for: indexPath)
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SLSettingsCell.self), for: indexPath) as! SLSettingsCell
             cell.parentConroller = self

@@ -19,6 +19,10 @@ enum SLTexts {
         enum NoData: String, Localizable {
             case title = "Common.NoData.title"
         }
+        
+        enum Footnote: String, Localizable {
+            case assessment = "Common.Footnote.assessment"
+        }
     }
     
     enum Error {
@@ -177,9 +181,7 @@ enum SLTexts {
         case subtitle = "Calculation.subtitle"
     }
     
-    enum Results: String, Localizable {
-        case subtitle = "Results.subtitle"
-        
+    enum Results {
         enum TopTitle: String, Localizable {
             case spend = "Results.TopTitle.spend"
             case save = "Results.TopTitle.save"
@@ -201,27 +203,6 @@ enum SLTexts {
         case subtitle = "RequestAuth.subtitle"
         case footnote = "RequestAuth.footnote"
     }
-
-    enum SetUp {
-        enum Title: String, Localizable {
-            case setUp = "SetUp.Title.setUp"
-            case modify = "SetUp.Title.modify"
-            case adjust = "SetUp.Title.adjust"
-        }
-        
-        enum Subtitle: String, Localizable {
-            case setUp = "SetUp.Subtitle.setUp"
-            case modify = "SetUp.Subtitle.modify"
-            case adjust = "SetUp.Subtitle.adjust"
-        }
-        
-        enum ButtonTitle: String, Localizable {
-            case setUp = "SetUp.ButtonTitle.setUp"
-            case modify = "SetUp.ButtonTitle.modify"
-            case adjust = "SetUp.ButtonTitle.adjust"
-        }
-            
-    }
     
     enum Introduction {
         enum Title: String, Localizable {
@@ -240,6 +221,42 @@ enum SLTexts {
             case summary = "Introduction.ButtonTitle.summary"
             case lock = "Introduction.ButtonTitle.lock"
             case progress = "Introduction.ButtonTitle.progress"
+        }
+    }
+    
+    enum SetUp {
+        enum Title: String, Localizable {
+            case setUp = "SetUp.Title.setUp"
+            case modify = "SetUp.Title.modify"
+            case adjust = "SetUp.Title.adjust"
+        }
+        
+        enum Subtitle: String, Localizable {
+            case setUp = "SetUp.Subtitle.setUp"
+            case modify = "SetUp.Subtitle.modify"
+            case adjust = "SetUp.Subtitle.adjust"
+        }
+        
+        enum ButtonTitle: String, Localizable {
+            case setUp = "SetUp.ButtonTitle.setUp"
+            case modify = "SetUp.ButtonTitle.modify"
+            case adjust = "SetUp.ButtonTitle.adjust"
+        }
+    }
+    
+    enum Benefits: String, Localizable {
+        case title = "Benefits.title"
+        
+        enum RowTitle: String, Localizable {
+            case freeYourself = "Benefits.RowTitle.freeYourself"
+            case reduceTime = "Benefits.RowTitle.reduceTime"
+            case reviewProgress = "Benefits.RowTitle.reviewProgress"
+        }
+        
+        enum RowSubtitle: String, Localizable {
+            case freeYourself = "Benefits.RowSubtitle.freeYourself"
+            case reduceTime = "Benefits.RowSubtitle.reduceTime"
+            case reviewProgress = "Benefits.RowSubtitle.reviewProgress"
         }
     }
 
