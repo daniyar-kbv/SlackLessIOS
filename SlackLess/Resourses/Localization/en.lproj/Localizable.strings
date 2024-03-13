@@ -12,6 +12,7 @@
 "Common.TermsAndPrivacy.text3" = "and";
 "Common.TermsAndPrivacy.text4" = "Privacy Policy";
 "Common.NoData.title" = "No data available";
+"Common.Footnote.assessment" = "Based on the SlackLess program and your individual profile";
 
 //  MARK: - Error
 "Error.Data.badmapping" = "Coudn't read the response";
@@ -123,7 +124,6 @@
 "Results.TopTitle.save" = "But hey,\nwe can help you get back";
 "Results.BottomTitle.spend" = "over your lifetime. It’s true. You got it right";
 "Results.BottomTitle.save" = "of your life by cutting out distractions";
-"Results.subtitle" = "Based on the SlackLess program and your individual profile";
 "Results.ButtonTitle.spend" = "Oh";
 "Results.ButtonTitle.save" = "Let's start";
 
@@ -131,6 +131,17 @@
 "RequestAuth.title" = "A journey of 1000 miles starts with the first step";
 "RequestAuth.subtitle" = "To analyze your Screen Time on this Phone, we need your permission";
 "RequestAuth.footnote" = "SlackLess ensures privacy by keeping all user information 100% on the user's phone, with no collection or access to entered data, browsing history, or Screen Time data.";
+
+//  MARK: - Introduction
+"Introduction.Title.summary" = "Choose apps that distract you";
+"Introduction.Title.lock" = "Set a limit";
+"Introduction.Title.progress" = "Review your progress";
+"Introduction.Subtitle.summary" = "while working, studying or being around your loved ones";
+"Introduction.Subtitle.lock" = "for those apps and we’ll remind you when it’s time to take a break";
+"Introduction.Subtitle.progress" = "with the help of weekly reports and adjust your limit for upcoming week";
+"Introduction.ButtonTitle.summary" = "Next";
+"Introduction.ButtonTitle.lock" = "Next";
+"Introduction.ButtonTitle.progress" = "Continue";
 
 //  MARK: - SetUp
 "SetUp.Title.setUp" = "Let’s set up!";
@@ -143,16 +154,14 @@
 "SetUp.ButtonTitle.modify" = "Save";
 "SetUp.ButtonTitle.adjust" = "Save";
 
-//  MARK: - Introduction
-"Introduction.Title.summary" = "Choose apps that distract you";
-"Introduction.Title.lock" = "Set a limit";
-"Introduction.Title.progress" = "Review your progress";
-"Introduction.Subtitle.summary" = "while working, studying or being around your loved ones";
-"Introduction.Subtitle.lock" = "for those apps and we’ll remind you when it’s time to take a break";
-"Introduction.Subtitle.progress" = "with the help of weekly reports and adjust your limit for upcoming week";
-"Introduction.ButtonTitle.summary" = "Next";
-"Introduction.ButtonTitle.lock" = "Next";
-"Introduction.ButtonTitle.progress" = "Continue";
+//  MARK: - Benefits
+"Benefits.title" = "This week";
+"Benefits.RowTitle.freeYourself" = "Free yourself from distractions";
+"Benefits.RowTitle.reduceTime" = "Reduce your Screen Time";
+"Benefits.RowTitle.reviewProgress" = "Improve your productivity";
+"Benefits.RowSubtitle.freeYourself" = "and engage in meaningful pursuits";
+"Benefits.RowSubtitle.reduceTime" = "by %@ each day";
+"Benefits.RowSubtitle.reviewProgress" = "and become %@ more focused";
 
 //  MARK: - Legend
 "Legend.firstTitle" = "Slacked";

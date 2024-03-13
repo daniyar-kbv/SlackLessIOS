@@ -58,9 +58,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let controller = modulesFactory.makeCalculationController()
         
         controller.didFinish
-            .subscribe(onNext: { [weak self] in
-                self?.showResults()
-            })
+            .subscribe(onNext: showResults)
             .disposed(by: disposeBag)
         
         router.push(viewController: controller, animated: true)
@@ -70,9 +68,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeResultsModule()
         
         module.viewModel.output.didFinish
-            .subscribe(onNext: { [weak self] in
-                self?.showRequestAuth()
-            })
+            .subscribe(onNext: showRequestAuth)
             .disposed(by: disposeBag)
         
         router.push(viewController: module.controller, animated: true)
@@ -82,9 +78,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeRequestAuthModule()
 
         module.viewModel.output.authorizationSuccessful
-            .subscribe(onNext: { [weak self] in
-                self?.showIntroduction()
-            })
+            .subscribe(onNext: showIntroduction)
             .disposed(by: disposeBag)
 
         router.push(viewController: module.controller, animated: true)
@@ -94,9 +88,7 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeIntroductionModule()
         
         module.viewModel.output.didFinish
-            .subscribe(onNext: { [weak self] in
-                self?.showSetUp()
-            })
+            .subscribe(onNext: showSetUp)
             .disposed(by: disposeBag)
         
         router.push(viewController: module.controller, animated: true)
@@ -106,9 +98,19 @@ final class OnboardingCoordinator: BaseCoordinator {
         let module = modulesFactory.makeSetUpModule()
 
         module.viewModel.output.didFinish
-            .bind(to: didFinish)
+            .subscribe(onNext: showBenefits)
             .disposed(by: disposeBag)
 
+        router.push(viewController: module.controller, animated: true)
+    }
+    
+    private func showBenefits() {
+        let module = modulesFactory.makeBenefitsModule()
+        
+        module.viewModel.output.didFinish
+            .bind(to: didFinish)
+            .disposed(by: disposeBag)
+        
         router.push(viewController: module.controller, animated: true)
     }
 }

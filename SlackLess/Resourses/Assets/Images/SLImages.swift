@@ -66,6 +66,12 @@ enum SLImages {
         case lock = "Introduction.Lock"
         case progress = "Introduction.Progress"
     }
+    
+    enum Benefits: String, ImageGetable {
+        case freeYourself = "Benefits.freeYourself"
+        case reduceTime = "Benefits.reduceTime"
+        case reviewProgress = "Benefits.reviewProgress"
+    }
 
     enum Settings: String, ImageGetable {
         case apps = "Settings.Apps"
