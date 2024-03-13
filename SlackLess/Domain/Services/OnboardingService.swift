@@ -45,8 +45,7 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
     
     func getOnboardingShown() -> Bool {
-        false
-//        appSettingsRepository.output.getOnboardingShown()
+        appSettingsRepository.output.getOnboardingShown()
     }
     
     func getResults() -> (spendYear: TimeInterval, spendLife: TimeInterval, save: TimeInterval) {
@@ -55,7 +54,7 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
         else { return (spendYear: 0, spendLife: 0, save: 0) }
         let spendYear = TimeInterval(screenTime*3600*365)
         let spendLife = TimeInterval(79-age)*spendYear
-        let save = spendLife*0.3
+        let save = spendLife*0.2
         return (spendYear: spendYear, spendLife: spendLife, save: save)
     }
     
@@ -64,11 +63,11 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
               let dayData = appSettingsRepository.output.getDayData(for: Date().getDate())
         else {
             return (time: 3600.0,
-                    percentage: 0.2)
+                    percentage: 0.1)
         }
         
         let screenTime_ = TimeInterval(screenTime*3600)
-        let time = (screenTime_/2)-dayData.timeLimit
+        let time = (screenTime_*0.5)-dayData.timeLimit
         let percentage = time/screenTime_
         
         if percentage < 0.1 {

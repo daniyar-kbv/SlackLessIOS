@@ -25,7 +25,8 @@ final class CalculationController: UIViewController {
         let view = UIProgressView()
         view.trackTintColor = SLColors.gray5.getColor()
         view.progressTintColor = SLColors.accent1.getColor()
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 4
+        view.clipsToBounds = true
         view.progress = 0.01
         return view
     }()
