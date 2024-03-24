@@ -10,9 +10,9 @@ import FamilyControls
 
 protocol Repository: AnyObject {
     func getShield() -> SLShield?
-    func getUnlockedTime(for date: Date) -> TimeInterval
-    func set(unlockedTime: TimeInterval, for date: Date)
+    func set(shield: SLShield?)
     func getDayData(for date: Date) -> DayData?
+    func set(dayData: DayData)
 }
 
 final class RepositoryImpl: Repository {
@@ -26,16 +26,16 @@ final class RepositoryImpl: Repository {
         keyValueStorage.shield
     }
     
-    func getUnlockedTime(for date: Date) -> TimeInterval {
-        keyValueStorage.getUnlockedTime(for: date)
-    }
-    
-    func set(unlockedTime: TimeInterval, for date: Date) {
-        keyValueStorage.persist(unlockedTime: unlockedTime, for: date)
+    func set(shield: SLShield?) {
+        keyValueStorage.persist(shield: shield)
     }
     
     func getDayData(for date: Date) -> DayData? {
         keyValueStorage.getDayData(for: date)
+    }
+    
+    func set(dayData: DayData) {
+        keyValueStorage.persist(dayData: dayData)
     }
 }
 

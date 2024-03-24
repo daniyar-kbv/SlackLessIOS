@@ -17,7 +17,11 @@ class ShieldActionExtension: ShieldActionDelegate {
     private let store = ManagedSettingsStore()
     
     override func handle(action: ShieldAction, for _: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
-        guard let shield = repository.getShield() else { return }
+        guard let shield = repository.getShield() else {
+            completionHandler(.close)
+            return
+        }
+        
         switch action {
         case .primaryButtonPressed:
             switch shield.state {
@@ -32,14 +36,18 @@ class ShieldActionExtension: ShieldActionDelegate {
             case .remind:
                 completionHandler(.defer)
             case .lock:
+//                TODO: Refactor to optimize fetching DayData
+                guard var dayData = repository.getDayData(for: Date().getDate()) else {
+                    completionHandler(.defer)
+                    return
+                }
+                
                 store.shield.applications = nil
                 
-                let date = Date().getDate()
-                guard let dayData = repository.getDayData(for: date) else { break }
-                let unlockedTime = repository.getUnlockedTime(for: date) + Constants.Settings.unlockTime
+                dayData.unlocks += 1
+                repository.set(dayData: dayData)
+                _ = SLLocker.shared.updateLock(dayData: dayData)
                 
-                repository.set(unlockedTime: unlockedTime, for: date)
-                _ = SLLocker.shared.updateLock(dayData: dayData, unlockedTime: unlockedTime)
                 completionHandler(.defer)
             }
         @unknown default:

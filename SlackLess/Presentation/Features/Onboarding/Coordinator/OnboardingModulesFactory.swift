@@ -56,7 +56,7 @@ final class OnboardingModulesFactoryImpl: OnboardingModulesFactory {
     }
 
     func makeSetUpModule() -> (viewModel: SetUpViewModel, controller: SetUpController) {
-        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+        let viewModel = SetUpViewModelImpl(lockService: serviceFactory.makeLockService(),
                                            state: .setUp)
         return (viewModel, .init(viewModel: viewModel))
     }

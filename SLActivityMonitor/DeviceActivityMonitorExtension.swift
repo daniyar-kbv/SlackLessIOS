@@ -14,11 +14,15 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     private lazy var repository: Repository = dataComponentsFactory.makeRepository()
     private let store = ManagedSettingsStore()
 
-    override func intervalDidStart(for _: DeviceActivityName) { }
+    override func intervalDidStart(for activity: DeviceActivityName) {
+        super.intervalDidStart(for: activity)
+        
+        store.shield.applications = nil
+    }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
-
+        
         store.shield.applications = nil
     }
 
@@ -30,7 +34,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         else { return }
         
         repository.set(shield: shield)
-        
         store.shield.applications = dayData.selectedApps.applicationTokens
     }
 }

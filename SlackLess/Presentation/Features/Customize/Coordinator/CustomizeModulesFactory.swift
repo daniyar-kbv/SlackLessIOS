@@ -21,7 +21,7 @@ final class CustomizeModulesFactoryImpl: CustomizeModulesFactory {
     }
 
     func makeCustomizeModule() -> (viewModel: CustomizeViewModel, controller: CustomizeController) {
-        let viewModel = CustomizeViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+        let viewModel = CustomizeViewModelImpl(lockService: serviceFactory.makeLockService(),
                                                pushNotificationsService: serviceFactory.makePushNotificationsService())
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }
@@ -32,7 +32,7 @@ final class CustomizeModulesFactoryImpl: CustomizeModulesFactory {
     }
     
     func makeModifySettingsModule() -> (viewModel: SetUpViewModel, controller: SetUpController) {
-        let viewModel = SetUpViewModelImpl(appSettingsService: serviceFactory.makeAppSettingsService(),
+        let viewModel = SetUpViewModelImpl(lockService: serviceFactory.makeLockService(),
                                            state: .modify)
         return (viewModel: viewModel, controller: .init(viewModel: viewModel))
     }

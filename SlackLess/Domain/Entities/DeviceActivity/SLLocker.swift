@@ -16,43 +16,50 @@ struct SLLocker {
     
     private init() {}
     
-    func updateLock(dayData: DayData, unlockedTime: TimeInterval) -> LockingResult {
-            let familyActivitySelection = dayData.selectedApps
-            let timeLimit = dayData.timeLimit
-
-            var events: [(type: DeviceActivityEvent.Name, event: DeviceActivityEvent)] = calculateThresholds(for: timeLimit)
+    func updateLock(dayData: DayData) -> LockingResult {
+        do {
+            try deviceActivityCenter.startMonitoring(
+                .daily,
+                during: .init(
+                    intervalStart: .init(hour: 0, minute: 0, second: 0),
+                    intervalEnd: .init(hour: 23, minute: 59, second: 59),
+                    repeats: true
+                ),
+                events: makeEvents(with: dayData)
+            )
+            
+            return .success
+        } catch {
+            print(error)
+            return .failed(error: error)
+        }
+    }
+    
+    private func makeEvents(with dayData: DayData) -> [DeviceActivityEvent.Name : DeviceActivityEvent] {
+        let familyActivitySelection = dayData.selectedApps
+        let timeLimit = dayData.timeLimit
+        var events = [(type: DeviceActivityEvent.Name, event: DeviceActivityEvent)]()
+        
+        if dayData.unlocks == 0 {
+            events.append(contentsOf: calculateThresholds(for: timeLimit)
                 .map({(
                     type: .encode(from: .init(type: .remind, threshold: $0)),
                     event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int($0)))
-                )})
-        
-            let delayedLockThreshold = timeLimit + unlockedTime
-        
+                )}))
+            
             events.append((
-                type: .encode(from: .init(type: .lock, threshold: delayedLockThreshold)),
-                event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(delayedLockThreshold)))
+                type: .encode(from: .init(type: .lock, threshold: timeLimit)),
+                event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(timeLimit)))
             ))
+        } else {
+            let threshold = TimeInterval(Constants.Settings.unlockMinutes * 60)
+            events.append((
+                type: .encode(from: .init(type: .lock, threshold: threshold)),
+                event: makeDeviceActivityEvent(familyActivitySelection: familyActivitySelection, threshold: .init(second: Int(threshold)))
+            ))
+        }
         
-            let eventsDict = Dictionary(uniqueKeysWithValues: events.map({ ($0.type, $0.event) }))
-
-            do {
-                deviceActivityCenter.stopMonitoring()
-
-                try deviceActivityCenter.startMonitoring(
-                    .daily,
-                    during: .init(
-                        intervalStart: DateComponents(hour: 0, minute: 0, second: 0),
-                        intervalEnd: DateComponents(hour: 23, minute: 59, second: 59),
-                        repeats: true
-                    ),
-                    events: eventsDict
-                )
-                
-                return .success
-            } catch {
-                print(error)
-                return .failed(error: error)
-            }
+        return Dictionary(uniqueKeysWithValues: events.reversed().map({ ($0.type, $0.event) }))
     }
     
     private func calculateThresholds(for timeLimit: TimeInterval) -> [TimeInterval] {

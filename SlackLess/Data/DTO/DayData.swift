@@ -13,4 +13,5 @@ struct DayData: Codable {
     var date: Date
     var selectedApps: FamilyActivitySelection
     var timeLimit: TimeInterval
+    var unlocks: Int = 0
 }
