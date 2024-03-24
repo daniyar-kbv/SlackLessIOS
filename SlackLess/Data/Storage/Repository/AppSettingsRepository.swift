@@ -13,8 +13,8 @@ import RxSwift
 
 protocol AppSettingsRepositoryInput {
     func set(onboardingShown: Bool)
-    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval, for date: Date)
-    func set(unlockedTime: TimeInterval, for date: Date)
+    func set(dayData: DayData)
+    func set(shield: SLShield?)
     func set(startDate: Date)
     func set(progressDate: Date)
     func set(currentWeek: Date)
@@ -24,7 +24,6 @@ protocol AppSettingsRepositoryInput {
 protocol AppSettingsRepositoryOutput {
     func getOnboardingShown() -> Bool
     func getDayData(for date: Date) -> DayData?
-    func getUnlockedTime(for date: Date) -> TimeInterval
     func getStartDate() -> Date?
     func getProgressDate() -> Date?
     func getCurrentWeek() -> Date?
@@ -71,10 +70,6 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.getDayData(for: date)
     }
 
-    func getUnlockedTime(for date: Date) -> TimeInterval {
-        keyValueStorage.getUnlockedTime(for: date)
-    }
-
     func getStartDate() -> Date? {
         keyValueStorage.startDate
     }
@@ -97,15 +92,12 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
         keyValueStorage.persist(onbardingShown: onboardingShown)
     }
 
-    func set(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval, for date: Date) {
-        let dayData = DayData(date: date,
-                              selectedApps: selectedApps,
-                              timeLimit: timeLimit)
+    func set(dayData: DayData) {
         keyValueStorage.persist(dayData: dayData)
     }
-
-    func set(unlockedTime: TimeInterval, for date: Date) {
-        keyValueStorage.persist(unlockedTime: unlockedTime, for: date)
+    
+    func set(shield: SLShield?) {
+        keyValueStorage.persist(shield: shield)
     }
 
     func set(startDate: Date) {

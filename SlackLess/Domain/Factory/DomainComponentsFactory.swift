@@ -23,11 +23,8 @@ final class DomainComponentsFactoryImpl: DependencyFactory, DomainComponentsFact
     }
 
     func makeServiceFactory() -> ServiceFactory {
-        return shared(ServiceFactoryImpl(
-            apiFactory: dataComponentsFactory.makeAPIFactory(),
-            repositoryFactory: dataComponentsFactory.makeRepositoryFactory(),
-            helpersFactory: helpersFactory
-        )
-        )
+        return shared(ServiceFactoryImpl(apiFactory: dataComponentsFactory.makeAPIFactory(),
+                                         repositoryFactory: dataComponentsFactory.makeRepositoryFactory(),
+                                         helpersFactory: helpersFactory))
     }
 }

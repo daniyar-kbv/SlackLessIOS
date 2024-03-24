@@ -37,8 +37,17 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         guard let dayData = repository.getDayData()
         else { return makeShieldConfiguration(state: shield.state) }
         
-        var timeValue: TimeInterval? = abs(dayData.timeLimit-shield.threshold)
-        timeValue = timeValue == 0 ? nil : timeValue
+        var timeValue: TimeInterval?
+        
+        switch shield.state {
+        case .remind:
+            timeValue = dayData.timeLimit - shield.threshold
+        case .lock:
+            let unlockTime = TimeInterval(dayData.unlocks * Constants.Settings.unlockMinutes * 60)
+            if unlockTime > 0 {
+                timeValue = unlockTime
+            }
+        }
         
         return makeShieldConfiguration(state: shield.state, timeValue: timeValue)
     }
@@ -54,7 +63,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
                      primaryButtonLabel: .init(text: state.getPrimaryButtonTitle(),
                                                color: SLColors.black.getColor() ?? .black),
                      primaryButtonBackgroundColor: SLColors.white.getColor(),
-                     secondaryButtonLabel: .init(text: state.getSecondaryButtonTitle(with: Constants.Settings.unlockTime),
+                     secondaryButtonLabel: .init(text: state.getSecondaryButtonTitle(with: TimeInterval(Constants.Settings.unlockMinutes*60)),
                                                  color: SLColors.white.getColor() ?? .white))
     }
 }

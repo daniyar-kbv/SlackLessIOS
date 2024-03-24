@@ -48,20 +48,20 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
     var output: SLSettingsViewModelOutput { self }
 
     private let type: SLSettingsType
-    private let appSettingsService: AppSettingsService
+    private let lockService: LockService
     private let pushNotificationsService: PushNotificationsService?
 
     private let disposeBag = DisposeBag()
-    private lazy var appsSelection = appSettingsService.output.getCurrentSelectedApps()
-    private lazy var timeLimit = appSettingsService.output.getCurrentTimeLimit()
+    private lazy var appsSelection = lockService.output.getCurrentSelectedApps()
+    private lazy var timeLimit = lockService.output.getCurrentTimeLimit()
     private var pushNotificationsEnabled = false
 
     init(type: SLSettingsType,
-         appSettingsService: AppSettingsService,
+         lockService: LockService,
          pushNotificationsService: PushNotificationsService?)
     {
         self.type = type
-        self.appSettingsService = appSettingsService
+        self.lockService = lockService
         self.pushNotificationsService = pushNotificationsService
 
         bindAppSettingsService()
@@ -157,8 +157,8 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
               let timeLimit = timeLimit
         else { return }
         
-        appSettingsService.input.set(selectedApps: appsSelection,
-                                     timeLimit: timeLimit)
+        lockService.input.update(selectedApps: appsSelection,
+                                 timeLimit: timeLimit)
         
         didSave.accept(())
     }
@@ -170,11 +170,11 @@ final class SLSettingsViewModelImpl: SLSettingsViewModel, SLSettingsViewModelInp
 
 extension SLSettingsViewModelImpl {
     private func bindAppSettingsService() {
-        appSettingsService.output.errorOccured
+        lockService.output.errorOccured
             .bind(to: errorOccured)
             .disposed(by: disposeBag)
         
-        appSettingsService.output.appsSelectionSaved
+        lockService.output.dayDataSaved
             .subscribe(onNext: refreshData)
             .disposed(by: disposeBag)
     }
@@ -207,8 +207,8 @@ extension SLSettingsViewModelImpl {
     }
     
     private func refreshData() {
-        appsSelection = appSettingsService.output.getCurrentSelectedApps()
-        timeLimit = appSettingsService.output.getCurrentTimeLimit()
+        appsSelection = lockService.output.getCurrentSelectedApps()
+        timeLimit = lockService.output.getCurrentTimeLimit()
         reload.accept(())
     }
 }

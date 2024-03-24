@@ -9,8 +9,10 @@ import Foundation
 import FamilyControls
 
 protocol Repository: AnyObject {
-    func set(shield: SLShield)
     func getDayData(for date: Date) -> DayData?
+    func set(dayData: DayData)
+    func getShield() -> SLShield?
+    func set(shield: SLShield?)
 }
 
 final class RepositoryImpl: Repository {
@@ -24,7 +26,15 @@ final class RepositoryImpl: Repository {
         keyValueStorage.getDayData(for: date)
     }
     
-    func set(shield: SLShield) {
+    func set(dayData: DayData) {
+        keyValueStorage.persist(dayData: dayData)
+    }
+    
+    func getShield() -> SLShield? {
+        keyValueStorage.shield
+    }
+    
+    func set(shield: SLShield?) {
         keyValueStorage.persist(shield: shield)
     }
 }

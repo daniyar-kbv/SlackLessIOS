@@ -16,7 +16,6 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
     case onbardingShown
     case dayData
 //    TODO: Move to DayData
-    case unlockedTime
     case startDate
     case progressDate
     case currentWeek
@@ -35,15 +34,13 @@ protocol KeyValueStorage {
     var shield: SLShield? { get }
     var pushNotificationsEnabled: Bool { get }
     func getDayData(for date: Date) -> DayData?
-    func getUnlockedTime(for date: Date) -> TimeInterval
 
     func persist(onbardingShown: Bool)
     func persist(dayData: DayData)
-    func persist(unlockedTime: TimeInterval, for date: Date)
     func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
-    func persist(shield: SLShield)
+    func persist(shield: SLShield?)
     func persist(pushNotificationsEnabled: Bool)
 
     func cleanUp(key: KeyValueStorageKey)
@@ -113,16 +110,8 @@ final class KeyValueStorageImpl: KeyValueStorage {
         return objects?.filter({ $0.date <= date.getDate() }).sorted(by: { $0.date > $1.date }).first
     }
 
-    func getUnlockedTime(for date: Date) -> TimeInterval {
-        storageProvider.double(forKey: KeyValueStorageKey.unlockedTime.value + makeString(from: date))
-    }
-
     func persist(onbardingShown: Bool) {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
-    }
-
-    func persist(unlockedTime: TimeInterval, for date: Date) {
-        storageProvider.set(unlockedTime, forKey: KeyValueStorageKey.unlockedTime.value + makeString(from: date))
     }
     
 //    TODO: Move to repository
@@ -162,7 +151,7 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.set(currentWeek, forKey: KeyValueStorageKey.currentWeek.value)
     }
     
-    func persist(shield: SLShield) {
+    func persist(shield: SLShield?) {
         storageProvider.set(
             try? encoder.encode(shield),
             forKey: KeyValueStorageKey.shield.value

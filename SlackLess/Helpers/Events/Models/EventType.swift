@@ -8,8 +8,5 @@
 import Foundation
 
 enum EventType: CaseIterable {
-    case appLimitSettingsChanged
-    case paymentFinished
-    case updateLockSucceed
-    case updateLockFailed
+    case globalError
 }

@@ -29,14 +29,14 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
     var input: CustomizeViewModelInput { self }
     var output: CustomizeViewModelOutput { self }
 
-    private let appSettingsService: AppSettingsService
+    private let lockService: LockService
     private let pushNotificationsService: PushNotificationsService
 
     private let disposeBag = DisposeBag()
 
-    init(appSettingsService: AppSettingsService,
+    init(lockService: LockService,
          pushNotificationsService: PushNotificationsService) {
-        self.appSettingsService = appSettingsService
+        self.lockService = lockService
         self.pushNotificationsService = pushNotificationsService
 
         bindSettingsViewModel()
@@ -44,7 +44,7 @@ final class CustomizeViewModelImpl: CustomizeViewModel, CustomizeViewModelInput,
 
 //    Output
     lazy var settingViewModel: SLSettingsViewModel = SLSettingsViewModelImpl(type: .full,
-                                                                             appSettingsService: appSettingsService,
+                                                                             lockService: lockService,
                                                                              pushNotificationsService: pushNotificationsService)
     let startFeedback: PublishRelay<Void> = .init()
     let startModifySettings: PublishRelay<Void> = .init()

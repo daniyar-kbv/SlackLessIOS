@@ -32,18 +32,18 @@ final class SetUpViewModelImpl: SetUpViewModel, SetUpViewModelInput, SetUpViewMo
     var input: SetUpViewModelInput { self }
     var output: SetUpViewModelOutput { self }
 
-    private let appSettingsService: AppSettingsService
+    private let lockService: LockService
     private let settingsViewModel: SLSettingsViewModel
     
     private let state: SetUpView.State
 
-    init(appSettingsService: AppSettingsService,
+    init(lockService: LockService,
          state: SetUpView.State) {
-        self.appSettingsService = appSettingsService
+        self.lockService = lockService
         self.state = state
         
         settingsViewModel = SLSettingsViewModelImpl(type: .setUp,
-                                                    appSettingsService: appSettingsService,
+                                                    lockService: lockService,
                                                     pushNotificationsService: nil)
         didSave = settingsViewModel.output.didSave
         isComplete = settingsViewModel.output.isComplete

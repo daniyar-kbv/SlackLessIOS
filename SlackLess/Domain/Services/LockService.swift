@@ -12,11 +12,15 @@ import RxCocoa
 import RxSwift
 
 protocol LockServiceInput: AnyObject {
-    func updateLock()
+    func update(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval)
 }
 
 protocol LockServiceOutput: AnyObject {
+    var errorOccured: PublishRelay<ErrorPresentable> { get }
+    var dayDataSaved: PublishRelay<Void> { get }
     
+    func getCurrentTimeLimit() -> TimeInterval?
+    func getCurrentSelectedApps() -> FamilyActivitySelection?
 }
 
 protocol LockService: AnyObject {
@@ -30,43 +34,40 @@ final class LockServiceImpl: LockService, LockServiceInput, LockServiceOutput {
 
     private let appSettingsRepository: AppSettingsRepository
     private let eventManager: EventManager
-    private let disposeBag = DisposeBag()
     private let deviceActivityCenter = DeviceActivityCenter()
 
     init(appSettingsRepository: AppSettingsRepository, eventManager: EventManager) {
         self.appSettingsRepository = appSettingsRepository
         self.eventManager = eventManager
-
-        bindEventManager()
     }
 
     //    Output
+    let errorOccured: PublishRelay<ErrorPresentable> = .init()
+
+    let dayDataSaved: PublishRelay<Void> = .init()
+    
+    func getCurrentTimeLimit() -> Double? {
+        appSettingsRepository.output.getDayData(for: Date())?.timeLimit
+    }
+
+    func getCurrentSelectedApps() -> FamilyActivitySelection? {
+        appSettingsRepository.output.getDayData(for: Date())?.selectedApps
+    }
 
     //    Input
-    func updateLock() {
-//        TODO: Refactor to use getDate only in Data Layer
-        let date = Date().getDate()
-
-//        TODO: Refactor to optimize fetching DayData
-        guard let dayData = appSettingsRepository.output.getDayData(for: date)
-        else {
-            eventManager.send(event: .init(type: .updateLockFailed, value: DomainError.updateLockFailed))
-            return
-        }
+    func update(selectedApps: FamilyActivitySelection, timeLimit: TimeInterval) {
+        let dayData = DayData(date: Date().getDate(),
+                              selectedApps: selectedApps,
+                              timeLimit: timeLimit)
         
-        appSettingsRepository.input.set(unlockedTime: 0, for: date)
+        appSettingsRepository.input.set(dayData: dayData)
+        appSettingsRepository.input.set(shield: nil)
         
-        switch SLLocker.shared.updateLock(dayData: dayData, unlockedTime: 0) {
-        case .success: break
-        case let .failed(error): eventManager.send(event: .init(type: .updateLockFailed, value: error))
-        }
-    }
-}
-
-extension LockServiceImpl {
-    private func bindEventManager() {
-        eventManager.subscribe(to: .appLimitSettingsChanged, disposeBag: disposeBag) { [weak self] _ in
-            self?.updateLock()
+        switch SLLocker.shared.updateLock(dayData: dayData) {
+        case .success:
+            dayDataSaved.accept(())
+        case let .failed(error):
+            errorOccured.accept(PresentationError.using(error))
         }
     }
 }
