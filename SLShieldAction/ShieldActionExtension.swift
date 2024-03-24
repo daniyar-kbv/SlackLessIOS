@@ -17,6 +17,20 @@ class ShieldActionExtension: ShieldActionDelegate {
     private let store = ManagedSettingsStore()
     
     override func handle(action: ShieldAction, for _: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        handle(action: action, completionHandler: completionHandler)
+    }
+
+    override func handle(action: ShieldAction, for _: WebDomainToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        handle(action: action, completionHandler: completionHandler)
+    }
+
+    override func handle(action: ShieldAction, for _: ActivityCategoryToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        handle(action: action, completionHandler: completionHandler)
+    }
+}
+
+extension ShieldActionExtension {
+    private func handle(action: ShieldAction, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         guard let shield = repository.getShield() else {
             completionHandler(.close)
             return
@@ -53,15 +67,5 @@ class ShieldActionExtension: ShieldActionDelegate {
         @unknown default:
             fatalError()
         }
-    }
-
-    override func handle(action _: ShieldAction, for _: WebDomainToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
-        // Handle the action as needed.
-        completionHandler(.close)
-    }
-
-    override func handle(action _: ShieldAction, for _: ActivityCategoryToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
-        // Handle the action as needed.
-        completionHandler(.close)
     }
 }
