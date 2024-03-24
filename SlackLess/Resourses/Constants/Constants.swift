@@ -17,6 +17,9 @@ struct Constants {
     enum Settings {
         static let appMode: AppMode = .debug
         static let unlockMinutes: Int = 10
+        static let resetVersions: [String: [KeyValueStorageKey]] = [
+            "1.1.5": [.onbardingShown, .dayData]
+        ]
         
         static let environmentType: EnvironmentType = {
             #if targetEnvironment(simulator)

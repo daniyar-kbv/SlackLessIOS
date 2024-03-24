@@ -12,19 +12,21 @@ import RxCocoa
 import RxSwift
 
 protocol AppSettingsRepositoryInput {
+    func cleanKeyValueStorage(for keys: [KeyValueStorageKey])
+    func set(resetVersions: [String])
     func set(onboardingShown: Bool)
     func set(dayData: DayData)
     func set(shield: SLShield?)
-    func set(startDate: Date)
     func set(progressDate: Date)
     func set(currentWeek: Date)
     func set(pushNotificationsEnabled: Bool)
 }
 
 protocol AppSettingsRepositoryOutput {
+    func getResetVersions() -> [String]
     func getOnboardingShown() -> Bool
+    func getDayData() -> [DayData]
     func getDayData(for date: Date) -> DayData?
-    func getStartDate() -> Date?
     func getProgressDate() -> Date?
     func getCurrentWeek() -> Date?
     func getPushNotificationsEnabled() -> Bool
@@ -61,17 +63,21 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
 
     //    Output
     let progressDateObservable: PublishRelay<Date?> = .init()
+    
+    func getResetVersions() -> [String] {
+        keyValueStorage.resetVersions
+    }
 
     func getOnboardingShown() -> Bool {
         keyValueStorage.onbardingShown
     }
     
+    func getDayData() -> [DayData] {
+        keyValueStorage.getDayData()
+    }
+    
     func getDayData(for date: Date) -> DayData? {
         keyValueStorage.getDayData(for: date)
-    }
-
-    func getStartDate() -> Date? {
-        keyValueStorage.startDate
     }
 
     func getProgressDate() -> Date? {
@@ -88,6 +94,14 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
 
     //    Input
 
+    func cleanKeyValueStorage(for keys: [KeyValueStorageKey]) {
+        keys.forEach({ keyValueStorage.cleanUp(key: $0) })
+    }
+
+    func set(resetVersions: [String]) {
+        keyValueStorage.persist(resetVersions: resetVersions)
+    }
+
     func set(onboardingShown: Bool) {
         keyValueStorage.persist(onbardingShown: onboardingShown)
     }
@@ -99,11 +113,7 @@ final class AppSettingsRepositoryImpl: AppSettingsRepository, AppSettingsReposit
     func set(shield: SLShield?) {
         keyValueStorage.persist(shield: shield)
     }
-
-    func set(startDate: Date) {
-        keyValueStorage.persist(startDate: startDate)
-    }
-
+    
     func set(progressDate: Date) {
         keyValueStorage.persist(progressDate: progressDate)
     }
