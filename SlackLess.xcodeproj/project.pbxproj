@@ -53,6 +53,7 @@
 		E20037FC8F247DFF032A480F9F60A067 /* BenefitsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183AE94B765BD6C7CF6CEABF0CC29723 /* BenefitsType.swift */; };
 		1C93AFA35B7C50AD9A3AEC90D338F141 /* BenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C8CD7237AD61A3AF8589E2B05DB82E /* BenefitsView.swift */; };
 		FDDBB8F75E1A2895393A60FA5EC0806A /* BenefitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D48B3785A184D5F44FFBC45AD61962 /* BenefitsViewModel.swift */; };
+		1E997C3E4B7A208A67336B4CC3B59538 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537B7CDE9D6FB2055547E922C44A1074 /* BundleExtension.swift */; };
 		1480684849EC3AE1268FF67F7BB4FD09 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */; };
 		A5E3188EAA09A7C9A32F71EDC377B109 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */; };
 		BB4D49AE922675F9B36718BE688B04C5 /* CalculationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E58108C7FFB90911386F2FCF055B73 /* CalculationController.swift */; };
@@ -303,6 +304,8 @@
 		E41C29403F2F79B41294B9DEADE97F2E /* SetUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E51DB457829AB60606224F7509179CD /* SetUpViewModel.swift */; };
 		C580870BEAFE887D07C39A972A06E7FC /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EED551189419E10DEF4E82443E1DCA /* ShieldActionExtension.swift */; };
 		561EFF30C709658DAA95B6C2DA088423 /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0CB884660014E065629CC5300C8EE8 /* ShieldConfigurationExtension.swift */; };
+		4593ADE69FDECFE63E612666A827B11F /* ShieldSettingsExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D79607B0F25D508F7ED33F9E0D91C /* ShieldSettingsExtenstion.swift */; };
+		7C0F433A94035EDC87AE1D81E480BB59 /* ShieldSettingsExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D79607B0F25D508F7ED33F9E0D91C /* ShieldSettingsExtenstion.swift */; };
 		F0E77B40EA5DA617377B6FC55EE78120 /* ShieldSettingsExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D79607B0F25D508F7ED33F9E0D91C /* ShieldSettingsExtenstion.swift */; };
 		7C0F433A94035EDC87AE1D81E480BB59 /* ShieldSettingsExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D79607B0F25D508F7ED33F9E0D91C /* ShieldSettingsExtenstion.swift */; };
 		4593ADE69FDECFE63E612666A827B11F /* ShieldSettingsExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D79607B0F25D508F7ED33F9E0D91C /* ShieldSettingsExtenstion.swift */; };
@@ -470,6 +473,7 @@
 		183AE94B765BD6C7CF6CEABF0CC29723 /* BenefitsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsType.swift; sourceTree = "<group>"; };
 		81C8CD7237AD61A3AF8589E2B05DB82E /* BenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsView.swift; sourceTree = "<group>"; };
 		C6D48B3785A184D5F44FFBC45AD61962 /* BenefitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsViewModel.swift; sourceTree = "<group>"; };
+		537B7CDE9D6FB2055547E922C44A1074 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		D3E58108C7FFB90911386F2FCF055B73 /* CalculationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationController.swift; sourceTree = "<group>"; };
 		1598B6E6C07048AA6ADA3E74F03D845F /* ColorGetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorGetable.swift; sourceTree = "<group>"; };
@@ -1475,6 +1479,7 @@
 		91C65A51206D0A4752764B607D8FCA32 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				537B7CDE9D6FB2055547E922C44A1074 /* BundleExtension.swift */,
 				A6FED1F54BBE83B1949055BCB128D095 /* CGFloatExtension.swift */,
 				9C3D28A72AE4CC349BF27DD1A1D2EA1F /* DateExtension.swift */,
 				D43E800719FDF1ED3FD8A9EE3170064D /* DateIntervalExtension.swift */,
@@ -2500,6 +2505,7 @@
 				E20037FC8F247DFF032A480F9F60A067 /* BenefitsType.swift in Sources */,
 				1C93AFA35B7C50AD9A3AEC90D338F141 /* BenefitsView.swift in Sources */,
 				FDDBB8F75E1A2895393A60FA5EC0806A /* BenefitsViewModel.swift in Sources */,
+				1E997C3E4B7A208A67336B4CC3B59538 /* BundleExtension.swift in Sources */,
 				A5E3188EAA09A7C9A32F71EDC377B109 /* CGFloatExtension.swift in Sources */,
 				BB4D49AE922675F9B36718BE688B04C5 /* CalculationController.swift in Sources */,
 				8169C6825B7D4331B3200D1F733B344D /* ColorGetable.swift in Sources */,
@@ -2956,7 +2962,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlackLess/Resourses/Constants/SLInfo.plist;
@@ -2970,7 +2976,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3141,7 +3147,7 @@
 				CODE_SIGN_ENTITLEMENTS = SlackLess/Resourses/Constants/SlackLess.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 7842GYQN2J;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3156,7 +3162,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = kz.slackless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
