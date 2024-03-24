@@ -35,5 +35,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         
         repository.set(shield: shield)
         store.shield.applications = dayData.selectedApps.applicationTokens
+        store.shield.applicationCategories = .specific(dayData.selectedApps.categoryTokens)
     }
 }
