@@ -13,10 +13,9 @@ import RxSwift
 //  TODO: Make all observable
 
 enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
+    case resetVersions
     case onbardingShown
     case dayData
-//    TODO: Move to DayData
-    case startDate
     case progressDate
     case currentWeek
     case shield
@@ -26,18 +25,19 @@ enum KeyValueStorageKey: String, StorageKey, Equatable, CaseIterable {
 }
 
 protocol KeyValueStorage {
+    var resetVersions: [String] { get }
     var onbardingShown: Bool { get }
-    var startDate: Date? { get }
     var progressDate: Date? { get }
     var progressDateObservable: PublishRelay<Date?> { get }
     var currentWeek: Date? { get }
     var shield: SLShield? { get }
     var pushNotificationsEnabled: Bool { get }
+    func getDayData() -> [DayData]
     func getDayData(for date: Date) -> DayData?
 
+    func persist(resetVersions: [String])
     func persist(onbardingShown: Bool)
     func persist(dayData: DayData)
-    func persist(startDate: Date)
     func persist(progressDate: Date)
     func persist(currentWeek: Date)
     func persist(shield: SLShield?)
@@ -64,13 +64,13 @@ final class KeyValueStorageImpl: KeyValueStorage {
             .bind(to: progressDateObservable)
             .disposed(by: disposeBag)
     }
+    
+    var resetVersions: [String] {
+        storageProvider.array(forKey: KeyValueStorageKey.resetVersions.value) as? [String] ?? []
+    }
 
     var onbardingShown: Bool {
         storageProvider.bool(forKey: KeyValueStorageKey.onbardingShown.value)
-    }
-
-    var startDate: Date? {
-        storageProvider.object(forKey: KeyValueStorageKey.startDate.value) as? Date
     }
 
     var progressDate: Date? {
@@ -97,19 +97,27 @@ final class KeyValueStorageImpl: KeyValueStorage {
         storageProvider.bool(forKey: KeyValueStorageKey.pushNotificationsEnabled.value)
     }
     
-//    TODO: Move to repository
-    func getDayData(for date: Date) -> DayData? {
+    func getDayData() -> [DayData] {
         guard let data = storageProvider.data(forKey: KeyValueStorageKey.dayData.value)
-        else { return nil }
-
+        else { return [] }
+        
         let objects = try? decoder.decode(
             [DayData].self,
             from: data
         )
         
-        return objects?.filter({ $0.date <= date.getDate() }).sorted(by: { $0.date > $1.date }).first
+        return objects ?? []
+    }
+    
+//    TODO: Move to repository
+    func getDayData(for date: Date) -> DayData? {
+        getDayData().filter({ $0.date <= date.getDate() }).sorted(by: { $0.date > $1.date }).first
     }
 
+    func persist(resetVersions: [String]) {
+        storageProvider.set(resetVersions, forKey: KeyValueStorageKey.resetVersions.value)
+    }
+    
     func persist(onbardingShown: Bool) {
         storageProvider.set(onbardingShown, forKey: KeyValueStorageKey.onbardingShown.value)
     }
@@ -137,10 +145,6 @@ final class KeyValueStorageImpl: KeyValueStorage {
             try? encoder.encode(objects),  
             forKey: KeyValueStorageKey.dayData.value
         )
-    }
-
-    func persist(startDate: Date) {
-        storageProvider.set(startDate, forKey: KeyValueStorageKey.startDate.value)
     }
 
     func persist(progressDate: Date) {

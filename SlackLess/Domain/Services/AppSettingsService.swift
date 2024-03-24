@@ -13,6 +13,7 @@ import RxSwift
 //  TODO: Split into two services
 
 protocol AppSettingsServiceInput {
+    func checkReset()
     func set(progressDate: Date)
     func setWeeklyReportShown()
 }
@@ -54,13 +55,13 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
     let errorOccured: PublishRelay<ErrorPresentable> = .init()
 
     func getIsLastDate(_ date: Date) -> Bool {
-        guard let startDate = appSettingsRepository.output.getStartDate()
+        guard let startDate = getStartDate()
         else { return true }
         return startDate.compareByDate(to: date) == .orderedSame
     }
 
     func getIsLastWeek(_ date: Date) -> Bool {
-        guard let startDate = appSettingsRepository.output.getStartDate()
+        guard let startDate = getStartDate()
         else { return true }
         return startDate.getWeekInterval().containsDate(date)
     }
@@ -76,11 +77,31 @@ final class AppSettingsServiceImpl: AppSettingsService, AppSettingsServiceInput,
 
     //    Input
 
+    func checkReset() {
+        guard let currentVersion = Bundle.main.version else { return }
+        var resetVersions = appSettingsRepository.output.getResetVersions()
+        
+        guard Constants.Settings.resetVersions.keys.contains(currentVersion),
+              !resetVersions.contains(currentVersion),
+              let keys = Constants.Settings.resetVersions[currentVersion]
+        else { return }
+        
+        appSettingsRepository.input.cleanKeyValueStorage(for: keys)
+        resetVersions.append(currentVersion)
+        appSettingsRepository.input.set(resetVersions: resetVersions)
+    }
+
     func setWeeklyReportShown() {
         appSettingsRepository.input.set(currentWeek: Date().getFirstDayOfWeek())
     }
 
     func set(progressDate: Date) {
         appSettingsRepository.input.set(progressDate: progressDate)
+    }
+}
+
+extension AppSettingsServiceImpl {
+    func getStartDate() -> Date? {
+        appSettingsRepository.output.getDayData().sorted(by: { $0.date < $1.date }).first?.date
     }
 }

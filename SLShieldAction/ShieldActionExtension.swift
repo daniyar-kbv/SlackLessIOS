@@ -26,7 +26,7 @@ class ShieldActionExtension: ShieldActionDelegate {
         case .primaryButtonPressed:
             switch shield.state {
             case .remind:
-                store.shield.applications = nil
+                store.shield.reset()
                 completionHandler(.defer)
             case .lock:
                 completionHandler(.close)
@@ -42,7 +42,7 @@ class ShieldActionExtension: ShieldActionDelegate {
                     return
                 }
                 
-                store.shield.applications = nil
+                store.shield.reset()
                 
                 dayData.unlocks += 1
                 repository.set(dayData: dayData)
