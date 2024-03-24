@@ -17,13 +17,13 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         
-        store.shield.applications = nil
+        store.shield.reset()
     }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
         
-        store.shield.applications = nil
+        store.shield.reset()
     }
 
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
@@ -34,7 +34,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         else { return }
         
         repository.set(shield: shield)
-        store.shield.applications = dayData.selectedApps.applicationTokens
-        store.shield.applicationCategories = .specific(dayData.selectedApps.categoryTokens)
+        store.shield.set(familyActivitySelection: dayData.selectedApps)
     }
 }
