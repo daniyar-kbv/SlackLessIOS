@@ -193,9 +193,9 @@
 "Settings.Settings.title" = "SETTINGS";
 "Settings.Settings.buttonTitle" = "MODIFY";
 "Settings.Settings.SelectedAppsLabel.normal" = "Selected Apps";
-"Settings.Settings.SelectedAppsLabel.setUp" = "Select Apps";
+"Settings.Settings.SelectedAppsLabel.setUp" = "Select apps to limit";
 "Settings.Settings.TimeLimitLabel.normal" = "Time Limit";
-"Settings.Settings.TimeLimitLabel.setUp" = "Set the Time Limit";
+"Settings.Settings.TimeLimitLabel.setUp" = "Set daily time limit";
 "Settings.Settings.UnlockPriceLabel.normal" = "Unlock Fee";
 "Settings.Settings.UnlockPriceLabel.setUp" = "Set the Unlock Fee";
 "Settigns.Settings.UnlockPrice.placeholder" = "$%@/%@min";
