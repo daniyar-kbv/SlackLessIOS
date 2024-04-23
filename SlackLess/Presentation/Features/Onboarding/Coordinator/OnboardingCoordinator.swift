@@ -32,7 +32,7 @@ final class OnboardingCoordinator: BaseCoordinator {
 
         module.viewModel.output.didFinish
             .subscribe(onNext: { [weak self] in
-                self?.showSurvey(for: .question1)
+                self?.showRequestAuth()
             })
             .disposed(by: disposeBag)
 
@@ -77,7 +77,7 @@ final class OnboardingCoordinator: BaseCoordinator {
     private func showRequestAuth() {
         let module = modulesFactory.makeRequestAuthModule()
 
-        module.viewModel.output.authorizationSuccessful
+        module.viewModel.output.didFinish
             .subscribe(onNext: showIntroduction)
             .disposed(by: disposeBag)
 

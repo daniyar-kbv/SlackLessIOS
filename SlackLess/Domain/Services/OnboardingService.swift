@@ -17,7 +17,8 @@ protocol OnboardingServiceInput: AnyObject {
 }
 
 protocol OnboardingServiceOutput: AnyObject {
-    var authorizaionStatus: PublishRelay<Result<Void, Error>> { get }
+    var authorizationComplete: PublishRelay<Void> { get }
+    var errorOccured: PublishRelay<ErrorPresentable> { get }
     func getOnboardingShown() -> Bool
     func getResults() -> (spendYear: TimeInterval, spendLife: TimeInterval, save: TimeInterval)
     func getBenefits() -> (time: TimeInterval, percentage: Double)
@@ -34,7 +35,6 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     
     private let disposeBag = DisposeBag()
     private let appSettingsRepository: AppSettingsRepository
-    private var authorizationTimer: Timer?
     private var answeredQuestions: [(question: SurveyQuestion, answer: SurveyQuestion.Answer)] = []
     
     init(appSettingsRepository: AppSettingsRepository) {
@@ -42,7 +42,8 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     }
     
 //    Output
-    let authorizaionStatus: PublishRelay<Result<Void, Error>> = .init()
+    let authorizationComplete: PublishRelay<Void> = .init()
+    let errorOccured: PublishRelay<ErrorPresentable> = .init()
     
     func getOnboardingShown() -> Bool {
         appSettingsRepository.output.getOnboardingShown()
@@ -87,19 +88,18 @@ final class OnboardingServiceImpl: OnboardingService, OnboardingServiceInput, On
     }
     
     func requestAuthorization() {
-        authorizationTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { [weak self] _ in
-            self?.authorizaionStatus.accept(.success(()))
-        }
         Task {
             do {
                 try await AuthorizationCenter.shared.requestAuthorization(for: FamilyControlsMember.individual)
                 DispatchQueue.main.async { [weak self] in
-                    self?.authorizationTimer?.invalidate()
-                    self?.authorizaionStatus.accept(.success(()))
+                    self?.authorizationComplete.accept(())
                 }
             } catch {
                 DispatchQueue.main.async { [weak self] in
-                    self?.authorizaionStatus.accept(.failure(error))
+                    switch error as? FamilyControlsError {
+                    case .authorizationCanceled: self?.errorOccured.accept(DomainError.familyControlsAuthorizationDenied)
+                    default: self?.errorOccured.accept(DomainError.error(error.localizedDescription))
+                    }
                 }
             }
         }

@@ -15,8 +15,8 @@ protocol RequestAuthViewModelInput {
 
 protocol RequestAuthViewModelOutput {
     var authorizationComplete: PublishRelay<Void> { get }
-    var authorizationSuccessful: PublishRelay<Void> { get }
-    var gotError: PublishRelay<String> { get }
+    var gotError: PublishRelay<ErrorPresentable> { get }
+    var didFinish: PublishRelay<Void> { get }
 }
 
 protocol RequestAuthViewModel: AnyObject {
@@ -39,8 +39,8 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
     
     //    Output
     var authorizationComplete: PublishRelay<Void> = .init()
-    var authorizationSuccessful: PublishRelay<Void> = .init()
-    var gotError: PublishRelay<String> = .init()
+    var gotError: PublishRelay<ErrorPresentable> = .init()
+    var didFinish: PublishRelay<Void> = .init()
     
     //    Input
     func requestAuthorization() {
@@ -50,15 +50,16 @@ final class RequestAuthViewModellImpl: RequestAuthViewModel, RequestAuthViewMode
 
 extension RequestAuthViewModellImpl {
     private func bindService() {
-        onboardingService.output.authorizaionStatus
+        onboardingService.output.authorizationComplete
             .subscribe(onNext: { [weak self] in
                 self?.authorizationComplete.accept(())
-                switch $0 {
-                case .success:
-                    self?.authorizationSuccessful.accept(())
-                case let .failure(error):
-                    self?.gotError.accept(error.localizedDescription)
-                }
+                self?.didFinish.accept(())
+            })
+            .disposed(by: disposeBag)
+        
+        onboardingService.output.errorOccured
+            .subscribe(onNext: { [weak self] in
+                self?.gotError.accept($0)
             })
             .disposed(by: disposeBag)
     }

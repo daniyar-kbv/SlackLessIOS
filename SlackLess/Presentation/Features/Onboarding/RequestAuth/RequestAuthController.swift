@@ -54,11 +54,10 @@ final class RequestAuthController: UIViewController {
         })
         .disposed(by: disposeBag)
 
-//        TODO: test if app setings open in production version
-
         viewModel.output.gotError.subscribe(onNext: { [weak self] in
+            self?.hideLoader()
             self?.showAlert(title: SLTexts.Alert.Error.title.localized(),
-                            message: $0,
+                            message: $0.presentationDescription,
                             actions: [
                                 .init(
                                     title: SLTexts.Alert.Action.cancel.localized(),
