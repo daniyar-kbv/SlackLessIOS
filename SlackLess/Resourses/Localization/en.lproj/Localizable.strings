@@ -23,6 +23,7 @@
 "Error.Domain.unsupportedApplePayPaymentMethods" = "Your payment methods are unsopported";
 "Error.Domain.updateLockFailed" = "Couldn't update limits";
 "Error.Domain.invalidEmail" = "Entered email is invalid";
+"Error.Domain.familyControlsAuthorizationDenied" = "SlackLess needs Family Controls authorization to work properly. Please try authorization again or go to Screen Time settings to authorize SlackLess";
 "Error.Presentation.cantOpenTermsAndPrivacy" = "Coudn't open Terms and Conditions, and Privacy Policy";
 
 //  MARK: - Keyboard

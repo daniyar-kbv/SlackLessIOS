@@ -14,6 +14,7 @@ enum DomainError: ErrorPresentable {
     case cantMakeApplePayPayment
     case unsupportedApplePayPaymentMethods
     case invalidEmail
+    case familyControlsAuthorizationDenied
 
     var presentationDescription: String {
         switch self {
@@ -23,6 +24,7 @@ enum DomainError: ErrorPresentable {
         case .cantMakeApplePayPayment: return SLTexts.Error.Domain.cantMakeApplePayPayment.localized()
         case .unsupportedApplePayPaymentMethods: return SLTexts.Error.Domain.unsupportedApplePayPaymentMethods.localized()
         case .invalidEmail: return SLTexts.Error.Domain.invalidEmail.localized()
+        case .familyControlsAuthorizationDenied: return SLTexts.Error.Domain.familyControlsAuthorizationDenied.localized()
         }
     }
 }
