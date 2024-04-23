@@ -32,7 +32,7 @@ final class OnboardingCoordinator: BaseCoordinator {
 
         module.viewModel.output.didFinish
             .subscribe(onNext: { [weak self] in
-                self?.showRequestAuth()
+                self?.showSurvey(for: .question1)
             })
             .disposed(by: disposeBag)
 
