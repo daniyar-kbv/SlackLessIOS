@@ -64,7 +64,8 @@ extension AppCoordinator {
 
         UIApplication.shared.set(rootViewController: modulesFactory.makeSLTabBarController())
         
-        pushNotificationsService.input.configure()
+//        Uncomment to enable push notifications
+//        pushNotificationsService.input.configure()
     }
 
     private func startOnboardingFlow() {
