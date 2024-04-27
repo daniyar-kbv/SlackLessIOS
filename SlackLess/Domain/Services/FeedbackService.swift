@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DeviceKit
 import RxSwift
 import RxCocoa
 
@@ -46,7 +47,17 @@ final class FeedbackServiceImpl: FeedbackService, FeedbackServiceInput, Feedback
             return
         }
         
-        feedbackAPI.sendFeedback(dto: .init(body: body, email: email))
+        let dto = SendFeedbackRequestDTO(
+            body: body,
+            email: email,
+            os: Device.current.systemName,
+            device: Device.current.safeDescription,
+            systemVersion: Device.current.systemVersion,
+            appVersion: (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "",
+            buildNumber: (Bundle.main.infoDictionary?["CFBundleVersion"] as? String) ?? ""
+        )
+        
+        feedbackAPI.sendFeedback(dto: dto)
             .subscribe(
                 onSuccess: { [weak self] _ in
                     self?.feedbackSent.accept(())
