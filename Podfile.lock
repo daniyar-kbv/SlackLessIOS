@@ -636,6 +636,7 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.24)
   - BoringSSL-GRPC/Interface (0.0.24)
   - Cache (6.0.0)
+  - DeviceKit (5.2.3)
   - Firebase/Analytics (10.10.0):
     - Firebase/Core
   - Firebase/Core (10.10.0):
@@ -849,6 +850,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Cache
+  - DeviceKit (~> 5.2)
   - Firebase/Analytics
   - Firebase/Crashlytics
   - FirebaseAppCheck
@@ -870,6 +872,7 @@ SPEC REPOS:
     - Alamofire
     - BoringSSL-GRPC
     - Cache
+    - DeviceKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAppCheck
@@ -907,6 +910,7 @@ SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
+  DeviceKit: 4504e64df8f8ad1c42aae68f30ece5b51d56022a
   Firebase: facd334e557a979bd03a0b58d90fd56b52b8aba0
   FirebaseAnalytics: 7bc7de519111dae802f5bc0c9c083918f8b8870d
   FirebaseAppCheck: f3b56655048e2a24d3b03fd910cbf3e540502c6d
@@ -939,6 +943,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftFormat: 5c722f77243cf74af91d1c587b5b2d744441f557
 
-PODFILE CHECKSUM: 80f3fba7deb4841aa1beca0b78e803fb015a91ec
+PODFILE CHECKSUM: 167803bc6407ef56bc04b160a403db613731ab4f
 
 COCOAPODS: 1.14.3

@@ -35,6 +35,9 @@ target 'SlackLess' do
   
 #  UI
   pod 'FittedSheets'
+
+#  Other
+  pod 'DeviceKit', '~> 5.2'
 end
 
 target 'SLActivityReport' do
