@@ -61,7 +61,7 @@ struct Constants {
 
 //    Shared constants
     enum SharedStorage {
-        static let appGroup = "group.kz.slackless"
+        static let appGroup = "group.kz.slackless.main"
         static let databaseName = "SlackLess"
     }
 }

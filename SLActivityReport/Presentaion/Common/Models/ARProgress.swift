@@ -53,23 +53,39 @@ struct ARProgress {
                                 repository: Repository) async -> ARWeek.Day {
         let date = activitySegment.dateInterval.start
         var slackedTime = 0.0
+        
         if let appSelection = repository.getSelectedApps(for: date) {
-            slackedTime = await activitySegment
-                .categories
-                .flatMap { $0.applications }
-                .filter {
-                    guard let token = $0.application.token else { return false }
-                    return appSelection.applicationTokens.contains(token)
+            let categories: [DeviceActivityData.CategoryActivity] = await activitySegment.categories.unwrap()
+            
+            for category in categories {
+                guard let categoryToken = category.category.token else { continue }
+                
+                // Check if the entire category is selected
+                if appSelection.categoryTokens.contains(categoryToken) {
+                    let applications: [DeviceActivityData.ApplicationActivity] = await category.applications.unwrap()
+                    // Filter out system services using intelligent detection
+                    let filteredApps = applications.filter { SystemServiceFilter.isUserApp($0, selectedApps: appSelection) }
+                    slackedTime += filteredApps.map { $0.totalActivityDuration }.reduce(0, +)
+                } else {
+                    let applications: [DeviceActivityData.ApplicationActivity] = await category.applications.unwrap()
+                    for app in applications {
+                        guard let token = app.application.token else { continue }
+                        if appSelection.applicationTokens.contains(token) {
+                            // Only count if it's a legitimate user app
+                            if SystemServiceFilter.isUserApp(app, selectedApps: appSelection) {
+                                slackedTime += app.totalActivityDuration
+                            }
+                        }
+                    }
                 }
-                .map { $0.totalActivityDuration }
-                .reduce(0, +)
+            }
         }
-
-        return .init(date: date,
-                     time: .init(slacked: slackedTime,
-                                 total: activitySegment.totalActivityDuration,
-                                 limit: nil,
-                                 average: nil))
+        
+        let totalTime = activitySegment.totalActivityDuration
+        return .init(date: date, time: .init(slacked: slackedTime,
+                                             total: totalTime,
+                                             limit: nil,
+                                             average: nil))
     }
     
     private static func getWeek(for date: Date, from weeks: inout [ARWeek]) -> ARWeek {

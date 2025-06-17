@@ -87,9 +87,15 @@ struct SummaryScene: DeviceActivityReportScene {
     }
 
     private func transform(apps: [ApplicationActivity]) -> [ARApp] {
-        let times = apps.map { $0.totalActivityDuration }
+        // Filter out system services using intelligent detection
+        let filteredApps = apps.filter { app in
+            guard let appSelection = repository.getSelectedApps(for: Date()) else { return false }
+            return SystemServiceFilter.isUserApp(app, selectedApps: appSelection)
+        }
+        
+        let times = filteredApps.map { $0.totalActivityDuration }
         let (minTime, maxTime) = (times.min() ?? .zero, times.max() ?? .infinity)
-        return apps
+        return filteredApps
             .map({
                 let appTimeRelative = $0.totalActivityDuration - minTime
                 let timeDifference = maxTime - minTime
