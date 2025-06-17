@@ -58,6 +58,7 @@ final class CustomizeCoordinator: BaseCoordinator {
         
         module.viewModel.output.didFinish
             .subscribe(onNext: {
+                module.controller.isIntentionalDismissal = true
                 module.controller.dismiss(animated: true)
             })
             .disposed(by: disposeBag)

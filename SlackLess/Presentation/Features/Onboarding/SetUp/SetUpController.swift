@@ -16,6 +16,9 @@ final class SetUpController: UIViewController {
     private lazy var contentView = SetUpView(state: viewModel.output.getState())
     private lazy var settingsController = SLSettingsController(viewModel: viewModel.output.getSettingsViewModel())
 
+    // Track if dismissal is intentional
+    internal var isIntentionalDismissal = false
+
     init(viewModel: SetUpViewModel) {
         self.viewModel = viewModel
 
@@ -41,6 +44,15 @@ final class SetUpController: UIViewController {
         bindViewModel()
     }
 
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        // Only allow dismissal if it's intentional
+        guard isIntentionalDismissal else {
+            completion?()
+            return
+        }
+        super.dismiss(animated: flag, completion: completion)
+    }
+
     private func configureView() {
         add(controller: settingsController, to: contentView.largeTitleView)
     }
@@ -54,7 +66,10 @@ final class SetUpController: UIViewController {
     
     private func bindViewModel() {
         viewModel.output.didSave
-            .subscribe(onNext: viewModel.input.finish)
+            .subscribe(onNext: { [weak self] in
+                self?.isIntentionalDismissal = true
+                self?.viewModel.input.finish()
+            })
             .disposed(by: disposeBag)
         
         viewModel.output.isComplete
