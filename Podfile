@@ -33,35 +33,35 @@ target 'SlackLess' do
   pod 'SwiftFormat'
   pod 'IQKeyboardManagerSwift'
   
-#  UI
+  #  UI
   pod 'FittedSheets'
-
-#  Other
+  
+  #  Other
   pod 'DeviceKit', '~> 5.2'
 end
 
 target 'SLActivityReport' do
-    shared_pods
+  shared_pods
 end
 
 target 'SLActivityMonitor' do
-    shared_pods
+  shared_pods
 end
 
 target 'SLShieldConfiguration' do
-    shared_pods
+  shared_pods
 end
 
 target 'SLShieldAction' do
-    shared_pods
+  shared_pods
 end
 
 post_install do |installer|
-    installer.generated_projects.each do |project|
-          project.targets.each do |target|
-              target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
-               end
-          end
-   end
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+      end
+    end
+  end
 end

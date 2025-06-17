@@ -8,7 +8,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.kz.slackless</string>
+		<string>group.kz.slackless.main</string>
 	</array>
 </dict>
 </plist>
