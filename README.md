@@ -10,3 +10,7 @@ SlackLess is a productivity app to monitor and limit time spent on distracting a
 
 ## Tech Stack
 SwiftUI, Firebase, RxSwift, Clean Architecture, DeviceActivity APIs
+
+## License
+Copyright (c) 2023 Daniyar Kurmanbayev. All rights reserved.
+No permission is granted to use, copy, modify, or distribute this code without written consent.
